@@ -1,0 +1,130 @@
+﻿2015-05-10 Dos.ORM（原Hxj.Data）（v1.8.5）
+	*）From<T>().GroupBy()增加Lambda表达式写法
+	*）From<T>().OrderBy()增加Lambda表达式写法
+	*）增加From<T>().OrderByDescending()
+	*）From<T>().Having()增加Lambda表达式写法
+	*）From<T>().Select()增加Lambda表达式写法
+
+2015-05-05 Dos.ORM（原Hxj.Data）（v1.8.1）
+	*）解决Dos.ORM在MySql下仍然调用Hxj.Data.MySql的Bug，现在会正确调用Dos.ORM.MySql。Sqlite同理。
+
+2015-05-03 Dos.ORM（原Hxj.Data）（v1.8.0）
+	*）Hxj.Data正式更名为Dos.ORM，与Dos.WorkFlow、Dos.WeChat等形成产品线。老程序集迁移至新程序集：将【using Hxj.Data;】全部替换为【using Dos.ORM;】、将【using Hxj.Data.Common;】全部替换成【using Dos.ORM.Common;】即可！（勾选“区分大小写”、“全字匹配”，选中“整个解决方案”，点击“全部替换”。）
+	*）From<T>().Where()增加Lambda表达式“==”、“!=”写法。
+	*）Delete<T>().Where()增加Lambda表达式“==”、“!=”写法。
+	*）随机16位字母参数名修改为“表名+参数+全局序号(以继续保证唯一)”，使增、删、查、改性能提升50%。
+	*）单条数据插入去除事务，性能提升10%。
+	*）批量Insert、Update、Delete由void更改为返回受影响行数。
+	*）QueryOperator、DataUtils、Field 增加IsNotNULL。
+	*）Field增加Like，同Contain。
+	*）新增WhereClipBuilder<T>，以及And、Or的Lambda表达式“==”、“!=”写法。
+
+Hxj.Data(V1.7.4.7)
+	增加UpdateAll方法更新实体全部字段。
+
+Hxj.Data(V1.7.4.6)
+	修正存储过程名和参数名重复时的参数替换问题。
+
+Hxj.Data(V1.7.4.5)
+	修正access的bool类型支持。
+
+Hxj.Data(V1.7.4.4)
+	修正oracle执行存储过程的参数问题。
+
+Hxj.Data(V1.7.4.3)
+1、增加对字段的Distinct操作，例如：Products._.ID.Distinct()  
+
+Hxj.Data(V1.7.4.2)
+1、增加缓存操作，获取缓存数量、获取缓存键值列表、清除所有缓存。
+
+Hxj.Data(V1.7.4.1)
+1、修正Access数据库多次联合查询的错误。
+
+Hxj.Data(V1.7.4)
+1、修正Access数据库创建DbSession失败。
+
+Hxj.Data(V1.7.3.2)
+1、WhereClip.Exists方法，用来生成exists (select * from table )这种条件。
+2、修正oracle子查询中表别名不能使用as关键字。
+
+Hxj.Data(V1.7.3.1)
+1、增加DbTrans类方法：
+ FromSql(string sql) //事务内执行sql语句
+ FromPro(string proName) //事务内执行存储过程
+
+Hxj.Data(V1.7.3)
+1、增加FromSection的Having方法，在增加处理groupby的having条件，原先的where方法则where条件。
+（由于之前版本的having条件是where方法，所以会存在功能差异，升级时请注意。）
+
+Hxj.Data(V1.7.2.1)
+1、修正oracle批处理。
+
+Hxj.Data(V1.7.2)
+1、增加WhereClipBuilder,用来快速构造WhereClip。
+2、修正oracle的查询。
+
+Hxj.Data (V1.7.1.1)
+1、增加FromSection.ToFirstDefault()方法，当查询不到数据则默认构造一个实体。
+2、增加FromSection.GroupBy(params Field field)方法，设置分组。
+
+Hxj.Data (V1.7.1)
+1、优化oracle查询。
+2、增加Field.SelectIn处理int类型就不参数化，直接生成例如： Field in (1,2,3)
+3、修正oracle支持。
+
+Hxj.Data (V1.7.0)
+1、支持MySql。
+
+Hxj.Data (V1.6.7)
+1、增加Hxj.Data.Common.EntityUtils.SetDocumentValue方法，用于Web页面赋值。
+2、其他修正。
+
+Hxj.Data (V1.6.6)
+1、修正由于string to whereclip的隐式转换，导致Delete<TEntity>(params object[] pkValues)在传入字符串类型无法调用。
+2、增加Insert<TEntity>(params TEntity[] entities)
+       Update<TEntity>(params TEntity[] entities)方法
+
+
+Hxj.Data (V1.6.5)
+1、修正Hxj.Data.Common.EntityUtils.UpdateModel
+       Hxj.Data.Common.EntityUtils.TryUpdateModel
+   方法无法赋值的问题（在实体属性首字母大写）
+2、修正更新的时候无法排除自增长字段。
+3、增加Hxj.Data.Common.EntityUtils.SetValue<TEntity>(TEntity toEntity, TEntity fromEntity)方法实体之间赋值。
+
+
+Hxj.Data (V1.6.4)
+1、优化分页，当分页到达过半时，分页则是先倒叙取count-startindex+1,再正序取pagesize数据。
+2、增加FromSection.AddSelect(FromSection),可对查询列中加子查询。
+3、增加string to WhereClip的隐式转换。
+
+
+Hxj.Data (V1.6.3)
+1、增加DbTrans.FromSection 查询。
+2、修正实体类属性首字母大写后，生成实体主键条件无法生成。
+3、修正其他BUG。
+
+
+2010.1.30
+0.5.0
+增强了事务和批处理。
+修正了一些bug
+
+2009.12.18
+增强子查询
+增加Hxj.Data.Cache
+修正batch错误 
+修正一些小bug
+
+2009.11.5
+修正子查询错误
+修改WhereClip的Bug
+
+2009.10.16
+版本0.2
+修正添加、更新失败
+修正Union查询出错
+其他一些小Bug的修复
+
+2009.09.22
+发布一个版本 0.1 版本

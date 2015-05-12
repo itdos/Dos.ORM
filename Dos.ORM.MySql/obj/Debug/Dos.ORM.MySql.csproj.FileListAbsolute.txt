@@ -1,0 +1,17 @@
+D:\工作\其它\Hxj.Data Source(1.7.4.7)\Dos.ORM.MySql\obj\Debug\Dos.ORM.MySql.csprojResolveAssemblyReference.cache
+D:\工作\其它\Hxj.Data Source(1.7.4.7)\Dos.ORM.MySql\bin\Debug\Dos.ORM.MySql.dll
+D:\工作\其它\Hxj.Data Source(1.7.4.7)\Dos.ORM.MySql\bin\Debug\Dos.ORM.MySql.pdb
+D:\工作\其它\Hxj.Data Source(1.7.4.7)\Dos.ORM.MySql\bin\Debug\Dos.ORM.dll
+D:\工作\其它\Hxj.Data Source(1.7.4.7)\Dos.ORM.MySql\bin\Debug\MySql.Data.dll
+D:\工作\其它\Hxj.Data Source(1.7.4.7)\Dos.ORM.MySql\bin\Debug\Dos.ORM.pdb
+D:\工作\其它\Hxj.Data Source(1.7.4.7)\Dos.ORM.MySql\obj\Debug\Dos.ORM.MySql.dll
+D:\工作\其它\Hxj.Data Source(1.7.4.7)\Dos.ORM.MySql\obj\Debug\Dos.ORM.MySql.pdb
+D:\工作\GitHub\Dos.ORM\Dos.ORM.MySql\bin\Debug\Dos.ORM.MySql.dll
+D:\工作\GitHub\Dos.ORM\Dos.ORM.MySql\bin\Debug\Dos.ORM.MySql.pdb
+D:\工作\GitHub\Dos.ORM\Dos.ORM.MySql\bin\Debug\Dos.ORM.dll
+D:\工作\GitHub\Dos.ORM\Dos.ORM.MySql\bin\Debug\Dos.ORM.pdb
+D:\工作\GitHub\Dos.ORM\Dos.ORM.MySql\bin\Debug\Dos.ORM.xml
+D:\工作\GitHub\Dos.ORM\Dos.ORM.MySql\obj\Debug\Dos.ORM.MySql.csprojResolveAssemblyReference.cache
+D:\工作\GitHub\Dos.ORM\Dos.ORM.MySql\obj\Debug\Dos.ORM.MySql.dll
+D:\工作\GitHub\Dos.ORM\Dos.ORM.MySql\obj\Debug\Dos.ORM.MySql.pdb
+D:\工作\GitHub\Dos.ORM\Dos.ORM.MySql\bin\Debug\MySql.Data.dll

@@ -1,4 +1,11 @@
-﻿2015-05-10 Dos.ORM（原Hxj.Data）（v1.8.5）
+﻿2015-05-16 Dos.ORM（原Hxj.Data）（v1.8.6.1）
+	*）.Update<T>()增加重载：.Update<T>(IEnumerable<T> entities)。
+
+2015-05-16 Dos.ORM（原Hxj.Data）（v1.8.6）
+	*）From<T>()增加.First()，效果同.ToFirst()
+	*）现在多表关联查询.ToList()支持“扩展字段”Mapping了。“扩展字段”可直接使用“贫血模型”，如：public string Name{get;set;}。
+
+2015-05-10 Dos.ORM（原Hxj.Data）（v1.8.5）
 	*）From<T>().GroupBy()增加Lambda表达式写法
 	*）From<T>().OrderBy()增加Lambda表达式写法
 	*）增加From<T>().OrderByDescending()

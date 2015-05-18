@@ -15,3 +15,4 @@ D:\工作\GitHub\Dos.ORM\Dos.ORM.MySql\obj\Debug\Dos.ORM.MySql.csprojResolveAsse
 D:\工作\GitHub\Dos.ORM\Dos.ORM.MySql\obj\Debug\Dos.ORM.MySql.dll
 D:\工作\GitHub\Dos.ORM\Dos.ORM.MySql\obj\Debug\Dos.ORM.MySql.pdb
 D:\工作\GitHub\Dos.ORM\Dos.ORM.MySql\bin\Debug\MySql.Data.dll
+D:\工作\GitHub\Dos.ORM\Dos.ORM.MySql\bin\Debug\Dos.ORM.MySql.XML

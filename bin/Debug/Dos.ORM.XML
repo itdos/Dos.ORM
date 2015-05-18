@@ -2207,6 +2207,13 @@
             <typeparam name="TEntity"></typeparam>
             <param name="entities"></param>
         </member>
+        <member name="M:Dos.ORM.DbSession.Update``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            更新  
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entities"></param>
+        </member>
         <member name="M:Dos.ORM.DbSession.Update``1(``0,Dos.ORM.WhereClip)">
             <summary>
             更新
@@ -2225,6 +2232,14 @@
             <param name="entity"></param>
         </member>
         <member name="M:Dos.ORM.DbSession.Update``1(System.Data.Common.DbTransaction,``0[])">
+            <summary>
+            更新
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="tran"></param>
+            <param name="entities"></param>
+        </member>
+        <member name="M:Dos.ORM.DbSession.Update``1(System.Data.Common.DbTransaction,System.Collections.Generic.IEnumerable{``0})">
             <summary>
             更新
             </summary>
@@ -4475,9 +4490,15 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Dos.ORM.FromSection`1.First">
+            <summary>
+            返回第一个实体，同ToFirst()
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Dos.ORM.FromSection`1.ToFirst">
             <summary>
-            返回第一个实体 
+            返回第一个实体 ，同First()
             </summary>
             <returns></returns>
         </member>

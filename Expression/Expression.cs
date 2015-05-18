@@ -202,7 +202,7 @@ namespace Dos.ORM
     /// 表达式
     /// </summary>
     [Serializable]
-    public class Expression //: LambdaExpression// by itdos.com 2015-04-06
+    public class Expression 
     {
         /// <summary>
         /// 

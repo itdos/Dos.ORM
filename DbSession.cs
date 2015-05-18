@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.IO;
+using System.Linq;
 using System.Linq.Expressions;
 using Dos.ORM.Common;
 using Dos;
@@ -71,7 +72,7 @@ namespace Dos.ORM
         /// <summary>
         /// 版本号
         /// </summary>
-        public const string Version = "1.8.5";
+        public const string Version = "1.8.6";
 
 
         /// <summary>
@@ -764,7 +765,6 @@ namespace Dos.ORM
 
             return Update<TEntity>(entity, where);
         }
-        #region itdos.com 2015-04-07
         /// <summary>
         /// 更新  
         /// </summary>
@@ -775,7 +775,7 @@ namespace Dos.ORM
         {
             if (null == entities || entities.Length == 0)
                 return 0;
-            var count = 0;
+            int count = 0;
             using (DbTrans trans = BeginTransaction())
             {
                 count = Update<TEntity>(trans, entities);
@@ -783,8 +783,24 @@ namespace Dos.ORM
             }
             return count;
         }
-        #endregion
-
+        /// <summary>
+        /// 更新  
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entities"></param>
+        public int Update<TEntity>(IEnumerable<TEntity> entities)
+            where TEntity : Entity
+        {
+            if (null == entities || !entities.Any())
+                return 0;
+            int count = 0;
+            using (DbTrans trans = BeginTransaction())
+            {
+                count = Update<TEntity>(trans, entities);
+                trans.Commit();
+            }
+            return count;
+        }
         /// <summary>
         /// 更新
         /// </summary>
@@ -819,7 +835,6 @@ namespace Dos.ORM
 
             return Update<TEntity>(entity, where, tran);
         }
-        #region by itdos.com 2015-04-07
         /// <summary>
         /// 更新
         /// </summary>
@@ -832,7 +847,7 @@ namespace Dos.ORM
 
             if (null == entities || entities.Length == 0)
                 return 0;
-            var count = 0;
+            int count = 0;
             foreach (TEntity entity in entities)
             {
                 if (entity.GetModifyFields().Count == 0)
@@ -843,7 +858,29 @@ namespace Dos.ORM
             return count;
 
         }
-        #endregion
+        /// <summary>
+        /// 更新
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="tran"></param>
+        /// <param name="entities"></param>
+        public int Update<TEntity>(DbTransaction tran, IEnumerable<TEntity> entities)
+            where TEntity : Entity
+        {
+
+            if (null == entities || entities.Any())
+                return 0;
+            int count = 0;
+            foreach (TEntity entity in entities)
+            {
+                if (entity.GetModifyFields().Count == 0)
+                    break;
+
+                count += Update<TEntity>(entity, DataUtils.GetPrimaryKeyWhere(entity), tran);
+            }
+            return count;
+
+        }
         /// <summary>
         /// 更新
         /// </summary>
@@ -1276,8 +1313,7 @@ namespace Dos.ORM
         public int Delete<TEntity>(Expression<Func<TEntity, bool>> lambdaWhere)
             where TEntity : Entity
         {
-            var tempWhere = ExpToWhereClip<TEntity>.ToWhereClip(lambdaWhere);
-            return Delete<TEntity>(tempWhere);
+            return Delete<TEntity>(ExpToWhereClip<TEntity>.ToWhereClip(lambdaWhere));
         }
 
         /// <summary>
@@ -1321,7 +1357,6 @@ namespace Dos.ORM
         #endregion
 
         #region 添加操作
-        #region  by itdos.com 2015-04-07
         /// <summary>
         /// 添加
         /// </summary>
@@ -1333,7 +1368,7 @@ namespace Dos.ORM
         {
             if (null == entities || entities.Length == 0)
                 return 0;
-            var count = 0;
+            int count = 0;
             using (DbTrans trans = this.BeginTransaction())
             {
                 count = Insert<TEntity>(trans, entities);
@@ -1341,7 +1376,6 @@ namespace Dos.ORM
             }
             return count;
         }
-        #endregion
 
 
         /// <summary>
@@ -1370,7 +1404,6 @@ namespace Dos.ORM
         {
             return insertExecute<TEntity>(cmdCreator.CreateInsertCommand<TEntity>(entity), tran);
         }
-        #region by itdos.com 2015-04-07
         /// <summary>
         /// 添加
         /// </summary>
@@ -1383,14 +1416,13 @@ namespace Dos.ORM
         {
             if (null == entities || entities.Length == 0)
                 return 0;
-            var count = 0;
+            int count = 0;
             foreach (TEntity entity in entities)
             {
                 count += insertExecute<TEntity>(cmdCreator.CreateInsertCommand<TEntity>(entity), tran);
             }
             return count;
         }
-        #endregion
 
         /// <summary>
         /// 添加
@@ -1435,16 +1467,13 @@ namespace Dos.ORM
             if (null == cmd)
                 return returnValue;
 
-            #region by itdos.com 2015-04-24
             //using (DbTrans dbTrans = BeginTransaction())
             //{
             //    returnValue = insertExecute<TEntity>(cmd, dbTrans);
             //    dbTrans.Commit();
             //}
             returnValue = insertExecute<TEntity>(cmd, null);
-            #endregion
             return returnValue;
-
         }
 
 

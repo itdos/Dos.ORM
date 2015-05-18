@@ -994,6 +994,36 @@
             <param name="fromEntity">来源实体</param>
             <returns>返回null 就表示fromEntity==null</returns>
         </member>
+        <member name="T:Dos.ORM.Common.JoinType">
+            <summary>
+            连接类型
+            </summary>
+        </member>
+        <member name="F:Dos.ORM.Common.JoinType.InnerJoin">
+            <summary>
+            InnerJoin
+            </summary>
+        </member>
+        <member name="F:Dos.ORM.Common.JoinType.LeftJoin">
+            <summary>
+            LeftJoin
+            </summary>
+        </member>
+        <member name="F:Dos.ORM.Common.JoinType.RightJoin">
+            <summary>
+            RightJoin
+            </summary>
+        </member>
+        <member name="F:Dos.ORM.Common.JoinType.CrossJoin">
+            <summary>
+            CrossJoin
+            </summary>
+        </member>
+        <member name="F:Dos.ORM.Common.JoinType.FullJoin">
+            <summary>
+            FullJoin
+            </summary>
+        </member>
         <member name="T:Dos.ORM.LogHandler">
             <summary>
             A delegate used for log.
@@ -4109,7 +4139,7 @@
             <typeparam name="TResult"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:Dos.ORM.FromSection.join(System.String,Dos.ORM.WhereClip,Dos.ORM.JoinType)">
+        <member name="M:Dos.ORM.FromSection.join(System.String,Dos.ORM.WhereClip,Dos.ORM.Common.JoinType)">
             <summary>
             连接
             </summary>
@@ -4310,7 +4340,7 @@
             <param name="where"></param>
             <returns></returns>
         </member>
-        <member name="M:Dos.ORM.FromSection`1.join(System.String,Dos.ORM.WhereClip,Dos.ORM.JoinType)">
+        <member name="M:Dos.ORM.FromSection`1.join(System.String,Dos.ORM.WhereClip,Dos.ORM.Common.JoinType)">
             <summary>
             连接
             </summary>
@@ -4328,15 +4358,11 @@
             <summary>
             Having 
             </summary>
-            <param name="havingWhere"></param>
-            <returns></returns>
         </member>
         <member name="M:Dos.ORM.FromSection`1.Where(Dos.ORM.WhereClip)">
             <summary>
             whereclip
             </summary>
-            <param name="where"></param>
-            <returns></returns>
         </member>
         <member name="M:Dos.ORM.FromSection`1.Where(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
@@ -4347,36 +4373,26 @@
             <summary>
             groupby
             </summary>
-            <param name="groupBy"></param>
-            <returns></returns>
         </member>
         <member name="M:Dos.ORM.FromSection`1.GroupBy(Dos.ORM.Field[])">
             <summary>
             groupby
             </summary>
-            <param name="fields"></param>
-            <returns></returns>
         </member>
-        <member name="M:Dos.ORM.FromSection`1.OrderBy(Dos.ORM.OrderByClip)">
+        <member name="M:Dos.ORM.FromSection`1.OrderBy(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
             <summary>
             orderby
             </summary>
-            <param name="orderBy"></param>
-            <returns></returns>
         </member>
         <member name="M:Dos.ORM.FromSection`1.OrderBy(Dos.ORM.OrderByClip[])">
             <summary>
             orderby
             </summary>
-            <param name="orderBys"></param>
-            <returns></returns>
         </member>
         <member name="M:Dos.ORM.FromSection`1.Select(Dos.ORM.Field[])">
             <summary>
             select field
             </summary>
-            <param name="fields"></param>
-            <returns></returns>
         </member>
         <member name="M:Dos.ORM.FromSection`1.Distinct">
             <summary>
@@ -4459,9 +4475,15 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Dos.ORM.FromSection`1.First">
+            <summary>
+            返回第一个实体，同ToFirst()
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Dos.ORM.FromSection`1.ToFirst">
             <summary>
-            返回第一个实体 
+            返回第一个实体 ，同First()
             </summary>
             <returns></returns>
         </member>
@@ -4478,36 +4500,6 @@
             </summary>        
             <param name="fromSection"></param>
             <returns></returns>
-        </member>
-        <member name="T:Dos.ORM.JoinType">
-            <summary>
-            连接类型
-            </summary>
-        </member>
-        <member name="F:Dos.ORM.JoinType.InnerJoin">
-            <summary>
-            InnerJoin
-            </summary>
-        </member>
-        <member name="F:Dos.ORM.JoinType.LeftJoin">
-            <summary>
-            LeftJoin
-            </summary>
-        </member>
-        <member name="F:Dos.ORM.JoinType.RightJoin">
-            <summary>
-            RightJoin
-            </summary>
-        </member>
-        <member name="F:Dos.ORM.JoinType.CrossJoin">
-            <summary>
-            CrossJoin
-            </summary>
-        </member>
-        <member name="F:Dos.ORM.JoinType.FullJoin">
-            <summary>
-            FullJoin
-            </summary>
         </member>
         <member name="T:Dos.ORM.GroupByClip">
             <summary>

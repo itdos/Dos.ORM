@@ -6,3 +6,9 @@ D:\工作\其它\Hxj.Data Source(1.7.4.7)\Dos.ORM\obj\Release\Dos.ORM.pdb
 D:\工作\其它\Hxj.Data Source(1.7.4.7)\Dos.ORM\bin\Release\Dos.ORM.XML
 D:\工作\其它\Hxj.Data Source(1.7.4.7)\Dos.ORM\bin\Release\Dos.ORM.dll
 D:\工作\其它\Hxj.Data Source(1.7.4.7)\Dos.ORM\bin\Release\Dos.ORM.pdb
+D:\工作\GitHub\Dos.ORM\bin\Release\Dos.ORM.XML
+D:\工作\GitHub\Dos.ORM\bin\Release\Dos.ORM.dll
+D:\工作\GitHub\Dos.ORM\bin\Release\Dos.ORM.pdb
+D:\工作\GitHub\Dos.ORM\obj\Release\Dos.ORM.dll
+D:\工作\GitHub\Dos.ORM\obj\Release\Dos.ORM.pdb
+D:\工作\GitHub\Dos.ORM\obj\Release\Dos.ORM.csprojResolveAssemblyReference.cache

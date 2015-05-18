@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Data;
@@ -220,7 +221,7 @@ namespace Dos.ORM
         /// </summary>
         public new FromSection<T> Where(Expression<Func<T, bool>> lambdaWhere)
         {
-           return Where(ExpToWhereClip<T>.ToWhereClip(lambdaWhere));
+            return Where(ExpToWhereClip<T>.ToWhereClip(lambdaWhere));
         }
 
         /// <summary>
@@ -411,8 +412,6 @@ namespace Dos.ORM
         #region 查询
 
 
-
-
         /// <summary>
         /// To List&lt;T>
         /// </summary>
@@ -433,13 +432,17 @@ namespace Dos.ORM
             List<T> list = new List<T>();
             using (IDataReader reader = ToDataReader(from))
             {
-                while (reader.Read())
+                if (@from.Joins.Any())
+                    list = EntityUtils.Mapper.Map<T>(reader);
+                else
                 {
-                    T t = DataUtils.Create<T>();
-                    t.SetPropertyValues(reader);
-                    list.Add(t);
+                    while (reader.Read())
+                    {
+                        T t = DataUtils.Create<T>();
+                        t.SetPropertyValues(reader);
+                        list.Add(t);
+                    }
                 }
-
                 reader.Close();
             }
 
@@ -461,7 +464,16 @@ namespace Dos.ORM
         }
 
         /// <summary>
-        /// 返回第一个实体 
+        /// 返回第一个实体，同ToFirst()
+        /// </summary>
+        /// <returns></returns>
+        public T First()
+        {
+            return ToFirst();
+        }
+
+        /// <summary>
+        /// 返回第一个实体 ，同First()
         /// </summary>
         /// <returns></returns>
         public T ToFirst()

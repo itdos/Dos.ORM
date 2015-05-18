@@ -1244,6 +1244,17 @@ namespace Dos.ORM
 
         #endregion
     }
-
-
+    public class FieldAttribute : Attribute
+    {
+        private string m_Field;
+        public string Field
+        {
+            get { return m_Field; }
+            set { m_Field = value; }
+        }
+        public FieldAttribute(string fieldName)
+        {
+            this.m_Field = fieldName;
+        }
+    }
 }

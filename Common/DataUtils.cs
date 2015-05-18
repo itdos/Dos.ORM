@@ -432,7 +432,6 @@ namespace Dos.ORM.Common
         /// <returns></returns>
         public static string MakeUniqueKey(Field field)
         {
-            #region by itdos.com 2015-04-24
             //return GetRandomNumber().ToString();
             if (paramCount> 99999999)
             {
@@ -440,7 +439,6 @@ namespace Dos.ORM.Common
             }
             paramCount++;
             return string.Concat(field.tableName, "_", field.Name, "_", paramCount);
-            #endregion
             byte[] data = new byte[16];
             new RNGCryptoServiceProvider().GetBytes(data);
             string keystring = keyReg.Replace(Convert.ToBase64String(data).Trim(), string.Empty);
@@ -633,7 +631,266 @@ namespace Dos.ORM.Common
             return new string[] { bodyText.Substring(0, colonIndex), bodyText.Substring(colonIndex + 1) };
         }
 
+        internal static class DBConvert
+        {
+            public static bool IsDBNull(object value)
+            {
+                return object.Equals(DBNull.Value, value);
+            }
+            public static short ToInt16(object value)
+            {
+                if (value is short)
+                {
+                    return (short)value;
+                }
+                try
+                {
+                    return Convert.ToInt16(value);
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+            public static int ToInt32(object value)
+            {
+                if (value is int)
+                {
+                    return (int)value;
+                }
+                try
+                {
+                    return Convert.ToInt32(value);
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+            public static long ToInt64(object value)
+            {
+                if (value is long)
+                {
+                    return (long)value;
+                }
+                try
+                {
+                    return Convert.ToInt64(value);
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+            public static bool ToBoolean(object value)
+            {
+                if (value == null)
+                {
+                    return false;
+                }
+                if (value is bool)
+                {
+                    return (bool)value;
+                }
+                if (value.Equals("1") || value.Equals("-1"))
+                {
+                    value = "true";
+                }
+                else if (value.Equals("0"))
+                {
+                    value = "false";
+                }
 
+                try
+                {
+                    return Convert.ToBoolean(value);
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            public static DateTime ToDateTime(object value)
+            {
+                if (value is DateTime)
+                {
+                    return (DateTime)value;
+                }
+                try
+                {
+                    return Convert.ToDateTime(value);
+                }
+                catch
+                {
+                    return DateTime.MinValue;
+                }
+            }
+            public static decimal ToDecimal(object value)
+            {
+                if (value is decimal)
+                {
+                    return (decimal)value;
+                }
+                try
+                {
+                    return Convert.ToDecimal(value);
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+            public static double ToDouble(object value)
+            {
+                if (value is double)
+                {
+                    return (double)value;
+                }
+                try
+                {
+                    return Convert.ToDouble(value);
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+            public static Guid ToGuid(object value)
+            {
+                if (value is Guid)
+                {
+                    return (Guid)value;
+                }
+                try
+                {
+                    return Guid.Parse(value.ToString());
+                }
+                catch
+                {
+                    return new Guid();
+                }
+            }
+            public static Nullable<short> ToNInt16(object value)
+            {
+                if (value is short)
+                {
+                    return new Nullable<short>((short)value);
+                }
+                try
+                {
+                    return new Nullable<short>(Convert.ToInt16(value));
+                }
+                catch
+                {
+                    return new Nullable<short>();
+                }
+            }
+            public static Nullable<int> ToNInt32(object value)
+            {
+                if (value is int)
+                {
+                    return new Nullable<int>((int)value);
+                }
+                try
+                {
+                    return new Nullable<int>(Convert.ToInt32(value));
+                }
+                catch
+                {
+                    return new Nullable<int>();
+                }
+            }
+            public static Nullable<long> ToNInt64(object value)
+            {
+                if (value is long)
+                {
+                    return new Nullable<long>((long)value);
+                }
+                try
+                {
+                    return new Nullable<long>(Convert.ToInt64(value));
+                }
+                catch
+                {
+                    return new Nullable<long>();
+                }
+            }
+            public static Nullable<bool> ToNBoolean(object value)
+            {
+                if (value is bool)
+                {
+                    return new Nullable<bool>((bool)value);
+                }
+                try
+                {
+                    return new Nullable<bool>(Convert.ToBoolean(value));
+                }
+                catch
+                {
+                    return new Nullable<bool>();
+                }
+            }
+            public static Nullable<DateTime> ToNDateTime(object value)
+            {
+                if (value is DateTime)
+                {
+                    return new Nullable<DateTime>((DateTime)value);
+                }
+                try
+                {
+                    return new Nullable<DateTime>(Convert.ToDateTime(value));
+                }
+                catch
+                {
+                    return new Nullable<DateTime>();
+                }
+            }
+            public static Nullable<decimal> ToNDecimal(object value)
+            {
+                if (value is decimal)
+                {
+                    return new Nullable<decimal>((decimal)value);
+                }
+                try
+                {
+                    return new Nullable<decimal>(Convert.ToDecimal(value));
+                }
+                catch
+                {
+                    return new Nullable<decimal>();
+                }
+            }
+            public static Nullable<double> ToNDouble(object value)
+            {
+                if (value is double)
+                {
+                    return new Nullable<double>((double)value);
+                }
+                try
+                {
+                    return new Nullable<double>(Convert.ToDouble(value));
+                }
+                catch
+                {
+                    return new Nullable<double>();
+                }
+            }
+            public static Nullable<Guid> ToNGuid(object value)
+            {
+                if (value is Guid)
+                {
+                    return new Nullable<Guid>((Guid)value);
+                }
+                try
+                {
+                    return new Nullable<Guid>(Guid.Parse(value.ToString()));
+                }
+                catch
+                {
+                    return new Nullable<Guid>();
+                }
+            }
+        }
 
     }
 }

@@ -12,19 +12,5 @@ Dos.ORM（原Hxj.Data）于2009年发布，并发布实体生成工具。在开�
 作者博客：http://www.cnblogs.com/huxj/<br>
 官方网站：http://ITdos.com/Dos/ORM/Index.html<br>
 交流QQ群：60831381<br>
-
-<b>一句代码配置：</b><br>
-public class DB{public static readonly DbSession Context = new DbSession("connectionStringsName");}<br>
-<b>开始使用：</b><br>
-DB.Context.From<Dos.Model.TableName>()<br>
-    .Select(d => new { d.id, d.price })    //SELECT id,price FROM TableName<br>
-    .Where(d => (d.id == 2 && d.name != "itdos" <br>
-                    && d.name.In("com","net","cn")) || d.sex != null)    <br>
-          // WHERE (id = 2 AND name <> 'itdos' AND name IN('com','net','cn')) OR sex IS NOT NULL<br>
-    .GroupBy(d => new { d.name, d.sex })    //GROUP BY name,sex<br>
-    .OrderBy(d => new { d.createTime, d.name })    //ORDER BY createTime,name<br>
-    .Having(d => d.name != '')    //HAVING name<>''<br>
-    .Top(5)<br>
-    .Page(10, 2)<br>
-    .ToList();<br>
-<img src="/Media/Default/upload/image/20150519/6356766246279062508324905.jpg" title="成功案例" alt="成功案例"/>
+<img src="http://ITdos.com/Media/Default/upload/image/20150519/6356766246279062508324905.jpg" title="成功案例" alt="成功案例"/><br>
+<img src="http://ITdos.com/Media/Default/upload/image/20150519/6356766246750937506548596.jpg" title="成功案例" alt="成功案例"/>

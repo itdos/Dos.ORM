@@ -1,10 +1,10 @@
-D:\工作\GitHub\Dos.ORM\Dos.ORM.Sqlite\obj\Debug\Dos.ORM.Sqlite.csprojResolveAssemblyReference.cache
+D:\工作\GitHub\Dos.ORM\Dos.ORM.Sqlite\bin\Debug\Dos.ORM.Sqlite.XML
 D:\工作\GitHub\Dos.ORM\Dos.ORM.Sqlite\bin\Debug\Dos.ORM.Sqlite.dll
 D:\工作\GitHub\Dos.ORM\Dos.ORM.Sqlite\bin\Debug\Dos.ORM.Sqlite.pdb
 D:\工作\GitHub\Dos.ORM\Dos.ORM.Sqlite\bin\Debug\Dos.ORM.dll
 D:\工作\GitHub\Dos.ORM\Dos.ORM.Sqlite\bin\Debug\System.Data.SQLite.DLL
 D:\工作\GitHub\Dos.ORM\Dos.ORM.Sqlite\bin\Debug\Dos.ORM.pdb
 D:\工作\GitHub\Dos.ORM\Dos.ORM.Sqlite\bin\Debug\Dos.ORM.xml
+D:\工作\GitHub\Dos.ORM\Dos.ORM.Sqlite\obj\Debug\Dos.ORM.Sqlite.csprojResolveAssemblyReference.cache
 D:\工作\GitHub\Dos.ORM\Dos.ORM.Sqlite\obj\Debug\Dos.ORM.Sqlite.dll
 D:\工作\GitHub\Dos.ORM\Dos.ORM.Sqlite\obj\Debug\Dos.ORM.Sqlite.pdb
-D:\工作\GitHub\Dos.ORM\Dos.ORM.Sqlite\bin\Debug\Dos.ORM.Sqlite.XML

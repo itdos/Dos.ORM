@@ -2239,14 +2239,6 @@
             <param name="tran"></param>
             <param name="entities"></param>
         </member>
-        <member name="M:Dos.ORM.DbSession.Update``1(System.Data.Common.DbTransaction,System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            更新
-            </summary>
-            <typeparam name="TEntity"></typeparam>
-            <param name="tran"></param>
-            <param name="entities"></param>
-        </member>
         <member name="M:Dos.ORM.DbSession.Update``1(``0,Dos.ORM.WhereClip,System.Data.Common.DbTransaction)">
             <summary>
             更新
@@ -2408,6 +2400,14 @@
             <returns></returns>
         </member>
         <member name="M:Dos.ORM.DbSession.Insert``1(``0[])">
+            <summary>
+            添加
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dos.ORM.DbSession.Insert``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             添加
             </summary>
@@ -3545,12 +3545,43 @@
             <param name="values"></param>
             <returns></returns>
         </member>
+        <member name="M:Dos.ORM.Field.In(System.Object[])">
+            <summary>
+            同SelectIn。
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
         <member name="M:Dos.ORM.Field.SelectIn``1(``0[])">
             <summary>
-            SelectIn  
+            SelectIn。传入Array或List&lt;T>。
             </summary>
             <param name="values"></param>
             <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Dos.ORM.Field.In``1(``0[])">
+            <summary>
+            同SelectIn。传入Array或List&lt;T>。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dos.ORM.Field.SelectIn``1(System.Collections.Generic.List{``0})">
+            <summary>
+            SelectIn 。 传入Array或List&lt;T>。
+            </summary>
+            <param name="values"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Dos.ORM.Field.In``1(System.Collections.Generic.List{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="values"></param>
             <returns></returns>
         </member>
         <member name="M:Dos.ORM.Field.SelectNotIn(System.Object[])">
@@ -3560,12 +3591,43 @@
             <param name="values"></param>
             <returns></returns>
         </member>
+        <member name="M:Dos.ORM.Field.NotIn(System.Object[])">
+            <summary>
+            同SelectNotIn。
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
         <member name="M:Dos.ORM.Field.SelectNotIn``1(``0[])">
             <summary>
-            SelectNotIn  
+            SelectNotIn  。传入Array或List&lt;T>。
             </summary>
             <param name="values"></param>
             <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Dos.ORM.Field.NotIn``1(``0[])">
+            <summary>
+            同SelectNotIn。传入Array或List&lt;T>。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dos.ORM.Field.SelectNotIn``1(System.Collections.Generic.List{``0})">
+            <summary>
+            SelectNotIn。传入Array或List&lt;T>。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dos.ORM.Field.NotIn``1(System.Collections.Generic.List{``0})">
+            <summary>
+            同SelectNotIn。传入Array或List&lt;T>。
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="values"></param>
             <returns></returns>
         </member>
         <member name="M:Dos.ORM.Field.SubQueryIn(Dos.ORM.FromSection)">
@@ -3870,6 +3932,16 @@
             构造函数
             </summary>
             <param name="fileName">字段名</param>
+        </member>
+        <member name="F:Dos.ORM.FieldExtend.Tips">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.FieldExtend.Like(System.Object,System.Object)">
+            <summary>
+            like '%value%'，同Contains。
+            </summary>
         </member>
         <member name="T:Dos.ORM.FromSection`1">
             <summary>
@@ -4476,6 +4548,13 @@
             </summary>
             <param name="fromSection"></param>
             <param name="aliasName">别名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Dos.ORM.FromSection`1.ToList``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TType"></typeparam>
             <returns></returns>
         </member>
         <member name="M:Dos.ORM.FromSection`1.ToList">

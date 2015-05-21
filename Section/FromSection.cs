@@ -410,7 +410,49 @@ namespace Dos.ORM
         #endregion
 
         #region 查询
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TType"></typeparam>
+        /// <returns></returns>
+        public List<TType> ToList<TType>()
+        {
+            List<T> list = ToList();
+            if (typeof(TType) == typeof(T))
+            {
+                return list as List<TType>;
+            }
+            throw new Exception("暂时不支持.ToList<T>() T以外的类型，请.ToList().Select(d=>d.ColumnName).ToList()");
+            FromSection from = getPagedFromSection();
+            if (!from.Fields.Any())
+            {
+                throw new Exception("暂时不支持此写法！");
+            }
+            else if (from.Fields.Count() > 1)
+            {
+                throw new Exception("暂时只支持Select一个字段！多字段请直接ToList()！");
+            }
+            else
+            {
+                var r = list.Select(d => d.GetFields().First(s => s.Name == from.Fields[0].Name))
+                            //.Select(d => d)
+                            .ToList();
 
+                List<TType> result = new List<TType>();
+                foreach (var tt in list)
+                {
+                    foreach (var field in tt.GetFields())
+                    {
+                        if (field.Name == from.Fields[0].Name)
+                        {
+                            //result.Add(field.);
+                        }
+                    }
+                    //tt.GetFields().Where(d => d.Name == from.Fields[0].Name);
+                }
+                return result;
+            }
+        }
 
         /// <summary>
         /// To List&lt;T>
@@ -432,7 +474,7 @@ namespace Dos.ORM
             List<T> list = new List<T>();
             using (IDataReader reader = ToDataReader(from))
             {
-                if (@from.Joins.Any())
+                if (@from.Joins.Any() || from.Fields.Any())
                     list = EntityUtils.Mapper.Map<T>(reader);
                 else
                 {

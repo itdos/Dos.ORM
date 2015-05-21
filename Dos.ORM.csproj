@@ -67,10 +67,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BatchCommander.cs" />
+    <Compile Include="Db\BatchCommander.cs" />
     <Compile Include="Cache\CacheConfiguration.cs" />
     <Compile Include="Cache\CacheInfo.cs" />
-    <Compile Include="CommandCreator.cs" />
+    <Compile Include="Db\CommandCreator.cs" />
     <Compile Include="Common\DataUtils.cs" />
     <Compile Include="Cache\Cache.cs" />
     <Compile Include="Common\DesignByContract.cs" />
@@ -81,11 +81,11 @@
     <Compile Include="Common\EntityUtils.cs" />
     <Compile Include="Common\EnumHelper.cs" />
     <Compile Include="Common\ILogable.cs" />
-    <Compile Include="Database.cs" />
-    <Compile Include="DbBatch.cs" />
-    <Compile Include="DbSession.cs" />
-    <Compile Include="DbTrans.cs" />
-    <Compile Include="Entity.cs" />
+    <Compile Include="Db\Database.cs" />
+    <Compile Include="Db\DbBatch.cs" />
+    <Compile Include="Db\DbSession.cs" />
+    <Compile Include="Db\DbTrans.cs" />
+    <Compile Include="Common\Entity.cs" />
     <Compile Include="Expression\Expression.cs" />
     <Compile Include="Expression\ExpToGroupByClip.cs" />
     <Compile Include="Expression\ExpToWhereClip.cs">
@@ -95,7 +95,7 @@
     <Compile Include="Expression\LambdaWhereClip.cs" />
     <Compile Include="Expression\ExpToOrderByClip.cs" />
     <Compile Include="Expression\ExpToSelect.cs" />
-    <Compile Include="Field.cs" />
+    <Compile Include="Common\Field.cs" />
     <Compile Include="Section\FromSection.cs" />
     <Compile Include="Expression\GroupByClip.cs" />
     <Compile Include="Provider\DbProvider.cs" />
@@ -113,7 +113,7 @@
     <Compile Include="Section\SqlSection.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="readme.txt" />
+    <Content Include="Dos.ORM更新日志.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -129,7 +129,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="LICENSE" />
-    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

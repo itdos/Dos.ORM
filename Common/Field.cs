@@ -725,7 +725,10 @@ namespace Dos.ORM
         /// <returns></returns>
         private WhereClip selectInOrNotIn<T>(Field field, string join, bool isParameter, params T[] values)
         {
-
+            if (values.Length == 0)
+            {
+                return WhereClip.All;
+            }
             Check.Require(!Field.IsNullOrEmpty(field),
                 "filed could not be null or empty");
             Check.Require((null != values && values.Length > 0),
@@ -786,12 +789,20 @@ namespace Dos.ORM
         {
             return selectInOrNotIn<object>(this, selectInString, values);
         }
-
+        /// <summary>
+        /// 同SelectIn。
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public WhereClip In(params object[] values)
+        {
+            return SelectIn(values);
+        }
 
 
 
         /// <summary>
-        /// SelectIn  
+        /// SelectIn。传入Array或List&lt;T>。
         /// </summary>
         /// <param name="values"></param>
         /// <typeparam name="T"></typeparam>
@@ -805,8 +816,36 @@ namespace Dos.ORM
 
             return selectInOrNotIn<T>(this, selectInString, values);
         }
-
-
+        /// <summary>
+        /// 同SelectIn。传入Array或List&lt;T>。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public WhereClip In<T>(params T[] values)
+        {
+            return SelectIn(values);
+        }
+        /// <summary>
+        /// SelectIn 。 传入Array或List&lt;T>。
+        /// </summary>
+        /// <param name="values"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public WhereClip SelectIn<T>(List<T> values)
+        {
+            return SelectIn(values.ToArray());
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public WhereClip In<T>(List<T> values)
+        {
+            return SelectIn(values.ToArray());
+        }
 
         /// <summary>
         /// SelectNotIn  
@@ -817,13 +856,18 @@ namespace Dos.ORM
         {
             return selectInOrNotIn<object>(this, selectNotInString, values);
         }
-
-
-
-
+        /// <summary>
+        /// 同SelectNotIn。
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public WhereClip NotIn(params object[] values)
+        {
+            return SelectNotIn(values);
+        }
 
         /// <summary>
-        /// SelectNotIn  
+        /// SelectNotIn  。传入Array或List&lt;T>。
         /// </summary>
         /// <param name="values"></param>
         /// <typeparam name="T"></typeparam>
@@ -838,7 +882,36 @@ namespace Dos.ORM
 
             return selectInOrNotIn<T>(this, selectNotInString, values);
         }
-
+        /// <summary>
+        /// 同SelectNotIn。传入Array或List&lt;T>。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public WhereClip NotIn<T>(params T[] values)
+        {
+            return SelectNotIn(values);
+        }
+        /// <summary>
+        /// SelectNotIn。传入Array或List&lt;T>。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public WhereClip SelectNotIn<T>(List<T> values)
+        {
+            return SelectNotIn(values.ToArray());
+        }
+        /// <summary>
+        /// 同SelectNotIn。传入Array或List&lt;T>。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public WhereClip NotIn<T>(List<T> values)
+        {
+            return SelectNotIn(values.ToArray());
+        }
         /// <summary>
         /// SubQueryIn   子查询  
         /// </summary>
@@ -1243,6 +1316,44 @@ namespace Dos.ORM
         #endregion
 
         #endregion
+    }
+    public static class FieldExtend
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public static string Tips = "该方法只能用于linq或lambda表达式";
+        /// <summary>
+        /// like '%value%'，同Contains。
+        /// </summary>
+        public static bool Like(this object key, object values)
+        {
+            throw new Exception(Tips);
+        }
+        public static bool In<T>(this T key, params T[] values)
+        {
+            throw new Exception(Tips);
+        }
+        public static bool In<T>(this T key, List<T> values)
+        {
+            throw new Exception(Tips);
+        }
+        public static bool NotIn<T>(this T key, params T[] values)
+        {
+            throw new Exception(Tips);
+        }
+        public static bool NotIn<T>(this T key, List<T> values)
+        {
+            throw new Exception(Tips);
+        }
+        public static bool IsNull<T>(this T key)
+        {
+            throw new Exception(Tips);
+        }
+        public static bool IsNotNull<T>(this T key)
+        {
+            throw new Exception(Tips);
+        }
     }
     public class FieldAttribute : Attribute
     {

@@ -72,7 +72,7 @@ namespace Dos.ORM
         /// <summary>
         /// 版本号
         /// </summary>
-        public const string Version = "1.8.6.1";
+        public const string Version = "1.8.9.0";
 
 
         /// <summary>
@@ -791,15 +791,7 @@ namespace Dos.ORM
         public int Update<TEntity>(IEnumerable<TEntity> entities)
             where TEntity : Entity
         {
-            if (null == entities || !entities.Any())
-                return 0;
-            int count = 0;
-            using (DbTrans trans = BeginTransaction())
-            {
-                count = Update<TEntity>(trans, entities);
-                trans.Commit();
-            }
-            return count;
+            return Update(entities.ToArray());
         }
         /// <summary>
         /// 更新
@@ -846,29 +838,6 @@ namespace Dos.ORM
         {
 
             if (null == entities || entities.Length == 0)
-                return 0;
-            int count = 0;
-            foreach (TEntity entity in entities)
-            {
-                if (entity.GetModifyFields().Count == 0)
-                    break;
-
-                count += Update<TEntity>(entity, DataUtils.GetPrimaryKeyWhere(entity), tran);
-            }
-            return count;
-
-        }
-        /// <summary>
-        /// 更新
-        /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <param name="tran"></param>
-        /// <param name="entities"></param>
-        public int Update<TEntity>(DbTransaction tran, IEnumerable<TEntity> entities)
-            where TEntity : Entity
-        {
-
-            if (null == entities || entities.Any())
                 return 0;
             int count = 0;
             foreach (TEntity entity in entities)
@@ -1376,7 +1345,17 @@ namespace Dos.ORM
             }
             return count;
         }
-
+        /// <summary>
+        /// 添加
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entities"></param>
+        /// <returns></returns>
+        public int Insert<TEntity>(IEnumerable<TEntity> entities)
+            where TEntity : Entity
+        {
+            return Insert(entities.ToArray());
+        }
 
         /// <summary>
         /// 添加

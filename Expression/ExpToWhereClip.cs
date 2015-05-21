@@ -46,7 +46,7 @@ namespace Dos.ORM
             {
                 return ConvertMethodCall((MethodCallExpression)exprBody);
             }
-            if(exprBody is UnaryExpression)
+            if (exprBody is UnaryExpression)
             {
                 return ConvertUnary((UnaryExpression)exprBody);
             }
@@ -63,9 +63,9 @@ namespace Dos.ORM
             if (expr is MemberExpression)
             {
                 var member = ((MemberExpression)expr);
-                if(member.Member.MemberType == MemberTypes.Field || member.Member.MemberType == MemberTypes.Property)
+                if (member.Member.MemberType == MemberTypes.Field || member.Member.MemberType == MemberTypes.Property)
                 {
-                    if(member.Type == typeof(bool))
+                    if (member.Type == typeof(bool))
                     {
                         return true;
                     }
@@ -81,7 +81,7 @@ namespace Dos.ORM
                 case ExpressionType.Not:
                     return !ToClip(expr.Operand);
             }
-            throw new Exception("不支持的NodeType");
+            throw new Exception("不支持的NodeType" + expr.NodeType);
         }
 
         private static WhereClip ConvertBinary(BinaryExpression e)
@@ -105,7 +105,7 @@ namespace Dos.ORM
                 case ExpressionType.OrElse:
                     return ToClip(e.Left) || ToClip(e.Right);
                 default:
-                    throw new Exception("不支持的Where写法！");
+                    throw new Exception("不支持的Where写法！" + e.NodeType);
             }
         }
 
@@ -119,26 +119,30 @@ namespace Dos.ORM
                     return ConvertLikeCall(e, "%", "");
                 case "Contains":
                     return ConvertLikeCall(e, "%", "%");
+                case "Like":
+                    return ConvertLikeCall(e, "%", "%",true);
                 case "In":
-                case "InStatement":
                     return ConvertInCall(e);
                 case "NotIn":
-                case "NotInStatement":
-                    return ConvertInCall(e, notIn: true);
+                    return ConvertInCall(e, true);
                 case "IsNull":
                     return ConvertNull(e, true);
                 case "IsNotNull":
-                    return ConvertNull(e, false);
+                    return ConvertNull(e);
             }
             throw new Exception("不支持的方法: " + e.Method.Name);
         }
 
-        private static WhereClip ConvertNull(MethodCallExpression e, bool isNull)
+        private static WhereClip ConvertNull(MethodCallExpression e, bool isNull = false)
         {
             ColumnFunction function;
             MemberExpression member;
             string key = GetMemberName(e.Arguments[0], out function, out member);
-                    return  new WhereClip();
+            if (isNull)
+            {
+                return new Field(key, member.Expression.Type.Name).IsNull();
+            }
+            return new Field(key, member.Expression.Type.Name).IsNotNull();
         }
 
         private static WhereClip ConvertInCall(MethodCallExpression e, bool notIn = false)
@@ -159,20 +163,25 @@ namespace Dos.ORM
             {
                 list.Add(ie);
             }
-            return new WhereClip();
+            if (notIn)
+            {
+                return new Field(key, member.Expression.Type.Name).SelectNotIn(list.ToArray());
+            }
+            return new Field(key, member.Expression.Type.Name).SelectIn(list.ToArray());
         }
 
-        private static WhereClip ConvertLikeCall(MethodCallExpression e, string left, string right)
+        private static WhereClip ConvertLikeCall(MethodCallExpression e, string left, string right, bool isLike = false)
         {
             ColumnFunction function;
             MemberExpression member;
-            string key = GetMemberName(e.Object, out function, out member);
-            if(e.Arguments.Count == 1)
+            string key = GetMemberName(isLike?e.Arguments[0]:e.Object, out function, out member);
+            if (isLike ? e.Arguments.Count == 2: e.Arguments.Count == 1)
             {
-                object value = GetRightValue(e.Arguments[0]);
+                object value = GetRightValue(isLike?e.Arguments[1]:e.Arguments[0]);
                 if (value != null && value is string)
                 {
-                    return  new WhereClip();
+                    return new WhereClip(new Field(key, member.Expression.Type.Name),
+                        string.Concat(left, value, right), QueryOperator.Like);
                 }
             }
             throw new Exception("'Like'仅支持一个参数，参数应为字符串且不允许为空");
@@ -208,10 +217,10 @@ namespace Dos.ORM
                 obj = (MemberExpression)expr;
                 return GetColumnName(obj);
             }
-            if(expr is MethodCallExpression)
+            if (expr is MethodCallExpression)
             {
-                var e = (MethodCallExpression) expr;
-                if(e.Method.Name == "ToLower" && e.Object is MemberExpression)
+                var e = (MethodCallExpression)expr;
+                if (e.Method.Name == "ToLower" && e.Object is MemberExpression)
                 {
                     function = ColumnFunction.ToLower;
                     obj = (MemberExpression)e.Object;
@@ -260,8 +269,8 @@ namespace Dos.ORM
 
         private static object GetRightValue(System.Linq.Expressions.Expression right)
         {
-            object value 
-                = right.NodeType == ExpressionType.Constant 
+            object value
+                = right.NodeType == ExpressionType.Constant
                       ? ((ConstantExpression)right).Value
                       : System.Linq.Expressions.Expression.Lambda(right).Compile().DynamicInvoke();
             return value;

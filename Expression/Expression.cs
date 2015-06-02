@@ -25,6 +25,17 @@ using System.Data;
 
 namespace Dos.ORM
 {
+    public enum WhereType
+    {
+        /// <summary>
+        /// join where
+        /// </summary>
+        JoinWhere,
+        /// <summary>
+        /// 常规Where
+        /// </summary>
+        Where
+    }
 
     /// <summary>
     /// 比较类型

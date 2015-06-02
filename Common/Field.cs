@@ -230,6 +230,10 @@ namespace Dos.ORM
             {
                 return aliasName;
             }
+            set
+            {
+                aliasName = value;
+            }
         }
 
         /// <summary>
@@ -1322,7 +1326,7 @@ namespace Dos.ORM
         /// <summary>
         /// 
         /// </summary>
-        public static string Tips = "该方法只能用于linq或lambda表达式";
+        private const string Tips = "该方法只能用于linq或lambda表达式";
         /// <summary>
         /// like '%value%'，同Contains。
         /// </summary>
@@ -1330,30 +1334,69 @@ namespace Dos.ORM
         {
             throw new Exception(Tips);
         }
+        /// <summary>
+        /// IN
+        /// </summary>
         public static bool In<T>(this T key, params T[] values)
         {
             throw new Exception(Tips);
         }
+        /// <summary>
+        /// IN
+        /// </summary>
         public static bool In<T>(this T key, List<T> values)
         {
             throw new Exception(Tips);
         }
+        /// <summary>
+        /// NOT IN
+        /// </summary>
         public static bool NotIn<T>(this T key, params T[] values)
         {
             throw new Exception(Tips);
         }
+        /// <summary>
+        /// NOT IN
+        /// </summary>
         public static bool NotIn<T>(this T key, List<T> values)
         {
             throw new Exception(Tips);
         }
+        /// <summary>
+        /// IS NULL
+        /// </summary>
         public static bool IsNull<T>(this T key)
         {
             throw new Exception(Tips);
         }
+        /// <summary>
+        /// IS NOT NULL
+        /// </summary>
         public static bool IsNotNull<T>(this T key)
         {
             throw new Exception(Tips);
         }
+        /// <summary>
+        /// As
+        /// </summary>
+        public static bool As(this object key, string values)
+        {
+            throw new Exception(Tips);
+        }
+        /// <summary>
+        /// Sum
+        /// </summary>
+        public static int Sum(this object key)
+        {
+            throw new Exception(Tips);
+        }
+        ///// <summary>
+        ///// Sum
+        ///// </summary>
+        //public static int Summ(this object key)
+        //{
+        //    throw new Exception(Tips);
+        //}
     }
     public class FieldAttribute : Attribute
     {

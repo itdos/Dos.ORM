@@ -96,7 +96,7 @@ namespace Dos.ORM
         }
 
         /// <summary>
-        /// Left Join
+        /// Left Join。经典写法：Model1._.ID == Model2._.ID
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="where"></param>
@@ -106,7 +106,17 @@ namespace Dos.ORM
         {
             return join(EntityCache.GetTableName<TEntity>(), where, JoinType.LeftJoin);
         }
-
+        /// <summary>
+        /// Left Join。Lambda写法：.LeftJoin&lt;Model2>((d1,d2) => d1.ID == d2.ID)
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public FromSection<T> LeftJoin<TEntity>(Expression<Func<T, TEntity, bool>> lambdaWhere)
+             where TEntity : Entity
+        {
+            return join(EntityCache.GetTableName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.LeftJoin);
+        }
         /// <summary>
         /// Full Join
         /// </summary>
@@ -207,7 +217,7 @@ namespace Dos.ORM
         }
         public new FromSection<T> Having(Expression<Func<T, bool>> lambdaHaving)
         {
-            return (FromSection<T>)base.Having(ExpToWhereClip<T>.ToWhereClip(lambdaHaving));
+            return (FromSection<T>)base.Having(ExpressionToClip<T>.ToWhereClip(lambdaHaving));
         }
         /// <summary>
         /// whereclip
@@ -221,7 +231,7 @@ namespace Dos.ORM
         /// </summary>
         public new FromSection<T> Where(Expression<Func<T, bool>> lambdaWhere)
         {
-            return Where(ExpToWhereClip<T>.ToWhereClip(lambdaWhere));
+            return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
         }
 
         /// <summary>
@@ -240,7 +250,7 @@ namespace Dos.ORM
         }
         public new FromSection<T> GroupBy(Expression<Func<T, object>> lambdaGroupBy)
         {
-            return (FromSection<T>)base.GroupBy(ExpToGroupByClip<T>.ToGroupByClip(lambdaGroupBy));
+            return (FromSection<T>)base.GroupBy(ExpressionToClip<T>.ToGroupByClip(lambdaGroupBy));
         }
         public new FromSection<T> OrderBy(OrderByClip orderBy)
         {
@@ -251,11 +261,11 @@ namespace Dos.ORM
         /// </summary>
         public new FromSection<T> OrderBy(Expression<Func<T, object>> lambdaOrderBy)
         {
-            return (FromSection<T>)base.OrderBy(ExpToOrderByClip<T>.ToOrderByClip(lambdaOrderBy));
+            return (FromSection<T>)base.OrderBy(ExpressionToClip<T>.ToOrderByClip(lambdaOrderBy));
         }
         public new FromSection<T> OrderByDescending(Expression<Func<T, object>> lambdaOrderBy)
         {
-            return (FromSection<T>)base.OrderBy(ExpToOrderByClip<T>.ToOrderByDescendingClip(lambdaOrderBy));
+            return (FromSection<T>)base.OrderBy(ExpressionToClip<T>.ToOrderByDescendingClip(lambdaOrderBy));
         }
         /// <summary>
         /// orderby
@@ -271,10 +281,33 @@ namespace Dos.ORM
         {
             return (FromSection<T>)base.Select(fields);
         }
-
         public new FromSection<T> Select(Expression<Func<T, object>> lambdaSelect)
         {
-            return (FromSection<T>)base.Select(ExpToSelect<T>.ToSelect(lambdaSelect));
+            return (FromSection<T>)base.Select(ExpressionToClip<T>.ToSelect(lambdaSelect));
+        }
+        public new FromSection<T> Select<T2>(Expression<Func<T,T2, object>> lambdaSelect)
+        {
+            return (FromSection<T>)base.Select(ExpressionToClip<T>.ToSelect(lambdaSelect));
+        }
+        public new FromSection<T> Select<T2,T3>(Expression<Func<T, T2,T3, object>> lambdaSelect)
+        {
+            return (FromSection<T>)base.Select(ExpressionToClip<T>.ToSelect(lambdaSelect));
+        }
+        public new FromSection<T> Select<T2, T3, T4>(Expression<Func<T, T2, T3, T4, object>> lambdaSelect)
+        {
+            return (FromSection<T>)base.Select(ExpressionToClip<T>.ToSelect(lambdaSelect));
+        }
+        public new FromSection<T> Select<T2, T3, T4, T5>(Expression<Func<T, T2, T3, T4, T5, object>> lambdaSelect)
+        {
+            return (FromSection<T>)base.Select(ExpressionToClip<T>.ToSelect(lambdaSelect));
+        }
+        public new FromSection<T> Select<T2, T3, T4, T5, T6>(Expression<Func<T, T2, T3, T4, T5, T6, object>> lambdaSelect)
+        {
+            return (FromSection<T>)base.Select(ExpressionToClip<T>.ToSelect(lambdaSelect));
+        }
+        public new FromSection<T> Select(Expression<Func<T, bool>> lambdaSelect)
+        {
+            return (FromSection<T>)base.Select(ExpressionToClip<T>.ToSelect(lambdaSelect));
         }
         /// <summary>
         /// Distinct
@@ -413,44 +446,64 @@ namespace Dos.ORM
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="TType"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
         /// <returns></returns>
-        public List<TType> ToList<TType>()
+        public List<TResult> ToList<TResult>()
         {
-            List<T> list = ToList();
-            if (typeof(TType) == typeof(T))
+            var typet = typeof(TResult);
+            if (typet == typeof(T))
             {
-                return list as List<TType>;
+                return ToList() as List<TResult>;
             }
-            throw new Exception("暂时不支持.ToList<T>() T以外的类型，请.ToList().Select(d=>d.ColumnName).ToList()");
             FromSection from = getPagedFromSection();
-            if (!from.Fields.Any())
+            if (typet.IsClass)
             {
-                throw new Exception("暂时不支持此写法！");
+                string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "List", "|",
+                    formatSql(from.SqlString, from));
+                object cacheValue = getCache(cacheKey);
+
+                if (null != cacheValue)
+                {
+                    return (List<TResult>)cacheValue;
+                }
+                List<TResult> list = new List<TResult>();
+                using (IDataReader reader = ToDataReader(from))
+                {
+                    list = EntityUtils.Mapper.Map<TResult>(reader);
+                    reader.Close();
+                }
+                setCache<List<TResult>>(list, cacheKey);
+                return list;
             }
-            else if (from.Fields.Count() > 1)
+            if (!@from.Fields.Any())
             {
-                throw new Exception("暂时只支持Select一个字段！多字段请直接ToList()！");
+                throw new Exception(".ToList<" + typet.Name + ">()至少需要.Select()一个字段！");
+            }
+            else if (@from.Fields.Count() > 1)
+            {
+                throw new Exception(".ToList<" + typet.Name + ">()最多.Select()一个字段！");
             }
             else
             {
-                var r = list.Select(d => d.GetFields().First(s => s.Name == from.Fields[0].Name))
-                            //.Select(d => d)
-                            .ToList();
+                string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "List", "|",
+                    formatSql(@from.SqlString, @from));
+                object cacheValue = getCache(cacheKey);
 
-                List<TType> result = new List<TType>();
-                foreach (var tt in list)
+                if (null != cacheValue)
                 {
-                    foreach (var field in tt.GetFields())
-                    {
-                        if (field.Name == from.Fields[0].Name)
-                        {
-                            //result.Add(field.);
-                        }
-                    }
-                    //tt.GetFields().Where(d => d.Name == from.Fields[0].Name);
+                    return (List<TResult>)cacheValue;
                 }
-                return result;
+                List<TResult> list = new List<TResult>();
+                using (IDataReader reader = ToDataReader(@from))
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(DataUtils.ConvertValue<TResult>(reader[@from.Fields[0].Name]));
+                    }
+                    reader.Close();
+                }
+                setCache<List<TResult>>(list, cacheKey);
+                return list;
             }
         }
 

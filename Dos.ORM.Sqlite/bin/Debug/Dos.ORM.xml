@@ -2947,6 +2947,16 @@
             获取表名
             </summary>
         </member>
+        <member name="F:Dos.ORM.WhereType.JoinWhere">
+            <summary>
+            join where
+            </summary>
+        </member>
+        <member name="F:Dos.ORM.WhereType.Where">
+            <summary>
+            常规Where
+            </summary>
+        </member>
         <member name="T:Dos.ORM.QueryOperator">
             <summary>
             比较类型
@@ -3943,6 +3953,46 @@
             like '%value%'，同Contains。
             </summary>
         </member>
+        <member name="M:Dos.ORM.FieldExtend.In``1(``0,``0[])">
+            <summary>
+            IN
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.FieldExtend.In``1(``0,System.Collections.Generic.List{``0})">
+            <summary>
+            IN
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.FieldExtend.NotIn``1(``0,``0[])">
+            <summary>
+            NOT IN
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.FieldExtend.NotIn``1(``0,System.Collections.Generic.List{``0})">
+            <summary>
+            NOT IN
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.FieldExtend.IsNull``1(``0)">
+            <summary>
+            IS NULL
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.FieldExtend.IsNotNull``1(``0)">
+            <summary>
+            IS NOT NULL
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.FieldExtend.As(System.Object,System.String)">
+            <summary>
+            As
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.FieldExtend.Sum(System.Object)">
+            <summary>
+            Sum
+            </summary>
+        </member>
         <member name="T:Dos.ORM.FromSection`1">
             <summary>
             查询
@@ -4413,10 +4463,18 @@
         </member>
         <member name="M:Dos.ORM.FromSection`1.LeftJoin``1(Dos.ORM.WhereClip)">
             <summary>
-            Left Join
+            Left Join。经典写法：Model1._.ID == Model2._.ID
             </summary>
             <typeparam name="TEntity"></typeparam>
             <param name="where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dos.ORM.FromSection`1.LeftJoin``1(System.Linq.Expressions.Expression{System.Func{`0,``0,System.Boolean}})">
+            <summary>
+            Left Join。Lambda写法：.LeftJoin&lt;Model2>((d1,d2) => d1.ID == d2.ID)
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="lambdaWhere"></param>
             <returns></returns>
         </member>
         <member name="M:Dos.ORM.FromSection`1.FullJoin``1(Dos.ORM.WhereClip)">
@@ -4554,7 +4612,7 @@
             <summary>
             
             </summary>
-            <typeparam name="TType"></typeparam>
+            <typeparam name="TResult"></typeparam>
             <returns></returns>
         </member>
         <member name="M:Dos.ORM.FromSection`1.ToList">
@@ -5306,7 +5364,11 @@
             <returns></returns>
         </member>
         <!-- 对于成员“M:Dos.ORM.SqlSection.AddParameter(System.Data.Common.DbParameter[])”忽略有格式错误的 XML 注释 -->
-        <!-- 对于成员“M:Dos.ORM.SqlSection.AddInParameter(System.String,System.Data.DbType,System.Object)”忽略有格式错误的 XML 注释 -->
+        <member name="M:Dos.ORM.SqlSection.AddInParameter(System.String,System.Data.DbType,System.Object)">
+            <summary>
+            添加参数
+            </summary>
+        </member>
         <!-- 对于成员“M:Dos.ORM.SqlSection.AddInParameter(System.String,System.Data.DbType,System.Int32,System.Object)”忽略有格式错误的 XML 注释 -->
     </members>
 </doc>

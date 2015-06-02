@@ -430,15 +430,17 @@ namespace Dos.ORM.Common
         /// 生成唯一字符串
         /// </summary>
         /// <returns></returns>
-        public static string MakeUniqueKey(Field field)
+        public static string MakeUniqueKey(Field field)//string prefix,
         {
+            //paramPrefixToken
             //return GetRandomNumber().ToString();
-            if (paramCount> 99999999)
+            if (paramCount > 99999999)
             {
                 paramCount = 0;
             }
             paramCount++;
-            return string.Concat(field.tableName, "_", field.Name, "_", paramCount);
+            //TODO 此处应该根据数据库类型来附加@、?、:
+            return string.Concat("@",field.tableName, "_", field.Name, "_", paramCount);
             byte[] data = new byte[16];
             new RNGCryptoServiceProvider().GetBytes(data);
             string keystring = keyReg.Replace(Convert.ToBase64String(data).Trim(), string.Empty);

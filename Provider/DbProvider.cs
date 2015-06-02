@@ -359,7 +359,12 @@ namespace Dos.ORM
                 if (!isStoredProcedure)
                 {
                     if (cmd.CommandText.IndexOf(p.ParameterName) == -1)
-                        cmd.CommandText = cmd.CommandText.Replace(p.ParameterName.Substring(1), p.ParameterName);
+                    {
+                        if (p.ParameterName.Substring(0, 1) == "?" || p.ParameterName.Substring(0, 1) == ":")
+                            cmd.CommandText = cmd.CommandText.Replace("@"+p.ParameterName.Substring(1), p.ParameterName);
+                        else
+                            cmd.CommandText = cmd.CommandText.Replace(p.ParameterName.Substring(1), p.ParameterName);
+                    }
                 }
 
                 if (p.Direction == ParameterDirection.Output || p.Direction == ParameterDirection.ReturnValue)

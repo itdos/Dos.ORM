@@ -1,13 +1,3 @@
-D:\工作\其它\Hxj.Data Source(1.7.4.7)\Hxj.Data\bin\Debug\Dos.ORM.dll
-D:\工作\其它\Hxj.Data Source(1.7.4.7)\Hxj.Data\bin\Debug\Dos.ORM.pdb
-D:\工作\其它\Hxj.Data Source(1.7.4.7)\Hxj.Data\obj\Debug\Dos.ORM.csprojResolveAssemblyReference.cache
-D:\工作\其它\Hxj.Data Source(1.7.4.7)\Hxj.Data\obj\Debug\Dos.ORM.dll
-D:\工作\其它\Hxj.Data Source(1.7.4.7)\Hxj.Data\obj\Debug\Dos.ORM.pdb
-D:\工作\其它\Hxj.Data Source(1.7.4.7)\Dos.ORM\bin\Debug\Dos.ORM.dll
-D:\工作\其它\Hxj.Data Source(1.7.4.7)\Dos.ORM\bin\Debug\Dos.ORM.pdb
-D:\工作\其它\Hxj.Data Source(1.7.4.7)\Dos.ORM\obj\Debug\Dos.ORM.dll
-D:\工作\其它\Hxj.Data Source(1.7.4.7)\Dos.ORM\obj\Debug\Dos.ORM.pdb
-D:\工作\其它\Hxj.Data Source(1.7.4.7)\Dos.ORM\bin\Debug\Dos.ORM.XML
 D:\工作\GitHub\Dos.ORM\bin\Debug\Dos.ORM.XML
 D:\工作\GitHub\Dos.ORM\bin\Debug\Dos.ORM.dll
 D:\工作\GitHub\Dos.ORM\bin\Debug\Dos.ORM.pdb

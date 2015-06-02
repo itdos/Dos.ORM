@@ -87,14 +87,11 @@
     <Compile Include="Db\DbTrans.cs" />
     <Compile Include="Common\Entity.cs" />
     <Compile Include="Expression\Expression.cs" />
-    <Compile Include="Expression\ExpToGroupByClip.cs" />
-    <Compile Include="Expression\ExpToWhereClip.cs">
+    <Compile Include="Expression\ExpressionToClip.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Expression\WhereClipBuilder.cs" />
     <Compile Include="Expression\LambdaWhereClip.cs" />
-    <Compile Include="Expression\ExpToOrderByClip.cs" />
-    <Compile Include="Expression\ExpToSelect.cs" />
     <Compile Include="Common\Field.cs" />
     <Compile Include="Section\FromSection.cs" />
     <Compile Include="Expression\GroupByClip.cs" />

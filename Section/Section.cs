@@ -107,20 +107,14 @@ namespace Dos.ORM
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <returns></returns>
-        public List<TEntity> ToList<TEntity>()
-            where TEntity : Entity
+        public List<TEntity> ToList<TEntity>() //where TEntity : Entity
         {
             List<TEntity> listT = new List<TEntity>();
             using (IDataReader reader = ToDataReader())
             {
-                while (reader.Read())
-                {
-                    TEntity t = DataUtils.Create<TEntity>();
-                    t.SetPropertyValues(reader);
-                    listT.Add(t);
-                }
+                listT = EntityUtils.Mapper.Map<TEntity>(reader);
+                reader.Close();
             }
-
             return listT;
         }
 

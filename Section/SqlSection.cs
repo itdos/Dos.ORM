@@ -74,10 +74,6 @@ namespace Dos.ORM
         /// <summary>
         /// 添加参数
         /// </summary>
-        /// <param name="parameterName"></param>
-        /// <param name="value"
-        /// <param name="dbType"></param>
-        /// <returns></returns>
         public SqlSection AddInParameter(string parameterName, DbType dbType, object value)
         {
             return AddInParameter(parameterName, dbType, 0, value);

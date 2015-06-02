@@ -29,7 +29,7 @@ namespace Dos.ORM
         /// </summary>
         public void And(Expression<Func<T, bool>> lambdaWhere)
         {
-            var tempWhere = ExpToWhereClip<T>.ToWhereClip(lambdaWhere);
+            var tempWhere = ExpressionToClip<T>.ToWhereClip(lambdaWhere);
             And(tempWhere);
         }
         /// <summary>
@@ -37,7 +37,7 @@ namespace Dos.ORM
         /// </summary>
         public void Or(Expression<Func<T, bool>> lambdaWhere)
         {
-            var tempWhere = ExpToWhereClip<T>.ToWhereClip(lambdaWhere);
+            var tempWhere = ExpressionToClip<T>.ToWhereClip(lambdaWhere);
             Or(tempWhere);
         }
     }

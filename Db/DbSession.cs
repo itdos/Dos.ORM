@@ -72,7 +72,7 @@ namespace Dos.ORM
         /// <summary>
         /// 版本号
         /// </summary>
-        public const string Version = "1.8.9.0";
+        public const string Version = "1.9.5.4";
 
 
         /// <summary>
@@ -1282,7 +1282,7 @@ namespace Dos.ORM
         public int Delete<TEntity>(Expression<Func<TEntity, bool>> lambdaWhere)
             where TEntity : Entity
         {
-            return Delete<TEntity>(ExpToWhereClip<TEntity>.ToWhereClip(lambdaWhere));
+            return Delete<TEntity>(ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
         }
 
         /// <summary>

@@ -1,9 +1,0 @@
-C:\Steven hu\Soft\Hxj.Framework\Hxj\Hxj.Data\bin\Release\Hxj.Data.dll
-C:\Steven hu\Soft\Hxj.Framework\Hxj\Hxj.Data\bin\Release\Hxj.Data.pdb
-C:\Steven hu\Soft\Hxj.Framework\Hxj\Hxj.Data\bin\Release\Hxj.Data.XML
-C:\Steven hu\Soft\Hxj.Framework\Hxj\DLL\Hxj.Data.dll
-C:\Steven hu\Soft\Hxj.Framework\Hxj\DLL\Hxj.Data.pdb
-C:\Steven hu\Soft\Hxj.Framework\Hxj\Hxj.Data\obj\Release\ResolveAssemblyReference.cache
-C:\Steven hu\Soft\Hxj.Framework\Hxj\Hxj.Data\obj\Release\Hxj.Data.dll
-C:\Steven hu\Soft\Hxj.Framework\Hxj\Hxj.Data\obj\Release\Hxj.Data.pdb
-C:\Steven hu\Soft\Hxj.Framework\Hxj\DLL\Hxj.Data.XML

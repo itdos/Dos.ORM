@@ -72,7 +72,7 @@ namespace Dos.ORM
         /// <summary>
         /// 版本号
         /// </summary>
-        public const string Version = "1.9.5.4";
+        public const string Version = "1.9.5.5";
 
 
         /// <summary>

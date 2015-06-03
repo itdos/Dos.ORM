@@ -3503,14 +3503,14 @@
         </member>
         <member name="M:Dos.ORM.Field.Contain(System.Object)">
             <summary>
-            Contain  
+            like '%value%' 模糊查询，同Like
             </summary>
             <param name="value"></param>
             <returns></returns>
         </member>
         <member name="M:Dos.ORM.Field.Like(System.Object)">
             <summary>
-            Like，同  Contain
+            like '%value%' 模糊查询，同  Contain
             </summary>
             <param name="value"></param>
             <returns></returns>
@@ -3564,7 +3564,7 @@
         </member>
         <member name="M:Dos.ORM.Field.SelectIn``1(``0[])">
             <summary>
-            SelectIn。传入Array或List&lt;T>。
+            where field in (value,value,value)。传入Array或List&lt;T>。
             </summary>
             <param name="values"></param>
             <typeparam name="T"></typeparam>
@@ -3572,7 +3572,7 @@
         </member>
         <member name="M:Dos.ORM.Field.In``1(``0[])">
             <summary>
-            同SelectIn。传入Array或List&lt;T>。
+            where field in (value,value,value)。同SelectIn。传入Array或List&lt;T>。
             </summary>
             <typeparam name="T"></typeparam>
             <param name="values"></param>
@@ -3580,7 +3580,7 @@
         </member>
         <member name="M:Dos.ORM.Field.SelectIn``1(System.Collections.Generic.List{``0})">
             <summary>
-            SelectIn 。 传入Array或List&lt;T>。
+            where field in (value,value,value)。 传入Array或List&lt;T>。
             </summary>
             <param name="values"></param>
             <typeparam name="T"></typeparam>
@@ -3588,7 +3588,7 @@
         </member>
         <member name="M:Dos.ORM.Field.In``1(System.Collections.Generic.List{``0})">
             <summary>
-            
+            where field in (value,value,value)。同SelectIn。传入Array或List&lt;T>。
             </summary>
             <typeparam name="T"></typeparam>
             <param name="values"></param>
@@ -3596,7 +3596,7 @@
         </member>
         <member name="M:Dos.ORM.Field.SelectNotIn(System.Object[])">
             <summary>
-            SelectNotIn  
+            where field in (value,value,value)。同In.
             </summary>
             <param name="values"></param>
             <returns></returns>
@@ -3943,6 +3943,11 @@
             </summary>
             <param name="fileName">字段名</param>
         </member>
+        <member name="T:Dos.ORM.FieldExtend">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:Dos.ORM.FieldExtend.Tips">
             <summary>
             
@@ -3950,35 +3955,35 @@
         </member>
         <member name="M:Dos.ORM.FieldExtend.Like(System.Object,System.Object)">
             <summary>
-            like '%value%'，同Contains。
+            like '%value%' 模糊查询，同Contains。
             </summary>
         </member>
-        <member name="M:Dos.ORM.FieldExtend.In``1(``0,``0[])">
+        <member name="M:Dos.ORM.FieldExtend.In``1(System.Object,``0[])">
             <summary>
-            IN
+            where field in (value,value,value)。传入Array或List&lt;T>。
             </summary>
         </member>
-        <member name="M:Dos.ORM.FieldExtend.In``1(``0,System.Collections.Generic.List{``0})">
+        <member name="M:Dos.ORM.FieldExtend.In``1(System.Object,System.Collections.Generic.List{``0})">
             <summary>
-            IN
+            where field in (value,value,value)。传入Array或List&lt;T>。
             </summary>
         </member>
-        <member name="M:Dos.ORM.FieldExtend.NotIn``1(``0,``0[])">
+        <member name="M:Dos.ORM.FieldExtend.NotIn``1(System.Object,``0[])">
             <summary>
-            NOT IN
+            where field not in (value,value,value)。传入Array或List&lt;T>。
             </summary>
         </member>
-        <member name="M:Dos.ORM.FieldExtend.NotIn``1(``0,System.Collections.Generic.List{``0})">
+        <member name="M:Dos.ORM.FieldExtend.NotIn``1(System.Object,System.Collections.Generic.List{``0})">
             <summary>
-            NOT IN
+            where field not in (value,value,value)。传入Array或List&lt;T>。
             </summary>
         </member>
-        <member name="M:Dos.ORM.FieldExtend.IsNull``1(``0)">
+        <member name="M:Dos.ORM.FieldExtend.IsNull(System.Object)">
             <summary>
             IS NULL
             </summary>
         </member>
-        <member name="M:Dos.ORM.FieldExtend.IsNotNull``1(``0)">
+        <member name="M:Dos.ORM.FieldExtend.IsNotNull(System.Object)">
             <summary>
             IS NOT NULL
             </summary>

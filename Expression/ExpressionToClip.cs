@@ -83,7 +83,7 @@ namespace Dos.ORM
                 case ExpressionType.Not:
                     return !ToWhereClip(expr.Operand, wtype);
             }
-            throw new Exception("暂时不支持的NodeType(" + expr.NodeType + ")！请使用经典写法！");
+            throw new Exception("暂时不支持的NodeType(" + expr.NodeType + ") lambda写法！请使用经典写法！");
         }
 
         private static WhereClip ConvertBinary(BinaryExpression e, WhereType wtype = WhereType.Where)
@@ -250,11 +250,10 @@ namespace Dos.ORM
             ColumnFunction function;
             MemberExpression left;
             var key = GetMemberName(e.Left, out function, out left);
-            string pn = left.Expression.ToString();
             if (e.Right.NodeType == ExpressionType.MemberAccess)
             {
                 var right = (MemberExpression)e.Right;
-                if (right.Expression != null && wtype == WhereType.JoinWhere)
+                if (right.Expression != null && (wtype == WhereType.JoinWhere || right.Expression.ToString() == left.Expression.ToString()))
                 {
                     ColumnFunction functionRight;
                     var keyRight = GetMemberName(e.Right, out functionRight, out right);
@@ -309,7 +308,7 @@ namespace Dos.ORM
                 }
                 return gb;
             }
-            throw new Exception("暂时不支持的Group by写法！请使用经典写法！");
+            throw new Exception("暂时不支持的Group by lambda写法！请使用经典写法！");
         }
 
         public static OrderByClip ToOrderByClip(Expression<Func<T, object>> expr)
@@ -360,7 +359,7 @@ namespace Dos.ORM
                 var ueEx = (UnaryExpression)exprBody;
                 return ToOrderByClip(ueEx.Operand, orderBy);
             }
-            throw new Exception("暂时不支持的Order by写法！请使用经典写法！");
+            throw new Exception("暂时不支持的Order by lambda写法！请使用经典写法！");
         }
 
         public static Field[] ToSelect(Expression<Func<T, object>> expr)
@@ -408,7 +407,7 @@ namespace Dos.ORM
                     default:
                         return ConvertFun(e);
                 }
-                throw new Exception("暂时不支持的Select写法！请使用经典写法！");
+                throw new Exception("暂时不支持的Select lambda写法！请使用经典写法！");
             }
             if (exprBody is NewExpression)
             {
@@ -433,7 +432,7 @@ namespace Dos.ORM
                         return ToSelect(expr.Operand);
                 }
             }
-            throw new Exception("暂时不支持的Select写法！请使用经典写法！");
+            throw new Exception("暂时不支持的Select lambda写法！请使用经典写法！");
         }
         private static Field[] ConvertFun(MethodCallExpression e)
         {

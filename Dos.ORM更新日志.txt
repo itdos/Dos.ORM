@@ -1,4 +1,5 @@
-﻿2015-05-31 Dos.ORM（原Hxj.Data）（v1.9.5.4）
+﻿2015-06-02 Dos.ORM（原Hxj.Data）（v1.9.5.5）
+	*）优化了lambda filed.In()、.NotIn()传入数组的类型。（之前是string字段只能传string数组，guid只能传guid数组。现在无限制，int字段同样可以传入string数组，strng字段同样可以传入int数组。）
 	*）解决.FromSql()在MySql、Oracle下参数名使用"@"与字段名一样时（如：WHERE ID=@ID）报错的Bug。
 	*）解决.OrderBy()Lambda表达式不支持DateTime等特殊类型字段的Bug。
 	*）解决.OrderBy()单个字段Lambda表达式无法Desc的Bug。

@@ -654,7 +654,7 @@ namespace Dos.ORM
         }
 
         /// <summary>
-        /// Contain  
+        /// like '%value%' 模糊查询，同Like
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -663,7 +663,7 @@ namespace Dos.ORM
             return new WhereClip(this, string.Concat(likeString, value, likeString), QueryOperator.Like);
         }
         /// <summary>
-        /// Like，同  Contain
+        /// like '%value%' 模糊查询，同  Contain
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -806,7 +806,7 @@ namespace Dos.ORM
 
 
         /// <summary>
-        /// SelectIn。传入Array或List&lt;T>。
+        /// where field in (value,value,value)。传入Array或List&lt;T>。
         /// </summary>
         /// <param name="values"></param>
         /// <typeparam name="T"></typeparam>
@@ -821,7 +821,7 @@ namespace Dos.ORM
             return selectInOrNotIn<T>(this, selectInString, values);
         }
         /// <summary>
-        /// 同SelectIn。传入Array或List&lt;T>。
+        /// where field in (value,value,value)。同SelectIn。传入Array或List&lt;T>。
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="values"></param>
@@ -831,7 +831,7 @@ namespace Dos.ORM
             return SelectIn(values);
         }
         /// <summary>
-        /// SelectIn 。 传入Array或List&lt;T>。
+        /// where field in (value,value,value)。 传入Array或List&lt;T>。
         /// </summary>
         /// <param name="values"></param>
         /// <typeparam name="T"></typeparam>
@@ -841,7 +841,7 @@ namespace Dos.ORM
             return SelectIn(values.ToArray());
         }
         /// <summary>
-        /// 
+        /// where field in (value,value,value)。同SelectIn。传入Array或List&lt;T>。
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="values"></param>
@@ -852,7 +852,7 @@ namespace Dos.ORM
         }
 
         /// <summary>
-        /// SelectNotIn  
+        /// where field in (value,value,value)。同In.
         /// </summary>
         /// <param name="values"></param>
         /// <returns></returns>
@@ -1321,58 +1321,70 @@ namespace Dos.ORM
 
         #endregion
     }
+    /// <summary>
+    /// 
+    /// </summary>
     public static class FieldExtend
     {
         /// <summary>
         /// 
         /// </summary>
-        private const string Tips = "该方法只能用于linq或lambda表达式";
+        private const string Tips = "该方法只能用于Dos.ORM lambda表达式！";
+
         /// <summary>
-        /// like '%value%'，同Contains。
+        /// 
+        /// </summary>
+        //public static object All(this object key)
+        //{
+        //    throw new Exception(Tips);
+        //}
+
+        /// <summary>
+        /// like '%value%' 模糊查询，同Contains。
         /// </summary>
         public static bool Like(this object key, object values)
         {
             throw new Exception(Tips);
         }
         /// <summary>
-        /// IN
+        /// where field in (value,value,value)。传入Array或List&lt;T>。
         /// </summary>
-        public static bool In<T>(this T key, params T[] values)
+        public static bool In<T>(this object key, params T[] values)
         {
             throw new Exception(Tips);
         }
         /// <summary>
-        /// IN
+        /// where field in (value,value,value)。传入Array或List&lt;T>。
         /// </summary>
-        public static bool In<T>(this T key, List<T> values)
+        public static bool In<T>(this object key, List<T> values)
         {
             throw new Exception(Tips);
         }
         /// <summary>
-        /// NOT IN
+        /// where field not in (value,value,value)。传入Array或List&lt;T>。
         /// </summary>
-        public static bool NotIn<T>(this T key, params T[] values)
+        public static bool NotIn<T>(this object key, params T[] values)
         {
             throw new Exception(Tips);
         }
         /// <summary>
-        /// NOT IN
+        /// where field not in (value,value,value)。传入Array或List&lt;T>。
         /// </summary>
-        public static bool NotIn<T>(this T key, List<T> values)
+        public static bool NotIn<T>(this object key, List<T> values)
         {
             throw new Exception(Tips);
         }
         /// <summary>
         /// IS NULL
         /// </summary>
-        public static bool IsNull<T>(this T key)
+        public static bool IsNull(this object key)
         {
             throw new Exception(Tips);
         }
         /// <summary>
         /// IS NOT NULL
         /// </summary>
-        public static bool IsNotNull<T>(this T key)
+        public static bool IsNotNull(this object key)
         {
             throw new Exception(Tips);
         }

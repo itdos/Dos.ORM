@@ -72,7 +72,7 @@ namespace Dos.ORM
         /// <summary>
         /// 版本号
         /// </summary>
-        public const string Version = "1.9.5.5";
+        public const string Version = "1.9.8.0";
 
 
         /// <summary>
@@ -1182,7 +1182,23 @@ namespace Dos.ORM
         {
             return DeleteByPrimaryKey<TEntity>(pkValues);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Delete<TEntity>(IEnumerable<TEntity> entities)
+            where TEntity : Entity
+        {
+            var count = 0;
+            using (DbTrans trans = BeginTransaction())
+            {
+                foreach (var entity in entities)
+                {
+                    count += Delete<TEntity>(entity, trans);
+                }
+                trans.Commit();
+            }
+            return count;
+        }
         /// <summary>
         ///  删除
         /// </summary>

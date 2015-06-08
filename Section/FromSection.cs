@@ -61,17 +61,21 @@ namespace Dos.ORM
         #region 连接  join
 
         /// <summary>
-        /// Inner Join
+        /// Inner Join。Lambda写法：.InnerJoin&lt;Model2>((d1,d2) => d1.ID == d2.ID)
         /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <param name="where"></param>
-        /// <returns></returns>
         public FromSection<T> InnerJoin<TEntity>(WhereClip where)
              where TEntity : Entity
         {
             return join(EntityCache.GetTableName<TEntity>(), where, JoinType.InnerJoin);
         }
-
+        /// <summary>
+        /// Inner Join。Lambda写法：.InnerJoin&lt;Model2>((d1,d2) => d1.ID == d2.ID)
+        /// </summary>
+        public FromSection<T> InnerJoin<TEntity>(Expression<Func<T, TEntity, bool>> lambdaWhere)
+             where TEntity : Entity
+        {
+            return join(EntityCache.GetTableName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.InnerJoin);
+        }
         /// <summary>
         /// Cross Join
         /// </summary>
@@ -227,13 +231,46 @@ namespace Dos.ORM
             return (FromSection<T>)base.Where(where);
         }
         /// <summary>
+        /// whereclip
+        /// </summary>
+        public new FromSection<T> Where(Where<T> whereParam)
+        {
+            return (FromSection<T>)base.Where(whereParam.ToWhereClip());
+        }
+        /// <summary>
+        /// whereclip
+        /// </summary>
+        public new FromSection<T> Where(Where whereParam)
+        {
+            return (FromSection<T>)base.Where(whereParam.ToWhereClip());
+        }
+        /// <summary>
         /// 
         /// </summary>
         public new FromSection<T> Where(Expression<Func<T, bool>> lambdaWhere)
         {
             return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
         }
-
+        public new FromSection<T> Select<T2>(Expression<Func<T, T2,  bool>> lambdaWhere)
+        {
+            return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
+        }
+        public new FromSection<T> Select<T2, T3>(Expression<Func<T, T2, T3,  bool>> lambdaWhere)
+        {
+            return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
+        }
+        public new FromSection<T> Select<T2, T3, T4>(Expression<Func<T, T2, T3, T4,  bool>> lambdaWhere)
+        {
+            return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
+        }
+        public new FromSection<T> Select<T2, T3, T4, T5>(Expression<Func<T, T2, T3, T4, T5,  bool>> lambdaWhere)
+        {
+            return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
+        }
+        public new FromSection<T> Select<T2, T3, T4, T5, T6>(Expression<Func<T, T2, T3, T4, T5, T6, bool>> lambdaWhere)
+        {
+            return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
+        }
         /// <summary>
         /// groupby
         /// </summary>
@@ -559,7 +596,7 @@ namespace Dos.ORM
         }
 
         /// <summary>
-        /// 返回第一个实体，同ToFirst()
+        /// 返回第一个实体，同ToFirst()。无数据返回Null。
         /// </summary>
         /// <returns></returns>
         public T First()
@@ -568,7 +605,7 @@ namespace Dos.ORM
         }
 
         /// <summary>
-        /// 返回第一个实体 ，同First()
+        /// 返回第一个实体 ，同First()。无数据返回Null。
         /// </summary>
         /// <returns></returns>
         public T ToFirst()

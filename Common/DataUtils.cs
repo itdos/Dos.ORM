@@ -185,7 +185,13 @@ namespace Dos.ORM.Common
                     if (string.IsNullOrEmpty(value.ToString()))
                         return false;
                     else
+                    {
+                        if (value.ToString() == "0")
+                        {
+                            return false;
+                        }
                         return true;
+                    }
                 }
 
             }
@@ -440,7 +446,7 @@ namespace Dos.ORM.Common
             }
             paramCount++;
             //TODO 此处应该根据数据库类型来附加@、?、:
-            return string.Concat("@",field.tableName, "_", field.Name, "_", paramCount);
+            return string.Concat("@", field.tableName, "_", field.Name, "_", paramCount);
             byte[] data = new byte[16];
             new RNGCryptoServiceProvider().GetBytes(data);
             string keystring = keyReg.Replace(Convert.ToBase64String(data).Trim(), string.Empty);

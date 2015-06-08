@@ -86,10 +86,25 @@
     <Compile Include="Db\DbSession.cs" />
     <Compile Include="Db\DbTrans.cs" />
     <Compile Include="Common\Entity.cs" />
+    <Compile Include="Expression\CacheEvaluator.cs" />
+    <Compile Include="Expression\ConstantExtractor.cs" />
+    <Compile Include="Expression\DelegateGenerator.cs" />
+    <Compile Include="Expression\Evaluator.cs" />
     <Compile Include="Expression\Expression.cs" />
+    <Compile Include="Expression\ExpressionComparer.cs" />
+    <Compile Include="Expression\ExpressionHasher.cs" />
     <Compile Include="Expression\ExpressionToClip.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Expression\ExpressionVisitor.cs" />
+    <Compile Include="Expression\FastEvaluator.cs" />
+    <Compile Include="Expression\FastPartialEvaluator.cs" />
+    <Compile Include="Expression\HashedListCache.cs" />
+    <Compile Include="Expression\IEvaluator.cs" />
+    <Compile Include="Expression\IExpressionCache.cs" />
+    <Compile Include="Expression\PartialEvaluator.cs" />
+    <Compile Include="Expression\PartialEvaluatorBase.cs" />
+    <Compile Include="Expression\WeakTypeDelegateGenerator.cs" />
     <Compile Include="Expression\WhereClipBuilder.cs" />
     <Compile Include="Expression\LambdaWhereClip.cs" />
     <Compile Include="Common\Field.cs" />

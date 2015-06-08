@@ -1,16 +1,19 @@
-﻿/*************************************************************************
- * 
- * Filename :WhereClipBuilder
- * 
- * steven hu   2010/8/3 15:08:51
- *  
- * http://www.cnblogs.com/huxj
- *   
- * 
- * Change History:
- * 
- * 
-**************************************************************************/
+﻿#region << 版 本 注 释 >>
+/****************************************************
+* 文 件 名：
+* Copyright(c) IT大师
+* CLR 版本: 4.0.30319.18408
+* 创 建 人：ITdos
+* 电子邮箱：admin@itdos.com
+* 官方网站：www.ITdos.com
+* 创建日期：2015/6/3 10:54:32
+* 文件描述：
+******************************************************
+* 修 改 人：
+* 修改日期：
+* 备注描述：
+*******************************************************/
+#endregion
 
 
 
@@ -21,6 +24,93 @@ using System.Text;
 
 namespace Dos.ORM
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    public class Where : WhereClipBuilder
+    {
+
+    }
+
+    /// <summary>
+    /// Where条件拼接，同WhereClipBuilder
+    /// </summary>
+    public class Where<T> : WhereClipBuilder
+        where T : Entity
+    {
+        /// <summary>
+        /// AND
+        /// </summary>
+        public void And(Expression<Func<T, bool>> lambdaWhere)
+        {
+            var tempWhere = ExpressionToClip<T>.ToWhereClip(lambdaWhere);
+            And(tempWhere);
+        }
+        /// <summary>
+        /// AND
+        /// </summary>
+        public void And<T2>(Expression<Func<T,T2, bool>> lambdaWhere)
+        {
+            var tempWhere = ExpressionToClip<T>.ToWhereClip(lambdaWhere);
+            And(tempWhere);
+        }
+        public void And<T2, T3>(Expression<Func<T, T2, T3, bool>> lambdaWhere)
+        {
+            var tempWhere = ExpressionToClip<T>.ToWhereClip(lambdaWhere);
+            And(tempWhere);
+        }
+        public void And<T2, T3, T4>(Expression<Func<T, T2, T3, T4, bool>> lambdaWhere)
+        {
+            var tempWhere = ExpressionToClip<T>.ToWhereClip(lambdaWhere);
+            And(tempWhere);
+        }
+        public void And<T2, T3, T4, T5>(Expression<Func<T, T2, T3, T4, T5, bool>> lambdaWhere)
+        {
+            var tempWhere = ExpressionToClip<T>.ToWhereClip(lambdaWhere);
+            And(tempWhere);
+        }
+        public void And<T2, T3, T4, T5, T6>(Expression<Func<T, T2, T3, T4, T5, T6, bool>> lambdaWhere)
+        {
+            var tempWhere = ExpressionToClip<T>.ToWhereClip(lambdaWhere);
+            And(tempWhere);
+        }
+        /// <summary>
+        /// Or
+        /// </summary>
+        public void Or(Expression<Func<T, bool>> lambdaWhere)
+        {
+            var tempWhere = ExpressionToClip<T>.ToWhereClip(lambdaWhere);
+            Or(tempWhere);
+        }
+        public void Or<T2>(Expression<Func<T, T2, bool>> lambdaWhere)
+        {
+            var tempWhere = ExpressionToClip<T>.ToWhereClip(lambdaWhere);
+            Or(tempWhere);
+        }
+        public void Or<T2, T3>(Expression<Func<T, T2, T3, bool>> lambdaWhere)
+        {
+            var tempWhere = ExpressionToClip<T>.ToWhereClip(lambdaWhere);
+            Or(tempWhere);
+        }
+        public void Or<T2, T3, T4>(Expression<Func<T, T2, T3, T4, bool>> lambdaWhere)
+        {
+            var tempWhere = ExpressionToClip<T>.ToWhereClip(lambdaWhere);
+            Or(tempWhere);
+        }
+        public void Or<T2, T3, T4, T5>(Expression<Func<T, T2, T3, T4, T5, bool>> lambdaWhere)
+        {
+            var tempWhere = ExpressionToClip<T>.ToWhereClip(lambdaWhere);
+            Or(tempWhere);
+        }
+        public void Or<T2, T3, T4, T5, T6>(Expression<Func<T, T2, T3, T4, T5, T6, bool>> lambdaWhere)
+        {
+            var tempWhere = ExpressionToClip<T>.ToWhereClip(lambdaWhere);
+            Or(tempWhere);
+        }
+    }
+    /// <summary>
+    /// Where条件拼接，同Where
+    /// </summary>
     public class WhereClipBuilder<T> : WhereClipBuilder
         where T : Entity
     {

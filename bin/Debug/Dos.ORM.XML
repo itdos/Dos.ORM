@@ -2334,6 +2334,11 @@
             <param name="pkValues"></param>
             <returns></returns>
         </member>
+        <member name="M:Dos.ORM.DbSession.Delete``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Dos.ORM.DbSession.Delete``1(System.String[])">
             <summary>
              删除
@@ -3150,6 +3155,37 @@
             返回参数
             </summary>
         </member>
+        <member name="M:Dos.ORM.ExpressionComparer.CompareNull``1(``0,``0,System.Int32@)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="result"></param>
+            <returns>can stop comparing or not</returns>
+        </member>
+        <member name="M:Dos.ORM.ExpressionToClip`1.ToJoinWhere``1(System.Linq.Expressions.Expression{System.Func{`0,``0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.ExpressionToClip`1.ToWhereClip(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Dos.ORM.PartialEvaluatorBase.Nominator">
+            <summary>
+            Performs bottom-up analysis to determine which nodes can possibly
+            be part of an evaluated sub-tree.
+            </summary>
+        </member>
+        <member name="T:Dos.ORM.Where">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Dos.ORM.WhereClipBuilder">
             <summary>
             WhereClipBuilder
@@ -3193,6 +3229,31 @@
             转换成WhereClip
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Dos.ORM.Where`1">
+            <summary>
+            Where条件拼接，同WhereClipBuilder
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.Where`1.And(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            AND
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.Where`1.And``1(System.Linq.Expressions.Expression{System.Func{`0,``0,System.Boolean}})">
+            <summary>
+            AND
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.Where`1.Or(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Or
+            </summary>
+        </member>
+        <member name="T:Dos.ORM.WhereClipBuilder`1">
+            <summary>
+            Where条件拼接，同Where
+            </summary>
         </member>
         <member name="M:Dos.ORM.WhereClipBuilder`1.And(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
@@ -4444,11 +4505,13 @@
         </member>
         <member name="M:Dos.ORM.FromSection`1.InnerJoin``1(Dos.ORM.WhereClip)">
             <summary>
-            Inner Join
+            Inner Join。Lambda写法：.InnerJoin&lt;Model2>((d1,d2) => d1.ID == d2.ID)
             </summary>
-            <typeparam name="TEntity"></typeparam>
-            <param name="where"></param>
-            <returns></returns>
+        </member>
+        <member name="M:Dos.ORM.FromSection`1.InnerJoin``1(System.Linq.Expressions.Expression{System.Func{`0,``0,System.Boolean}})">
+            <summary>
+            Inner Join。Lambda写法：.InnerJoin&lt;Model2>((d1,d2) => d1.ID == d2.ID)
+            </summary>
         </member>
         <member name="M:Dos.ORM.FromSection`1.CrossJoin``1(Dos.ORM.WhereClip)">
             <summary>
@@ -4510,6 +4573,16 @@
             </summary>
         </member>
         <member name="M:Dos.ORM.FromSection`1.Where(Dos.ORM.WhereClip)">
+            <summary>
+            whereclip
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.FromSection`1.Where(Dos.ORM.Where{`0})">
+            <summary>
+            whereclip
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.FromSection`1.Where(Dos.ORM.Where)">
             <summary>
             whereclip
             </summary>
@@ -4634,13 +4707,13 @@
         </member>
         <member name="M:Dos.ORM.FromSection`1.First">
             <summary>
-            返回第一个实体，同ToFirst()
+            返回第一个实体，同ToFirst()。无数据返回Null。
             </summary>
             <returns></returns>
         </member>
         <member name="M:Dos.ORM.FromSection`1.ToFirst">
             <summary>
-            返回第一个实体 ，同First()
+            返回第一个实体 ，同First()。无数据返回Null。
             </summary>
             <returns></returns>
         </member>

@@ -1,10 +1,18 @@
-﻿2015-06-08 Dos.ORM（原Hxj.Data）（v1.9.8.0）
+﻿未来版本预告：
+	*）可能会增加.Select(d => new NewClass(){})写法。
+	*）表名增加别名，以支持同一张表可以被INNER JOIN多次。
+
+2015-06-14 Dos.ORM（原Hxj.Data）（v1.9.8.2）
+	*）优化底层Emit映射。
+	*）优化.Delete<T>(IEnumerable<T> entities)方法，性能大大提升。
+	*）增加.Delete<T>(Where where)重载。
+	*）删除.Delete(param string[] pkValues)方法，因为有.Delete(param object[] pkValues)方法。
 	*）【重要更新】lambda的常量、变量计算增加缓存，性能提升10-20倍。举例：.Where(d => Convert.ToInt32(Model.Price.ToString())+2/3*5 > 0)，lambda计算默认是通过委托+反射取结果，现在计算公式将会缓存，性能大大提升。
 	*）现在.Where()的lambda支持常量、变量之间的比较，同时比较符号左右不分顺序。
-	*）解决bool类型字段偶尔为0时，映射结果却为true。
+	*）解决tinyint(1)对应bool类型字段偶尔为0时，映射结果却为true。
 	*）【重要更新】增加多表关联查询的.Where<T,T2,T3>()Lambda表达式写法：.From<T1>().Where<T2, T3, T4>((a, b, c) => a.ID != null && b.Name == "ITdos")。
 	*）【重要更新】Where条件拼接类同上。例：var where = new Where<T1>(); where.And<T2, T3>((a, b, c) => a.ID != null && b.Name == "ITdos");。
-	*）.Delete<T>()增加IEnumerable<T> entities重载。
+	*）增加.Delete<T>(IEnumerable<T> entities)重载。
 	*）【重要更新】新增Where、Where<T>（同WhereClipBuilder），同时.Where()增加可传入Where对象重载。
 	*）优化了lambda filed.In()、.NotIn()传入数组的类型。（之前是string字段只能传string数组，guid只能传guid数组。现在无限制，int字段同样可以传入string数组，strng字段同样可以传入int数组。）
 	*）解决.FromSql()在MySql、Oracle下参数名使用"@"与字段名一样时（如：WHERE ID=@ID）报错的Bug。

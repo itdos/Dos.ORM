@@ -72,7 +72,7 @@ namespace Dos.ORM
         /// <summary>
         /// 版本号
         /// </summary>
-        public const string Version = "1.9.8.0";
+        public const string Version = "1.9.8.2";
 
 
         /// <summary>
@@ -1149,7 +1149,7 @@ namespace Dos.ORM
         {
             Check.Require(!EntityCache.IsReadOnly<TEntity>(), string.Concat("Entity(", EntityCache.GetTableName<TEntity>(), ") is readonly!"));
 
-            return Delete<TEntity>(entity, DataUtils.GetPrimaryKeyWhere(entity), tran);
+            return Delete<TEntity>(DataUtils.GetPrimaryKeyWhere(entity), tran);
         }
 
 
@@ -1188,16 +1188,35 @@ namespace Dos.ORM
         public int Delete<TEntity>(IEnumerable<TEntity> entities)
             where TEntity : Entity
         {
-            var count = 0;
-            using (DbTrans trans = BeginTransaction())
+            var eCount = entities.Count();
+            switch (eCount)
             {
-                foreach (var entity in entities)
-                {
-                    count += Delete<TEntity>(entity, trans);
-                }
-                trans.Commit();
+                case 0:
+                    return 0;
+                case 1:
+                    return Delete(entities.First());
+                default:
+                    //TODO 修改成In条件，性能更高。 
+                    var listKey = new List<object>();
+                    var where = new Where();
+                    var f = entities.First().GetPrimaryKeyFields().First();
+                    foreach (var entity in entities)
+                    {
+                        listKey.Add(DataUtils.GetPropertyValue(entity, f.Name));
+                    }
+                    where.And(f.In(listKey));
+                    return Delete<TEntity>(where);
             }
-            return count;
+            //var count = 0;
+            //using (DbTrans trans = BeginTransaction())
+            //{
+            //    foreach (var entity in entities)
+            //    {
+            //        count += Delete<TEntity>(entity, trans);
+            //    }
+            //    trans.Commit();
+            //}
+            //return count;
         }
         /// <summary>
         ///  删除
@@ -1205,11 +1224,11 @@ namespace Dos.ORM
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="pkValues"></param>
         /// <returns></returns>
-        public int Delete<TEntity>(params string[] pkValues)
-            where TEntity : Entity
-        {
-            return DeleteByPrimaryKey<TEntity>(pkValues);
-        }
+        //public int Delete<TEntity>(params string[] pkValues)
+        //    where TEntity : Entity
+        //{
+        //    return DeleteByPrimaryKey<TEntity>(pkValues);
+        //}
 
         /// <summary>
         ///  删除
@@ -1304,9 +1323,6 @@ namespace Dos.ORM
         /// <summary>
         ///  删除
         /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <param name="where"></param>
-        /// <returns></returns>
         public int Delete<TEntity>(WhereClip where)
             where TEntity : Entity
         {
@@ -1314,7 +1330,14 @@ namespace Dos.ORM
 
             return ExecuteNonQuery(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), where));
         }
-
+        /// <summary>
+        /// 删除
+        /// </summary>
+        public int Delete<TEntity>(Where where)
+            where TEntity : Entity
+        {
+            return Delete<TEntity>(where.ToWhereClip());
+        }
 
         ///// <summary>
         ///// 

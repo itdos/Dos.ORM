@@ -565,7 +565,18 @@ namespace Dos.ORM
             using (IDataReader reader = ToDataReader(from))
             {
                 if (@from.Joins.Any() || from.Fields.Any())
+                {
+                    //list = new EmitMapper.Mappers.DataReaderToObjectMapper<T>().ReadCollection(reader).ToList();
+                    //while (reader.Read())
+                    //{
+                    //    T t = EmitMapper.ObjectMapperManager.DefaultInstance.GetMapper<IDataReader, T>().Map(reader);
+                    //    list.Add(t);
+                    //}
+                    //DataRecordInternal
+                    //T result = MapUsingState(reader, reader);
+                    //list = EmitMapper.ObjectMapperManager.DefaultInstance.GetMapper<IDataReader, List<T>>().Map(reader);
                     list = EntityUtils.Mapper.Map<T>(reader);
+                }
                 else
                 {
                     while (reader.Read())

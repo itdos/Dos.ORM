@@ -532,15 +532,16 @@ namespace Dos.ORM.Common
                 {
                     throw new Exception("连接已关闭！");
                 }
-                if (m_CatchMethod == null)
-                {
-                    m_CatchMethod = new Dictionary<string, DynamicMethod>();
-                }
-
+                #region  Not use the cache for the time being  2015-06-14
+                //if (m_CatchMethod == null)
+                //{
+                //    m_CatchMethod = new Dictionary<string, DynamicMethod>();
+                //}
+                #endregion
                 Type itemType = typeof(T);
                 var key = itemType.FullName;
-                if (!m_CatchMethod.ContainsKey(key))
-                {
+                //if (!m_CatchMethod.ContainsKey(key))//Not use the cache for the time being  2015-06-14
+                //{
 #if WRITE_FILE
 				AssemblyName aName = new AssemblyName("DynamicAssembly");
 				AssemblyBuilder ab = AppDomain.CurrentDomain.DefineDynamicAssembly(aName, AssemblyBuilderAccess.RunAndSave);
@@ -661,20 +662,20 @@ namespace Dos.ORM.Common
 				Type t = tb.CreateType();
 				ab.Save(aName.Name + ".dll");
 #else
-                    m_CatchMethod.Add(key, dm);
+                    //m_CatchMethod.Add(key, dm);//Not use the cache for the time being  2015-06-14
 #endif
-                    if (m_CatchMethod.Count > 100)
+                    //if (m_CatchMethod.Count > 100)Not use the cache for the time being  2015-06-14
                     {
                         
                     }
-                }
+                //}
 
-                if (m_CatchMethod.ContainsKey(key))
-                {
-                    DynamicMethod dm = m_CatchMethod[key];
+                //if (m_CatchMethod.ContainsKey(key))Not use the cache for the time being  2015-06-14
+                //{
+                    //DynamicMethod dm = m_CatchMethod[key];//Not use the cache for the time being  2015-06-14
                     ReadEntityInvoker<List<T>> invoker = dm.CreateDelegate(typeof(ReadEntityInvoker<List<T>>)) as ReadEntityInvoker<List<T>>;
                     return invoker.Invoke(reader);
-                }
+                //}
                 throw new Exception("没有找到对应类型的处理方法。");
             }
             private static void initNulls(PropertyInfo[] properties, ILGenerator ilg, out LocalBuilder[] typeNulls)

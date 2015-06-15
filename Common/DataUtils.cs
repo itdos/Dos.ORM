@@ -504,7 +504,8 @@ namespace Dos.ORM.Common
             WhereClip where = new WhereClip();
             Field[] keyfields = EntityCache.GetPrimaryKeyFields<TEntity>();
 
-            if (keyfields == null) return where;
+            if (keyfields == null) 
+                return where;
 
             Check.Require(keyfields.Length == pkValues.Length, "主键列与主键值无法对应!");
 
@@ -512,6 +513,7 @@ namespace Dos.ORM.Common
             for (int i = 0; i < index; i++)
             {
                 where = where.And(new WhereClip(keyfields[i], pkValues[i], QueryOperator.Equal));
+                //where = where.And(keyfields[i].In(pkValues));//2015-06-09
             }
             return where;
         }

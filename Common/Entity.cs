@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using Dos.ORM;
+using Dos.ORM.Common;
 
 namespace Dos.ORM
 {
@@ -79,7 +80,12 @@ namespace Dos.ORM
         /// <summary>
         /// 是否
         /// </summary>
-        private bool isAttached;
+        private bool isAttached = true;
+
+        /// <summary>
+        /// 实体状态
+        /// </summary>
+        private EntityState entityState;
 
         /// <summary>
         /// 修改的字段集合
@@ -91,7 +97,10 @@ namespace Dos.ORM
         /// <summary>
         /// 构造函数
         /// </summary>
-        public Entity() { }
+        public Entity()
+        {
+            this.isAttached = true;
+        }
 
         /// <summary>
         /// 构造函数
@@ -100,7 +109,7 @@ namespace Dos.ORM
         public Entity(string tableName)
         {
             this.tableName = tableName;
-            this.isAttached = false;
+            this.isAttached = true;
         }
 
 
@@ -113,8 +122,20 @@ namespace Dos.ORM
         {
             this.isAttached = true;
         }
-
-
+        /// <summary>
+        /// 将实体置为指定状态
+        /// </summary>
+        public void Attach(EntityState entityState)
+        {
+            this.entityState = entityState;
+        }
+        /// <summary>
+        /// 获取实体状态
+        /// </summary>
+        public EntityState GetEntityState()
+        {
+            return this.entityState;
+        }
         /// <summary>
         /// 将实体置为插入状态
         /// </summary>
@@ -141,44 +162,46 @@ namespace Dos.ORM
                 if (null == oldValue && null == newValue)
                     return;
 
-                if (null != oldValue && null != newValue && newValue.Equals(oldValue))
-                {
-                    return;
-                    #region HXJ HACK
+                #region 取消这个判断 2015-07-01
+                //if (null != oldValue && null != newValue && newValue.Equals(oldValue))
+                //{
+                //    return;
+                //    #region HXJ HACK
 
-                    Type t = newValue.GetType();
-                    if (t == typeof(int))
-                    {
-                        if ((int)newValue != 0)
-                            return;
-                    }
-                    else if (t == typeof(decimal))
-                    {
-                        if (default(decimal) != (decimal)newValue)
-                            return;
-                    }
-                    else if (t == typeof(long))
-                    {
-                        if (default(long) != (long)newValue)
-                            return;
-                    }
-                    else if (t == typeof(bool))
-                    {
-                        if (default(bool) != (bool)newValue)
-                            return;
-                    }
-                    else if (t == typeof(Single))
-                    {
-                        if (default(Single) != (Single)newValue)
-                            return;
-                    }                   
-                    else
-                    {
-                        return;
-                    }
+                //    Type t = newValue.GetType();
+                //    if (t == typeof(int))
+                //    {
+                //        if ((int)newValue != 0)
+                //            return;
+                //    }
+                //    else if (t == typeof(decimal))
+                //    {
+                //        if (default(decimal) != (decimal)newValue)
+                //            return;
+                //    }
+                //    else if (t == typeof(long))
+                //    {
+                //        if (default(long) != (long)newValue)
+                //            return;
+                //    }
+                //    else if (t == typeof(bool))
+                //    {
+                //        if (default(bool) != (bool)newValue)
+                //            return;
+                //    }
+                //    else if (t == typeof(Single))
+                //    {
+                //        if (default(Single) != (Single)newValue)
+                //            return;
+                //    }                   
+                //    else
+                //    {
+                //        return;
+                //    }
 
-                    #endregion
-                }
+                //    #endregion
+                //}
+                #endregion
 
                 lock (modifyFields)
                 {

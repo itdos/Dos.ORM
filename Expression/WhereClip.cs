@@ -29,19 +29,14 @@ namespace Dos.ORM
     /// 条件
     /// </summary>
     [Serializable]
+    [Obsolete("建议使用Where类替代WhereClip类。使用示例：var W = new Where<T>(); W.And(d=>d.ID == 1);")]
     public class WhereClip : Expression
     {
-
         /// <summary>
         /// All
         /// </summary>
         public readonly static WhereClip All = new WhereClip();
-
-
-
         #region 构造函数
-
-
         /// <summary>
         /// 
         /// </summary>

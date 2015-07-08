@@ -1024,6 +1024,31 @@
             FullJoin
             </summary>
         </member>
+        <member name="T:Dos.ORM.Common.EntityState">
+            <summary>
+            标记实体状态
+            </summary>
+        </member>
+        <member name="F:Dos.ORM.Common.EntityState.Unchanged">
+            <summary>
+            标记为不做任何数据库操作。
+            </summary>
+        </member>
+        <member name="F:Dos.ORM.Common.EntityState.Added">
+            <summary>
+            标记为插入状态。.Save()触发。
+            </summary>
+        </member>
+        <member name="F:Dos.ORM.Common.EntityState.Deleted">
+            <summary>
+            标记为删除状态。.Save()触发。
+            </summary>
+        </member>
+        <member name="F:Dos.ORM.Common.EntityState.Modified">
+            <summary>
+            标记为修改状态。.Save()触发。
+            </summary>
+        </member>
         <member name="T:Dos.ORM.LogHandler">
             <summary>
             A delegate used for log.
@@ -1567,27 +1592,16 @@
             <summary>
             Adds a new In and Out
             </summary>
-            <param name="command"></param>
-            <param name="name"></param>
-            <param name="dbType"></param>
-            <param name="value"></param>
-            <param name="size"></param>
         </member>
         <member name="M:Dos.ORM.Database.AddReturnValueParameter(System.Data.Common.DbCommand,System.String,System.Data.DbType,System.Int32)">
             <summary>
             Adds a new return
             </summary>
-            <param name="command"></param>
-            <param name="name"></param>
-            <param name="dbType"></param>
-            <param name="size"></param>
         </member>
         <member name="M:Dos.ORM.Database.AddParameter(System.Data.Common.DbCommand,System.Data.Common.DbParameter[])">
             <summary>
             Adds parameters
             </summary>
-            <param name="command"></param>
-            <param name="parameter"></param>
         </member>
         <member name="M:Dos.ORM.Database.AddCommandParameter(System.Data.Common.DbCommand,Dos.ORM.Parameter[])">
             <summary>
@@ -2223,6 +2237,16 @@
             <param name="where"></param>
             <returns></returns>
         </member>
+        <member name="M:Dos.ORM.DbSession.Update``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.DbSession.Update``1(``0,Dos.ORM.Where)">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Dos.ORM.DbSession.Update``1(``0,System.Data.Common.DbTransaction)">
             <summary>
             更新
@@ -2243,10 +2267,16 @@
             <summary>
             更新
             </summary>
-            <typeparam name="TEntity"></typeparam>
-            <param name="tran"></param>
-            <param name="where"></param>
-            <param name="entity"></param>
+        </member>
+        <member name="M:Dos.ORM.DbSession.Update``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Data.Common.DbTransaction)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.DbSession.Update``1(``0,Dos.ORM.Where,System.Data.Common.DbTransaction)">
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:Dos.ORM.DbSession.Update``1(Dos.ORM.Field,System.Object,Dos.ORM.WhereClip)">
             <summary>
@@ -2257,6 +2287,16 @@
             <param name="value"></param>
             <param name="where"></param>
             <returns></returns>
+        </member>
+        <member name="M:Dos.ORM.DbSession.Update``1(Dos.ORM.Field,System.Object,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.DbSession.Update``1(Dos.ORM.Field,System.Object,Dos.ORM.Where)">
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:Dos.ORM.DbSession.Update``1(Dos.ORM.Field,System.Object,Dos.ORM.WhereClip,System.Data.Common.DbTransaction)">
             <summary>
@@ -2269,6 +2309,16 @@
             <param name="tran"></param>
             <returns></returns>
         </member>
+        <member name="M:Dos.ORM.DbSession.Update``1(Dos.ORM.Field,System.Object,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Data.Common.DbTransaction)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.DbSession.Update``1(Dos.ORM.Field,System.Object,Dos.ORM.Where,System.Data.Common.DbTransaction)">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Dos.ORM.DbSession.Update``1(System.Collections.Generic.Dictionary{Dos.ORM.Field,System.Object},Dos.ORM.WhereClip)">
             <summary>
             更新多个值
@@ -2277,6 +2327,16 @@
             <param name="fieldValue"></param>
             <param name="where"></param>
             <returns></returns>
+        </member>
+        <member name="M:Dos.ORM.DbSession.Update``1(System.Collections.Generic.Dictionary{Dos.ORM.Field,System.Object},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.DbSession.Update``1(System.Collections.Generic.Dictionary{Dos.ORM.Field,System.Object},Dos.ORM.Where)">
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:Dos.ORM.DbSession.Update``1(System.Collections.Generic.Dictionary{Dos.ORM.Field,System.Object},Dos.ORM.WhereClip,System.Data.Common.DbTransaction)">
             <summary>
@@ -2288,6 +2348,16 @@
             <param name="tran"></param>
             <returns></returns>
         </member>
+        <member name="M:Dos.ORM.DbSession.Update``1(System.Collections.Generic.Dictionary{Dos.ORM.Field,System.Object},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Data.Common.DbTransaction)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.DbSession.Update``1(System.Collections.Generic.Dictionary{Dos.ORM.Field,System.Object},Dos.ORM.Where,System.Data.Common.DbTransaction)">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Dos.ORM.DbSession.Update``1(Dos.ORM.Field[],System.Object[],Dos.ORM.WhereClip)">
             <summary>
             更新
@@ -2297,6 +2367,16 @@
             <param name="values"></param>
             <param name="where"></param>
             <returns></returns>
+        </member>
+        <member name="M:Dos.ORM.DbSession.Update``1(Dos.ORM.Field[],System.Object[],System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.DbSession.Update``1(Dos.ORM.Field[],System.Object[],Dos.ORM.Where)">
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:Dos.ORM.DbSession.Update``1(Dos.ORM.Field[],System.Object[],Dos.ORM.WhereClip,System.Data.Common.DbTransaction)">
             <summary>
@@ -2308,6 +2388,16 @@
             <param name="where"></param>
             <param name="tran"></param>
             <returns></returns>
+        </member>
+        <member name="M:Dos.ORM.DbSession.Update``1(Dos.ORM.Field[],System.Object[],System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Data.Common.DbTransaction)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.DbSession.Update``1(Dos.ORM.Field[],System.Object[],Dos.ORM.Where,System.Data.Common.DbTransaction)">
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:Dos.ORM.DbSession.Delete``1(``0)">
             <summary>
@@ -2475,6 +2565,16 @@
             <param name="cmd"></param>
             <param name="tran"></param>
             <returns></returns>
+        </member>
+        <member name="M:Dos.ORM.DbSession.Save``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Save。将实体批量提交至数据库，每个实体需要手动标记EntityState状态。
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.DbSession.Save``1(``0)">
+             <summary>
+            保存实体。需要手动标记EntityState状态。
+             </summary>
         </member>
         <member name="M:Dos.ORM.DbSession.ExecuteNonQuery(System.Data.Common.DbCommand)">
             <summary>
@@ -2851,6 +2951,11 @@
             是否
             </summary>
         </member>
+        <member name="F:Dos.ORM.Entity.entityState">
+            <summary>
+            实体状态
+            </summary>
+        </member>
         <member name="F:Dos.ORM.Entity.modifyFields">
             <summary>
             修改的字段集合
@@ -2870,6 +2975,16 @@
         <member name="M:Dos.ORM.Entity.Attach">
             <summary>
             将实体置为修改状态
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.Entity.Attach(Dos.ORM.Common.EntityState)">
+            <summary>
+            将实体置为指定状态
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.Entity.GetEntityState">
+            <summary>
+            获取实体状态
             </summary>
         </member>
         <member name="M:Dos.ORM.Entity.DeAttach">
@@ -3246,7 +3361,7 @@
         </member>
         <member name="T:Dos.ORM.WhereClipBuilder`1">
             <summary>
-            Where条件拼接，同Where
+            Where条件拼接，同Where类
             </summary>
         </member>
         <member name="M:Dos.ORM.WhereClipBuilder`1.And(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
@@ -5326,9 +5441,29 @@
             </summary>
             <returns></returns>
         </member>
-        <!-- 对于成员“M:Dos.ORM.ProcSection.AddParameter(System.Data.Common.DbParameter[])”忽略有格式错误的 XML 注释 -->
-        <!-- 对于成员“M:Dos.ORM.ProcSection.AddInParameter(System.String,System.Data.DbType,System.Object)”忽略有格式错误的 XML 注释 -->
-        <!-- 对于成员“M:Dos.ORM.ProcSection.AddInParameter(System.String,System.Data.DbType,System.Int32,System.Object)”忽略有格式错误的 XML 注释 -->
+        <member name="M:Dos.ORM.ProcSection.AddParameter(System.Data.Common.DbParameter[])">
+            <summary>
+            添加参数
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.ProcSection.AddInParameter(System.String,System.Data.DbType,System.Object)">
+            <summary>
+            添加参数
+            </summary>
+            <param name="parameterName"></param>
+            <param name="value"></param>
+            <param name="dbType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dos.ORM.ProcSection.AddInParameter(System.String,System.Data.DbType,System.Int32,System.Object)">
+            <summary>
+            添加输入参数
+            </summary>
+            <param name="parameterName"></param>
+            <param name="value"></param>
+            <param name="dbType"></param>
+            <returns></returns>
+        </member>
         <member name="M:Dos.ORM.ProcSection.AddOutParameter(System.String,System.Data.DbType)">
             <summary>
             添加输出参数

@@ -480,6 +480,7 @@ namespace Dos.ORM
         #endregion
 
         #region 查询
+        private readonly string[] notClass = new string[] { "String" };
         /// <summary>
         /// 
         /// </summary>
@@ -493,7 +494,7 @@ namespace Dos.ORM
                 return ToList() as List<TResult>;
             }
             FromSection from = getPagedFromSection();
-            if (typet.IsClass)
+            if (typet.IsClass && !notClass.Contains(typet.Name))
             {
                 string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "List", "|",
                     formatSql(from.SqlString, from));

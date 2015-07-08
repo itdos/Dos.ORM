@@ -111,10 +111,6 @@ namespace Dos.ORM
         /// <summary>
         /// 添加参数
         /// </summary>
-        /// <param name="parameterName"></param>
-        /// <param name="value"
-        /// <param name="dbType"></param>
-        /// <returns></returns>
         public ProcSection AddParameter(params DbParameter[] parameters)
         {
             dbSession.Db.AddParameter(this.cmd, parameters);
@@ -126,7 +122,7 @@ namespace Dos.ORM
         /// 添加参数
         /// </summary>
         /// <param name="parameterName"></param>
-        /// <param name="value"
+        /// <param name="value"></param>
         /// <param name="dbType"></param>
         /// <returns></returns>
         public ProcSection AddInParameter(string parameterName, DbType dbType, object value)
@@ -138,7 +134,7 @@ namespace Dos.ORM
         /// 添加输入参数
         /// </summary>
         /// <param name="parameterName"></param>
-        /// <param name="value"
+        /// <param name="value"></param>
         /// <param name="dbType"></param>
         /// <returns></returns>
         public ProcSection AddInParameter(string parameterName, DbType dbType, int size, object value)

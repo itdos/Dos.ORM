@@ -230,7 +230,7 @@ namespace Dos.ORM
         {
             param.DbType = dbType;
             param.Size = size;
-            param.Value = (value == null) ? DBNull.Value : value;
+            param.Value = value ?? DBNull.Value;
             param.Direction = direction;
             param.IsNullable = nullable;
             param.SourceColumn = sourceColumn;
@@ -1041,11 +1041,6 @@ namespace Dos.ORM
         /// <summary>
         /// Adds a new In and Out
         /// </summary>
-        /// <param name="command"></param>
-        /// <param name="name"></param>
-        /// <param name="dbType"></param>
-        /// <param name="value"></param>
-        /// <param name="size"></param>
         public void AddInputOutputParameter(DbCommand command, string name, DbType dbType, int size, object value)
         {
             AddParameter(command, name, dbType, size, ParameterDirection.InputOutput, true, 0, 0, String.Empty, DataRowVersion.Default, value);
@@ -1055,10 +1050,6 @@ namespace Dos.ORM
         /// <summary>
         /// Adds a new return
         /// </summary>
-        /// <param name="command"></param>
-        /// <param name="name"></param>
-        /// <param name="dbType"></param>
-        /// <param name="size"></param>
         public void AddReturnValueParameter(DbCommand command, string name, DbType dbType, int size)
         {
             AddParameter(command, name, dbType, size, ParameterDirection.ReturnValue, true, 0, 0, String.Empty, DataRowVersion.Default, DBNull.Value);
@@ -1068,8 +1059,6 @@ namespace Dos.ORM
         /// <summary>
         /// Adds parameters
         /// </summary>
-        /// <param name="command"></param>
-        /// <param name="parameter"></param>
         public void AddParameter(DbCommand command, params DbParameter[] parameters)
         {
             if (null == parameters || parameters.Length == 0)

@@ -1,8 +1,15 @@
 ﻿未来版本预告：
 	*）可能会增加.Select(d => new NewClass(){})写法。
 	*）表名增加别名，以支持同一张表可以被INNER JOIN多次。
+	*）GetReturnValues标记为已过时，重载GetOutParam
+	*）sql、存储过程增加动态拼接参数的方法
+	*）.Update()、.Delete()全面完善lambda、Where类重载，方便使用。
+	*）会考虑增加.Save<T>(List<T>)、.Save<T>(T)方法，给T指定动作（增、删、改），然后事务批量提交。 
 
-2015-06-14 Dos.ORM（原Hxj.Data）（v1.9.8.2）
+2015-07-02 Dos.ORM（原Hxj.Data）（v1.9.8.5）
+	*）解决仅.Select()一个字段然后.ToList<string>()的一个Bug。
+	*）【重要更新】现在实体会默认标记为Attach()，修改实体可以不再需要先将实体.Attach()。例：Model.Name='ITdos'，即代表Name将参与字段的修改。
+	*）优化实例化一个新实体对象，然后直接.Update()的操作。
 	*）优化底层Emit映射。
 	*）优化.Delete<T>(IEnumerable<T> entities)方法，性能大大提升。
 	*）增加.Delete<T>(Where where)重载。
@@ -56,6 +63,7 @@
 	*）解决Dos.ORM在MySql下仍然调用Hxj.Data.MySql的Bug，现在会正确调用Dos.ORM.MySql。Sqlite同理。
 
 2015-05-03 Dos.ORM（原Hxj.Data）（v1.8.0）
+	*）Hxj.Data正式开源，实体生成器一并开源。
 	*）【重要更新】Hxj.Data正式更名为Dos.ORM，与Dos.WorkFlow、Dos.WeChat等形成产品线。老程序集迁移至新程序集：将【using Hxj.Data;】全部替换为【using Dos.ORM;】、将【using Hxj.Data.Common;】全部替换成【using Dos.ORM.Common;】即可！（勾选“区分大小写”、“全字匹配”，选中“整个解决方案”，点击“全部替换”。）
 	*）【重要更新】From<T>().Where()增加Lambda表达式“==”、“!=”写法。
 	*）【重要更新】Delete<T>().Where()增加Lambda表达式“==”、“!=”写法。

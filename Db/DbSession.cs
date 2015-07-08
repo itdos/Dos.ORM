@@ -72,7 +72,7 @@ namespace Dos.ORM
         /// <summary>
         /// 版本号
         /// </summary>
-        public const string Version = "1.9.8.2";
+        public const string Version = "1.9.8.5";
 
 
         /// <summary>
@@ -805,10 +805,24 @@ namespace Dos.ORM
         {
             if (entity.GetModifyFields().Count == 0)
                 return 0;
-
             return ExecuteNonQuery(cmdCreator.CreateUpdateCommand<TEntity>(entity, where));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Update<TEntity>(TEntity entity, Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return Update<TEntity>(entity, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Update<TEntity>(TEntity entity, Where where)
+            where TEntity : Entity
+        {
+            return Update<TEntity>(entity, where.ToWhereClip());
+        }
         /// <summary>
         /// 更新
         /// </summary>
@@ -853,19 +867,29 @@ namespace Dos.ORM
         /// <summary>
         /// 更新
         /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <param name="tran"></param>
-        /// <param name="where"></param>
-        /// <param name="entity"></param>
         public int Update<TEntity>(TEntity entity, WhereClip where, DbTransaction tran)
             where TEntity : Entity
         {
             if (entity.GetModifyFields().Count == 0)
                 return 0;
-
             return ExecuteNonQuery(cmdCreator.CreateUpdateCommand<TEntity>(entity, where), tran);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Update<TEntity>(TEntity entity, Expression<Func<TEntity, bool>> lambdaWhere, DbTransaction tran)
+            where TEntity : Entity
+        {
+            return Update<TEntity>(entity, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere), tran);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Update<TEntity>(TEntity entity, Where where, DbTransaction tran)
+            where TEntity : Entity
+        {
+            return Update<TEntity>(entity, where.ToWhereClip(), tran);
+        }
         /// <summary>
         /// 更新单个值
         /// </summary>
@@ -882,7 +906,22 @@ namespace Dos.ORM
 
             return ExecuteNonQuery(cmdCreator.CreateUpdateCommand<TEntity>(new Field[] { field }, new object[] { value }, where));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Update<TEntity>(Field field, object value, Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return Update<TEntity>(field, value, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Update<TEntity>(Field field, object value, Where where)
+            where TEntity : Entity
+        {
+            return Update<TEntity>(field, value, where.ToWhereClip());
+        }
         /// <summary>
         /// 更新单个值
         /// </summary>
@@ -900,8 +939,22 @@ namespace Dos.ORM
 
             return ExecuteNonQuery(cmdCreator.CreateUpdateCommand<TEntity>(new Field[] { field }, new object[] { value }, where), tran);
         }
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Update<TEntity>(Field field, object value, Expression<Func<TEntity, bool>> lambdaWhere, DbTransaction tran)
+            where TEntity : Entity
+        {
+            return Update<TEntity>(field, value, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere), tran);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Update<TEntity>(Field field, object value, Where where, DbTransaction tran)
+            where TEntity : Entity
+        {
+            return Update<TEntity>(field, value, where.ToWhereClip(), tran);
+        }
 
         /// <summary>
         /// 更新多个值
@@ -915,12 +968,9 @@ namespace Dos.ORM
         {
             if (null == fieldValue || fieldValue.Count == 0)
                 return 0;
-
             Field[] fields = new Field[fieldValue.Count];
             object[] values = new object[fieldValue.Count];
-
             int i = 0;
-
             foreach (KeyValuePair<Field, object> kv in fieldValue)
             {
                 fields[i] = kv.Key;
@@ -928,11 +978,24 @@ namespace Dos.ORM
 
                 i++;
             }
-
             return ExecuteNonQuery(cmdCreator.CreateUpdateCommand<TEntity>(fields, values, where));
         }
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Update<TEntity>(Dictionary<Field, object> fieldValue, Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return Update<TEntity>(fieldValue, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Update<TEntity>(Dictionary<Field, object> fieldValue, Where where)
+            where TEntity : Entity
+        {
+            return Update<TEntity>(fieldValue, where.ToWhereClip());
+        }
         /// <summary>
         /// 更新多个值
         /// </summary>
@@ -962,8 +1025,22 @@ namespace Dos.ORM
 
             return ExecuteNonQuery(cmdCreator.CreateUpdateCommand<TEntity>(fields, values, where), tran);
         }
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Update<TEntity>(Dictionary<Field, object> fieldValue, Expression<Func<TEntity, bool>> lambdaWhere, DbTransaction tran)
+            where TEntity : Entity
+        {
+            return Update<TEntity>(fieldValue, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere), tran);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Update<TEntity>(Dictionary<Field, object> fieldValue, Where where, DbTransaction tran)
+            where TEntity : Entity
+        {
+            return Update<TEntity>(fieldValue, where.ToWhereClip(), tran);
+        }
         ///// <summary>
         ///// 
         ///// </summary>
@@ -1073,11 +1150,24 @@ namespace Dos.ORM
 
             if (null == fields || fields.Length == 0)
                 return 0;
-
-
             return ExecuteNonQuery(cmdCreator.CreateUpdateCommand<TEntity>(fields, values, where));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Update<TEntity>(Field[] fields, object[] values, Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return Update<TEntity>(fields, values, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Update<TEntity>(Field[] fields, object[] values, Where where)
+            where TEntity : Entity
+        {
+            return Update<TEntity>(fields, values, where.ToWhereClip());
+        }
         /// <summary>
         /// 更新
         /// </summary>
@@ -1095,8 +1185,22 @@ namespace Dos.ORM
 
             return ExecuteNonQuery(cmdCreator.CreateUpdateCommand<TEntity>(fields, values, where), tran);
         }
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Update<TEntity>(Field[] fields, object[] values, Expression<Func<TEntity, bool>> lambdaWhere, DbTransaction tran)
+            where TEntity : Entity
+        {
+            return Update<TEntity>(fields, values, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere), tran);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Update<TEntity>(Field[] fields, object[] values, Where where, DbTransaction tran)
+            where TEntity : Entity
+        {
+            return Update<TEntity>(fields, values, where.ToWhereClip(), tran);
+        }
         #endregion
 
         #region 删除操作
@@ -1469,8 +1573,6 @@ namespace Dos.ORM
             return insertExecute<TEntity>(cmdCreator.CreateInsertCommand<TEntity>(fields, values), tran);
         }
 
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -1493,7 +1595,6 @@ namespace Dos.ORM
             returnValue = insertExecute<TEntity>(cmd, null);
             return returnValue;
         }
-
 
         /// <summary>
         /// 
@@ -1584,8 +1685,60 @@ namespace Dos.ORM
                 return Convert.ToInt32(scalarValue);
             }
         }
+        #endregion
 
-
+        #region Save操作
+        /// <summary>
+        /// Save。将实体批量提交至数据库，每个实体需要手动标记EntityState状态。
+        /// </summary>
+        public int Save<TEntity>(IEnumerable<TEntity> entities)
+            where TEntity : Entity
+        {
+            int count = 0;
+            using (DbTrans trans = this.BeginTransaction())
+            {
+                foreach (var entity in entities)
+                {
+                    EntityState es = entity.GetEntityState();
+                    if (es == EntityState.Added)
+                    {
+                        count = Insert<TEntity>(trans, entity);
+                    }
+                    else if (es == EntityState.Deleted)
+                    {
+                        count = Delete<TEntity>(trans, entity);
+                    }
+                    else if (es == EntityState.Modified)
+                    {
+                        count = Update<TEntity>(trans, entity);
+                    }
+                }
+                trans.Commit();
+            }
+            return count;
+        }
+        /// <summary>
+        ///保存实体。需要手动标记EntityState状态。
+        /// </summary>
+        public int Save<TEntity>(TEntity entity)
+            where TEntity : Entity
+        {
+            int count = 0;
+            EntityState es = entity.GetEntityState();
+            if (es == EntityState.Added)
+            {
+                count = Insert<TEntity>(entity);
+            }
+            else if (es == EntityState.Deleted)
+            {
+                count = Delete<TEntity>(entity);
+            }
+            else if (es == EntityState.Modified)
+            {
+                count = Update<TEntity>(entity);
+            }
+            return count;
+        }
         #endregion
 
         #region 执行command
@@ -1798,7 +1951,5 @@ namespace Dos.ORM
         }
 
         #endregion
-
-
     }
 }

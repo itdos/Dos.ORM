@@ -63,4 +63,27 @@ namespace Dos.ORM.Common
         /// </summary>
         FullJoin
     }
+    /// <summary>
+    /// 标记实体状态
+    /// </summary>
+    public enum EntityState
+    {
+        //Detached = 1,
+        /// <summary>
+        /// 标记为不做任何数据库操作。
+        /// </summary>
+        Unchanged = 2,
+        /// <summary>
+        /// 标记为插入状态。.Save()触发。
+        /// </summary>
+        Added = 4,
+        /// <summary>
+        /// 标记为删除状态。.Save()触发。
+        /// </summary>
+        Deleted = 8,
+        /// <summary>
+        /// 标记为修改状态。.Save()触发。
+        /// </summary>
+        Modified = 16,
+    }
 }

@@ -548,133 +548,141 @@ namespace Dos.ORM.Common
 				ModuleBuilder mb = ab.DefineDynamicModule(aName.Name, aName.Name + ".dll");
 				TypeBuilder tb = mb.DefineType("DynamicType", TypeAttributes.Public);
 #endif
-                    Type listType = typeof(List<T>);
-                    Type objectType = typeof(object);
-                    Type objArrayType = typeof(object[]);
-                    Type boolType = typeof(bool);
-                    Type[] methodArgs = { typeof(IDataReader) };
-                    MethodInfo LAdd = listType.GetMethod("Add");
-                    PropertyInfo[] properties = null;
-                    getMapped(itemType, reader, out properties);
+                Type listType = typeof(List<T>);
+                Type objectType = typeof(object);
+                Type objArrayType = typeof(object[]);
+                Type boolType = typeof(bool);
+                Type[] methodArgs = { typeof(IDataReader) };
+                MethodInfo LAdd = listType.GetMethod("Add");
+                PropertyInfo[] properties = null;
+                getMapped(itemType, reader, out properties);
 #if WRITE_FILE
 				MethodBuilder dm = tb.DefineMethod("ReadEntities", MethodAttributes.Public| MethodAttributes.Static, listType, methodArgs);
 #else
-                    DynamicMethod dm = new DynamicMethod("ReadEntities", listType, methodArgs, typeof(Mapper));
+                DynamicMethod dm = new DynamicMethod("ReadEntities", listType, methodArgs, typeof(Mapper));
 #endif
-                    ILGenerator ilg = dm.GetILGenerator();
-                    //List<T> list;
-                    LocalBuilder list = ilg.DeclareLocal(listType);
-                    //T item;
-                    LocalBuilder item = ilg.DeclareLocal(itemType);
-                    //object[] values;
-                    LocalBuilder values = ilg.DeclareLocal(objArrayType);
-                    //object objValue;
-                    LocalBuilder objValue = ilg.DeclareLocal(objectType);
-                    //type nulls
-                    LocalBuilder[] typeNulls = null;
-                    initNulls(properties, ilg, out typeNulls);
+                ILGenerator ilg = dm.GetILGenerator();
+                //List<T> list;
+                LocalBuilder list = ilg.DeclareLocal(listType);
+                //T item;
+                LocalBuilder item = ilg.DeclareLocal(itemType);
+                //object[] values;
+                LocalBuilder values = ilg.DeclareLocal(objArrayType);
+                //object objValue;
+                LocalBuilder objValue = ilg.DeclareLocal(objectType);
+                //type nulls
+                LocalBuilder[] typeNulls = null;
+                initNulls(properties, ilg, out typeNulls);
 
-                    Label exit = ilg.DefineLabel();
-                    Label loop = ilg.DefineLabel();
-                    Label[] lblArray = new Label[properties.Length * 2];
-                    for (int i = 0; i < lblArray.Length; i++)
+                Label exit = ilg.DefineLabel();
+                Label loop = ilg.DefineLabel();
+                Label[] lblArray = new Label[properties.Length * 2];
+                for (int i = 0; i < lblArray.Length; i++)
+                {
+                    lblArray[i] = ilg.DefineLabel();
+                }
+                //list = new List<T>();
+                ilg.Emit(OpCodes.Newobj, listType.GetConstructor(Type.EmptyTypes));
+                ilg.Emit(OpCodes.Stloc_S, list);
+
+                //values=new object[FieldCount];
+                ilg.Emit(OpCodes.Ldc_I4, reader.FieldCount);
+                ilg.Emit(OpCodes.Newarr, objectType);
+                ilg.Emit(OpCodes.Stloc_S, values);
+
+                // while (arg.Read()) {
+                ilg.MarkLabel(loop);
+                ilg.Emit(OpCodes.Ldarg_0);
+                ilg.Emit(OpCodes.Callvirt, Reader_Read);
+                ilg.Emit(OpCodes.Brfalse, exit);
+
+                //reader.GetValues(values);
+                ilg.Emit(OpCodes.Ldarg_0);
+                ilg.Emit(OpCodes.Ldloc_S, values);
+                ilg.Emit(OpCodes.Callvirt, Reader_GetValues);
+                ilg.Emit(OpCodes.Pop);
+
+                //item=new T(); 
+                ilg.Emit(OpCodes.Newobj, itemType.GetConstructor(Type.EmptyTypes));
+                ilg.Emit(OpCodes.Stloc_S, item);
+
+                //item.Property=Convert(values[index]);
+                for (int index = 0; index < properties.Length; index++)
+                {
+                    PropertyInfo pi = properties[index];
+                    if (pi == null)
                     {
-                        lblArray[i] = ilg.DefineLabel();
+                        continue;
                     }
-                    //list = new List<T>();
-                    ilg.Emit(OpCodes.Newobj, listType.GetConstructor(Type.EmptyTypes));
-                    ilg.Emit(OpCodes.Stloc_S, list);
 
-                    //values=new object[FieldCount];
-                    ilg.Emit(OpCodes.Ldc_I4, reader.FieldCount);
-                    ilg.Emit(OpCodes.Newarr, objectType);
-                    ilg.Emit(OpCodes.Stloc_S, values);
-
-                    // while (arg.Read()) {
-                    ilg.MarkLabel(loop);
-                    ilg.Emit(OpCodes.Ldarg_0);
-                    ilg.Emit(OpCodes.Callvirt, Reader_Read);
-                    ilg.Emit(OpCodes.Brfalse, exit);
-
-                    //reader.GetValues(values);
-                    ilg.Emit(OpCodes.Ldarg_0);
+                    //objValue=value[index];
                     ilg.Emit(OpCodes.Ldloc_S, values);
-                    ilg.Emit(OpCodes.Callvirt, Reader_GetValues);
-                    ilg.Emit(OpCodes.Pop);
+                    ilg.Emit(OpCodes.Ldc_I4, index);
+                    ilg.Emit(OpCodes.Ldelem_Ref);
+                    ilg.Emit(OpCodes.Stloc_S, objValue);
 
-                    //item=new T();
-                    ilg.Emit(OpCodes.Newobj, itemType.GetConstructor(Type.EmptyTypes));
-                    ilg.Emit(OpCodes.Stloc_S, item);
+                    //tmpBool=Convert.IsDBNull(objValue);
+                    ilg.Emit(OpCodes.Ldloc_S, objValue);
+                    ilg.Emit(OpCodes.Call, Convert_IsDBNull);
 
-                    //item.Property=Convert(values[index]);
-                    for (int index = 0; index < properties.Length; index++)
-                    {
-                        PropertyInfo pi = properties[index];
-                        if (pi == null)
-                        {
-                            continue;
-                        }
+                    //if (!tmpBool){
+                    ilg.Emit(OpCodes.Brtrue_S, lblArray[index * 2]);
 
-                        //objValue=value[index];
-                        ilg.Emit(OpCodes.Ldloc_S, values);
-                        ilg.Emit(OpCodes.Ldc_I4, index);
-                        ilg.Emit(OpCodes.Ldelem_Ref);
-                        ilg.Emit(OpCodes.Stloc_S, objValue);
-
-                        //tmpBool=Convert.IsDBNull(objValue);
-                        ilg.Emit(OpCodes.Ldloc_S, objValue);
-                        ilg.Emit(OpCodes.Call, Convert_IsDBNull);
-
-                        //if (!tmpBool){
-                        ilg.Emit(OpCodes.Brtrue_S, lblArray[index * 2]);
-
-                        //item.Field=Convert(objValue).ToXXX();
-                        ilg.Emit(OpCodes.Ldloc_S, item);
-                        ilg.Emit(OpCodes.Ldloc_S, objValue);
-
-                        convertValue(ilg, pi);
-
-                        ilg.Emit(OpCodes.Callvirt, pi.GetSetMethod());
-                        //}
-                        ilg.Emit(OpCodes.Br_S, lblArray[index * 2 + 1]);
-                        //else {
-                        ilg.MarkLabel(lblArray[index * 2]);
-                        //item.Field=objValue;
-                        ilg.Emit(OpCodes.Ldloc_S, item);
-                        ilg.Emit(OpCodes.Ldloc_S, typeNulls[index]);
-                        ilg.Emit(OpCodes.Callvirt, pi.GetSetMethod());
-                        //}
-                        ilg.MarkLabel(lblArray[index * 2 + 1]);
-                    }
-
-                    //list.Add(item);
-                    ilg.Emit(OpCodes.Ldloc_S, list);
+                    //item.Field=Convert(objValue).ToXXX();
                     ilg.Emit(OpCodes.Ldloc_S, item);
-                    ilg.Emit(OpCodes.Callvirt, LAdd);
-                    //}
-                    ilg.Emit(OpCodes.Br, loop);
-                    ilg.MarkLabel(exit);
+                    ilg.Emit(OpCodes.Ldloc_S, objValue);
 
-                    // return list;
-                    ilg.Emit(OpCodes.Ldloc_S, list);
-                    ilg.Emit(OpCodes.Ret);
+                    convertValue(ilg, pi);
+
+                    ilg.Emit(OpCodes.Callvirt, pi.GetSetMethod());
+                    //}
+                    ilg.Emit(OpCodes.Br_S, lblArray[index * 2 + 1]);
+                    //else {
+                    ilg.MarkLabel(lblArray[index * 2]);
+                    //item.Field=objValue;
+                    ilg.Emit(OpCodes.Ldloc_S, item);
+                    ilg.Emit(OpCodes.Ldloc_S, typeNulls[index]);
+                    ilg.Emit(OpCodes.Callvirt, pi.GetSetMethod());
+                    //}
+                    ilg.MarkLabel(lblArray[index * 2 + 1]);
+                }
+
+                //list.Add(item);
+                ilg.Emit(OpCodes.Ldloc_S, list);
+                ilg.Emit(OpCodes.Ldloc_S, item);
+                ilg.Emit(OpCodes.Callvirt, LAdd);
+                //}
+                ilg.Emit(OpCodes.Br, loop);
+                ilg.MarkLabel(exit);
+
+                // return list;
+                ilg.Emit(OpCodes.Ldloc_S, list);
+                ilg.Emit(OpCodes.Ret);
 #if WRITE_FILE
 				Type t = tb.CreateType();
 				ab.Save(aName.Name + ".dll");
 #else
-                    //m_CatchMethod.Add(key, dm);//Not use the cache for the time being  2015-06-14
+                //m_CatchMethod.Add(key, dm);//Not use the cache for the time being  2015-06-14
 #endif
-                    //if (m_CatchMethod.Count > 100)Not use the cache for the time being  2015-06-14
-                    {
-                        
-                    }
+                //if (m_CatchMethod.Count > 100)Not use the cache for the time being  2015-06-14
+                {
+
+                }
                 //}
 
                 //if (m_CatchMethod.ContainsKey(key))Not use the cache for the time being  2015-06-14
                 //{
-                    //DynamicMethod dm = m_CatchMethod[key];//Not use the cache for the time being  2015-06-14
-                    ReadEntityInvoker<List<T>> invoker = dm.CreateDelegate(typeof(ReadEntityInvoker<List<T>>)) as ReadEntityInvoker<List<T>>;
+                //DynamicMethod dm = m_CatchMethod[key];//Not use the cache for the time being  2015-06-14
+                ReadEntityInvoker<List<T>> invoker = dm.CreateDelegate(typeof(ReadEntityInvoker<List<T>>)) as ReadEntityInvoker<List<T>>;
+                try// 2015-07-02
+                {
                     return invoker.Invoke(reader);
+                }
+                catch (Exception)
+                {
+                    reader.Close();
+                    throw;
+                }
                 //}
                 throw new Exception("没有找到对应类型的处理方法。");
             }

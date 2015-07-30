@@ -1,0 +1,5 @@
+D:\工作\GitHub\Dos.ORM\bin\Debug\Dos.ORM.XML
+D:\工作\GitHub\Dos.ORM\bin\Debug\Dos.ORM.dll
+D:\工作\GitHub\Dos.ORM\bin\Debug\Dos.ORM.pdb
+D:\工作\GitHub\Dos.ORM\obj\Debug\Dos.ORM.dll
+D:\工作\GitHub\Dos.ORM\obj\Debug\Dos.ORM.pdb

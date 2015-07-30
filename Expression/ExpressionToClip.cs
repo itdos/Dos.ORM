@@ -36,38 +36,36 @@ namespace Dos.ORM
         /// </summary>
         public static WhereClip ToJoinWhere<TEntity>(Expression<Func<T, TEntity, bool>> expr)
         {
-            return ToWhereClip(expr.Body, WhereType.JoinWhere);
+            return ToWhereClipChild(expr.Body, WhereType.JoinWhere);
         }
         /// <summary>
         /// 
         /// </summary>
         public static WhereClip ToWhereClip(Expression<Func<T, bool>> expr)
         {
-            
-            
-            return ToWhereClip(expr.Body);
+            return ToWhereClipChild(expr.Body);
         }
         public static WhereClip ToWhereClip<T2>(Expression<Func<T, T2, bool>> expr)
         {
-            return ToWhereClip(expr.Body);
+            return ToWhereClipChild(expr.Body);
         }
         public static WhereClip ToWhereClip<T2, T3>(Expression<Func<T, T2, T3, bool>> expr)
         {
-            return ToWhereClip(expr.Body);
+            return ToWhereClipChild(expr.Body);
         }
         public static WhereClip ToWhereClip<T2, T3, T4>(Expression<Func<T, T2, T3, T4, bool>> expr)
         {
-            return ToWhereClip(expr.Body);
+            return ToWhereClipChild(expr.Body);
         }
         public static WhereClip ToWhereClip<T2, T3, T4, T5>(Expression<Func<T, T2, T3, T4, T5, bool>> expr)
         {
-            return ToWhereClip(expr.Body);
+            return ToWhereClipChild(expr.Body);
         }
         public static WhereClip ToWhereClip<T2, T3, T4, T5, T6>(Expression<Func<T, T2, T3, T4, T5, T6, bool>> expr)
         {
-            return ToWhereClip(expr.Body);
+            return ToWhereClipChild(expr.Body);
         }
-        private static WhereClip ToWhereClip(System.Linq.Expressions.Expression exprBody, WhereType wtype = WhereType.Where)
+        private static WhereClip ToWhereClipChild(System.Linq.Expressions.Expression exprBody, WhereType wtype = WhereType.Where)
         {
             if (exprBody is BinaryExpression)
             {
@@ -119,7 +117,7 @@ namespace Dos.ORM
             switch (expr.NodeType)
             {
                 case ExpressionType.Not:
-                    return !ToWhereClip(expr.Operand, wtype);
+                    return !ToWhereClipChild(expr.Operand, wtype);
             }
             throw new Exception("暂时不支持的NodeType(" + expr.NodeType + ") lambda写法！请使用经典写法！");
         }
@@ -141,9 +139,9 @@ namespace Dos.ORM
                 case ExpressionType.NotEqual:
                     return LeftAndRight(e, QueryOperator.NotEqual, wtype);
                 case ExpressionType.AndAlso:
-                    return ToWhereClip(e.Left, wtype) && ToWhereClip(e.Right, wtype);
+                    return ToWhereClipChild(e.Left, wtype) && ToWhereClipChild(e.Right, wtype);
                 case ExpressionType.OrElse:
-                    return ToWhereClip(e.Left, wtype) || ToWhereClip(e.Right, wtype);
+                    return ToWhereClipChild(e.Left, wtype) || ToWhereClipChild(e.Right, wtype);
                 default:
                     throw new Exception("暂时不支持的Where条件(" + e.NodeType + ")Lambda表达式写法！请使用经典写法！");
             }
@@ -424,9 +422,9 @@ namespace Dos.ORM
 
         public static GroupByClip ToGroupByClip(Expression<Func<T, object>> expr)
         {
-            return ToGroupByClip(expr.Body);
+            return ToGroupByClipChild(expr.Body);
         }
-        private static GroupByClip ToGroupByClip(System.Linq.Expressions.Expression exprBody)
+        private static GroupByClip ToGroupByClipChild(System.Linq.Expressions.Expression exprBody)
         {
             if (exprBody is MemberExpression)
             {
@@ -448,7 +446,7 @@ namespace Dos.ORM
             if (exprBody is UnaryExpression)
             {
                 var exNew = (UnaryExpression)exprBody;
-                return ToGroupByClip(exNew.Operand);
+                return ToGroupByClipChild(exNew.Operand);
                 //var type = exNew.Constructor.DeclaringType;
                 //var list = new List<string>(exNew.Arguments.Count);
                 //GroupByClip gb = GroupByClip.None;
@@ -464,13 +462,13 @@ namespace Dos.ORM
 
         public static OrderByClip ToOrderByClip(Expression<Func<T, object>> expr)
         {
-            return ToOrderByClip(expr.Body, OrderByOperater.ASC);
+            return ToOrderByClipChild(expr.Body, OrderByOperater.ASC);
         }
         public static OrderByClip ToOrderByDescendingClip(Expression<Func<T, object>> expr)
         {
-            return ToOrderByClip(expr.Body, OrderByOperater.DESC);
+            return ToOrderByClipChild(expr.Body, OrderByOperater.DESC);
         }
-        private static OrderByClip ToOrderByClip(System.Linq.Expressions.Expression exprBody, OrderByOperater orderBy)
+        private static OrderByClip ToOrderByClipChild(System.Linq.Expressions.Expression exprBody, OrderByOperater orderBy)
         {
             if (exprBody is MemberExpression)
             {
@@ -508,40 +506,40 @@ namespace Dos.ORM
             if (exprBody is UnaryExpression)
             {
                 var ueEx = (UnaryExpression)exprBody;
-                return ToOrderByClip(ueEx.Operand, orderBy);
+                return ToOrderByClipChild(ueEx.Operand, orderBy);
             }
             throw new Exception("暂时不支持的Order by lambda写法！请使用经典写法！");
         }
 
         public static Field[] ToSelect(Expression<Func<T, object>> expr)
         {
-            return ToSelect(expr.Body);
+            return ToSelectChild(expr.Body);
         }
         public static Field[] ToSelect<T2>(Expression<Func<T, T2, object>> expr)
         {
-            return ToSelect(expr.Body);
+            return ToSelectChild(expr.Body);
         }
         public static Field[] ToSelect<T2, T3>(Expression<Func<T, T2, T3, object>> expr)
         {
-            return ToSelect(expr.Body);
+            return ToSelectChild(expr.Body);
         }
         public static Field[] ToSelect<T2, T3, T4>(Expression<Func<T, T2, T3, T4, object>> expr)
         {
-            return ToSelect(expr.Body);
+            return ToSelectChild(expr.Body);
         }
         public static Field[] ToSelect<T2, T3, T4, T5>(Expression<Func<T, T2, T3, T4, T5, object>> expr)
         {
-            return ToSelect(expr.Body);
+            return ToSelectChild(expr.Body);
         }
         public static Field[] ToSelect<T2, T3, T4, T5, T6>(Expression<Func<T, T2, T3, T4, T5, T6, object>> expr)
         {
-            return ToSelect(expr.Body);
+            return ToSelectChild(expr.Body);
         }
         public static Field[] ToSelect(Expression<Func<T, bool>> expr)
         {
-            return ToSelect(expr.Body);
+            return ToSelectChild(expr.Body);
         }
-        private static Field[] ToSelect(System.Linq.Expressions.Expression exprBody)
+        private static Field[] ToSelectChild(System.Linq.Expressions.Expression exprBody)
         {
             if (exprBody is MemberExpression)
             {
@@ -580,7 +578,7 @@ namespace Dos.ORM
                 switch (expr.NodeType)
                 {
                     case ExpressionType.Convert:
-                        return ToSelect(expr.Operand);
+                        return ToSelectChild(expr.Operand);
                 }
             }
             throw new Exception("暂时不支持的Select lambda写法！请使用经典写法！");

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>http://ITdos.com/Dos/ORM/Index.html</licenseUrl>
+    <projectUrl>http://ITdos.com/Dos/ORM/Index.html</projectUrl>
+    <iconUrl>http://www.itdos.com/Modules/Orchard.themes/Content/orchard.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Dos.ORM使用MySql数据库需要额外引用此dll。Dos.ORM（原Hxj.Data）于2009年发布，并发布实体生成工具。在开发过程参考了多个ORM框架，特别是NBear，MySoft、EF、Dapper等。吸取了他们的一些精华，加入自己的新思想。该组件已在上百个成熟企业项目中应用。作者博客：http://www.cnblogs.com/huxj/ 官方网站：http://ITdos.com/Dos/ORM/Index.html 交流QQ群：60831381</releaseNotes>
+    <copyright>Copyright 2009-2015</copyright>
+    <tags>Dos.ORM.MySql</tags>
+  </metadata>
+</package>

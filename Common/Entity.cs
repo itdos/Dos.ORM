@@ -87,6 +87,10 @@ namespace Dos.ORM
         /// </summary>
         private EntityState entityState;
 
+        ///// <summary>
+        ///// 参数计数器  2015-07-30
+        ///// </summary>
+        //public int paramCount = 0;
         /// <summary>
         /// 修改的字段集合
         /// </summary>
@@ -100,6 +104,7 @@ namespace Dos.ORM
         public Entity()
         {
             this.isAttached = true;
+            //this.paramCount = 0;
         }
 
         /// <summary>
@@ -110,6 +115,7 @@ namespace Dos.ORM
         {
             this.tableName = tableName;
             this.isAttached = true;
+           // this.paramCount = 0;
         }
 
 

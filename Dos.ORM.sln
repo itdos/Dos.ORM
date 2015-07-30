@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM", "Dos.ORM.csproj", "{4BEF1983-F275-4807-96EA-25B973BD6E94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM.MySql", "Dos.ORM.MySql\Dos.ORM.MySql.csproj", "{54954798-4117-45FE-92F8-2B32A62E7FBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM.Sqlite", "Dos.ORM.Sqlite\Dos.ORM.Sqlite.csproj", "{7A0CBBA2-6322-4765-8A68-24AF58C24F79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4BEF1983-F275-4807-96EA-25B973BD6E94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BEF1983-F275-4807-96EA-25B973BD6E94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BEF1983-F275-4807-96EA-25B973BD6E94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BEF1983-F275-4807-96EA-25B973BD6E94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54954798-4117-45FE-92F8-2B32A62E7FBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54954798-4117-45FE-92F8-2B32A62E7FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54954798-4117-45FE-92F8-2B32A62E7FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54954798-4117-45FE-92F8-2B32A62E7FBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A0CBBA2-6322-4765-8A68-24AF58C24F79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A0CBBA2-6322-4765-8A68-24AF58C24F79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A0CBBA2-6322-4765-8A68-24AF58C24F79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A0CBBA2-6322-4765-8A68-24AF58C24F79}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

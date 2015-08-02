@@ -7,28 +7,31 @@
 </h4>
 <ul style="list-style-type: square;" class=" list-paddingleft-2">
     <li>
-        <span style="font-size: 12px;">上手简单、使用方便、功能强大、高性能（与<span style="font-size: 12px; color:blue;">Dapper</span>媲美，接近手写<span style="font-size: 12px; color:blue;">Sql</span>）。</span>
+        <span style="font-size: 12px;">上手简单，<span style="font-size: 12px; white-space: normal;">0学习成本。</span>使用方便，按照<span style="font-size: 12px; color: rgb(0, 112, 192);">sql</span>书写习惯编写<span style="font-size: 12px; color: rgb(0, 112, 192);">C#.NET</span>代码。功能强大</span>
     </li>
     <li>
-        <span style="font-size: 12px;">体积小（不到<span style="font-size: 12px; color:blue;">150kb</span>，仅一个dll）</span>
+        <span style="font-size: 12px;">高性能（与<span style="font-size: 12px; color: rgb(0, 112, 192);">Dapper</span>媲美，接近手写<span style="font-size: 12px; color: rgb(0, 112, 192);">Sql</span>）</span>
     </li>
     <li>
-        <span style="font-size: 12px;">完美支持<span style="font-size: 12px; color:blue;">Sql Server</span>(2000至最新版),<span style="font-size: 12px; color:blue;">MySql</span>,<span style="font-size: 12px; color:blue;">Oracle</span>,<span style="font-size: 12px; color:blue;">Access</span>,<span style="font-size: 12px; color:blue;">Sqlite</span>数据库。</span>
+        <span style="font-size: 12px;">体积小（不到<span style="font-size: 12px; color: rgb(0, 112, 192);">150kb</span>，仅一个dll）</span>
     </li>
     <li>
-        <span style="font-size: 12px;">支持大量<span style="font-size: 12px; color:blue;">Lambda</span>表达式写法。</span>
+        <span style="font-size: 12px;">完美支持<span style="font-size: 12px; color: rgb(0, 112, 192);">Sql Server</span>(2000至最新版),<span style="font-size: 12px; color: rgb(0, 112, 192);">MySql</span>,<span style="font-size: 12px; color: rgb(0, 112, 192);">Oracle</span>,<span style="font-size: 12px; color: rgb(0, 112, 192);">Access</span>,<span style="font-size: 12px; color: rgb(0, 112, 192);">Sqlite等</span>数据库</span>
     </li>
     <li>
-        <span style="font-size: 12px;">不需要像<span style="font-size: 12px; color:blue;">NHibernate</span>的<span style="font-size: 12px; color:blue;">XML</span>配置，不需要像<span style="font-size: 12px; color:blue;">EF</span>的各种数据库连接驱动。</span>
+        <span style="font-size: 12px;">支持大量<span style="font-size: 12px; color: rgb(0, 112, 192);">Lambda</span>表达式写法，国产<span style="font-size: 12px; color: rgb(0, 112, 192);">ORM</span>支持度最高，开源中国<span style="font-size: 12px; color: rgb(0, 112, 192);">ORM</span>排行前三</span>
     </li>
     <li>
-        <span style="font-size: 12px;">众多成熟企业项目已应用此框架。</span>
+        <span style="font-size: 12px;">不需要像<span style="font-size: 12px; color: rgb(0, 112, 192);">NHibernate</span>的<span style="font-size: 12px; color: rgb(0, 112, 192);">XML</span>配置，不需要像<span style="font-size: 12px; color: rgb(0, 112, 192);">EF</span>的各种数据库连接驱动</span>
     </li>
     <li>
-        <span style="font-size: 12px;">遵循<span style="font-size: 12px; color:blue;">MIT</span>开源协议，除不允许改名，其它随意定制修改。</span>
+        <span style="font-size: 12px;">众多成熟企业软件、互联网项目已应用此框架</span>
     </li>
     <li>
-        <span style="font-size: 12px; color:blue;">Dos</span><span style="font-size: 12px;">团队持续更新升级，任何<span style="font-size: 12px; color:blue;">Bug</span>反馈都会立即得到解决。</span>
+        <span style="font-size: 12px;">遵循<span style="font-size: 12px; color: rgb(0, 112, 192);">MIT</span>开源协议，除不允许改名，其它随意定制修改</span>
+    </li>
+    <li>
+        <span style="font-size: 12px; color: rgb(0, 112, 192);">Dos</span><span style="font-size: 12px;">团队持续更新升级，任何<span style="font-size: 12px; color: rgb(0, 112, 192);">Bug</span>反馈都会立即得到解决</span>
     </li>
 </ul>
 <div>

@@ -13,6 +13,6 @@
     <description>$description$</description>
     <releaseNotes>Dos.ORM使用Sqlite数据库需要额外引用此dll</releaseNotes>
     <copyright>Copyright 2015</copyright>
-    <tags>Dos.ORM.Sqlite</tags>
+    <tags>Dos,Dos.,Dos.ORM,Dos.WeChat,Dos.Common,Dos.ORM.Sqlite</tags>
   </metadata>
 </package>

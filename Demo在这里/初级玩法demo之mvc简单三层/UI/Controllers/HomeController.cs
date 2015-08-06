@@ -22,7 +22,8 @@ namespace UI.Controllers
         public JsonResult GetUser(TestTableParam param)
         {
             var result = new TestTableLogic().GetUser(param);
-            return Json(result);
+            var test = Json(result);
+            return test;
         }
         /// <summary>
         /// 新增数据

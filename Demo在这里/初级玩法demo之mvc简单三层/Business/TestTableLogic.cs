@@ -76,7 +76,7 @@ namespace Business
             {
                 return new BaseResult(false, null, "参数错误！");
             }
-            var count = DB.Context.Delete<TestTable>(d=> true);
+            var count = DB.Context.Delete<TestTable>(d => d.Id == param.Id);
             return new BaseResult(count > 0, count, count > 0 ? "" : "数据库受影响行数为0！");
         }
         /// <summary>

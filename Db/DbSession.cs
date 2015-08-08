@@ -1278,10 +1278,15 @@ namespace Dos.ORM
         /// <summary>
         ///  删除
         /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <param name="pkValues"></param>
-        /// <returns></returns>
         public int Delete<TEntity>(params object[] pkValues)
+            where TEntity : Entity
+        {
+            return DeleteByPrimaryKey<TEntity>(pkValues);
+        }
+        /// <summary>
+        ///  删除
+        /// </summary>
+        public int Delete<TEntity>(params string[] pkValues)
             where TEntity : Entity
         {
             return DeleteByPrimaryKey<TEntity>(pkValues);
@@ -1442,7 +1447,14 @@ namespace Dos.ORM
         {
             return Delete<TEntity>(where.ToWhereClip());
         }
-
+        /// <summary>
+        /// 删除整表数据
+        /// </summary>
+        public int DeleteAll<TEntity>()
+            where TEntity : Entity
+        {
+            return Delete<TEntity>(d=> true);
+        }
         ///// <summary>
         ///// 
         ///// </summary>

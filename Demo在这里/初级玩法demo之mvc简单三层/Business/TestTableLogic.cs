@@ -38,7 +38,8 @@ namespace Business
             var dateCount = 0;
             if (param.pageIndex != null && param.pageSize != null)
             {
-                dateCount = fs.Count();
+                //取总数，以计算共多少页。自行考虑将总数缓存。
+                dateCount = fs.Count();//.SetCacheTimeOut(10)
                 fs.Page(param.pageSize.Value, param.pageIndex.Value);
             }
             #endregion
@@ -75,7 +76,7 @@ namespace Business
             {
                 return new BaseResult(false, null, "参数错误！");
             }
-            var count = DB.Context.Delete<TestTable>(d => d.Id == param.Id);
+            var count = DB.Context.Delete<TestTable>(d=> true);
             return new BaseResult(count > 0, count, count > 0 ? "" : "数据库受影响行数为0！");
         }
         /// <summary>

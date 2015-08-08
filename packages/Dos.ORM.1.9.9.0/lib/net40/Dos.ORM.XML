@@ -2415,9 +2415,11 @@
             <summary>
              删除
             </summary>
-            <typeparam name="TEntity"></typeparam>
-            <param name="pkValues"></param>
-            <returns></returns>
+        </member>
+        <member name="M:Dos.ORM.DbSession.Delete``1(System.String[])">
+            <summary>
+             删除
+            </summary>
         </member>
         <member name="M:Dos.ORM.DbSession.Delete``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
@@ -2481,6 +2483,11 @@
         <member name="M:Dos.ORM.DbSession.Delete``1(Dos.ORM.Where)">
             <summary>
             删除
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.DbSession.DeleteAll``1">
+            <summary>
+            删除整表数据
             </summary>
         </member>
         <member name="M:Dos.ORM.DbSession.Insert``1(``0[])">

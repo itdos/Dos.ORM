@@ -24,11 +24,11 @@ namespace Business
             }
             if (!string.IsNullOrWhiteSpace(param.SearchIDNumber))
             {
-                where.And(d => d.Name.Like(param.SearchIDNumber));
+                where.And(d => d.IDNumber.Like(param.SearchIDNumber));
             }
             if (!string.IsNullOrWhiteSpace(param.SearchMobilePhone))
             {
-                where.And(d => d.Name.Like(param.SearchMobilePhone));
+                where.And(d => d.MobilePhone.Like(param.SearchMobilePhone));
             }
             #endregion
             var fs = DB.Context.From<TestTable>()

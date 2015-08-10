@@ -1321,95 +1321,7 @@ namespace Dos.ORM
 
         #endregion
     }
-    /// <summary>
-    /// 
-    /// </summary>
-    public static class FieldExtend
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        private const string Tips = "该方法只能用于Dos.ORM lambda表达式！";
-
-        /// <summary>
-        /// 
-        /// </summary>
-        //public static object All(this object key)
-        //{
-        //    throw new Exception(Tips);
-        //}
-
-        /// <summary>
-        /// like '%value%' 模糊查询，同Contains。
-        /// </summary>
-        public static bool Like(this object key, object values)
-        {
-            throw new Exception(Tips);
-        }
-        /// <summary>
-        /// where field in (value,value,value)。传入Array或List&lt;T>。
-        /// </summary>
-        public static bool In<T>(this object key, params T[] values)
-        {
-            throw new Exception(Tips);
-        }
-        /// <summary>
-        /// where field in (value,value,value)。传入Array或List&lt;T>。
-        /// </summary>
-        public static bool In<T>(this object key, List<T> values)
-        {
-            throw new Exception(Tips);
-        }
-        /// <summary>
-        /// where field not in (value,value,value)。传入Array或List&lt;T>。
-        /// </summary>
-        public static bool NotIn<T>(this object key, params T[] values)
-        {
-            throw new Exception(Tips);
-        }
-        /// <summary>
-        /// where field not in (value,value,value)。传入Array或List&lt;T>。
-        /// </summary>
-        public static bool NotIn<T>(this object key, List<T> values)
-        {
-            throw new Exception(Tips);
-        }
-        /// <summary>
-        /// IS NULL
-        /// </summary>
-        public static bool IsNull(this object key)
-        {
-            throw new Exception(Tips);
-        }
-        /// <summary>
-        /// IS NOT NULL
-        /// </summary>
-        public static bool IsNotNull(this object key)
-        {
-            throw new Exception(Tips);
-        }
-        /// <summary>
-        /// As
-        /// </summary>
-        public static bool As(this object key, string values)
-        {
-            throw new Exception(Tips);
-        }
-        /// <summary>
-        /// Sum
-        /// </summary>
-        public static int Sum(this object key)
-        {
-            throw new Exception(Tips);
-        }
-        ///// <summary>
-        ///// Sum
-        ///// </summary>
-        //public static int Summ(this object key)
-        //{
-        //    throw new Exception(Tips);
-        //}
-    }
+    
     public class FieldAttribute : Attribute
     {
         private string m_Field;
@@ -1423,4 +1335,93 @@ namespace Dos.ORM
             this.m_Field = fieldName;
         }
     }
+}
+/// <summary>
+/// 
+/// </summary>
+public static class FieldExtend
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    private const string Tips = "该方法只能用于Dos.ORM lambda表达式！";
+
+    /// <summary>
+    /// 
+    /// </summary>
+    //public static object All(this object key)
+    //{
+    //    throw new Exception(Tips);
+    //}
+
+    /// <summary>
+    /// like '%value%' 模糊查询，同Contains。
+    /// </summary>
+    public static bool Like(this object key, object values)
+    {
+        throw new Exception(Tips);
+    }
+    /// <summary>
+    /// where field in (value,value,value)。传入Array或List&lt;T>。
+    /// </summary>
+    public static bool In<T>(this object key, params T[] values)
+    {
+        throw new Exception(Tips);
+    }
+    /// <summary>
+    /// where field in (value,value,value)。传入Array或List&lt;T>。
+    /// </summary>
+    public static bool In<T>(this object key, List<T> values)
+    {
+        throw new Exception(Tips);
+    }
+    /// <summary>
+    /// where field not in (value,value,value)。传入Array或List&lt;T>。
+    /// </summary>
+    public static bool NotIn<T>(this object key, params T[] values)
+    {
+        throw new Exception(Tips);
+    }
+    /// <summary>
+    /// where field not in (value,value,value)。传入Array或List&lt;T>。
+    /// </summary>
+    public static bool NotIn<T>(this object key, List<T> values)
+    {
+        throw new Exception(Tips);
+    }
+    /// <summary>
+    /// IS NULL
+    /// </summary>
+    public static bool IsNull(this object key)
+    {
+        throw new Exception(Tips);
+    }
+    /// <summary>
+    /// IS NOT NULL
+    /// </summary>
+    public static bool IsNotNull(this object key)
+    {
+        throw new Exception(Tips);
+    }
+    /// <summary>
+    /// As
+    /// </summary>
+    public static bool As(this object key, string values)
+    {
+        throw new Exception(Tips);
+    }
+    /// <summary>
+    /// Sum
+    /// </summary>
+    public static int Sum(this object key)
+    {
+        throw new Exception(Tips);
+    }
+    ///// <summary>
+    ///// Sum
+    ///// </summary>
+    //public static int Summ(this object key)
+    //{
+    //    throw new Exception(Tips);
+    //}
 }

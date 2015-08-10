@@ -126,7 +126,7 @@
     <Compile Include="Section\SqlSection.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dos.ORM更新日志.txt" />
+    <None Include="Dos.ORM更新日志.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

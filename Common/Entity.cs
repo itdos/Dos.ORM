@@ -244,18 +244,20 @@ namespace Dos.ORM
         {
             modifyFields.Clear();
         }
-
-
+        //2015-08-10 将没有任何地方使用此方法
         /// <summary>
         /// Sets the property values.
         /// </summary>
         /// <param name="reader">The reader.</param>
+        [Obsolete("此方法作废！实体类可以不再需要！")]
         public virtual void SetPropertyValues(IDataReader reader) { }
 
+        //2015-08-10 将没有任何地方使用此方法
         /// <summary>
         /// Sets the property values.
         /// </summary>
         /// <param name="row">The row.</param>
+        [Obsolete("此方法作废！实体类可以不再需要！")]
         public virtual void SetPropertyValues(DataRow row) { }
 
         /// <summary>

@@ -359,32 +359,32 @@ namespace Dos.ORM.Common
         /// <returns></returns>
         public static TEntity DataRowToEntity<TEntity>(DataRow row) where TEntity : Entity
         {
-            TEntity entity = Create<TEntity>();
+            //2015-08-10注释
+            //TEntity entity = Create<TEntity>();
+            //entity.SetPropertyValues(row);
+            //return entity;
 
-            entity.SetPropertyValues(row);
-
-            return entity;
-
-            //TEntity local2;
-            //try
-            //{
-            //    TEntity local = Create<TEntity>();
-            //    Field[] fields = local.GetFields();
-            //    Type type = typeof(TEntity);
-            //    foreach (Field field in fields)
-            //    {
-            //        if ((row.Table.Columns.Contains(field.Name)) && (null != row[field.Name]) && (!Convert.IsDBNull(row[field.Name])))
-            //        {
-            //            SetPropertyValue(type, local, field.PropertyName, row[field.Name]);
-            //        }
-            //    }
-            //    local2 = local;
-            //}
-            //catch
-            //{
-            //    throw;
-            //}
-            //return local2;
+            //2015-08-10恢复注释
+            TEntity local2;
+            try
+            {
+                TEntity local = Create<TEntity>();
+                Field[] fields = local.GetFields();
+                Type type = typeof(TEntity);
+                foreach (Field field in fields)
+                {
+                    if ((row.Table.Columns.Contains(field.Name)) && (null != row[field.Name]) && (!Convert.IsDBNull(row[field.Name])))
+                    {
+                        SetPropertyValue(type, local, field.PropertyName, row[field.Name]);
+                    }
+                }
+                local2 = local;
+            }
+            catch
+            {
+                throw;
+            }
+            return local2;
         }
 
         /// <summary>

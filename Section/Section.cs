@@ -22,6 +22,7 @@ using Dos.ORM;
 using Dos.ORM.Common;
 using Dos.ORM.Common;
 using System.Data;
+using System.Linq;
 
 namespace Dos.ORM
 {
@@ -75,13 +76,19 @@ namespace Dos.ORM
             TEntity t = null;
             using (IDataReader reader = ToDataReader())
             {
-                if (reader.Read())
+                var tempt = EntityUtils.Mapper.Map<TEntity>(reader);
+                if (tempt.Any())
                 {
-                    t = DataUtils.Create<TEntity>();
-                    t.SetPropertyValues(reader);
+                    t = tempt.First();
                 }
+                #region 2015-08-10注释
+                //if (reader.Read())
+                //{
+                //    t = DataUtils.Create<TEntity>();
+                //    t.SetPropertyValues(reader);
+                //}
+                #endregion
             }
-
             return t;
         }
 

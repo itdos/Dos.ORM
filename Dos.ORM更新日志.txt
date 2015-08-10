@@ -3,17 +3,15 @@
 	*）表名增加别名，以支持同一张表可以被INNER JOIN多次。
 	*）GetReturnValues标记为已过时，重载GetOutParam
 	*）sql、存储过程增加动态拼接参数的方法
-	*）.Update()、.Delete()全面完善lambda、Where类重载，方便使用。
 	*）会考虑增加.Save<T>(List<T>)、.Save<T>(T)方法，给T指定动作（增、删、改），然后事务批量提交。 
 	*）lambda写法是取的实体类名，不是实际的表名，当表名与实体类名不一致时，存在Bug。
-	*）目前取出的实体好像默认是修改状态
-	*）主键如果为string类型，好像不支持简写删除
 	*）TransactionScope事务
 
-2015-08-08 Dos.ORM（原Hxj.Data）（v1.9.9.0）
+2015-08-10 Dos.ORM（原Hxj.Data）（v1.9.9.2）
+	*）【重要更新】取消实体类的SetPropertyValues映射，考虑到单表查询也会用到别名然后扩展类属性，此时SetPropertyValues无法映射别名数据，因此取消，ORM底层映射全部采用Emit。同时实体生成器v1.8.7.0生成的实体类将不再生成SetPropertyValues方法，此实体类仅适用于Dos.ORM v1.9.9.2 以及上版本。
 	*）解决.Delete<T>("传入string类型主键")无法删除的Bug。
 	*）【重要更新】.Delete<T>()方法，如果没有任何条件，现在会抛出异常：“请传入删除条件，删除整表数据请使用.DeleteAll<T>()方法。”，以防止误删整张表。
-	*）增加.DeleteAll()方法，删除整表数据。
+	*）增加.DeleteAll<T>()方法，删除整表数据。
 	*）【重要更新】缓存依赖web.config配置的“HxjCacheConfig”需要修改为“DosCacheConfig”
 	*）解决实体字段赋值为null的时候偶尔无法更新的Bug。
 	*）增加.First<T>()
@@ -24,7 +22,6 @@
 	*）优化底层Emit映射。
 	*）优化.Delete<T>(IEnumerable<T> entities)方法，性能大大提升。
 	*）增加.Delete<T>(Where where)重载。
-	*）删除.Delete(param string[] pkValues)方法，因为有.Delete(param object[] pkValues)方法。
 	*）【重要更新】lambda的常量、变量计算增加缓存，性能提升10-20倍。举例：.Where(d => Convert.ToInt32(Model.Price.ToString())+2/3*5 > 0)，lambda计算默认是通过委托+反射取结果，现在计算公式将会缓存，性能大大提升。
 	*）现在.Where()的lambda支持常量、变量之间的比较，同时比较符号左右不分顺序。
 	*）解决tinyint(1)对应bool类型字段偶尔为0时，映射结果却为true。

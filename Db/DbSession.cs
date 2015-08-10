@@ -1408,10 +1408,6 @@ namespace Dos.ORM
         /// <summary>
         ///  删除
         /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <param name="where"></param>
-        /// <param name="tran"></param>
-        /// <returns></returns>
         public int Delete<TEntity>(WhereClip where, DbTransaction tran)
             where TEntity : Entity
         {
@@ -1428,7 +1424,14 @@ namespace Dos.ORM
         {
             return Delete<TEntity>(ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
         }
-
+        /// <summary>
+        ///  删除
+        /// </summary>
+        public int Delete<TEntity>(Expression<Func<TEntity, bool>> lambdaWhere, DbTransaction tran)
+            where TEntity : Entity
+        {
+            return Delete<TEntity>(ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere),tran);
+        }
         /// <summary>
         ///  删除
         /// </summary>

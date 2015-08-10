@@ -572,43 +572,41 @@ namespace Dos.ORM
             FromSection from = getPagedFromSection();
             string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "List", "|", formatSql(from.SqlString, from));
             object cacheValue = getCache(cacheKey);
-
             if (null != cacheValue)
             {
                 return (List<T>)cacheValue;
             }
-
-
             List<T> list = new List<T>();
             using (IDataReader reader = ToDataReader(from))
             {
-                if (@from.Joins.Any() || from.Fields.Any())
-                {
-                    //list = new EmitMapper.Mappers.DataReaderToObjectMapper<T>().ReadCollection(reader).ToList();
-                    //while (reader.Read())
-                    //{
-                    //    T t = EmitMapper.ObjectMapperManager.DefaultInstance.GetMapper<IDataReader, T>().Map(reader);
-                    //    list.Add(t);
-                    //}
-                    //DataRecordInternal
-                    //T result = MapUsingState(reader, reader);
-                    //list = EmitMapper.ObjectMapperManager.DefaultInstance.GetMapper<IDataReader, List<T>>().Map(reader);
-                    list = EntityUtils.Mapper.Map<T>(reader);
-                }
-                else
-                {
-                    while (reader.Read())
-                    {
-                        T t = DataUtils.Create<T>();
-                        t.SetPropertyValues(reader);
-                        list.Add(t);
-                    }
-                }
+                list = EntityUtils.Mapper.Map<T>(reader);
+                #region 2015-08-10注释
+                //if (@from.Joins.Any() || from.Fields.Any())
+                //{
+                //    //list = new EmitMapper.Mappers.DataReaderToObjectMapper<T>().ReadCollection(reader).ToList();
+                //    //while (reader.Read())
+                //    //{
+                //    //    T t = EmitMapper.ObjectMapperManager.DefaultInstance.GetMapper<IDataReader, T>().Map(reader);
+                //    //    list.Add(t);
+                //    //}
+                //    //DataRecordInternal
+                //    //T result = MapUsingState(reader, reader);
+                //    //list = EmitMapper.ObjectMapperManager.DefaultInstance.GetMapper<IDataReader, List<T>>().Map(reader);
+                //    list = EntityUtils.Mapper.Map<T>(reader);
+                //}
+                //else
+                //{
+                //    while (reader.Read())
+                //    {
+                //        T t = DataUtils.Create<T>();
+                //        t.SetPropertyValues(reader);
+                //        list.Add(t);
+                //    }
+                //}
+                #endregion
                 reader.Close();
             }
-
             setCache<List<T>>(list, cacheKey);
-
             return list;
         }
 
@@ -695,21 +693,29 @@ namespace Dos.ORM
             T t = null;
             using (IDataReader reader = ToDataReader(from))
             {
-                if (@from.Joins.Any() || from.Fields.Any())
+                var tempt = EntityUtils.Mapper.Map<T>(reader);
+                if (tempt.Any())
                 {
-                    var tempt = EntityUtils.Mapper.Map<T>(reader);
-                    if (tempt.Any())
-                    {
-                        t = tempt.First();
-                    }
+                    t = tempt.First();
                 }
-                else
-                    if (reader.Read())
-                    {
-                        t = DataUtils.Create<T>();
-                        t.SetPropertyValues(reader);
-                    }
-
+                #region 2015-08-10注释
+                //if (@from.Joins.Any() || from.Fields.Any())
+                //{
+                //    var tempt = EntityUtils.Mapper.Map<T>(reader);
+                //    if (tempt.Any())
+                //    {
+                //        t = tempt.First();
+                //    }
+                //}
+                //else
+                //{
+                //    if (reader.Read())
+                //    {
+                //        t = DataUtils.Create<T>();
+                //        t.SetPropertyValues(reader);
+                //    }
+                //}
+                #endregion
                 reader.Close();
             }
 

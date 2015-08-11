@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Dos.ORM.WhereClipBuilder&lt;T&gt;" />
+<meta name="generator" content="DocsBuilder" />
+<title>WhereClipBuilder&lt;T&gt; 泛型类 (Dos.ORM)</title>
+<link rel="stylesheet" type="text/css" href="../../styles/zebra.css" />
+<script type="text/javascript" src="../../scripts/accordion.js"></script>
+</head><body>
+<h1>WhereClipBuilder&lt;T&gt; 泛型类</h1>
+  <div id="familySection">
+        System.Object<br />
+        &nbsp;&nbsp;<a href="../ORM/WhereClipBuilder.html">Dos.ORM.WhereClipBuilder</a><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;<b>Dos.ORM.WhereClipBuilder&lt;T&gt;</b><br />
+  </div>
+<div id="summarySection"><span class="obsolete">已过时。</span><i>建议使用Where类替代WhereClip类。使用示例：var W = new Where&lt;T&gt;(); W.And(d=&gt;d.ID == 1);</i><br />
+  
+Where条件拼接，同Where类
+
+</div>
+<div id="namespaceSection"> <strong>命名空间：</strong><a href="../ORM/namespace-summary.html">Dos.ORM</a><br />
+  <strong>程序集：</strong><span>Dos.ORM（在 Dos.ORM.dll 中）</span> </div>
+<div id="syntaxSection" class="syntaxSection"> <pre class="code">[<span class="type">ObsoleteAttribute</span>(<span class="string">"建议使用Where类替代WhereClip类。使用示例：var W = new Where&lt;T&gt;(); W.And(d=&gt;d.ID == 1);"</span>)]
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="type">WhereClipBuilder</span>&lt;T&gt; : <span class="type">WhereClipBuilder</span> </pre> </div>
+  <h5>类型参数</h5>
+  <dl class="paramsSection">
+      <dt>T</dt>
+      <dd>
+        
+      </dd>
+  </dl>
+  <a id="methodTableToggle" onclick="ExpandCollapse(document.getElementById('methodTableSection'));ToggleSwitch(this.childNodes[0].childNodes[0]);"><h2><img alt="" title="折叠" src="../../images/collapse.png" />方法</h2></a>
+  <div id="methodTableSection">
+    <table id="methodTable" class="memberTable" cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <th></th>
+        <th>名称</th>
+        <th>说明</th>
+      </tr>
+          <tr id="And(Dos.ORM.WhereClip)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="../ORM/WhereClipBuilder.html#And(Dos.ORM.WhereClip)">And(WhereClip)</a>
+            </td>
+            <td>
+              
+AND
+<br />（继承自 <a href="../ORM/WhereClipBuilder.html">WhereClipBuilder</a>。）
+            </td>
+          </tr>
+          <tr id="And(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#And(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">And(Expression&lt;Func&lt;T, Boolean&gt;&gt;)</a>
+            </td>
+            <td>
+              
+AND
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>WhereClipBuilder&lt;T&gt;.And(Expression&lt;Func&lt;T, Boolean&gt;&gt;) 方法 </h3>
+                  <div>
+                    
+AND
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">void</span> And(<span class="type">Expression</span>&lt;<span class="type">Func</span>&lt;T, <span class="keyword">bool</span>&gt;&gt; lambdaWhere)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>lambdaWhere</dt>
+                        <dd>
+                          类型：<span class="type">System.Linq.Expressions.Expression&lt;System.Func&lt;T, System.Boolean&gt;&gt;</span><br />
+                          
+                        </dd>
+                    </dl>
+                </div>
+              </td>
+            </tr>
+          <tr id="Or(Dos.ORM.WhereClip)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="../ORM/WhereClipBuilder.html#Or(Dos.ORM.WhereClip)">Or(WhereClip)</a>
+            </td>
+            <td>
+              
+Or
+<br />（继承自 <a href="../ORM/WhereClipBuilder.html">WhereClipBuilder</a>。）
+            </td>
+          </tr>
+          <tr id="Or(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Or(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Or(Expression&lt;Func&lt;T, Boolean&gt;&gt;)</a>
+            </td>
+            <td>
+              
+Or
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>WhereClipBuilder&lt;T&gt;.Or(Expression&lt;Func&lt;T, Boolean&gt;&gt;) 方法 </h3>
+                  <div>
+                    
+Or
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">void</span> Or(<span class="type">Expression</span>&lt;<span class="type">Func</span>&lt;T, <span class="keyword">bool</span>&gt;&gt; lambdaWhere)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>lambdaWhere</dt>
+                        <dd>
+                          类型：<span class="type">System.Linq.Expressions.Expression&lt;System.Func&lt;T, System.Boolean&gt;&gt;</span><br />
+                          
+                        </dd>
+                    </dl>
+                </div>
+              </td>
+            </tr>
+          <tr id="ToWhereClip">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="../ORM/WhereClipBuilder.html#ToWhereClip">ToWhereClip</a>
+            </td>
+            <td>
+              
+转换成WhereClip
+<br />（继承自 <a href="../ORM/WhereClipBuilder.html">WhereClipBuilder</a>。）
+            </td>
+          </tr>
+    </table>
+  </div>
+<br />
+<div class="DocsBuilder">Generated by <span><a href="http://www.ITdos.com" target="_blank">www.ITdos.com</a></span></div>
+</body>
+</html>

@@ -1,0 +1,1123 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Dos.ORM.DbTrans" />
+<meta name="generator" content="DocsBuilder" />
+<title>DbTrans 类 (Dos.ORM)</title>
+<link rel="stylesheet" type="text/css" href="../../styles/zebra.css" />
+<script type="text/javascript" src="../../scripts/accordion.js"></script>
+</head><body>
+<h1>DbTrans 类</h1>
+  <div id="familySection">
+        System.Object<br />
+        &nbsp;&nbsp;<b>Dos.ORM.DbTrans</b><br />
+  </div>
+<div id="summarySection">
+  
+事务
+
+</div>
+<div id="namespaceSection"> <strong>命名空间：</strong><a href="../ORM/namespace-summary.html">Dos.ORM</a><br />
+  <strong>程序集：</strong><span>Dos.ORM（在 Dos.ORM.dll 中）</span> </div>
+<div id="syntaxSection" class="syntaxSection"> <pre class="code"><span class="keyword">public</span> <span class="keyword">class</span> <span class="type">DbTrans</span> : <span class="type">IDisposable</span></pre> </div>
+  <a id="constructorTableToggle" onclick="ExpandCollapse(document.getElementById('constructorTableSection'));ToggleSwitch(this.childNodes[0].childNodes[0]);"><h2><img alt="" title="折叠" src="../../images/collapse.png" />构造函数</h2></a>
+  <div id="constructorTableSection">
+    <table id="constructorTable" class="memberTable" cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <th></th>
+        <th>名称</th>
+        <th>说明</th>
+      </tr>
+        <tr id="#ctor(System.Data.Common.DbTransaction,Dos.ORM.DbSession)">
+          <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+          </td>
+          <td>
+            <a href="##ctor(System.Data.Common.DbTransaction,Dos.ORM.DbSession)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">DbTrans(DbTransaction, DbSession)</a>
+          </td>
+          <td>
+            
+构造函数
+
+          </td>
+        </tr>
+        <tr style="display:none;">
+          <td colspan="3">
+            <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                <h3>DbTrans(DbTransaction, DbSession) 构造函数 </h3>
+                <div>
+构造函数
+</div>
+                <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> DbTrans(<span class="type">DbTransaction</span> trans, <a href="DbSession.html" class="type">DbSession</a> dbSession)</pre></div>
+                  <h5>参数</h5>
+                  <dl class="paramsSection">
+                      <dt>trans</dt>
+                      <dd>
+                        类型：<span class="type">System.Data.Common.DbTransaction</span><br />
+                        
+                      </dd>
+                      <dt>dbSession</dt>
+                      <dd>
+                        类型：<span class="type"><a href="DbSession.html">Dos.ORM.DbSession</a></span><br />
+                        
+                      </dd>
+                  </dl>
+            </div>
+          </td>
+        </tr>
+    </table>
+  </div>
+  <a id="propertyTableToggle" onclick="ExpandCollapse(document.getElementById('propertyTableSection'));ToggleSwitch(this.childNodes[0].childNodes[0]);"><h2><img alt="" title="折叠" src="../../images/collapse.png" />属性</h2></a>
+  <div id="propertyTableSection">
+    <table id="propertyTable" class="memberTable" cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <th></th>
+        <th>名称</th>
+        <th>说明</th>
+      </tr>
+          <tr id="Connection">
+            <td><img alt="" title="公共属性" src="../../images/pubproperty.gif" />
+            </td>
+            <td><a href="#Connection" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Connection</a>
+            </td>
+            <td>
+              
+连接
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.Connection 属性 </h3>
+                  <div>
+                    
+连接
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">DbConnection</span> Connection { <span class="keyword">get</span>; }</pre></div>
+                  <h5>属性值</h5>
+                  <div class="returnsSection">
+                    类型：<span class="type">System.Data.Common.DbConnection</span><br />
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="IsolationLevel">
+            <td><img alt="" title="公共属性" src="../../images/pubproperty.gif" />
+            </td>
+            <td><a href="#IsolationLevel" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">IsolationLevel</a>
+            </td>
+            <td>
+              
+事务级别
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.IsolationLevel 属性 </h3>
+                  <div>
+                    
+事务级别
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">IsolationLevel</span> IsolationLevel { <span class="keyword">get</span>; }</pre></div>
+                  <h5>属性值</h5>
+                  <div class="returnsSection">
+                    类型：<span class="type">System.Data.IsolationLevel</span><br />
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+    </table>
+  </div>
+  <a id="methodTableToggle" onclick="ExpandCollapse(document.getElementById('methodTableSection'));ToggleSwitch(this.childNodes[0].childNodes[0]);"><h2><img alt="" title="折叠" src="../../images/collapse.png" />方法</h2></a>
+  <div id="methodTableSection">
+    <table id="methodTable" class="memberTable" cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <th></th>
+        <th>名称</th>
+        <th>说明</th>
+      </tr>
+          <tr id="Close">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Close" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Close</a>
+            </td>
+            <td>
+              
+关闭
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.Close 方法 </h3>
+                  <div>
+                    
+关闭
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">void</span> Close()</pre></div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Commit">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Commit" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Commit</a>
+            </td>
+            <td>
+              
+提交
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.Commit 方法 </h3>
+                  <div>
+                    
+提交
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">void</span> Commit()</pre></div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Delete``1(``0)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Delete``1(``0)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Delete&lt;TEntity&gt;(TEntity)</a>
+            </td>
+            <td>
+              
+ 删除
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.Delete&lt;TEntity&gt;(TEntity) 方法 </h3>
+                  <div>
+                    
+ 删除
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">int</span> Delete&lt;TEntity&gt;(TEntity entity) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>TEntity</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>entity</dt>
+                        <dd>
+                          类型：<span class="type">TEntity</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.Int32</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Delete``1(Dos.ORM.WhereClip)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Delete``1(Dos.ORM.WhereClip)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Delete&lt;TEntity&gt;(WhereClip)</a>
+            </td>
+            <td>
+              
+ 删除
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.Delete&lt;TEntity&gt;(WhereClip) 方法 </h3>
+                  <div>
+                    
+ 删除
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">int</span> Delete&lt;TEntity&gt;(<a href="WhereClip.html" class="type">WhereClip</a> <span class="keyword">where</span>) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>TEntity</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>where</dt>
+                        <dd>
+                          类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.Int32</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Delete``1(System.Object[])">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Delete``1(System.Object[])" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Delete&lt;TEntity&gt;(Object[])</a>
+            </td>
+            <td>
+              
+ 删除
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.Delete&lt;TEntity&gt;(Object[]) 方法 </h3>
+                  <div>
+                    
+ 删除
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">int</span> Delete&lt;TEntity&gt;(<span class="keyword">params</span> <span class="keyword">object</span>[] pkValues) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>TEntity</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>pkValues</dt>
+                        <dd>
+                          类型：<span class="type">System.Object[]</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.Int32</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Delete``1(System.String[])">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Delete``1(System.String[])" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Delete&lt;TEntity&gt;(String[])</a>
+            </td>
+            <td>
+              
+ 删除
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.Delete&lt;TEntity&gt;(String[]) 方法 </h3>
+                  <div>
+                    
+ 删除
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">int</span> Delete&lt;TEntity&gt;(<span class="keyword">params</span> <span class="keyword">string</span>[] pkValues) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>TEntity</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>pkValues</dt>
+                        <dd>
+                          类型：<span class="type">System.String[]</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.Int32</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Dispose">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Dispose" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Dispose</a>
+            </td>
+            <td>
+              
+关闭连接并释放资源
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.Dispose 方法 </h3>
+                  <div>
+                    
+关闭连接并释放资源
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">void</span> Dispose()</pre></div>
+                </div>
+              </td>
+            </tr>
+          <tr id="From(System.String)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#From(System.String)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">From(String)</a>
+            </td>
+            <td>
+              
+查询
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.From(String) 方法 </h3>
+                  <div>
+                    
+查询
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="FromSection.html" class="type">FromSection</a> From(<span class="keyword">string</span> tableName)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>tableName</dt>
+                        <dd>
+                          类型：<span class="type">System.String</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="FromSection.html">Dos.ORM.FromSection</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="From``1">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#From``1" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">From&lt;TEntity&gt;</a>
+            </td>
+            <td>
+              
+查询
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.From&lt;TEntity&gt; 方法 </h3>
+                  <div>
+                    
+查询
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="FromSection`1.html" class="type">FromSection</a>&lt;TEntity&gt; From&lt;TEntity&gt;() </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>TEntity</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="FromSection`1.html">Dos.ORM.FromSection<T></a>&lt;TEntity&gt;</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="FromPro(System.String)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#FromPro(System.String)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">FromPro(String)</a>
+            </td>
+            <td>
+              
+FromPro
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.FromPro(String) 方法 </h3>
+                  <div>
+                    
+FromPro
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="ProcSection.html" class="type">ProcSection</a> FromPro(<span class="keyword">string</span> proName)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>proName</dt>
+                        <dd>
+                          类型：<span class="type">System.String</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="ProcSection.html">Dos.ORM.ProcSection</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="FromSql(System.String)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#FromSql(System.String)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">FromSql(String)</a>
+            </td>
+            <td>
+              
+FromSql
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.FromSql(String) 方法 </h3>
+                  <div>
+                    
+FromSql
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="SqlSection.html" class="type">SqlSection</a> FromSql(<span class="keyword">string</span> sql)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>sql</dt>
+                        <dd>
+                          类型：<span class="type">System.String</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="SqlSection.html">Dos.ORM.SqlSection</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Insert``1(``0)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Insert``1(``0)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Insert&lt;TEntity&gt;(TEntity)</a>
+            </td>
+            <td>
+              
+添加
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.Insert&lt;TEntity&gt;(TEntity) 方法 </h3>
+                  <div>
+                    
+添加
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">int</span> Insert&lt;TEntity&gt;(TEntity entity) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>TEntity</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>entity</dt>
+                        <dd>
+                          类型：<span class="type">TEntity</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.Int32</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Insert``1(``0[])">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Insert``1(``0[])" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Insert&lt;TEntity&gt;(TEntity[])</a>
+            </td>
+            <td>
+              
+添加
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.Insert&lt;TEntity&gt;(TEntity[]) 方法 </h3>
+                  <div>
+                    
+添加
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">void</span> Insert&lt;TEntity&gt;(<span class="keyword">params</span> TEntity[] entities) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>TEntity</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>entities</dt>
+                        <dd>
+                          类型：<span class="type">TEntity[]</span><br />
+                          
+                        </dd>
+                    </dl>
+                </div>
+              </td>
+            </tr>
+          <tr id="Insert``1(Dos.ORM.Field[],System.Object[])">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Insert``1(Dos.ORM.Field[],System.Object[])" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Insert&lt;TEntity&gt;(Field[], Object[])</a>
+            </td>
+            <td>
+              
+添加
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.Insert&lt;TEntity&gt;(Field[], Object[]) 方法 </h3>
+                  <div>
+                    
+添加
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">int</span> Insert&lt;TEntity&gt;(<a href="Field.html" class="type">Field</a>[] fields, <span class="keyword">object</span>[] values) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>TEntity</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>fields</dt>
+                        <dd>
+                          类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a>[]</span><br />
+                          
+                        </dd>
+                        <dt>values</dt>
+                        <dd>
+                          类型：<span class="type">System.Object[]</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.Int32</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Rollback">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Rollback" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Rollback</a>
+            </td>
+            <td>
+              
+回滚
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.Rollback 方法 </h3>
+                  <div>
+                    
+回滚
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">void</span> Rollback()</pre></div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Update``1(``0)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Update``1(``0)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Update&lt;TEntity&gt;(TEntity)</a>
+            </td>
+            <td>
+              
+更新  
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.Update&lt;TEntity&gt;(TEntity) 方法 </h3>
+                  <div>
+                    
+更新  
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">int</span> Update&lt;TEntity&gt;(TEntity entity) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>TEntity</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>entity</dt>
+                        <dd>
+                          类型：<span class="type">TEntity</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.Int32</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Update``1(``0,Dos.ORM.WhereClip)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Update``1(``0,Dos.ORM.WhereClip)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Update&lt;TEntity&gt;(TEntity, WhereClip)</a>
+            </td>
+            <td>
+              
+更新
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.Update&lt;TEntity&gt;(TEntity, WhereClip) 方法 </h3>
+                  <div>
+                    
+更新
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">int</span> Update&lt;TEntity&gt;(TEntity entity, <a href="WhereClip.html" class="type">WhereClip</a> <span class="keyword">where</span>) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>TEntity</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>entity</dt>
+                        <dd>
+                          类型：<span class="type">TEntity</span><br />
+                          
+                        </dd>
+                        <dt>where</dt>
+                        <dd>
+                          类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.Int32</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Update``1(``0[])">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Update``1(``0[])" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Update&lt;TEntity&gt;(TEntity[])</a>
+            </td>
+            <td>
+              
+更新  
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.Update&lt;TEntity&gt;(TEntity[]) 方法 </h3>
+                  <div>
+                    
+更新  
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">void</span> Update&lt;TEntity&gt;(<span class="keyword">params</span> TEntity[] entities) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>TEntity</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>entities</dt>
+                        <dd>
+                          类型：<span class="type">TEntity[]</span><br />
+                          
+                        </dd>
+                    </dl>
+                </div>
+              </td>
+            </tr>
+          <tr id="Update``1(Dos.ORM.Field,System.Object,Dos.ORM.WhereClip)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Update``1(Dos.ORM.Field,System.Object,Dos.ORM.WhereClip)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Update&lt;TEntity&gt;(Field, Object, WhereClip)</a>
+            </td>
+            <td>
+              
+更新单个值
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.Update&lt;TEntity&gt;(Field, Object, WhereClip) 方法 </h3>
+                  <div>
+                    
+更新单个值
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">int</span> Update&lt;TEntity&gt;(<a href="Field.html" class="type">Field</a> field, <span class="keyword">object</span> <span class="keyword">value</span>, <a href="WhereClip.html" class="type">WhereClip</a> <span class="keyword">where</span>) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>TEntity</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>field</dt>
+                        <dd>
+                          类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                          
+                        </dd>
+                        <dt>value</dt>
+                        <dd>
+                          类型：<span class="type">System.Object</span><br />
+                          
+                        </dd>
+                        <dt>where</dt>
+                        <dd>
+                          类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.Int32</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Update``1(Dos.ORM.Field[],System.Object[],Dos.ORM.WhereClip)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Update``1(Dos.ORM.Field[],System.Object[],Dos.ORM.WhereClip)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Update&lt;TEntity&gt;(Field[], Object[], WhereClip)</a>
+            </td>
+            <td>
+              
+更新
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.Update&lt;TEntity&gt;(Field[], Object[], WhereClip) 方法 </h3>
+                  <div>
+                    
+更新
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">int</span> Update&lt;TEntity&gt;(<a href="Field.html" class="type">Field</a>[] fields, <span class="keyword">object</span>[] values, <a href="WhereClip.html" class="type">WhereClip</a> <span class="keyword">where</span>) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>TEntity</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>fields</dt>
+                        <dd>
+                          类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a>[]</span><br />
+                          
+                        </dd>
+                        <dt>values</dt>
+                        <dd>
+                          类型：<span class="type">System.Object[]</span><br />
+                          
+                        </dd>
+                        <dt>where</dt>
+                        <dd>
+                          类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.Int32</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Update``1(System.Collections.Generic.Dictionary{Dos.ORM.Field,System.Object},Dos.ORM.WhereClip)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Update``1(System.Collections.Generic.Dictionary{Dos.ORM.Field,System.Object},Dos.ORM.WhereClip)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Update&lt;TEntity&gt;(Dictionary&lt;Field, Object&gt;, WhereClip)</a>
+            </td>
+            <td>
+              
+更新多个值
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.Update&lt;TEntity&gt;(Dictionary&lt;Field, Object&gt;, WhereClip) 方法 </h3>
+                  <div>
+                    
+更新多个值
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">int</span> Update&lt;TEntity&gt;(<span class="type">Dictionary</span>&lt;<a href="Field.html" class="type">Field</a>, <span class="keyword">object</span>&gt; fieldValue, <a href="WhereClip.html" class="type">WhereClip</a> <span class="keyword">where</span>) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>TEntity</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>fieldValue</dt>
+                        <dd>
+                          类型：<span class="type">System.Collections.Generic.Dictionary&lt;<a href="Field.html">Dos.ORM.Field</a>, System.Object&gt;</span><br />
+                          
+                        </dd>
+                        <dt>where</dt>
+                        <dd>
+                          类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.Int32</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="UpdateAll``1(``0)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#UpdateAll``1(``0)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">UpdateAll&lt;TEntity&gt;(TEntity)</a>
+            </td>
+            <td>
+              
+更新全部字段  
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.UpdateAll&lt;TEntity&gt;(TEntity) 方法 </h3>
+                  <div>
+                    
+更新全部字段  
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">int</span> UpdateAll&lt;TEntity&gt;(TEntity entity) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>TEntity</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>entity</dt>
+                        <dd>
+                          类型：<span class="type">TEntity</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.Int32</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="UpdateAll``1(``0,Dos.ORM.WhereClip)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#UpdateAll``1(``0,Dos.ORM.WhereClip)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">UpdateAll&lt;TEntity&gt;(TEntity, WhereClip)</a>
+            </td>
+            <td>
+              
+更新全部字段
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.UpdateAll&lt;TEntity&gt;(TEntity, WhereClip) 方法 </h3>
+                  <div>
+                    
+更新全部字段
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">int</span> UpdateAll&lt;TEntity&gt;(TEntity entity, <a href="WhereClip.html" class="type">WhereClip</a> <span class="keyword">where</span>) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>TEntity</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>entity</dt>
+                        <dd>
+                          类型：<span class="type">TEntity</span><br />
+                          
+                        </dd>
+                        <dt>where</dt>
+                        <dd>
+                          类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.Int32</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="UpdateAll``1(``0[])">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#UpdateAll``1(``0[])" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">UpdateAll&lt;TEntity&gt;(TEntity[])</a>
+            </td>
+            <td>
+              
+更新全部字段  
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>DbTrans.UpdateAll&lt;TEntity&gt;(TEntity[]) 方法 </h3>
+                  <div>
+                    
+更新全部字段  
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">void</span> UpdateAll&lt;TEntity&gt;(<span class="keyword">params</span> TEntity[] entities) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>TEntity</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>entities</dt>
+                        <dd>
+                          类型：<span class="type">TEntity[]</span><br />
+                          
+                        </dd>
+                    </dl>
+                </div>
+              </td>
+            </tr>
+    </table>
+  </div>
+<br />
+<div class="DocsBuilder">Generated by <span><a href="http://www.ITdos.com" target="_blank">www.ITdos.com</a></span></div>
+</body>
+</html>

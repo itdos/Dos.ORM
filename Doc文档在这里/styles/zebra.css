@@ -1,0 +1,50 @@
+﻿body{font-family:Verdana;font-size:12px;font-style:normal;line-height:1.3;min-width:600px;word-wrap:break-word;}
+h1,h3{font-family:"Segoe UI",Verdana,Arial;color:#3f529c;font-weight:bold;}
+h1{font-size:1.76em;margin-bottom:10px;}
+h3{font-size:1.52em;margin:0px 0px 5px 0px;}
+h2,h4{color:#3f529c;background-color:#fefefe;}
+h2{font-size:1.43em;margin:6px 0px;}
+h4{font-size:1.28em;margin:4px 0px;}
+h5{font-size:1em;margin:2px 0px;}
+a{color:#0000FF;}
+a:visited{color:#DD7C3B;}
+a:hover{color:#3366FF;}
+pre{font-family:Arial;margin:6px 0px;}
+code,pre.code{font-family:Monospace,Courier New,Courier;font-size:105%;}
+code{color:#000066;}
+img{border:none;}
+table{border-collapse:collapse;border:solid 1px #c8cdde;}
+table th,table td{border:solid 1px #c8cdde;padding:5px 4px;}
+dl{margin:4px 0px;}
+p{margin:8px 0px;}
+#familySection{}
+#namespaceSection strong{display:inline-block;width:65px;}
+.syntaxSection{margin:8px 0px;padding:6px 4px;border:solid 1px #c8cdde;background-color:#fbfbfb;}
+.syntaxSection pre{margin:0px;}
+#summarySection{margin:10px 0px;}
+.memberTable,.exceptionTable{width:100%;}
+.memberTable th{text-align:left;background-color:#efefef;border-bottom-width:2px;}
+.memberTable th:first-child{width:75px;}
+.memberTable th:first-child+th{width:275px;}
+.memberTable td{background-color:#fbfbfb;}
+.memberTable td:first-child img{margin-right:6px;}
+.memberTable td:first-child+td{font-family:Verdana,Arial;}
+.memberSection{padding-bottom:5px;background-color:#fff;}
+.memberSection .syntaxSection{border-color:#EFF1F5;background-color:#fefefe;}
+.exceptionTable th{border-color:#EFF1F5;background-color:#fdfdfd;}
+.exceptionTable th:first-child{width:275px;}
+.exceptionTable td{padding-right:10px;border-color:#EFF1F5;background-color:#fefefe;}
+.paramsSection span.type,.returnsSection span.type,.exceptionTable span.type{color:#006;}
+.returnsSection{margin:4px 0px;}
+.exampleSection pre.code{padding:4px;border:solid 1px #c8cdde;background-color:#fbfbfb;}
+.obsolete{color:red}
+.keyword{color:blue;}
+.comment{color:green;}
+.comment .xml{color:#808080;}
+.string,.char{color:#a31515;}
+pre.code .type,pre.code a.type:visited{color:#2b91af;}
+pre.code a.type:hover{color:#30A3BE;}
+a.type span{color:#000;}
+.parameter{font-style:italic;}
+.DocsBuilder{color:#aaa;font-family:Arial;font-size:0.87em;border-top:solid 1px #E4E8EF;padding-top:4px;}
+.DocsBuilder span{color:#768189;}

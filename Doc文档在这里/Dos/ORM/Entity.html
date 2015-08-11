@@ -1,0 +1,575 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Dos.ORM.Entity" />
+<meta name="generator" content="DocsBuilder" />
+<title>Entity 类 (Dos.ORM)</title>
+<link rel="stylesheet" type="text/css" href="../../styles/zebra.css" />
+<script type="text/javascript" src="../../scripts/accordion.js"></script>
+</head><body>
+<h1>Entity 类</h1>
+  <div id="familySection">
+        System.Object<br />
+        &nbsp;&nbsp;<b>Dos.ORM.Entity</b><br />
+  </div>
+<div id="summarySection">
+  
+实体信息
+
+</div>
+<div id="namespaceSection"> <strong>命名空间：</strong><a href="../ORM/namespace-summary.html">Dos.ORM</a><br />
+  <strong>程序集：</strong><span>Dos.ORM（在 Dos.ORM.dll 中）</span> </div>
+<div id="syntaxSection" class="syntaxSection"> <pre class="code">[<span class="type">SerializableAttribute</span>]
+<span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="type">Entity</span></pre> </div>
+  <a id="constructorTableToggle" onclick="ExpandCollapse(document.getElementById('constructorTableSection'));ToggleSwitch(this.childNodes[0].childNodes[0]);"><h2><img alt="" title="折叠" src="../../images/collapse.png" />构造函数</h2></a>
+  <div id="constructorTableSection">
+    <table id="constructorTable" class="memberTable" cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <th></th>
+        <th>名称</th>
+        <th>说明</th>
+      </tr>
+        <tr id="#ctor">
+          <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+          </td>
+          <td>
+            <a href="##ctor" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Entity()</a>
+          </td>
+          <td>
+            
+构造函数
+
+          </td>
+        </tr>
+        <tr style="display:none;">
+          <td colspan="3">
+            <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                <h3>Entity() 构造函数 </h3>
+                <div>
+构造函数
+</div>
+                <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> Entity()</pre></div>
+            </div>
+          </td>
+        </tr>
+        <tr id="#ctor(System.String)">
+          <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+          </td>
+          <td>
+            <a href="##ctor(System.String)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Entity(String)</a>
+          </td>
+          <td>
+            
+构造函数
+
+          </td>
+        </tr>
+        <tr style="display:none;">
+          <td colspan="3">
+            <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                <h3>Entity(String) 构造函数 </h3>
+                <div>
+构造函数
+</div>
+                <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> Entity(<span class="keyword">string</span> tableName)</pre></div>
+                  <h5>参数</h5>
+                  <dl class="paramsSection">
+                      <dt>tableName</dt>
+                      <dd>
+                        类型：<span class="type">System.String</span><br />
+                        表名
+                      </dd>
+                  </dl>
+            </div>
+          </td>
+        </tr>
+    </table>
+  </div>
+  <a id="methodTableToggle" onclick="ExpandCollapse(document.getElementById('methodTableSection'));ToggleSwitch(this.childNodes[0].childNodes[0]);"><h2><img alt="" title="折叠" src="../../images/collapse.png" />方法</h2></a>
+  <div id="methodTableSection">
+    <table id="methodTable" class="memberTable" cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <th></th>
+        <th>名称</th>
+        <th>说明</th>
+      </tr>
+          <tr id="Attach">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Attach" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Attach</a>
+            </td>
+            <td>
+              
+将实体置为修改状态
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Entity.Attach 方法 </h3>
+                  <div>
+                    
+将实体置为修改状态
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">void</span> Attach()</pre></div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Attach(Dos.ORM.Common.EntityState)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Attach(Dos.ORM.Common.EntityState)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Attach(EntityState)</a>
+            </td>
+            <td>
+              
+将实体置为指定状态
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Entity.Attach(EntityState) 方法 </h3>
+                  <div>
+                    
+将实体置为指定状态
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">void</span> Attach(<a href="Common/EntityState.html" class="type">EntityState</a> entityState)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>entityState</dt>
+                        <dd>
+                          类型：<span class="type"><a href="Common/EntityState.html">Dos.ORM.Common.EntityState</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                </div>
+              </td>
+            </tr>
+          <tr id="ClearModifyFields">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#ClearModifyFields" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">ClearModifyFields</a>
+            </td>
+            <td>
+              
+清除修改记录
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Entity.ClearModifyFields 方法 </h3>
+                  <div>
+                    
+清除修改记录
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">void</span> ClearModifyFields()</pre></div>
+                </div>
+              </td>
+            </tr>
+          <tr id="DeAttach">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#DeAttach" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">DeAttach</a>
+            </td>
+            <td>
+              
+将实体置为插入状态
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Entity.DeAttach 方法 </h3>
+                  <div>
+                    
+将实体置为插入状态
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">void</span> DeAttach()</pre></div>
+                </div>
+              </td>
+            </tr>
+          <tr id="GetEntityState">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#GetEntityState" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">GetEntityState</a>
+            </td>
+            <td>
+              
+获取实体状态
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Entity.GetEntityState 方法 </h3>
+                  <div>
+                    
+获取实体状态
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="Common/EntityState.html" class="type">EntityState</a> GetEntityState()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Common/EntityState.html">Dos.ORM.Common.EntityState</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="GetFields">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#GetFields" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">GetFields</a>
+            </td>
+            <td>
+              
+GetFields
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Entity.GetFields 方法 </h3>
+                  <div>
+                    
+GetFields
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">virtual</span> <a href="Field.html" class="type">Field</a>[] GetFields()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a>[]</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="GetIdentityField">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#GetIdentityField" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">GetIdentityField</a>
+            </td>
+            <td>
+              
+标识列
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Entity.GetIdentityField 方法 </h3>
+                  <div>
+                    
+标识列
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">virtual</span> <a href="Field.html" class="type">Field</a> GetIdentityField()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="GetModifyFields">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#GetModifyFields" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">GetModifyFields</a>
+            </td>
+            <td>
+              
+返回修改记录
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Entity.GetModifyFields 方法 </h3>
+                  <div>
+                    
+返回修改记录
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">List</span>&lt;<a href="ModifyField.html" class="type">ModifyField</a>&gt; GetModifyFields()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.Collections.Generic.List&lt;<a href="ModifyField.html">Dos.ORM.ModifyField</a>&gt;</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="GetPrimaryKeyFields">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#GetPrimaryKeyFields" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">GetPrimaryKeyFields</a>
+            </td>
+            <td>
+              
+GetPrimaryKeyFields
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Entity.GetPrimaryKeyFields 方法 </h3>
+                  <div>
+                    
+GetPrimaryKeyFields
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">virtual</span> <a href="Field.html" class="type">Field</a>[] GetPrimaryKeyFields()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a>[]</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="GetSequence">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#GetSequence" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">GetSequence</a>
+            </td>
+            <td>
+              
+标识列的名称（例如如Oracle中Sequence名称）
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Entity.GetSequence 方法 </h3>
+                  <div>
+                    
+标识列的名称（例如如Oracle中Sequence名称）
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">string</span> GetSequence()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.String</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="GetTableName">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#GetTableName" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">GetTableName</a>
+            </td>
+            <td>
+              
+获取表名
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Entity.GetTableName 方法 </h3>
+                  <div>
+                    
+获取表名
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">string</span> GetTableName()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.String</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="GetValues">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#GetValues" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">GetValues</a>
+            </td>
+            <td>
+              
+GetValues
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Entity.GetValues 方法 </h3>
+                  <div>
+                    
+GetValues
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">object</span>[] GetValues()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.Object[]</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="IsReadOnly">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#IsReadOnly" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">IsReadOnly</a>
+            </td>
+            <td>
+              
+是否只读
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Entity.IsReadOnly 方法 </h3>
+                  <div>
+                    
+是否只读
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">bool</span> IsReadOnly()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.Boolean</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="OnPropertyValueChange(Dos.ORM.Field,System.Object,System.Object)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#OnPropertyValueChange(Dos.ORM.Field,System.Object,System.Object)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">OnPropertyValueChange(Field, Object, Object)</a>
+            </td>
+            <td>
+              
+记录 字段修改  
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Entity.OnPropertyValueChange(Field, Object, Object) 方法 </h3>
+                  <div>
+                    
+记录 字段修改  
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">void</span> OnPropertyValueChange(<a href="Field.html" class="type">Field</a> field, <span class="keyword">object</span> oldValue, <span class="keyword">object</span> newValue)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>field</dt>
+                        <dd>
+                          类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                          
+                        </dd>
+                        <dt>oldValue</dt>
+                        <dd>
+                          类型：<span class="type">System.Object</span><br />
+                          
+                        </dd>
+                        <dt>newValue</dt>
+                        <dd>
+                          类型：<span class="type">System.Object</span><br />
+                          
+                        </dd>
+                    </dl>
+                </div>
+              </td>
+            </tr>
+          <tr id="SetPropertyValues(System.Data.DataRow)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#SetPropertyValues(System.Data.DataRow)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">SetPropertyValues(DataRow)</a>
+            </td>
+            <td><span class="obsolete">已过时。</span>
+              
+Sets the property values.
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Entity.SetPropertyValues(DataRow) 方法 </h3>
+                  <div><span class="obsolete">注意：此 API 现在已过时。</span><i>此方法作废！实体类可以不再需要！</i><br />
+                    
+Sets the property values.
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code">[<span class="type">ObsoleteAttribute</span>(<span class="string">"此方法作废！实体类可以不再需要！"</span>)]
+<span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> SetPropertyValues(<span class="type">DataRow</span> row)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>row</dt>
+                        <dd>
+                          类型：<span class="type">System.Data.DataRow</span><br />
+                          The row.
+                        </dd>
+                    </dl>
+                </div>
+              </td>
+            </tr>
+          <tr id="SetPropertyValues(System.Data.IDataReader)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#SetPropertyValues(System.Data.IDataReader)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">SetPropertyValues(IDataReader)</a>
+            </td>
+            <td><span class="obsolete">已过时。</span>
+              
+Sets the property values.
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Entity.SetPropertyValues(IDataReader) 方法 </h3>
+                  <div><span class="obsolete">注意：此 API 现在已过时。</span><i>此方法作废！实体类可以不再需要！</i><br />
+                    
+Sets the property values.
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code">[<span class="type">ObsoleteAttribute</span>(<span class="string">"此方法作废！实体类可以不再需要！"</span>)]
+<span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">void</span> SetPropertyValues(<span class="type">IDataReader</span> reader)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>reader</dt>
+                        <dd>
+                          类型：<span class="type">System.Data.IDataReader</span><br />
+                          The reader.
+                        </dd>
+                    </dl>
+                </div>
+              </td>
+            </tr>
+    </table>
+  </div>
+<br />
+<div class="DocsBuilder">Generated by <span><a href="http://www.ITdos.com" target="_blank">www.ITdos.com</a></span></div>
+</body>
+</html>

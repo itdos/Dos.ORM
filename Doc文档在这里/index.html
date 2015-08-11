@@ -1,0 +1,36 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocsBuilder" />
+<title>概要</title>
+<script type="text/javascript">
+    function loadTopic(){
+        var targetPage = window.location.hash;
+        if(targetPage && (targetPage=targetPage.substr(1)))
+            topicFrame.location = targetPage;
+    }
+    function hashTopic(){
+        document.title = topicFrame.document.title;
+	var i = window.location.href.indexOf("#");
+        i = window.location.href.lastIndexOf("/", i > 0 ? i : window.location.href.length);
+        var search = topicFrame.location.href.substr(i+1);
+        if(search != "overview-summary.html")
+            window.location.hash = search;
+    }
+ </script>
+</head>
+<frameset cols="20%,80%" onload="loadTopic()">
+  <frame src="navigation-frame.html" style="border-right:2px solid #bbb;" frameborder="0" scrolling="yes" />
+  <frame name="topicFrame" src="overview-summary.html" frameborder="0" onload="hashTopic()"/>
+</frameset>
+<noframes>
+  <body>
+    <p>
+      请使用框架功能查看此文档。如果看到此消息，则表明您使用的是不支持框架的 Web 客户机。
+    </p>
+    <br />
+    链接到<a href="overview-summary.html">非框架版本。</a>
+  </body>
+</noframes>
+</html>

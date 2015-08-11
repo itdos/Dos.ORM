@@ -1,0 +1,2638 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Dos.ORM.Field" />
+<meta name="generator" content="DocsBuilder" />
+<title>Field 类 (Dos.ORM)</title>
+<link rel="stylesheet" type="text/css" href="../../styles/zebra.css" />
+<script type="text/javascript" src="../../scripts/accordion.js"></script>
+</head><body>
+<h1>Field 类</h1>
+  <div id="familySection">
+        System.Object<br />
+        &nbsp;&nbsp;<b>Dos.ORM.Field</b><br />
+  </div>
+<div id="summarySection">
+  
+字段信息
+
+</div>
+<div id="namespaceSection"> <strong>命名空间：</strong><a href="../ORM/namespace-summary.html">Dos.ORM</a><br />
+  <strong>程序集：</strong><span>Dos.ORM（在 Dos.ORM.dll 中）</span> </div>
+<div id="syntaxSection" class="syntaxSection"> <pre class="code">[<span class="type">SerializableAttribute</span>]
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="type">Field</span></pre> </div>
+  <a id="constructorTableToggle" onclick="ExpandCollapse(document.getElementById('constructorTableSection'));ToggleSwitch(this.childNodes[0].childNodes[0]);"><h2><img alt="" title="折叠" src="../../images/collapse.png" />构造函数</h2></a>
+  <div id="constructorTableSection">
+    <table id="constructorTable" class="memberTable" cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <th></th>
+        <th>名称</th>
+        <th>说明</th>
+      </tr>
+        <tr id="#ctor(System.String)">
+          <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+          </td>
+          <td>
+            <a href="##ctor(System.String)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Field(String)</a>
+          </td>
+          <td>
+            
+构造函数
+
+          </td>
+        </tr>
+        <tr style="display:none;">
+          <td colspan="3">
+            <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                <h3>Field(String) 构造函数 </h3>
+                <div>
+构造函数
+</div>
+                <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> Field(<span class="keyword">string</span> fieldName)</pre></div>
+                  <h5>参数</h5>
+                  <dl class="paramsSection">
+                      <dt>fieldName</dt>
+                      <dd>
+                        类型：<span class="type">System.String</span><br />
+                        
+                      </dd>
+                  </dl>
+            </div>
+          </td>
+        </tr>
+        <tr id="#ctor(System.String,System.String)">
+          <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+          </td>
+          <td>
+            <a href="##ctor(System.String,System.String)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Field(String, String)</a>
+          </td>
+          <td>
+            
+构造函数
+
+          </td>
+        </tr>
+        <tr style="display:none;">
+          <td colspan="3">
+            <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                <h3>Field(String, String) 构造函数 </h3>
+                <div>
+构造函数
+</div>
+                <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> Field(<span class="keyword">string</span> fieldName, <span class="keyword">string</span> tableName)</pre></div>
+                  <h5>参数</h5>
+                  <dl class="paramsSection">
+                      <dt>fieldName</dt>
+                      <dd>
+                        类型：<span class="type">System.String</span><br />
+                        
+                      </dd>
+                      <dt>tableName</dt>
+                      <dd>
+                        类型：<span class="type">System.String</span><br />
+                        
+                      </dd>
+                  </dl>
+            </div>
+          </td>
+        </tr>
+        <tr id="#ctor(System.String,System.String,System.String)">
+          <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+          </td>
+          <td>
+            <a href="##ctor(System.String,System.String,System.String)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Field(String, String, String)</a>
+          </td>
+          <td>
+            
+构造函数
+
+          </td>
+        </tr>
+        <tr style="display:none;">
+          <td colspan="3">
+            <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                <h3>Field(String, String, String) 构造函数 </h3>
+                <div>
+构造函数
+</div>
+                <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> Field(<span class="keyword">string</span> fieldName, <span class="keyword">string</span> tableName, <span class="keyword">string</span> description)</pre></div>
+                  <h5>参数</h5>
+                  <dl class="paramsSection">
+                      <dt>fieldName</dt>
+                      <dd>
+                        类型：<span class="type">System.String</span><br />
+                        
+                      </dd>
+                      <dt>tableName</dt>
+                      <dd>
+                        类型：<span class="type">System.String</span><br />
+                        
+                      </dd>
+                      <dt>description</dt>
+                      <dd>
+                        类型：<span class="type">System.String</span><br />
+                        
+                      </dd>
+                  </dl>
+            </div>
+          </td>
+        </tr>
+        <tr id="#ctor(System.String,System.String,System.Nullable{System.Data.DbType},System.Nullable{System.Int32},System.String)">
+          <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+          </td>
+          <td>
+            <a href="##ctor(System.String,System.String,System.Nullable{System.Data.DbType},System.Nullable{System.Int32},System.String)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Field(String, String, Nullable&lt;DbType&gt;, Nullable&lt;Int32&gt;, String)</a>
+          </td>
+          <td>
+            
+构造函数
+
+          </td>
+        </tr>
+        <tr style="display:none;">
+          <td colspan="3">
+            <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                <h3>Field(String, String, Nullable&lt;DbType&gt;, Nullable&lt;Int32&gt;, String) 构造函数 </h3>
+                <div>
+构造函数
+</div>
+                <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> Field(<span class="keyword">string</span> fieldName, <span class="keyword">string</span> tableName, <span class="type">Nullable</span>&lt;<span class="type">DbType</span>&gt; parameterDbType, <span class="type">Nullable</span>&lt;<span class="keyword">int</span>&gt; parameterSize, <span class="keyword">string</span> description)</pre></div>
+                  <h5>参数</h5>
+                  <dl class="paramsSection">
+                      <dt>fieldName</dt>
+                      <dd>
+                        类型：<span class="type">System.String</span><br />
+                        
+                      </dd>
+                      <dt>tableName</dt>
+                      <dd>
+                        类型：<span class="type">System.String</span><br />
+                        
+                      </dd>
+                      <dt>parameterDbType</dt>
+                      <dd>
+                        类型：<span class="type">System.Nullable&lt;System.Data.DbType&gt;</span><br />
+                        
+                      </dd>
+                      <dt>parameterSize</dt>
+                      <dd>
+                        类型：<span class="type">System.Nullable&lt;System.Int32&gt;</span><br />
+                        
+                      </dd>
+                      <dt>description</dt>
+                      <dd>
+                        类型：<span class="type">System.String</span><br />
+                        
+                      </dd>
+                  </dl>
+            </div>
+          </td>
+        </tr>
+        <tr id="#ctor(System.String,System.String,System.Nullable{System.Data.DbType},System.Nullable{System.Int32},System.String,System.String)">
+          <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+          </td>
+          <td>
+            <a href="##ctor(System.String,System.String,System.Nullable{System.Data.DbType},System.Nullable{System.Int32},System.String,System.String)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Field(String, String, Nullable&lt;DbType&gt;, Nullable&lt;Int32&gt;, String, String)</a>
+          </td>
+          <td>
+            
+构造函数
+
+          </td>
+        </tr>
+        <tr style="display:none;">
+          <td colspan="3">
+            <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                <h3>Field(String, String, Nullable&lt;DbType&gt;, Nullable&lt;Int32&gt;, String, String) 构造函数 </h3>
+                <div>
+构造函数
+</div>
+                <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> Field(<span class="keyword">string</span> fieldName, <span class="keyword">string</span> tableName, <span class="type">Nullable</span>&lt;<span class="type">DbType</span>&gt; parameterDbType, <span class="type">Nullable</span>&lt;<span class="keyword">int</span>&gt; parameterSize, <span class="keyword">string</span> description, <span class="keyword">string</span> aliasName)</pre></div>
+                  <h5>参数</h5>
+                  <dl class="paramsSection">
+                      <dt>fieldName</dt>
+                      <dd>
+                        类型：<span class="type">System.String</span><br />
+                        
+                      </dd>
+                      <dt>tableName</dt>
+                      <dd>
+                        类型：<span class="type">System.String</span><br />
+                        
+                      </dd>
+                      <dt>parameterDbType</dt>
+                      <dd>
+                        类型：<span class="type">System.Nullable&lt;System.Data.DbType&gt;</span><br />
+                        
+                      </dd>
+                      <dt>parameterSize</dt>
+                      <dd>
+                        类型：<span class="type">System.Nullable&lt;System.Int32&gt;</span><br />
+                        
+                      </dd>
+                      <dt>description</dt>
+                      <dd>
+                        类型：<span class="type">System.String</span><br />
+                        
+                      </dd>
+                      <dt>aliasName</dt>
+                      <dd>
+                        类型：<span class="type">System.String</span><br />
+                        
+                      </dd>
+                  </dl>
+            </div>
+          </td>
+        </tr>
+    </table>
+  </div>
+    <a id="fieldTableToggle" onclick="ExpandCollapse(document.getElementById('fieldTableSection'));ToggleSwitch(this.childNodes[0].childNodes[0]);"><h2><img alt="" title="折叠" src="../../images/collapse.png" />字段</h2></a>
+    <div id="fieldTableSection">
+      <table id="fieldTable" class="memberTable" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <th></th>
+          <th>名称</th>
+          <th>说明</th>
+        </tr>
+          <tr id="All">
+            <td><img alt="" title="公共字段" src="../../images/pubfield.gif" /><img alt="" title="静态成员" src="../../images/static.gif" />
+            </td>
+            <td><a href="#All" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">All</a>
+            </td>
+            <td>
+              
+所有字段   就是  *  
+<br />此字段为只读。
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.All 字段 </h3>
+                  <div>
+                    
+所有字段   就是  *  
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">readonly</span> <span class="type">Field</span> All</pre></div>
+                  <h5>字段值</h5>
+                  类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span>
+                </div>
+              </td>
+            </tr>
+          <tr id="tableName">
+            <td><img alt="" title="公共字段" src="../../images/pubfield.gif" />
+            </td>
+            <td><a href="#tableName" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">tableName</a>
+            </td>
+            <td>
+              
+表名
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.tableName 字段 </h3>
+                  <div>
+                    
+表名
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">string</span> tableName</pre></div>
+                  <h5>字段值</h5>
+                  类型：<span class="type">System.String</span>
+                </div>
+              </td>
+            </tr>
+      </table>
+    </div>
+  <a id="propertyTableToggle" onclick="ExpandCollapse(document.getElementById('propertyTableSection'));ToggleSwitch(this.childNodes[0].childNodes[0]);"><h2><img alt="" title="折叠" src="../../images/collapse.png" />属性</h2></a>
+  <div id="propertyTableSection">
+    <table id="propertyTable" class="memberTable" cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <th></th>
+        <th>名称</th>
+        <th>说明</th>
+      </tr>
+          <tr id="AliasName">
+            <td><img alt="" title="公共属性" src="../../images/pubproperty.gif" />
+            </td>
+            <td><a href="#AliasName" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">AliasName</a>
+            </td>
+            <td>
+              
+返回  别名
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.AliasName 属性 </h3>
+                  <div>
+                    
+返回  别名
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">string</span> AliasName { <span class="keyword">get</span>; <span class="keyword">set</span>; }</pre></div>
+                  <h5>属性值</h5>
+                  <div class="returnsSection">
+                    类型：<span class="type">System.String</span><br />
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Asc">
+            <td><img alt="" title="公共属性" src="../../images/pubproperty.gif" />
+            </td>
+            <td><a href="#Asc" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Asc</a>
+            </td>
+            <td>
+              
+正序
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Asc 属性 </h3>
+                  <div>
+                    
+正序
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="OrderByClip.html" class="type">OrderByClip</a> Asc { <span class="keyword">get</span>; }</pre></div>
+                  <h5>属性值</h5>
+                  <div class="returnsSection">
+                    类型：<span class="type"><a href="OrderByClip.html">Dos.ORM.OrderByClip</a></span><br />
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Day">
+            <td><img alt="" title="公共属性" src="../../images/pubproperty.gif" />
+            </td>
+            <td><a href="#Day" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Day</a>
+            </td>
+            <td>
+              
+datepart  day
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Day 属性 </h3>
+                  <div>
+                    
+datepart  day
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> Day { <span class="keyword">get</span>; }</pre></div>
+                  <h5>属性值</h5>
+                  <div class="returnsSection">
+                    类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Desc">
+            <td><img alt="" title="公共属性" src="../../images/pubproperty.gif" />
+            </td>
+            <td><a href="#Desc" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Desc</a>
+            </td>
+            <td>
+              
+倒叙
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Desc 属性 </h3>
+                  <div>
+                    
+倒叙
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="OrderByClip.html" class="type">OrderByClip</a> Desc { <span class="keyword">get</span>; }</pre></div>
+                  <h5>属性值</h5>
+                  <div class="returnsSection">
+                    类型：<span class="type"><a href="OrderByClip.html">Dos.ORM.OrderByClip</a></span><br />
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Description">
+            <td><img alt="" title="公共属性" src="../../images/pubproperty.gif" />
+            </td>
+            <td><a href="#Description" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Description</a>
+            </td>
+            <td>
+              
+返回  字段描述
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Description 属性 </h3>
+                  <div>
+                    
+返回  字段描述
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">string</span> Description { <span class="keyword">get</span>; }</pre></div>
+                  <h5>属性值</h5>
+                  <div class="returnsSection">
+                    类型：<span class="type">System.String</span><br />
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="FieldName">
+            <td><img alt="" title="公共属性" src="../../images/pubproperty.gif" />
+            </td>
+            <td><a href="#FieldName" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">FieldName</a>
+            </td>
+            <td>
+              
+返回 字段名
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.FieldName 属性 </h3>
+                  <div>
+                    
+返回 字段名
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">string</span> FieldName { <span class="keyword">get</span>; }</pre></div>
+                  <h5>属性值</h5>
+                  <div class="returnsSection">
+                    类型：<span class="type">System.String</span><br />
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="FullName">
+            <td><img alt="" title="公共属性" src="../../images/pubproperty.gif" />
+            </td>
+            <td><a href="#FullName" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">FullName</a>
+            </td>
+            <td>
+              
+返回  表名.字段名 AS 别名
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.FullName 属性 </h3>
+                  <div>
+                    
+返回  表名.字段名 AS 别名
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">string</span> FullName { <span class="keyword">get</span>; }</pre></div>
+                  <h5>属性值</h5>
+                  <div class="returnsSection">
+                    类型：<span class="type">System.String</span><br />
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="GroupBy">
+            <td><img alt="" title="公共属性" src="../../images/pubproperty.gif" />
+            </td>
+            <td><a href="#GroupBy" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">GroupBy</a>
+            </td>
+            <td>
+              
+分组
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.GroupBy 属性 </h3>
+                  <div>
+                    
+分组
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="GroupByClip.html" class="type">GroupByClip</a> GroupBy { <span class="keyword">get</span>; }</pre></div>
+                  <h5>属性值</h5>
+                  <div class="returnsSection">
+                    类型：<span class="type"><a href="GroupByClip.html">Dos.ORM.GroupByClip</a></span><br />
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Month">
+            <td><img alt="" title="公共属性" src="../../images/pubproperty.gif" />
+            </td>
+            <td><a href="#Month" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Month</a>
+            </td>
+            <td>
+              
+datepart   month
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Month 属性 </h3>
+                  <div>
+                    
+datepart   month
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> Month { <span class="keyword">get</span>; }</pre></div>
+                  <h5>属性值</h5>
+                  <div class="returnsSection">
+                    类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Name">
+            <td><img alt="" title="公共属性" src="../../images/pubproperty.gif" />
+            </td>
+            <td><a href="#Name" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Name</a>
+            </td>
+            <td>
+              
+返回  别名，当别名为空返回字段名
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Name 属性 </h3>
+                  <div>
+                    
+返回  别名，当别名为空返回字段名
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">string</span> Name { <span class="keyword">get</span>; }</pre></div>
+                  <h5>属性值</h5>
+                  <div class="returnsSection">
+                    类型：<span class="type">System.String</span><br />
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="ParameterDbType">
+            <td><img alt="" title="公共属性" src="../../images/pubproperty.gif" />
+            </td>
+            <td><a href="#ParameterDbType" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">ParameterDbType</a>
+            </td>
+            <td>
+              
+字段数据库中类型
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.ParameterDbType 属性 </h3>
+                  <div>
+                    
+字段数据库中类型
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Nullable</span>&lt;<span class="type">DbType</span>&gt; ParameterDbType { <span class="keyword">get</span>; }</pre></div>
+                  <h5>属性值</h5>
+                  <div class="returnsSection">
+                    类型：<span class="type">System.Nullable&lt;System.Data.DbType&gt;</span><br />
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="ParameterSize">
+            <td><img alt="" title="公共属性" src="../../images/pubproperty.gif" />
+            </td>
+            <td><a href="#ParameterSize" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">ParameterSize</a>
+            </td>
+            <td>
+              
+字段数据库中长度
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.ParameterSize 属性 </h3>
+                  <div>
+                    
+字段数据库中长度
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Nullable</span>&lt;<span class="keyword">int</span>&gt; ParameterSize { <span class="keyword">get</span>; }</pre></div>
+                  <h5>属性值</h5>
+                  <div class="returnsSection">
+                    类型：<span class="type">System.Nullable&lt;System.Int32&gt;</span><br />
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="PropertyName">
+            <td><img alt="" title="公共属性" src="../../images/pubproperty.gif" />
+            </td>
+            <td><a href="#PropertyName" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">PropertyName</a>
+            </td>
+            <td>
+              
+返回属性名  既 fileName
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.PropertyName 属性 </h3>
+                  <div>
+                    
+返回属性名  既 fileName
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">string</span> PropertyName { <span class="keyword">get</span>; }</pre></div>
+                  <h5>属性值</h5>
+                  <div class="returnsSection">
+                    类型：<span class="type">System.String</span><br />
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="TableFieldName">
+            <td><img alt="" title="公共属性" src="../../images/pubproperty.gif" />
+            </td>
+            <td><a href="#TableFieldName" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">TableFieldName</a>
+            </td>
+            <td>
+              
+返回  表名.字段名
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.TableFieldName 属性 </h3>
+                  <div>
+                    
+返回  表名.字段名
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">string</span> TableFieldName { <span class="keyword">get</span>; }</pre></div>
+                  <h5>属性值</h5>
+                  <div class="returnsSection">
+                    类型：<span class="type">System.String</span><br />
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="TableName">
+            <td><img alt="" title="公共属性" src="../../images/pubproperty.gif" />
+            </td>
+            <td><a href="#TableName" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">TableName</a>
+            </td>
+            <td>
+              
+返回  表名
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.TableName 属性 </h3>
+                  <div>
+                    
+返回  表名
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">string</span> TableName { <span class="keyword">get</span>; }</pre></div>
+                  <h5>属性值</h5>
+                  <div class="returnsSection">
+                    类型：<span class="type">System.String</span><br />
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Year">
+            <td><img alt="" title="公共属性" src="../../images/pubproperty.gif" />
+            </td>
+            <td><a href="#Year" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Year</a>
+            </td>
+            <td>
+              
+datepart   year
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+                <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Year 属性 </h3>
+                  <div>
+                    
+datepart   year
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> Year { <span class="keyword">get</span>; }</pre></div>
+                  <h5>属性值</h5>
+                  <div class="returnsSection">
+                    类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+    </table>
+  </div>
+  <a id="methodTableToggle" onclick="ExpandCollapse(document.getElementById('methodTableSection'));ToggleSwitch(this.childNodes[0].childNodes[0]);"><h2><img alt="" title="折叠" src="../../images/collapse.png" />方法</h2></a>
+  <div id="methodTableSection">
+    <table id="methodTable" class="memberTable" cellspacing="0" cellpadding="0" border="0">
+      <tr>
+        <th></th>
+        <th>名称</th>
+        <th>说明</th>
+      </tr>
+          <tr id="As(Dos.ORM.Field)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#As(Dos.ORM.Field)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">As(Field)</a>
+            </td>
+            <td>
+              
+AS
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.As(Field) 方法 </h3>
+                  <div>
+                    
+AS
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> As(<span class="type">Field</span> field)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>field</dt>
+                        <dd>
+                          类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="As(System.String)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#As(System.String)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">As(String)</a>
+            </td>
+            <td>
+              
+AS
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.As(String) 方法 </h3>
+                  <div>
+                    
+AS
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> As(<span class="keyword">string</span> aliasName)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>aliasName</dt>
+                        <dd>
+                          类型：<span class="type">System.String</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Avg">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Avg" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Avg</a>
+            </td>
+            <td>
+              
+Avg
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Avg 方法 </h3>
+                  <div>
+                    
+Avg
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> Avg()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="BeginWith(System.Object)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#BeginWith(System.Object)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">BeginWith(Object)</a>
+            </td>
+            <td>
+              
+BeginWith  
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.BeginWith(Object) 方法 </h3>
+                  <div>
+                    
+BeginWith  
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> BeginWith(<span class="keyword">object</span> <span class="keyword">value</span>)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>value</dt>
+                        <dd>
+                          类型：<span class="type">System.Object</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Between(System.Object,System.Object)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Between(System.Object,System.Object)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Between(Object, Object)</a>
+            </td>
+            <td>
+              
+Between操作
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Between(Object, Object) 方法 </h3>
+                  <div>
+                    
+Between操作
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> Between(<span class="keyword">object</span> leftValue, <span class="keyword">object</span> rightValue)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>leftValue</dt>
+                        <dd>
+                          类型：<span class="type">System.Object</span><br />
+                          
+                        </dd>
+                        <dt>rightValue</dt>
+                        <dd>
+                          类型：<span class="type">System.Object</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                    <a onclick="ExpandCollapse(this.nextSibling);ToggleSwitch(this.childNodes[0].childNodes[0]);"><h4><img alt="" title="折叠" src="../../images/collapse.png" />示例</h4></a>
+                    <div class="exampleSection"><![CDATA[ a>=value and a<=value ]]></div>
+                </div>
+              </td>
+            </tr>
+          <tr id="BitwiseNOT(Dos.ORM.Field)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#BitwiseNOT(Dos.ORM.Field)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">BitwiseNOT(Field)</a>
+            </td>
+            <td>
+              
+~
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.BitwiseNOT(Field) 方法 </h3>
+                  <div>
+                    
+~
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> BitwiseNOT(<span class="type">Field</span> rightField)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>rightField</dt>
+                        <dd>
+                          类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="BitwiseOR(Dos.ORM.Field)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#BitwiseOR(Dos.ORM.Field)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">BitwiseOR(Field)</a>
+            </td>
+            <td>
+              
+|
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.BitwiseOR(Field) 方法 </h3>
+                  <div>
+                    
+|
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> BitwiseOR(<span class="type">Field</span> rightField)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>rightField</dt>
+                        <dd>
+                          类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="BitwiseXOR(Dos.ORM.Field)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#BitwiseXOR(Dos.ORM.Field)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">BitwiseXOR(Field)</a>
+            </td>
+            <td>
+              
+^
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.BitwiseXOR(Field) 方法 </h3>
+                  <div>
+                    
+^
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> BitwiseXOR(<span class="type">Field</span> rightField)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>rightField</dt>
+                        <dd>
+                          类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Contain(System.Object)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Contain(System.Object)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Contain(Object)</a>
+            </td>
+            <td>
+              
+like '%value%' 模糊查询，同Like
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Contain(Object) 方法 </h3>
+                  <div>
+                    
+like '%value%' 模糊查询，同Like
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> Contain(<span class="keyword">object</span> <span class="keyword">value</span>)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>value</dt>
+                        <dd>
+                          类型：<span class="type">System.Object</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Count">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Count" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Count</a>
+            </td>
+            <td>
+              
+Count
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Count 方法 </h3>
+                  <div>
+                    
+Count
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> Count()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Distinct">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Distinct" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Distinct</a>
+            </td>
+            <td>
+              
+Distinct
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Distinct 方法 </h3>
+                  <div>
+                    
+Distinct
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> Distinct()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="EndWith(System.Object)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#EndWith(System.Object)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">EndWith(Object)</a>
+            </td>
+            <td>
+              
+EndWith  
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.EndWith(Object) 方法 </h3>
+                  <div>
+                    
+EndWith  
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> EndWith(<span class="keyword">object</span> <span class="keyword">value</span>)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>value</dt>
+                        <dd>
+                          类型：<span class="type">System.Object</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Equals(Dos.ORM.Field)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Equals(Dos.ORM.Field)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Equals(Field)</a>
+            </td>
+            <td>
+              
+比较
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Equals(Field) 方法 </h3>
+                  <div>
+                    
+比较
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">bool</span> Equals(<span class="type">Field</span> field)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>field</dt>
+                        <dd>
+                          类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.Boolean</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="In(System.Object[])">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#In(System.Object[])" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">In(Object[])</a>
+            </td>
+            <td>
+              
+同SelectIn。
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.In(Object[]) 方法 </h3>
+                  <div>
+                    
+同SelectIn。
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> In(<span class="keyword">params</span> <span class="keyword">object</span>[] values)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>values</dt>
+                        <dd>
+                          类型：<span class="type">System.Object[]</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="In``1(``0[])">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#In``1(``0[])" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">In&lt;T&gt;(T[])</a>
+            </td>
+            <td>
+              
+where field in (value,value,value)。同SelectIn。传入Array或List&lt;T&gt;。
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.In&lt;T&gt;(T[]) 方法 </h3>
+                  <div>
+                    
+where field in (value,value,value)。同SelectIn。传入Array或List&lt;T&gt;。
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> In&lt;T&gt;(<span class="keyword">params</span> T[] values) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>T</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>values</dt>
+                        <dd>
+                          类型：<span class="type">T[]</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="In``1(System.Collections.Generic.List{``0})">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#In``1(System.Collections.Generic.List{``0})" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">In&lt;T&gt;(List&lt;T&gt;)</a>
+            </td>
+            <td>
+              
+where field in (value,value,value)。同SelectIn。传入Array或List&lt;T&gt;。
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.In&lt;T&gt;(List&lt;T&gt;) 方法 </h3>
+                  <div>
+                    
+where field in (value,value,value)。同SelectIn。传入Array或List&lt;T&gt;。
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> In&lt;T&gt;(<span class="type">List</span>&lt;T&gt; values) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>T</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>values</dt>
+                        <dd>
+                          类型：<span class="type">System.Collections.Generic.List&lt;T&gt;</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="IndexOf(System.String)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#IndexOf(System.String)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">IndexOf(String)</a>
+            </td>
+            <td>
+              
+charindex
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.IndexOf(String) 方法 </h3>
+                  <div>
+                    
+charindex
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> IndexOf(<span class="keyword">string</span> subString)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>subString</dt>
+                        <dd>
+                          类型：<span class="type">System.String</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="IsNotNull">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#IsNotNull" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">IsNotNull</a>
+            </td>
+            <td>
+              
+字段 为null <example>field is not null</example>
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.IsNotNull 方法 </h3>
+                  <div>
+                    
+字段 为null <example>field is not null</example>
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> IsNotNull()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="IsNull">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#IsNull" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">IsNull</a>
+            </td>
+            <td>
+              
+字段 为null <example>field is null</example>
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.IsNull 方法 </h3>
+                  <div>
+                    
+字段 为null <example>field is null</example>
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> IsNull()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="IsNull(Dos.ORM.Field)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#IsNull(Dos.ORM.Field)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">IsNull(Field)</a>
+            </td>
+            <td>
+              
+判断字段是否为Null
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.IsNull(Field) 方法 </h3>
+                  <div>
+                    
+判断字段是否为Null
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> IsNull(<span class="type">Field</span> field)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>field</dt>
+                        <dd>
+                          类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                          字段实体
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="IsNull(System.Object)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#IsNull(System.Object)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">IsNull(Object)</a>
+            </td>
+            <td>
+              
+判断字段是否为Null
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.IsNull(Object) 方法 </h3>
+                  <div>
+                    
+判断字段是否为Null
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> IsNull(<span class="keyword">object</span> <span class="keyword">value</span>)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>value</dt>
+                        <dd>
+                          类型：<span class="type">System.Object</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="IsNullOrEmpty(Dos.ORM.Field)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" /><img alt="" title="静态成员" src="../../images/static.gif" />
+            </td>
+            <td><a href="#IsNullOrEmpty(Dos.ORM.Field)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">IsNullOrEmpty(Field)</a>
+            </td>
+            <td>
+              
+判断是否为空
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.IsNullOrEmpty(Field) 方法 </h3>
+                  <div>
+                    
+判断是否为空
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">bool</span> IsNullOrEmpty(<span class="type">Field</span> field)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>field</dt>
+                        <dd>
+                          类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type">System.Boolean</span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Left(System.Int32)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Left(System.Int32)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Left(Int32)</a>
+            </td>
+            <td>
+              
+Left
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Left(Int32) 方法 </h3>
+                  <div>
+                    
+Left
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> Left(<span class="keyword">int</span> length)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>length</dt>
+                        <dd>
+                          类型：<span class="type">System.Int32</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Len">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Len" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Len</a>
+            </td>
+            <td>
+              
+len
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Len 方法 </h3>
+                  <div>
+                    
+len
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> Len()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Like(System.Object)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Like(System.Object)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Like(Object)</a>
+            </td>
+            <td>
+              
+like '%value%' 模糊查询，同  Contain
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Like(Object) 方法 </h3>
+                  <div>
+                    
+like '%value%' 模糊查询，同  Contain
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> Like(<span class="keyword">object</span> <span class="keyword">value</span>)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>value</dt>
+                        <dd>
+                          类型：<span class="type">System.Object</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Max">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Max" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Max</a>
+            </td>
+            <td>
+              
+Max
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Max 方法 </h3>
+                  <div>
+                    
+Max
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> Max()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Min">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Min" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Min</a>
+            </td>
+            <td>
+              
+Min
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Min 方法 </h3>
+                  <div>
+                    
+Min
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> Min()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="NotIn(System.Object[])">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#NotIn(System.Object[])" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">NotIn(Object[])</a>
+            </td>
+            <td>
+              
+同SelectNotIn。
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.NotIn(Object[]) 方法 </h3>
+                  <div>
+                    
+同SelectNotIn。
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> NotIn(<span class="keyword">params</span> <span class="keyword">object</span>[] values)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>values</dt>
+                        <dd>
+                          类型：<span class="type">System.Object[]</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="NotIn``1(``0[])">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#NotIn``1(``0[])" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">NotIn&lt;T&gt;(T[])</a>
+            </td>
+            <td>
+              
+同SelectNotIn。传入Array或List&lt;T&gt;。
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.NotIn&lt;T&gt;(T[]) 方法 </h3>
+                  <div>
+                    
+同SelectNotIn。传入Array或List&lt;T&gt;。
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> NotIn&lt;T&gt;(<span class="keyword">params</span> T[] values) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>T</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>values</dt>
+                        <dd>
+                          类型：<span class="type">T[]</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="NotIn``1(System.Collections.Generic.List{``0})">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#NotIn``1(System.Collections.Generic.List{``0})" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">NotIn&lt;T&gt;(List&lt;T&gt;)</a>
+            </td>
+            <td>
+              
+同SelectNotIn。传入Array或List&lt;T&gt;。
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.NotIn&lt;T&gt;(List&lt;T&gt;) 方法 </h3>
+                  <div>
+                    
+同SelectNotIn。传入Array或List&lt;T&gt;。
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> NotIn&lt;T&gt;(<span class="type">List</span>&lt;T&gt; values) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>T</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>values</dt>
+                        <dd>
+                          类型：<span class="type">System.Collections.Generic.List&lt;T&gt;</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Replace(System.String,System.String)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Replace(System.String,System.String)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Replace(String, String)</a>
+            </td>
+            <td>
+              
+replace
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Replace(String, String) 方法 </h3>
+                  <div>
+                    
+replace
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> Replace(<span class="keyword">string</span> oldValue, <span class="keyword">string</span> newValue)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>oldValue</dt>
+                        <dd>
+                          类型：<span class="type">System.String</span><br />
+                          
+                        </dd>
+                        <dt>newValue</dt>
+                        <dd>
+                          类型：<span class="type">System.String</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Right(System.Int32)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Right(System.Int32)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Right(Int32)</a>
+            </td>
+            <td>
+              
+Right
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Right(Int32) 方法 </h3>
+                  <div>
+                    
+Right
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> Right(<span class="keyword">int</span> length)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>length</dt>
+                        <dd>
+                          类型：<span class="type">System.Int32</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="SelectIn(System.Object[])">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#SelectIn(System.Object[])" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">SelectIn(Object[])</a>
+            </td>
+            <td>
+              
+SelectIn  
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.SelectIn(Object[]) 方法 </h3>
+                  <div>
+                    
+SelectIn  
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> SelectIn(<span class="keyword">params</span> <span class="keyword">object</span>[] values)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>values</dt>
+                        <dd>
+                          类型：<span class="type">System.Object[]</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="SelectIn``1(``0[])">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#SelectIn``1(``0[])" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">SelectIn&lt;T&gt;(T[])</a>
+            </td>
+            <td>
+              
+where field in (value,value,value)。传入Array或List&lt;T&gt;。
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.SelectIn&lt;T&gt;(T[]) 方法 </h3>
+                  <div>
+                    
+where field in (value,value,value)。传入Array或List&lt;T&gt;。
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> SelectIn&lt;T&gt;(<span class="keyword">params</span> T[] values) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>T</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>values</dt>
+                        <dd>
+                          类型：<span class="type">T[]</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="SelectIn``1(System.Collections.Generic.List{``0})">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#SelectIn``1(System.Collections.Generic.List{``0})" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">SelectIn&lt;T&gt;(List&lt;T&gt;)</a>
+            </td>
+            <td>
+              
+where field in (value,value,value)。 传入Array或List&lt;T&gt;。
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.SelectIn&lt;T&gt;(List&lt;T&gt;) 方法 </h3>
+                  <div>
+                    
+where field in (value,value,value)。 传入Array或List&lt;T&gt;。
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> SelectIn&lt;T&gt;(<span class="type">List</span>&lt;T&gt; values) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>T</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>values</dt>
+                        <dd>
+                          类型：<span class="type">System.Collections.Generic.List&lt;T&gt;</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="SelectNotIn(System.Object[])">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#SelectNotIn(System.Object[])" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">SelectNotIn(Object[])</a>
+            </td>
+            <td>
+              
+where field in (value,value,value)。同In.
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.SelectNotIn(Object[]) 方法 </h3>
+                  <div>
+                    
+where field in (value,value,value)。同In.
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> SelectNotIn(<span class="keyword">params</span> <span class="keyword">object</span>[] values)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>values</dt>
+                        <dd>
+                          类型：<span class="type">System.Object[]</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="SelectNotIn``1(``0[])">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#SelectNotIn``1(``0[])" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">SelectNotIn&lt;T&gt;(T[])</a>
+            </td>
+            <td>
+              
+SelectNotIn  。传入Array或List&lt;T&gt;。
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.SelectNotIn&lt;T&gt;(T[]) 方法 </h3>
+                  <div>
+                    
+SelectNotIn  。传入Array或List&lt;T&gt;。
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> SelectNotIn&lt;T&gt;(<span class="keyword">params</span> T[] values) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>T</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>values</dt>
+                        <dd>
+                          类型：<span class="type">T[]</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="SelectNotIn``1(System.Collections.Generic.List{``0})">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#SelectNotIn``1(System.Collections.Generic.List{``0})" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">SelectNotIn&lt;T&gt;(List&lt;T&gt;)</a>
+            </td>
+            <td>
+              
+SelectNotIn。传入Array或List&lt;T&gt;。
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.SelectNotIn&lt;T&gt;(List&lt;T&gt;) 方法 </h3>
+                  <div>
+                    
+SelectNotIn。传入Array或List&lt;T&gt;。
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> SelectNotIn&lt;T&gt;(<span class="type">List</span>&lt;T&gt; values) </pre></div>
+                    <h5>类型参数</h5>
+                    <dl class="paramsSection">
+                        <dt>T</dt>
+                        <dd>
+                          
+                        </dd>
+                    </dl>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>values</dt>
+                        <dd>
+                          类型：<span class="type">System.Collections.Generic.List&lt;T&gt;</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="SetTableName(System.String)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#SetTableName(System.String)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">SetTableName(String)</a>
+            </td>
+            <td>
+              
+设置所属表名
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.SetTableName(String) 方法 </h3>
+                  <div>
+                    
+设置所属表名
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> SetTableName(<span class="keyword">string</span> tableName)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>tableName</dt>
+                        <dd>
+                          类型：<span class="type">System.String</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="SubQueryEqual(Dos.ORM.FromSection)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#SubQueryEqual(Dos.ORM.FromSection)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">SubQueryEqual(FromSection)</a>
+            </td>
+            <td>
+              
+SubQueryEqual   子查询  
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.SubQueryEqual(FromSection) 方法 </h3>
+                  <div>
+                    
+SubQueryEqual   子查询  
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> SubQueryEqual(<a href="FromSection.html" class="type">FromSection</a> <span class="keyword">from</span>)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>from</dt>
+                        <dd>
+                          类型：<span class="type"><a href="FromSection.html">Dos.ORM.FromSection</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="SubQueryGreater(Dos.ORM.FromSection)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#SubQueryGreater(Dos.ORM.FromSection)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">SubQueryGreater(FromSection)</a>
+            </td>
+            <td>
+              
+SubQueryGreater   子查询  
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.SubQueryGreater(FromSection) 方法 </h3>
+                  <div>
+                    
+SubQueryGreater   子查询  
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> SubQueryGreater(<a href="FromSection.html" class="type">FromSection</a> <span class="keyword">from</span>)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>from</dt>
+                        <dd>
+                          类型：<span class="type"><a href="FromSection.html">Dos.ORM.FromSection</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="SubQueryGreaterOrEqual(Dos.ORM.FromSection)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#SubQueryGreaterOrEqual(Dos.ORM.FromSection)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">SubQueryGreaterOrEqual(FromSection)</a>
+            </td>
+            <td>
+              
+SubQueryGreaterOrEqual   子查询  
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.SubQueryGreaterOrEqual(FromSection) 方法 </h3>
+                  <div>
+                    
+SubQueryGreaterOrEqual   子查询  
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> SubQueryGreaterOrEqual(<a href="FromSection.html" class="type">FromSection</a> <span class="keyword">from</span>)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>from</dt>
+                        <dd>
+                          类型：<span class="type"><a href="FromSection.html">Dos.ORM.FromSection</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="SubQueryIn(Dos.ORM.FromSection)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#SubQueryIn(Dos.ORM.FromSection)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">SubQueryIn(FromSection)</a>
+            </td>
+            <td>
+              
+SubQueryIn   子查询  
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.SubQueryIn(FromSection) 方法 </h3>
+                  <div>
+                    
+SubQueryIn   子查询  
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> SubQueryIn(<a href="FromSection.html" class="type">FromSection</a> <span class="keyword">from</span>)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>from</dt>
+                        <dd>
+                          类型：<span class="type"><a href="FromSection.html">Dos.ORM.FromSection</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="SubQueryLess(Dos.ORM.FromSection)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#SubQueryLess(Dos.ORM.FromSection)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">SubQueryLess(FromSection)</a>
+            </td>
+            <td>
+              
+SubQueryLess   子查询  
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.SubQueryLess(FromSection) 方法 </h3>
+                  <div>
+                    
+SubQueryLess   子查询  
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> SubQueryLess(<a href="FromSection.html" class="type">FromSection</a> <span class="keyword">from</span>)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>from</dt>
+                        <dd>
+                          类型：<span class="type"><a href="FromSection.html">Dos.ORM.FromSection</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="SubQueryLessOrEqual(Dos.ORM.FromSection)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#SubQueryLessOrEqual(Dos.ORM.FromSection)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">SubQueryLessOrEqual(FromSection)</a>
+            </td>
+            <td>
+              
+SubQueryLessOrEqual   子查询  
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.SubQueryLessOrEqual(FromSection) 方法 </h3>
+                  <div>
+                    
+SubQueryLessOrEqual   子查询  
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> SubQueryLessOrEqual(<a href="FromSection.html" class="type">FromSection</a> <span class="keyword">from</span>)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>from</dt>
+                        <dd>
+                          类型：<span class="type"><a href="FromSection.html">Dos.ORM.FromSection</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="SubQueryNotEqual(Dos.ORM.FromSection)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#SubQueryNotEqual(Dos.ORM.FromSection)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">SubQueryNotEqual(FromSection)</a>
+            </td>
+            <td>
+              
+SubQueryNotEqual   子查询  
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.SubQueryNotEqual(FromSection) 方法 </h3>
+                  <div>
+                    
+SubQueryNotEqual   子查询  
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> SubQueryNotEqual(<a href="FromSection.html" class="type">FromSection</a> <span class="keyword">from</span>)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>from</dt>
+                        <dd>
+                          类型：<span class="type"><a href="FromSection.html">Dos.ORM.FromSection</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="SubQueryNotIn(Dos.ORM.FromSection)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#SubQueryNotIn(Dos.ORM.FromSection)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">SubQueryNotIn(FromSection)</a>
+            </td>
+            <td>
+              
+SubQueryNotIn   子查询  
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.SubQueryNotIn(FromSection) 方法 </h3>
+                  <div>
+                    
+SubQueryNotIn   子查询  
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="WhereClip.html" class="type">WhereClip</a> SubQueryNotIn(<a href="FromSection.html" class="type">FromSection</a> <span class="keyword">from</span>)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>from</dt>
+                        <dd>
+                          类型：<span class="type"><a href="FromSection.html">Dos.ORM.FromSection</a></span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="WhereClip.html">Dos.ORM.WhereClip</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Substring(System.Int32,System.Int32)">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Substring(System.Int32,System.Int32)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Substring(Int32, Int32)</a>
+            </td>
+            <td>
+              
+substring
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Substring(Int32, Int32) 方法 </h3>
+                  <div>
+                    
+substring
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> Substring(<span class="keyword">int</span> startIndex, <span class="keyword">int</span> endIndex)</pre></div>
+                    <h5>参数</h5>
+                    <dl class="paramsSection">
+                        <dt>startIndex</dt>
+                        <dd>
+                          类型：<span class="type">System.Int32</span><br />
+                          
+                        </dd>
+                        <dt>endIndex</dt>
+                        <dd>
+                          类型：<span class="type">System.Int32</span><br />
+                          
+                        </dd>
+                    </dl>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Sum">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Sum" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Sum</a>
+            </td>
+            <td>
+              
+Sum
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Sum 方法 </h3>
+                  <div>
+                    
+Sum
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> Sum()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <tr id="Trim">
+            <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
+            </td>
+            <td><a href="#Trim" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Trim</a>
+            </td>
+            <td>
+              
+ltrim and  rtrim
+
+            </td>
+          </tr>
+            <tr style="display:none;">
+              <td colspan="3">
+          	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
+                  <h3>Field.Trim 方法 </h3>
+                  <div>
+                    
+ltrim and  rtrim
+
+                  </div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="type">Field</span> Trim()</pre></div>
+                    <h5>返回值</h5>
+                    <div class="returnsSection">
+                      类型：<span class="type"><a href="Field.html">Dos.ORM.Field</a></span><br />
+                      
+                    </div>
+                </div>
+              </td>
+            </tr>
+    </table>
+  </div>
+<br />
+<div class="DocsBuilder">Generated by <span><a href="http://www.ITdos.com" target="_blank">www.ITdos.com</a></span></div>
+</body>
+</html>

@@ -193,7 +193,13 @@ namespace Dos.ORM
             string nameStr = name.Trim(leftToken, rightToken);
             if (nameStr[0] != paramPrefixToken)
             {
-                return nameStr.Insert(0, new string(paramPrefixToken, 1));
+                if ("@?:".Contains(nameStr[0].ToString()))
+                {
+                    return nameStr.Substring(1).Insert(0, new string(paramPrefixToken, 1));
+                }
+                else {
+                    return nameStr.Insert(0, new string(paramPrefixToken, 1));
+                }
             }
             return nameStr;
         }

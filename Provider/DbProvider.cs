@@ -361,7 +361,10 @@ namespace Dos.ORM
                     //TODO 这里可以继续优化
                     if (cmd.CommandText.IndexOf(p.ParameterName, StringComparison.Ordinal) == -1)
                     {
-                        cmd.CommandText = cmd.CommandText.Replace(p.ParameterName.Substring(1), p.ParameterName);
+                        //2015-08-11修改
+                        cmd.CommandText = cmd.CommandText.Replace("@"+p.ParameterName.Substring(1), p.ParameterName);
+                        cmd.CommandText = cmd.CommandText.Replace("?"+p.ParameterName.Substring(1), p.ParameterName);
+                        cmd.CommandText = cmd.CommandText.Replace(":"+p.ParameterName.Substring(1), p.ParameterName);
                         //if (p.ParameterName.Substring(0, 1) == "?" || p.ParameterName.Substring(0, 1) == ":"
                         //        || p.ParameterName.Substring(0, 1) == "@")
                         //    cmd.CommandText = cmd.CommandText.Replace(paramPrefixToken + p.ParameterName.Substring(1), p.ParameterName);

@@ -26,9 +26,6 @@ namespace Business
             var count2 = Db.Update<TestTable>(model, TestTable._.Id.SubQueryIn(
                 Db.From<TestTable>().Select(d => d.Id).Where(d => d.IDNumber == "777")
             ));
-            //var count3 = Db.Delete<TestTable>(TestTable._.Id.SubQueryIn(
-            //    Db.From<TestTable>().Select(d => d.Id).Where(d => d.IDNumber == "test")
-            //));
             //以上同Sql语句：
             //update TestTable  set IDNumber='XXXXXXX' where Id in 
             //              (SELECT Id from TestTable where IDNumber='777')

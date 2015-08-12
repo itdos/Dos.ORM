@@ -7,7 +7,7 @@
 	*）TransactionScope事务
 
 2015-08-12 Dos.ORM（原Hxj.Data）（v1.10.0.0）
-	*）解决MySql子查询bug。原理见：http://www.itdos.com/DataBase/20150812/1150319.html 特别感谢同事【晓不得www.songyuchao.com】发现此Bug。
+	*）解决MySql子查询bug。原理见：http://www.itdos.com/DataBase/20150812/1150319.html 特别感谢Python同事【晓不得www.songyuchao.com】发现此Bug。
 
 2015-08-12 Dos.ORM（原Hxj.Data）（v1.9.9.9）
 	*）█████重要更新█████笔者在使用含有事务参数方法的过程中，有的trans是最后一个参数，有的是第一个参数，感觉非常杂乱。v1.9.9.9版本对事务参数进行了统一整理，所有事务对象均修改为第一个参数，本次改动会让以前用到trans参数的方法出错，需要将trans参数移动到第一位，我们表示深深的歉意！此举是为了让Dos.ORM用起来更方便、更合理，希望朋友们能理解，谢谢。████████████████████

@@ -6,6 +6,7 @@ using Dos.Common;
 using Dos.ORM;
 using Model;
 using Model.Base;
+using System.Data.Common;
 
 namespace Business
 {
@@ -16,6 +17,36 @@ namespace Business
         /// </summary>
         public BaseResult GetUser(TestTableParam param)
         {
+            #region 测试批量Save
+            //var listModel = new List<TestTable>();
+            //var model1 = new TestTable()
+            //{
+            //    Id = Guid.NewGuid(),
+            //    IDNumber = "0000",
+            //    CreateTime = DateTime.Now,
+            //    MobilePhone = "000",
+            //    Name = "00000"
+            //};
+            //var model2 = new TestTable()
+            //{
+            //    Id = Guid.Parse("fdc87fad-0e80-49b2-aab0-c52d1fcd1297"),
+            //    IDNumber = "000",
+            //    CreateTime = DateTime.Now,
+            //    MobilePhone = "000",
+            //    Name = "00000"
+            //};
+            //var model3 = new TestTable()
+            //{
+            //    Id = Guid.Parse("68805e30-5bc4-43ae-8ad7-8464be215e69")
+            //};
+            //model1.Attach(EntityState.Added);
+            //model2.Attach(EntityState.Modified);
+            //model3.Attach(EntityState.Deleted);
+            //listModel.Add(model1);
+            //listModel.Add(model2);
+            //listModel.Add(model3);
+            //var count = DB.MySql.Save<TestTable>(listModel);
+            #endregion
             var where = new Where<TestTable>();
             #region 模糊搜索条件
             if (!string.IsNullOrWhiteSpace(param.SearchName))
@@ -31,7 +62,7 @@ namespace Business
                 where.And(d => d.MobilePhone.Like(param.SearchMobilePhone));
             }
             #endregion
-            var fs = DB.Context.From<TestTable>()
+            var fs = DB.MySql.From<TestTable>()
                 .Where(where)
                 .OrderByDescending(d => d.CreateTime);
             #region 是否分页
@@ -64,7 +95,7 @@ namespace Business
                 MobilePhone = param.MobilePhone,
                 CreateTime = DateTime.Now
             };
-            var count = DB.Context.Insert<TestTable>(model);
+            var count = DB.MySql.Insert<TestTable>(model);
             return new BaseResult(count > 0, count, count > 0 ? "" : "数据库受影响行数为0！");
         }
         /// <summary>
@@ -76,7 +107,7 @@ namespace Business
             {
                 return new BaseResult(false, null, "参数错误！");
             }
-            var count = DB.Context.Delete<TestTable>(d => d.Id == param.Id);
+            var count = DB.MySql.Delete<TestTable>(d => d.Id == param.Id);
             return new BaseResult(count > 0, count, count > 0 ? "" : "数据库受影响行数为0！");
         }
         /// <summary>
@@ -88,7 +119,7 @@ namespace Business
             {
                 return new BaseResult(false, null, "参数错误！");
             }
-            var model = DB.Context.From<TestTable>().Where(d => d.Id == param.Id).First();
+            var model = DB.MySql.From<TestTable>().Where(d => d.Id == param.Id).First();
             if (model == null)
             {
                 return new BaseResult(false, null, "不存在要修改的数据！");
@@ -96,7 +127,7 @@ namespace Business
             model.Name = param.Name ?? model.Name;
             model.IDNumber = param.IDNumber ?? model.IDNumber;
             model.MobilePhone = param.MobilePhone ?? model.MobilePhone;
-            var count = DB.Context.Update<TestTable>(model);
+            var count = DB.MySql.Update<TestTable>(model);
             return new BaseResult(true);
         }
     }

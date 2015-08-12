@@ -85,7 +85,7 @@ namespace Dos.ORM
         /// <summary>
         /// 实体状态
         /// </summary>
-        private EntityState entityState;
+        private EntityState entityState = EntityState.Unchanged;
 
         ///// <summary>
         ///// 参数计数器  2015-07-30
@@ -143,11 +143,12 @@ namespace Dos.ORM
             return this.entityState;
         }
         /// <summary>
-        /// 将实体置为插入状态
+        /// 恢复实体为默认状态，且标记实体为不做任何数据库操作（仅对.Save()有效果）！
         /// </summary>
         public void DeAttach()
         {
             this.isAttached = false;
+            this.entityState = EntityState.Unchanged;
         }
 
 

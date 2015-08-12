@@ -242,7 +242,7 @@ namespace Dos.ORM
         public int UpdateAll<TEntity>(TEntity entity)
             where TEntity : Entity
         {
-            return dbSession.UpdateAll<TEntity>(entity, trans);
+            return dbSession.UpdateAll<TEntity>(trans,entity);
         }
 
 
@@ -256,7 +256,7 @@ namespace Dos.ORM
         public int UpdateAll<TEntity>(TEntity entity, WhereClip where)
             where TEntity : Entity
         {
-            return dbSession.UpdateAll<TEntity>(entity, where, trans);
+            return dbSession.UpdateAll<TEntity>(trans,entity, where);
         }
 
 
@@ -281,7 +281,7 @@ namespace Dos.ORM
         public int Update<TEntity>(TEntity entity)
             where TEntity : Entity
         {
-            return dbSession.Update<TEntity>(entity, trans);
+            return dbSession.Update<TEntity>(trans,entity);
         }
 
 
@@ -295,7 +295,7 @@ namespace Dos.ORM
         public int Update<TEntity>(TEntity entity, WhereClip where)
             where TEntity : Entity
         {
-            return dbSession.Update<TEntity>(entity, where, trans);
+            return dbSession.Update<TEntity>(trans,entity, where);
         }
 
 
@@ -310,7 +310,7 @@ namespace Dos.ORM
         public int Update<TEntity>(Field field, object value, WhereClip where)
             where TEntity : Entity
         {
-            return dbSession.Update<TEntity>(field, value, where, trans);
+            return dbSession.Update<TEntity>(trans,field, value, where);
         }
 
 
@@ -326,7 +326,7 @@ namespace Dos.ORM
         public int Update<TEntity>(Dictionary<Field, object> fieldValue, WhereClip where)
               where TEntity : Entity
         {
-            return dbSession.Update<TEntity>(fieldValue, where, trans);
+            return dbSession.Update<TEntity>(trans,fieldValue, where);
         }
 
 
@@ -341,7 +341,7 @@ namespace Dos.ORM
         public int Update<TEntity>(Field[] fields, object[] values, WhereClip where)
             where TEntity : Entity
         {
-            return dbSession.Update<TEntity>(fields, values, where, trans);
+            return dbSession.Update<TEntity>(trans,fields, values, where);
         }
 
 
@@ -360,7 +360,7 @@ namespace Dos.ORM
         public int Delete<TEntity>(TEntity entity)
             where TEntity : Entity
         {
-            return dbSession.Delete<TEntity>(entity, trans);
+            return dbSession.Delete<TEntity>(trans,entity);
         }
 
 
@@ -399,7 +399,7 @@ namespace Dos.ORM
         public int Delete<TEntity>(WhereClip where)
             where TEntity : Entity
         {
-            return dbSession.Delete<TEntity>(where, trans);
+            return dbSession.Delete<TEntity>(trans,where);
         }
 
         #endregion
@@ -428,7 +428,7 @@ namespace Dos.ORM
         public int Insert<TEntity>(TEntity entity)
             where TEntity : Entity
         {
-            return dbSession.Insert<TEntity>(entity, trans);
+            return dbSession.Insert<TEntity>(trans,entity);
         }
 
         /// <summary>
@@ -441,7 +441,7 @@ namespace Dos.ORM
         public int Insert<TEntity>(Field[] fields, object[] values)
             where TEntity : Entity
         {
-            return dbSession.Insert<TEntity>(fields, values, trans);
+            return dbSession.Insert<TEntity>(trans,fields, values);
         }
 
 

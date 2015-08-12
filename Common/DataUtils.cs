@@ -27,6 +27,17 @@ using Dos.ORM;
 
 namespace Dos.ORM.Common
 {
+    /// <summary>
+    /// 此类占位用，以兼容以前代码不会报错。
+    /// </summary>
+    public class DosORMCommon
+    {
+        
+    }
+}
+
+namespace Dos.ORM
+{
 
     /// <summary>
     /// 帮助类

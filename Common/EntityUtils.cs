@@ -27,7 +27,7 @@ using System.Web.UI;
 using Dos.ORM;
 using Dos.ORM.Common;
 
-namespace Dos.ORM.Common
+namespace Dos.ORM
 {
 
     /// <summary>

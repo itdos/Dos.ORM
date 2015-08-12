@@ -17,7 +17,7 @@
 using System.Collections.Generic;
 using Dos.ORM.Common;
 
-namespace Dos.ORM.Common
+namespace Dos.ORM
 {
     /// <summary>
     /// 实体信息缓存

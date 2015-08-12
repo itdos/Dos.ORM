@@ -863,15 +863,22 @@ namespace Dos.ORM
         #endregion
 
         #region 属性
-
-        ///// <summary>
-        ///// DbProvider
-        ///// </summary>
-        //public DbProvider DbProvider
-        //{
-        //    get { return dbProvider; }
-        //}
-
+        //2015-08-12恢复注释
+        /// <summary>
+        /// DbProvider。
+        /// </summary>
+        public DbProvider DbProvider
+        {
+            get { return dbProvider; }
+        }
+        //2015-08-12新增
+        /// <summary>
+        /// DbProvider。
+        /// </summary>
+        public Database Database
+        {
+            get { return database; }
+        }
         /// <summary>
         /// 设置 distinct
         /// </summary>

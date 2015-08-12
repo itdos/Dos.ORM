@@ -12,11 +12,27 @@ namespace Business
 {
     public class TestTableLogic
     {
+        public DbSession Db = DB.MySql;
         /// <summary>
         /// 获取数据。
         /// </summary>
         public BaseResult GetUser(TestTableParam param)
         {
+            #region 测试子查询修改
+            var model = new TestTable
+            {
+                IDNumber = "XXXXXXXXXX"
+            };
+            var count2 = Db.Update<TestTable>(model, TestTable._.Id.SubQueryIn(
+                Db.From<TestTable>().Select(d => d.Id).Where(d => d.IDNumber == "777")
+            ));
+            //var count3 = Db.Delete<TestTable>(TestTable._.Id.SubQueryIn(
+            //    Db.From<TestTable>().Select(d => d.Id).Where(d => d.IDNumber == "test")
+            //));
+            //以上同Sql语句：
+            //update TestTable  set IDNumber='XXXXXXX' where Id in 
+            //              (SELECT Id from TestTable where IDNumber='777')
+            #endregion
             #region 测试批量Save
             //var listModel = new List<TestTable>();
             //var model1 = new TestTable()

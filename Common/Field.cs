@@ -959,7 +959,10 @@ namespace Dos.ORM
         {
             if (Field.IsNullOrEmpty(field))
                 return null;
-
+            if (from.DbProvider.DatabaseType == DatabaseType.MySql)
+            {
+                return new WhereClip(string.Concat(field.TableFieldName, join, "(SELECT * FROM (", from.getPagedFromSection().SqlString, ") AS TEMP" + DataUtils.GetNewParamCount() + ")"), from.Parameters.ToArray());
+            }
             return new WhereClip(string.Concat(field.TableFieldName, join, "(", from.getPagedFromSection().SqlString, ")"), from.Parameters.ToArray());
         }
 

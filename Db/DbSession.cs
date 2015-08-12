@@ -184,29 +184,31 @@ namespace Dos.ORM
         private static DbProvider CreateDbProvider(DatabaseType dt, string connStr)
         {
             DbProvider provider = null;
-            if (dt == DatabaseType.SqlServer9)
+            switch (dt)
             {
-                provider = ProviderFactory.CreateDbProvider(null, typeof(Dos.ORM.SqlServer9.SqlServer9Provider).FullName, connStr);
+                case DatabaseType.SqlServer9:
+                    provider = ProviderFactory.CreateDbProvider(null, typeof(SqlServer9.SqlServer9Provider).FullName, connStr, dt);
+                    break;
+                case DatabaseType.SqlServer:
+                    provider = ProviderFactory.CreateDbProvider(null, typeof(SqlServer.SqlServerProvider).FullName, connStr, dt);
+                    break;
+                case DatabaseType.Oracle:
+                    provider = ProviderFactory.CreateDbProvider(null, typeof(Oracle.OracleProvider).FullName, connStr, dt);
+                    break;
+                case DatabaseType.MySql:
+                    provider = ProviderFactory.CreateDbProvider("Dos.ORM.MySql", "Dos.ORM.MySql.MySqlProvider", connStr, dt);
+                    break;
+                case DatabaseType.Sqlite3:
+                    provider = ProviderFactory.CreateDbProvider("Dos.ORM.Sqlite", "Dos.ORM.Sqlite.SqliteProvider", connStr, dt);
+                    break;
+                case DatabaseType.MsAccess:
+                    provider = ProviderFactory.CreateDbProvider(null, typeof(MsAccess.MsAccessProvider).FullName, connStr, dt);
+                    break;
             }
-            else if (dt == DatabaseType.SqlServer)
+            //2015-08-12新增
+            if (provider != null)
             {
-                provider = ProviderFactory.CreateDbProvider(null, typeof(Dos.ORM.SqlServer.SqlServerProvider).FullName, connStr);
-            }
-            else if (dt == DatabaseType.Oracle)
-            {
-                provider = ProviderFactory.CreateDbProvider(null, typeof(Dos.ORM.Oracle.OracleProvider).FullName, connStr);
-            }
-            else if (dt == DatabaseType.MySql)
-            {
-                provider = ProviderFactory.CreateDbProvider("Dos.ORM.MySql", "Dos.ORM.MySql.MySqlProvider", connStr);
-            }
-            else if (dt == DatabaseType.Sqlite3)
-            {
-                provider = ProviderFactory.CreateDbProvider("Dos.ORM.Sqlite", "Dos.ORM.Sqlite.SqliteProvider", connStr);
-            }
-            else if (dt == DatabaseType.MsAccess)
-            {
-                provider = ProviderFactory.CreateDbProvider(null, typeof(Dos.ORM.MsAccess.MsAccessProvider).FullName, connStr);
+                provider.DatabaseType = dt;
             }
             return provider;
         }
@@ -219,7 +221,7 @@ namespace Dos.ORM
         /// <param name="connStr">The conn STR.</param>
         public static void SetDefault(string assemblyName, string className, string connStr)
         {
-            DbProvider provider = ProviderFactory.CreateDbProvider(assemblyName, className, connStr);
+            DbProvider provider = ProviderFactory.CreateDbProvider(assemblyName, className, connStr,null);
             if (provider == null)
             {
                 throw new NotSupportedException(string.Format("Cannot construct DbProvider by specified parameters: {0}, {1}, {2}",
@@ -360,7 +362,7 @@ namespace Dos.ORM
         /// <param name="connStr">连接字符串</param>
         public DbSession(string assemblyName, string className, string connStr)
         {
-            DbProvider provider = ProviderFactory.CreateDbProvider(assemblyName, className, connStr);
+            DbProvider provider = ProviderFactory.CreateDbProvider(assemblyName, className, connStr,null);
             if (provider == null)
             {
                 throw new NotSupportedException(string.Format("Cannot construct DbProvider by specified parameters: {0}, {1}, {2}",

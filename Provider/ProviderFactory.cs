@@ -37,13 +37,13 @@ namespace Dos.ORM
         #region Public Members
 
         /// <summary>
-        /// Creates the db provider.
+        /// 创建数据库事件提供程序
         /// </summary>
         /// <param name="assemblyName">Name of the assembly.</param>
         /// <param name="className">Name of the class.</param>
         /// <param name="connectionString">The conn STR.</param>
         /// <returns>The db provider.</returns>
-        public static DbProvider CreateDbProvider(string assemblyName, string className, string connectionString)
+        public static DbProvider CreateDbProvider(string assemblyName, string className, string connectionString,DatabaseType? databaseType)
         {
             Check.Require(connectionString, "connectionString", Check.NotNullOrEmpty);
 
@@ -73,32 +73,60 @@ namespace Dos.ORM
             if (string.IsNullOrEmpty(className))
             {
                 className = typeof(SqlServer.SqlServerProvider).ToString();
+                if (databaseType == null)
+                {
+                    databaseType = DatabaseType.SqlServer;
+                }
             }
             else if (string.Compare(className, "System.Data.SqlClient", true) == 0 || string.Compare(className, "Dos.ORM.SqlServer", true) == 0)
             {
                 className = typeof(SqlServer.SqlServerProvider).ToString();
+                if (databaseType == null)
+                {
+                    databaseType = DatabaseType.SqlServer;
+                }
             }
             else if (string.Compare(className, "Dos.ORM.SqlServer9", true) == 0 || className.IndexOf("SqlServer9", StringComparison.OrdinalIgnoreCase) >= 0 || className.IndexOf("sqlserver2005", StringComparison.OrdinalIgnoreCase) >= 0 || className.IndexOf("sql2005", StringComparison.OrdinalIgnoreCase) >= 0)
             {
                 className = typeof(SqlServer9.SqlServer9Provider).ToString();
+                if (databaseType == null)
+                {
+                    databaseType = DatabaseType.SqlServer9;
+                }
             }
             else if (className.IndexOf("oracle", StringComparison.OrdinalIgnoreCase) >= 0)
             {
                 className = typeof(Oracle.OracleProvider).ToString();
+                if (databaseType == null)
+                {
+                    databaseType = DatabaseType.Oracle;
+                }
             }
             else if (className.IndexOf("access", StringComparison.OrdinalIgnoreCase) >= 0)
             {
                 className = typeof(MsAccess.MsAccessProvider).ToString();
+                if (databaseType == null)
+                {
+                    databaseType = DatabaseType.MsAccess;
+                }
             }
             else if (className.IndexOf("mysql", StringComparison.OrdinalIgnoreCase) >= 0)
             {
                 className = "Dos.ORM.MySql.MySqlProvider";
                 assemblyName = "Dos.ORM.MySql";
+                if (databaseType == null)
+                {
+                    databaseType = DatabaseType.MySql;
+                }
             }
             else if (className.IndexOf("sqlite", StringComparison.OrdinalIgnoreCase) >= 0)
             {
                 className = "Dos.ORM.Sqlite.SqliteProvider";
                 assemblyName = "Dos.ORM.Sqlite";
+                if (databaseType == null)
+                {
+                    databaseType = DatabaseType.Sqlite3;
+                }
             }
 
             string cacheKey = string.Concat(assemblyName, className, connectionString);
@@ -120,6 +148,10 @@ namespace Dos.ORM
                 }
 
                 DbProvider retProvider = ass.CreateInstance(className, false, System.Reflection.BindingFlags.Default, null, new object[] { connectionString }, null, null) as DbProvider;
+                if (retProvider != null && databaseType != null)
+                {
+                    retProvider.DatabaseType = databaseType.Value;
+                }
                 providerCache.Add(cacheKey, retProvider);
                 return retProvider;
             }
@@ -142,11 +174,11 @@ namespace Dos.ORM
                         string[] assAndClass = connStrSetting.ProviderName.Split(',');
                         if (assAndClass.Length > 1)
                         {
-                            dbProvider = CreateDbProvider(assAndClass[1].Trim(), assAndClass[0].Trim(), connStrSetting.ConnectionString);
+                            dbProvider = CreateDbProvider(assAndClass[1].Trim(), assAndClass[0].Trim(), connStrSetting.ConnectionString, null);
                         }
                         else
                         {
-                            dbProvider = CreateDbProvider(null, assAndClass[0].Trim(), connStrSetting.ConnectionString);
+                            dbProvider = CreateDbProvider(null, assAndClass[0].Trim(), connStrSetting.ConnectionString, null);
                         }
 
                         dbProvider.ConnectionStringsName = connStrSetting.Name;
@@ -177,11 +209,11 @@ namespace Dos.ORM
             string[] assAndClass = connStrSetting.ProviderName.Split(',');
             if (assAndClass.Length > 1)
             {
-                dbProvider = CreateDbProvider(assAndClass[0].Trim(), assAndClass[1].Trim(), connStrSetting.ConnectionString);
+                dbProvider = CreateDbProvider(assAndClass[0].Trim(), assAndClass[1].Trim(), connStrSetting.ConnectionString, null);
             }
             else
             {
-                dbProvider = CreateDbProvider(null, assAndClass[0].Trim(), connStrSetting.ConnectionString);
+                dbProvider = CreateDbProvider(null, assAndClass[0].Trim(), connStrSetting.ConnectionString, null);
             }
 
             dbProvider.ConnectionStringsName = connStrName;

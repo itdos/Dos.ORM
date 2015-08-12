@@ -78,7 +78,20 @@ namespace Dos.ORM
 
 
         #region Properties
-
+        //2015-08-12新增
+        /// <summary>
+        /// 
+        /// </summary>
+        private DatabaseType databaseType;
+        //2015-08-12新增
+        /// <summary>
+        /// ConnectionStrings 节点名称
+        /// </summary>
+        public DatabaseType DatabaseType
+        {
+            get { return databaseType; }
+            set { databaseType = value; }
+        }
 
         private string connectionStringsName;
 

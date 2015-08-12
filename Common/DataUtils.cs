@@ -444,6 +444,20 @@ namespace Dos.ORM
 
         public static int paramCount = 0;
         /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static int GetNewParamCount()
+        {
+            if (paramCount > 999999)
+            {
+                paramCount = 0;
+            }
+            paramCount++;
+            return paramCount;
+        }
+
+        /// <summary>
         /// 生成唯一字符串
         /// </summary>
         /// <returns></returns>
@@ -451,14 +465,9 @@ namespace Dos.ORM
         {
             //paramPrefixToken
             //return GetRandomNumber().ToString();
-            if (paramCount > 99999999)
-            {
-                paramCount = 0;
-            }
-            paramCount++;
             //TODO 此处应该根据数据库类型来附加@、?、:
             //2015-08-10，去掉了第一个"@", 
-            return string.Concat("@",field.tableName, "_", field.Name, "_", paramCount);
+            return string.Concat("@", field.tableName, "_", field.Name, "_", GetNewParamCount());
             byte[] data = new byte[16];
             new RNGCryptoServiceProvider().GetBytes(data);
             string keystring = keyReg.Replace(Convert.ToBase64String(data).Trim(), string.Empty);

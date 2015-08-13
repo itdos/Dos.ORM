@@ -43,7 +43,7 @@ namespace Dos.ORM
         /// <param name="className">Name of the class.</param>
         /// <param name="connectionString">The conn STR.</param>
         /// <returns>The db provider.</returns>
-        public static DbProvider CreateDbProvider(string assemblyName, string className, string connectionString,DatabaseType? databaseType)
+        public static DbProvider CreateDbProvider(string assemblyName, string className, string connectionString, DatabaseType? databaseType)
         {
             Check.Require(connectionString, "connectionString", Check.NotNullOrEmpty);
 
@@ -206,6 +206,11 @@ namespace Dos.ORM
             DbProvider dbProvider;
             ConnectionStringSettings connStrSetting = ConfigurationManager.ConnectionStrings[connStrName];
             Check.Invariant(connStrSetting != null, null, new ConfigurationErrorsException(string.Concat("Cannot find specified connection string setting named as ", connStrName, " in application config file's ConnectionString section.")));
+            //2015-08-13新增
+            if (connStrSetting == null)
+            {
+                throw new Exception("数据库连接字符串【" + connStrName + "】没有配置！");
+            }
             string[] assAndClass = connStrSetting.ProviderName.Split(',');
             if (assAndClass.Length > 1)
             {
@@ -215,12 +220,9 @@ namespace Dos.ORM
             {
                 dbProvider = CreateDbProvider(null, assAndClass[0].Trim(), connStrSetting.ConnectionString, null);
             }
-
             dbProvider.ConnectionStringsName = connStrName;
-
             return dbProvider;
         }
-
         #endregion
     }
 }

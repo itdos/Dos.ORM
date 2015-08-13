@@ -20,12 +20,12 @@ namespace Model
 {
 
     /// <summary>
-    /// 实体类TestTable 。(属性说明自动提取数据库字段的描述信息)
+    /// 实体类TableMysql 。(属性说明自动提取数据库字段的描述信息)
     /// </summary>
     [Serializable]
-    public partial class TestTable : Entity
+    public partial class TableMysql : Entity
     {
-        public TestTable() : base("TestTable") { }
+        public TableMysql() : base("TableMysql") { }
 
         #region Model
         private Guid _Id;
@@ -34,6 +34,7 @@ namespace Model
         private string _MobilePhone;
         private bool? _Test1 = true;
         private int? _Test2 = 50;
+        private string _Test3;
         private DateTime _CreateTime;
         /// <summary>
         /// 
@@ -110,6 +111,18 @@ namespace Model
         /// <summary>
         /// 
         /// </summary>
+        public string Test3
+        {
+            get { return _Test3; }
+            set
+            {
+                this.OnPropertyValueChange(_.Test3, _Test3, value);
+                this._Test3 = value;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         public DateTime CreateTime
         {
             get { return _CreateTime; }
@@ -142,6 +155,7 @@ namespace Model
 				_.MobilePhone,
 				_.Test1,
 				_.Test2,
+				_.Test3,
 				_.CreateTime};
         }
         /// <summary>
@@ -156,33 +170,8 @@ namespace Model
 				this._MobilePhone,
 				this._Test1,
 				this._Test2,
+				this._Test3,
 				this._CreateTime};
-        }
-        /// <summary>
-        /// 给当前实体赋值
-        /// </summary>
-        public override void SetPropertyValues(IDataReader reader)
-        {
-            this._Id = DataUtils.ConvertValue<Guid>(reader["Id"]);
-            this._Name = DataUtils.ConvertValue<string>(reader["Name"]);
-            this._IDNumber = DataUtils.ConvertValue<string>(reader["IDNumber"]);
-            this._MobilePhone = DataUtils.ConvertValue<string>(reader["MobilePhone"]);
-            this._Test1 = DataUtils.ConvertValue<bool?>(reader["Test1"]);
-            this._Test2 = DataUtils.ConvertValue<int?>(reader["Test2"]);
-            this._CreateTime = DataUtils.ConvertValue<DateTime>(reader["CreateTime"]);
-        }
-        /// <summary>
-        /// 给当前实体赋值
-        /// </summary>
-        public override void SetPropertyValues(DataRow row)
-        {
-            this._Id = DataUtils.ConvertValue<Guid>(row["Id"]);
-            this._Name = DataUtils.ConvertValue<string>(row["Name"]);
-            this._IDNumber = DataUtils.ConvertValue<string>(row["IDNumber"]);
-            this._MobilePhone = DataUtils.ConvertValue<string>(row["MobilePhone"]);
-            this._Test1 = DataUtils.ConvertValue<bool?>(row["Test1"]);
-            this._Test2 = DataUtils.ConvertValue<int?>(row["Test2"]);
-            this._CreateTime = DataUtils.ConvertValue<DateTime>(row["CreateTime"]);
         }
         #endregion
 
@@ -195,35 +184,39 @@ namespace Model
             /// <summary>
             /// * 
             /// </summary>
-            public readonly static Field All = new Field("*", "TestTable");
+            public readonly static Field All = new Field("*", "TableMysql");
             /// <summary>
             /// 
             /// </summary>
-            public readonly static Field Id = new Field("Id", "TestTable", "Id");
+            public readonly static Field Id = new Field("Id", "TableMysql", "Id");
             /// <summary>
             /// 
             /// </summary>
-            public readonly static Field Name = new Field("Name", "TestTable", "Name");
+            public readonly static Field Name = new Field("Name", "TableMysql", "Name");
             /// <summary>
             /// 
             /// </summary>
-            public readonly static Field IDNumber = new Field("IDNumber", "TestTable", "IDNumber");
+            public readonly static Field IDNumber = new Field("IDNumber", "TableMysql", "IDNumber");
             /// <summary>
             /// 
             /// </summary>
-            public readonly static Field MobilePhone = new Field("MobilePhone", "TestTable", "MobilePhone");
+            public readonly static Field MobilePhone = new Field("MobilePhone", "TableMysql", "MobilePhone");
             /// <summary>
             /// 
             /// </summary>
-            public readonly static Field Test1 = new Field("Test1", "TestTable", "Test1");
+            public readonly static Field Test1 = new Field("Test1", "TableMysql", "Test1");
             /// <summary>
             /// 
             /// </summary>
-            public readonly static Field Test2 = new Field("Test2", "TestTable", "Test2");
+            public readonly static Field Test2 = new Field("Test2", "TableMysql", "Test2");
             /// <summary>
             /// 
             /// </summary>
-            public readonly static Field CreateTime = new Field("CreateTime", "TestTable", "CreateTime");
+            public readonly static Field Test3 = new Field("Test3", "TableMysql", "Test3");
+            /// <summary>
+            /// 
+            /// </summary>
+            public readonly static Field CreateTime = new Field("CreateTime", "TableMysql", "CreateTime");
         }
         #endregion
 

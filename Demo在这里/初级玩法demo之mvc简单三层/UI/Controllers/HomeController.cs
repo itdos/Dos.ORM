@@ -12,7 +12,7 @@ namespace UI.Controllers
     [ExceptionLog]
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult MySql()
         {
             return View();
         }
@@ -21,7 +21,7 @@ namespace UI.Controllers
         /// </summary>
         public JsonResult GetUser(TestTableParam param)
         {
-            var result = new TestTableLogic().GetUser(param);
+            var result = new TableMySqlLogic().GetUser(param);
             var test = Json(result);
             return test;
         }
@@ -30,7 +30,7 @@ namespace UI.Controllers
         /// </summary>
         public JsonResult AddUser(TestTableParam param)
         {
-            var result = new TestTableLogic().AddUser(param);
+            var result = new TableMySqlLogic().AddUser(param);
             return Json(result);
         }
         /// <summary>
@@ -38,7 +38,7 @@ namespace UI.Controllers
         /// </summary>
         public JsonResult UptUser(TestTableParam param)
         {
-            var result = new TestTableLogic().UptUser(param);
+            var result = new TableMySqlLogic().UptUser(param);
             return Json(result);
         }
         /// <summary>
@@ -46,7 +46,7 @@ namespace UI.Controllers
         /// </summary>
         public JsonResult DelUser(TestTableParam param)
         {
-            var result = new TestTableLogic().DelUser(param);
+            var result = new TableMySqlLogic().DelUser(param);
             return Json(result);
         }
     }

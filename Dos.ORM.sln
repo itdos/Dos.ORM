@@ -19,10 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Demo在这里\初�
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "高级玩法demo之分布式应用开发", "高级玩法demo之分布式应用开发", "{EBB57C0A-F81A-448F-BA3F-05CE30721A90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.Tools.EntityDesign", "..\Dos.Tools.EntityDesign\Dos.Tools.EntityDesign.csproj", "{F073175B-8B7A-4EFB-AD8C-8F8CBB4133A4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinForm", "Demo在这里\初级玩法demo之mvc简单三层\WinForm\WinForm.csproj", "{93507A00-152E-4104-81E0-597604FF63AD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,14 +49,6 @@ Global
 		{657E4ECD-3CB3-4D79-9393-A2A774B78513}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{657E4ECD-3CB3-4D79-9393-A2A774B78513}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{657E4ECD-3CB3-4D79-9393-A2A774B78513}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F073175B-8B7A-4EFB-AD8C-8F8CBB4133A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F073175B-8B7A-4EFB-AD8C-8F8CBB4133A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F073175B-8B7A-4EFB-AD8C-8F8CBB4133A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F073175B-8B7A-4EFB-AD8C-8F8CBB4133A4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93507A00-152E-4104-81E0-597604FF63AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93507A00-152E-4104-81E0-597604FF63AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93507A00-152E-4104-81E0-597604FF63AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93507A00-152E-4104-81E0-597604FF63AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +57,5 @@ Global
 		{480F951D-51F6-4A27-88CA-AF50E9EE3474} = {1ED5C027-1408-4E1D-822F-233F3B25C38D}
 		{EB7A463E-F934-4697-9081-68179A4A1BE1} = {1ED5C027-1408-4E1D-822F-233F3B25C38D}
 		{657E4ECD-3CB3-4D79-9393-A2A774B78513} = {1ED5C027-1408-4E1D-822F-233F3B25C38D}
-		{93507A00-152E-4104-81E0-597604FF63AD} = {1ED5C027-1408-4E1D-822F-233F3B25C38D}
 	EndGlobalSection
 EndGlobal

@@ -10,25 +10,24 @@ using System.Data.Common;
 
 namespace Business
 {
-    public class TestTableLogic
+    public class TableMySqlLogic
     {
-        public DbSession Db = DB.MySql;
         /// <summary>
         /// 获取数据。
         /// </summary>
         public BaseResult GetUser(TestTableParam param)
         {
             #region 测试子查询修改
-            var model = new TestTable
-            {
-                IDNumber = "XXXXXXXXXX"
-            };
-            var count2 = Db.Update<TestTable>(model, TestTable._.Id.SubQueryIn(
-                Db.From<TestTable>().Select(d => d.Id).Where(d => d.IDNumber == "777")
-            ));
-            //以上同Sql语句：
-            //update TestTable  set IDNumber='XXXXXXX' where Id in 
-            //              (SELECT Id from TestTable where IDNumber='777')
+            //var model = new TestTable
+            //{
+            //    IDNumber = "XXXXXXXXXX"
+            //};
+            //var count2 = DB.MySql.Update<TestTable>(model, TestTable._.Id.SubQueryIn(
+            //    DB.MySql.From<TestTable>().Select(d => d.Id).Where(d => d.IDNumber == "777")
+            //));
+            ////以上同Sql语句：
+            ////update TestTable  set IDNumber='XXXXXXX' where Id in 
+            ////              (SELECT Id from TestTable where IDNumber='777')
             #endregion
             #region 测试批量Save
             //var listModel = new List<TestTable>();
@@ -60,7 +59,7 @@ namespace Business
             //listModel.Add(model3);
             //var count = DB.MySql.Save<TestTable>(listModel);
             #endregion
-            var where = new Where<TestTable>();
+            var where = new Where<TableMysql>();
             #region 模糊搜索条件
             if (!string.IsNullOrWhiteSpace(param.SearchName))
             {
@@ -75,7 +74,7 @@ namespace Business
                 where.And(d => d.MobilePhone.Like(param.SearchMobilePhone));
             }
             #endregion
-            var fs = DB.MySql.From<TestTable>()
+            var fs = DB.MySql.From<TableMysql>()
                 .Where(where)
                 .OrderByDescending(d => d.CreateTime);
             #region 是否分页
@@ -100,7 +99,7 @@ namespace Business
             {
                 return new BaseResult(false, null, "参数错误！");
             }
-            var model = new TestTable
+            var model = new TableMysql
             {
                 Id = Guid.NewGuid(),
                 Name = param.Name,
@@ -108,7 +107,7 @@ namespace Business
                 MobilePhone = param.MobilePhone,
                 CreateTime = DateTime.Now
             };
-            var count = DB.MySql.Insert<TestTable>(model);
+            var count = DB.MySql.Insert<TableMysql>(model);
             return new BaseResult(count > 0, count, count > 0 ? "" : "数据库受影响行数为0！");
         }
         /// <summary>
@@ -120,7 +119,7 @@ namespace Business
             {
                 return new BaseResult(false, null, "参数错误！");
             }
-            var count = DB.MySql.Delete<TestTable>(d => d.Id == param.Id);
+            var count = DB.MySql.Delete<TableMysql>(d => d.Id == param.Id);
             return new BaseResult(count > 0, count, count > 0 ? "" : "数据库受影响行数为0！");
         }
         /// <summary>
@@ -132,7 +131,7 @@ namespace Business
             {
                 return new BaseResult(false, null, "参数错误！");
             }
-            var model = DB.MySql.From<TestTable>().Where(d => d.Id == param.Id).First();
+            var model = DB.MySql.From<TableMysql>().Where(d => d.Id == param.Id).First();
             if (model == null)
             {
                 return new BaseResult(false, null, "不存在要修改的数据！");
@@ -140,7 +139,7 @@ namespace Business
             model.Name = param.Name ?? model.Name;
             model.IDNumber = param.IDNumber ?? model.IDNumber;
             model.MobilePhone = param.MobilePhone ?? model.MobilePhone;
-            var count = DB.MySql.Update<TestTable>(model);
+            var count = DB.MySql.Update<TableMysql>(model);
             return new BaseResult(true);
         }
     }

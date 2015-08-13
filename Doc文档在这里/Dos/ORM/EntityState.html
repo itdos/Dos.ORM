@@ -2,22 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Dos.ORM.Common.JoinType" />
+<meta name="keywords" content="Dos.ORM.EntityState" />
 <meta name="generator" content="DocsBuilder" />
-<title>JoinType 枚举 (Dos.ORM.Common)</title>
-<link rel="stylesheet" type="text/css" href="../../../styles/zebra.css" />
-<script type="text/javascript" src="../../../scripts/accordion.js"></script>
+<title>EntityState 枚举 (Dos.ORM)</title>
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../styles/zebra.css" />
+<script type="text/javascript" src="../../scripts/accordion.js"></script>
 </head><body>
-<h1>JoinType 枚举</h1>
+<h1>EntityState 枚举</h1>
 <div id="summarySection">
   
-连接类型
+标记实体状态
 
 </div>
-<div id="namespaceSection"> <strong>命名空间：</strong><a href="../Common/namespace-summary.html">Dos.ORM.Common</a><br />
+<div id="namespaceSection"> <strong>命名空间：</strong><a href="../ORM/namespace-summary.html">Dos.ORM</a><br />
   <strong>程序集：</strong><span>Dos.ORM（在 Dos.ORM.dll 中）</span> </div>
-<div id="syntaxSection" class="syntaxSection"> <pre class="code"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="type">JoinType</span></pre> </div>
-    <a id="memberTableToggle" onclick="ExpandCollapse(document.getElementById('memberTableSection'));ToggleSwitch(this.childNodes[0].childNodes[0]);"><h2><img alt="" title="折叠" src="../../../images/collapse.png" />成员</h2></a>
+<div id="syntaxSection" class="syntaxSection"> <pre class="code"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="type">EntityState</span></pre> </div>
+    <a id="memberTableToggle" onclick="ExpandCollapse(document.getElementById('memberTableSection'));ToggleSwitch(this.childNodes[0].childNodes[0]);"><h2><img alt="" title="折叠" src="../../images/collapse.png" />成员</h2></a>
     <div id="memberTableSection">
       <table id="memberTable" class="memberTable" cellspacing="0" cellpadding="0" border="0">
         <tr>
@@ -27,46 +28,37 @@
         </tr>
           <tr>
             <td></td>
-            <td>CrossJoin</td>
+            <td>Added</td>
             <td>
               
-CrossJoin
+标记为插入状态。.Save()触发。
 
             </td>
           </tr>
           <tr>
             <td></td>
-            <td>FullJoin</td>
+            <td>Deleted</td>
             <td>
               
-FullJoin
+标记为删除状态。.Save()触发。
 
             </td>
           </tr>
           <tr>
             <td></td>
-            <td>InnerJoin</td>
+            <td>Modified</td>
             <td>
               
-InnerJoin
+标记为修改状态。.Save()触发。
 
             </td>
           </tr>
           <tr>
             <td></td>
-            <td>LeftJoin</td>
+            <td>Unchanged</td>
             <td>
               
-LeftJoin
-
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>RightJoin</td>
-            <td>
-              
-RightJoin
+标记为不做任何数据库操作。
 
             </td>
           </tr>

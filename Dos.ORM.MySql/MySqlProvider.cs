@@ -24,26 +24,38 @@ using MySql.Data.MySqlClient;
 
 namespace Dos.ORM.MySql
 {
-
+    /// <summary>
+    /// MySql
+    /// </summary>
     public class MySqlProvider : DbProvider
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connectionString"></param>
         public MySqlProvider(string connectionString)
             : base(connectionString, global::MySql.Data.MySqlClient.MySqlClientFactory.Instance, '`', '`', '?')
         {
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public override string RowAutoID
         {
             get { return "select last_insert_id();"; }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public override bool SupportBatch
         {
             get { return true; }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cmd"></param>
         public override void PrepareCommand(DbCommand cmd)
         {
             base.PrepareCommand(cmd);

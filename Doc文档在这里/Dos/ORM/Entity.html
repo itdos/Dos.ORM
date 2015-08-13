@@ -5,6 +5,7 @@
 <meta name="keywords" content="Dos.ORM.Entity" />
 <meta name="generator" content="DocsBuilder" />
 <title>Entity 类 (Dos.ORM)</title>
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../../styles/zebra.css" />
 <script type="text/javascript" src="../../scripts/accordion.js"></script>
 </head><body>
@@ -118,10 +119,10 @@
                 </div>
               </td>
             </tr>
-          <tr id="Attach(Dos.ORM.Common.EntityState)">
+          <tr id="Attach(Dos.ORM.EntityState)">
             <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" />
             </td>
-            <td><a href="#Attach(Dos.ORM.Common.EntityState)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Attach(EntityState)</a>
+            <td><a href="#Attach(Dos.ORM.EntityState)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">Attach(EntityState)</a>
             </td>
             <td>
               
@@ -138,12 +139,12 @@
 将实体置为指定状态
 
                   </div>
-                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">void</span> Attach(<a href="Common/EntityState.html" class="type">EntityState</a> entityState)</pre></div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">void</span> Attach(<a href="EntityState.html" class="type">EntityState</a> entityState)</pre></div>
                     <h5>参数</h5>
                     <dl class="paramsSection">
                         <dt>entityState</dt>
                         <dd>
-                          类型：<span class="type"><a href="Common/EntityState.html">Dos.ORM.Common.EntityState</a></span><br />
+                          类型：<span class="type"><a href="EntityState.html">Dos.ORM.EntityState</a></span><br />
                           
                         </dd>
                     </dl>
@@ -181,7 +182,7 @@
             </td>
             <td>
               
-将实体置为插入状态
+恢复实体为默认状态，且标记实体为不做任何数据库操作（仅对.Save()有效果）！
 
             </td>
           </tr>
@@ -191,7 +192,7 @@
                   <h3>Entity.DeAttach 方法 </h3>
                   <div>
                     
-将实体置为插入状态
+恢复实体为默认状态，且标记实体为不做任何数据库操作（仅对.Save()有效果）！
 
                   </div>
                   <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">void</span> DeAttach()</pre></div>
@@ -218,10 +219,10 @@
 获取实体状态
 
                   </div>
-                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="Common/EntityState.html" class="type">EntityState</a> GetEntityState()</pre></div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <a href="EntityState.html" class="type">EntityState</a> GetEntityState()</pre></div>
                     <h5>返回值</h5>
                     <div class="returnsSection">
-                      类型：<span class="type"><a href="Common/EntityState.html">Dos.ORM.Common.EntityState</a></span><br />
+                      类型：<span class="type"><a href="EntityState.html">Dos.ORM.EntityState</a></span><br />
                       
                     </div>
                 </div>

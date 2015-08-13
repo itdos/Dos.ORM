@@ -5,6 +5,7 @@
 <meta name="keywords" content="Dos.ORM.ProviderFactory" />
 <meta name="generator" content="DocsBuilder" />
 <title>ProviderFactory 类 (Dos.ORM)</title>
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../../styles/zebra.css" />
 <script type="text/javascript" src="../../scripts/accordion.js"></script>
 </head><body>
@@ -105,27 +106,27 @@ Creates the db provider.
                 </div>
               </td>
             </tr>
-          <tr id="CreateDbProvider(System.String,System.String,System.String)">
+          <tr id="CreateDbProvider(System.String,System.String,System.String,System.Nullable{Dos.ORM.DatabaseType})">
             <td><img alt="" title="公共方法" src="../../images/pubmethod.gif" /><img alt="" title="静态成员" src="../../images/static.gif" />
             </td>
-            <td><a href="#CreateDbProvider(System.String,System.String,System.String)" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">CreateDbProvider(String, String, String)</a>
+            <td><a href="#CreateDbProvider(System.String,System.String,System.String,System.Nullable{Dos.ORM.DatabaseType})" onclick="ExpandCollapse(this.parentNode.parentNode.nextSibling);return false;">CreateDbProvider(String, String, String, Nullable&lt;DatabaseType&gt;)</a>
             </td>
             <td>
               
-Creates the db provider.
+创建数据库事件提供程序
 
             </td>
           </tr>
             <tr style="display:none;">
               <td colspan="3">
           	    <div class="memberSection" ondblclick="if(GetSelection()=='')ExpandCollapse(this.parentNode.parentNode);">
-                  <h3>ProviderFactory.CreateDbProvider(String, String, String) 方法 </h3>
+                  <h3>ProviderFactory.CreateDbProvider(String, String, String, Nullable&lt;DatabaseType&gt;) 方法 </h3>
                   <div>
                     
-Creates the db provider.
+创建数据库事件提供程序
 
                   </div>
-                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">static</span> <a href="DbProvider.html" class="type">DbProvider</a> CreateDbProvider(<span class="keyword">string</span> assemblyName, <span class="keyword">string</span> className, <span class="keyword">string</span> connectionString)</pre></div>
+                  <div class="syntaxSection"><pre class="code"><span class="keyword">public</span> <span class="keyword">static</span> <a href="DbProvider.html" class="type">DbProvider</a> CreateDbProvider(<span class="keyword">string</span> assemblyName, <span class="keyword">string</span> className, <span class="keyword">string</span> connectionString, <span class="type">Nullable</span>&lt;<a href="DatabaseType.html" class="type">DatabaseType</a>&gt; databaseType)</pre></div>
                     <h5>参数</h5>
                     <dl class="paramsSection">
                         <dt>assemblyName</dt>
@@ -142,6 +143,11 @@ Creates the db provider.
                         <dd>
                           类型：<span class="type">System.String</span><br />
                           The conn STR.
+                        </dd>
+                        <dt>databaseType</dt>
+                        <dd>
+                          类型：<span class="type">System.Nullable&lt;<a href="DatabaseType.html">Dos.ORM.DatabaseType</a>&gt;</span><br />
+                          
                         </dd>
                     </dl>
                     <h5>返回值</h5>

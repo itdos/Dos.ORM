@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocsBuilder" />
 <title>概述列表</title>
+<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="styles/zebra.css" />
 <style type="text/css">
   body{min-width:200px;}
@@ -12,211 +13,233 @@
   ul>li{margin:4px;}
 </style>
 <script type="text/javascript" src="scripts/accordion.js"></script>
+<script type="text/javascript">
+	function IframeHref(url){
+		//$('#topicFrame', window.parent.document).attr("src",url);
+		//$(window.top.document).find("#topicFrame").attr("src",url);
+		window.top.topicFrame.location.href= url;
+	};
+</script>
 </head>
 <body>
 <div>
   <a style="visibility:hidden;"><img alt="" title="折叠" src="images/collapse.png" /></a>
-  <a href="overview-summary.html" target="topicFrame">全部命名空间</a>
+  <a onclick="IframeHref('overview-summary.html')" href="javascript:;">全部命名空间</a>
 </div>
-  <div id="Dos">
-    <a onclick="ExpandCollapse(this.parentNode.nextSibling);ToggleSwitch(this.childNodes[0]);"><img alt="" title="展开" src="images/expand.png" /></a>
-    <a href="Dos/namespace-summary.html" target="topicFrame" title="Dos 命名空间">Dos 命名空间</a>
-  </div>
-  <ul style="display:none;">
-      <li>
-        <a href="Dos/AssertionException.html" target="topicFrame">AssertionException 类</a>
-      </li>
-      <li>
-        <a href="Dos/Check.html" target="topicFrame">Check 类</a>
-      </li>
-      <li>
-        <a href="Dos/DesignByContractException.html" target="topicFrame">DesignByContractException 类</a>
-      </li>
-      <li>
-        <a href="Dos/InvariantException.html" target="topicFrame">InvariantException 类</a>
-      </li>
-      <li>
-        <a href="Dos/PostconditionException.html" target="topicFrame">PostconditionException 类</a>
-      </li>
-      <li>
-        <a href="Dos/PreconditionException.html" target="topicFrame">PreconditionException 类</a>
-      </li>
-  </ul>
   <div id="Dos.ORM">
-    <a onclick="ExpandCollapse(this.parentNode.nextSibling);ToggleSwitch(this.childNodes[0]);"><img alt="" title="展开" src="images/expand.png" /></a>
-    <a href="Dos/ORM/namespace-summary.html" target="topicFrame" title="Dos.ORM 命名空间">Dos.ORM 命名空间</a>
+    <a onclick="ExpandCollapse(this.parentNode.nextSibling);ToggleSwitch(this.childNodes[0]);" href="javascript:;"><img alt="" title="展开" src="images/expand.png" /></a>
+    <a onclick="IframeHref('Dos/ORM/namespace-summary.html')" href="javascript:;" title="Dos.ORM 命名空间">Dos.ORM 命名空间</a>
   </div>
   <ul style="display:none;">
       <li>
-        <a href="Dos/ORM/BatchCommander.html" target="topicFrame">BatchCommander 类</a>
+        <a onclick="IframeHref('Dos/ORM/AssertionException.html')" href="javascript:;">AssertionException 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/Cache.html" target="topicFrame">Cache 类</a>
+        <a onclick="IframeHref('Dos/ORM/BatchCommander.html')" href="javascript:;">BatchCommander 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/CacheConfiguration.html" target="topicFrame">CacheConfiguration 类</a>
+        <a onclick="IframeHref('Dos/ORM/Cache.html')" href="javascript:;">Cache 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/CommandCreator.html" target="topicFrame">CommandCreator 类</a>
+        <a onclick="IframeHref('Dos/ORM/CacheConfiguration.html')" href="javascript:;">CacheConfiguration 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/Database.html" target="topicFrame">Database 类</a>
+        <a onclick="IframeHref('Dos/ORM/Check.html')" href="javascript:;">Check 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/DatabaseType.html" target="topicFrame">DatabaseType 枚举</a>
+        <a onclick="IframeHref('Dos/ORM/CommandCreator.html')" href="javascript:;">CommandCreator 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/DbBatch.html" target="topicFrame">DbBatch 类</a>
+        <a onclick="IframeHref('Dos/ORM/Database.html')" href="javascript:;">Database 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/DbProvider.html" target="topicFrame">DbProvider 类</a>
+        <a onclick="IframeHref('Dos/ORM/DatabaseType.html')" href="javascript:;">DatabaseType 枚举</a>
       </li>
       <li>
-        <a href="Dos/ORM/DbSession.html" target="topicFrame">DbSession 类</a>
+        <a onclick="IframeHref('Dos/ORM/DataUtils.html')" href="javascript:;">DataUtils 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/DbTrans.html" target="topicFrame">DbTrans 类</a>
+        <a onclick="IframeHref('Dos/ORM/DbBatch.html')" href="javascript:;">DbBatch 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/DynamicCalls.html" target="topicFrame">DynamicCalls 类</a>
+        <a onclick="IframeHref('Dos/ORM/DbProvider.html')" href="javascript:;">DbProvider 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/Entity.html" target="topicFrame">Entity 类</a>
+        <a onclick="IframeHref('Dos/ORM/DbSession.html')" href="javascript:;">DbSession 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/Expression.html" target="topicFrame">Expression 类</a>
+        <a onclick="IframeHref('Dos/ORM/DbTrans.html')" href="javascript:;">DbTrans 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/FastCreateInstanceHandler.html" target="topicFrame">FastCreateInstanceHandler 委托</a>
+        <a onclick="IframeHref('Dos/ORM/DesignByContractException.html')" href="javascript:;">DesignByContractException 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/FastInvokeHandler.html" target="topicFrame">FastInvokeHandler 委托</a>
+        <a onclick="IframeHref('Dos/ORM/DynamicCalls.html')" href="javascript:;">DynamicCalls 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/FastPropertyGetHandler.html" target="topicFrame">FastPropertyGetHandler 委托</a>
+        <a onclick="IframeHref('Dos/ORM/Entity.html')" href="javascript:;">Entity 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/FastPropertySetHandler.html" target="topicFrame">FastPropertySetHandler 委托</a>
+        <a onclick="IframeHref('Dos/ORM/EntityCache.html')" href="javascript:;">EntityCache 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/Field.html" target="topicFrame">Field 类</a>
+        <a onclick="IframeHref('Dos/ORM/EntityState.html')" href="javascript:;">EntityState 枚举</a>
       </li>
       <li>
-        <a href="Dos/ORM/Field`1.html" target="topicFrame">Field&lt;T&gt; 泛型类</a>
+        <a onclick="IframeHref('Dos/ORM/EntityUtils.html')" href="javascript:;">EntityUtils 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/FromSection.html" target="topicFrame">FromSection 类</a>
+        <a onclick="IframeHref('Dos/ORM/Expression.html')" href="javascript:;">Expression 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/FromSection`1.html" target="topicFrame">FromSection&lt;T&gt; 泛型类</a>
+        <a onclick="IframeHref('Dos/ORM/FastCreateInstanceHandler.html')" href="javascript:;">FastCreateInstanceHandler 委托</a>
       </li>
       <li>
-        <a href="Dos/ORM/GroupByClip.html" target="topicFrame">GroupByClip 类</a>
+        <a onclick="IframeHref('Dos/ORM/FastInvokeHandler.html')" href="javascript:;">FastInvokeHandler 委托</a>
       </li>
       <li>
-        <a href="Dos/ORM/LambdaWhereClip`1.html" target="topicFrame">LambdaWhereClip&lt;T&gt; 泛型类</a>
+        <a onclick="IframeHref('Dos/ORM/FastPropertyGetHandler.html')" href="javascript:;">FastPropertyGetHandler 委托</a>
       </li>
       <li>
-        <a href="Dos/ORM/LogHandler.html" target="topicFrame">LogHandler 委托</a>
+        <a onclick="IframeHref('Dos/ORM/FastPropertySetHandler.html')" href="javascript:;">FastPropertySetHandler 委托</a>
       </li>
       <li>
-        <a href="Dos/ORM/ModifyField.html" target="topicFrame">ModifyField 类</a>
+        <a onclick="IframeHref('Dos/ORM/Field.html')" href="javascript:;">Field 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/OrderByClip.html" target="topicFrame">OrderByClip 类</a>
+        <a onclick="IframeHref('Dos/ORM/Field`1.html')" href="javascript:;">Field&lt;T&gt; 泛型类</a>
       </li>
       <li>
-        <a href="Dos/ORM/OrderByOperater.html" target="topicFrame">OrderByOperater 枚举</a>
+        <a onclick="IframeHref('Dos/ORM/FromSection.html')" href="javascript:;">FromSection 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/Parameter.html" target="topicFrame">Parameter 类</a>
+        <a onclick="IframeHref('Dos/ORM/FromSection`1.html')" href="javascript:;">FromSection&lt;T&gt; 泛型类</a>
       </li>
       <li>
-        <a href="Dos/ORM/ProcSection.html" target="topicFrame">ProcSection 类</a>
+        <a onclick="IframeHref('Dos/ORM/GroupByClip.html')" href="javascript:;">GroupByClip 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/ProviderFactory.html" target="topicFrame">ProviderFactory 类</a>
+        <a onclick="IframeHref('Dos/ORM/InvariantException.html')" href="javascript:;">InvariantException 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/QueryOperator.html" target="topicFrame">QueryOperator 枚举</a>
+        <a onclick="IframeHref('Dos/ORM/JoinType.html')" href="javascript:;">JoinType 枚举</a>
       </li>
       <li>
-        <a href="Dos/ORM/Section.html" target="topicFrame">Section 类</a>
+        <a onclick="IframeHref('Dos/ORM/LambdaWhereClip`1.html')" href="javascript:;">LambdaWhereClip&lt;T&gt; 泛型类</a>
       </li>
       <li>
-        <a href="Dos/ORM/SerializationManager.html" target="topicFrame">SerializationManager 类</a>
+        <a onclick="IframeHref('Dos/ORM/LogHandler.html')" href="javascript:;">LogHandler 委托</a>
       </li>
       <li>
-        <a href="Dos/ORM/SerializationManager.TypeDeserializeHandler.html" target="topicFrame">SerializationManager.TypeDeserializeHandler 委托</a>
+        <a onclick="IframeHref('Dos/ORM/ModifyField.html')" href="javascript:;">ModifyField 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/SerializationManager.TypeSerializeHandler.html" target="topicFrame">SerializationManager.TypeSerializeHandler 委托</a>
+        <a onclick="IframeHref('Dos/ORM/OrderByClip.html')" href="javascript:;">OrderByClip 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/SqlSection.html" target="topicFrame">SqlSection 类</a>
+        <a onclick="IframeHref('Dos/ORM/OrderByOperater.html')" href="javascript:;">OrderByOperater 枚举</a>
       </li>
       <li>
-        <a href="Dos/ORM/Where.html" target="topicFrame">Where 类</a>
+        <a onclick="IframeHref('Dos/ORM/Parameter.html')" href="javascript:;">Parameter 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/Where`1.html" target="topicFrame">Where&lt;T&gt; 泛型类</a>
+        <a onclick="IframeHref('Dos/ORM/PostconditionException.html')" href="javascript:;">PostconditionException 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/WhereClip.html" target="topicFrame">WhereClip 类</a>
+        <a onclick="IframeHref('Dos/ORM/PreconditionException.html')" href="javascript:;">PreconditionException 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/WhereClipBuilder.html" target="topicFrame">WhereClipBuilder 类</a>
+        <a onclick="IframeHref('Dos/ORM/ProcSection.html')" href="javascript:;">ProcSection 类</a>
       </li>
       <li>
-        <a href="Dos/ORM/WhereClipBuilder`1.html" target="topicFrame">WhereClipBuilder&lt;T&gt; 泛型类</a>
+        <a onclick="IframeHref('Dos/ORM/ProviderFactory.html')" href="javascript:;">ProviderFactory 类</a>
+      </li>
+      <li>
+        <a onclick="IframeHref('Dos/ORM/QueryOperator.html')" href="javascript:;">QueryOperator 枚举</a>
+      </li>
+      <li>
+        <a onclick="IframeHref('Dos/ORM/Section.html')" href="javascript:;">Section 类</a>
+      </li>
+      <li>
+        <a onclick="IframeHref('Dos/ORM/SerializationManager.html')" href="javascript:;">SerializationManager 类</a>
+      </li>
+      <li>
+        <a onclick="IframeHref('Dos/ORM/SerializationManager.TypeDeserializeHandler.html')" href="javascript:;">SerializationManager.TypeDeserializeHandler 委托</a>
+      </li>
+      <li>
+        <a onclick="IframeHref('Dos/ORM/SerializationManager.TypeSerializeHandler.html')" href="javascript:;">SerializationManager.TypeSerializeHandler 委托</a>
+      </li>
+      <li>
+        <a onclick="IframeHref('Dos/ORM/SqlSection.html')" href="javascript:;">SqlSection 类</a>
+      </li>
+      <li>
+        <a onclick="IframeHref('Dos/ORM/Where.html')" href="javascript:;">Where 类</a>
+      </li>
+      <li>
+        <a onclick="IframeHref('Dos/ORM/Where`1.html')" href="javascript:;">Where&lt;T&gt; 泛型类</a>
+      </li>
+      <li>
+        <a onclick="IframeHref('Dos/ORM/WhereClip.html')" href="javascript:;">WhereClip 类</a>
+      </li>
+      <li>
+        <a onclick="IframeHref('Dos/ORM/WhereClipBuilder.html')" href="javascript:;">WhereClipBuilder 类</a>
+      </li>
+      <li>
+        <a onclick="IframeHref('Dos/ORM/WhereClipBuilder`1.html')" href="javascript:;">WhereClipBuilder&lt;T&gt; 泛型类</a>
       </li>
   </ul>
   <div id="Dos.ORM.Common">
-    <a onclick="ExpandCollapse(this.parentNode.nextSibling);ToggleSwitch(this.childNodes[0]);"><img alt="" title="展开" src="images/expand.png" /></a>
-    <a href="Dos/ORM/Common/namespace-summary.html" target="topicFrame" title="Dos.ORM.Common 命名空间">Dos.ORM.Common 命名空间</a>
+    <a onclick="ExpandCollapse(this.parentNode.nextSibling);ToggleSwitch(this.childNodes[0]);" href="javascript:;"><img alt="" title="展开" src="images/expand.png" /></a>
+    <a onclick="IframeHref('Dos/ORM/Common/namespace-summary.html')" href="javascript:;" title="Dos.ORM.Common 命名空间">Dos.ORM.Common 命名空间</a>
   </div>
   <ul style="display:none;">
       <li>
-        <a href="Dos/ORM/Common/DataUtils.html" target="topicFrame">DataUtils 类</a>
+        <a onclick="IframeHref('Dos/ORM/Common/DosORMCommon.html')" href="javascript:;">DosORMCommon 类</a>
       </li>
+  </ul>
+  <div id="Dos.ORM.MySql">
+    <a onclick="ExpandCollapse(this.parentNode.nextSibling);ToggleSwitch(this.childNodes[0]);" href="javascript:;"><img alt="" title="展开" src="images/expand.png" /></a>
+    <a onclick="IframeHref('Dos/ORM/MySql/namespace-summary.html')" href="javascript:;" title="Dos.ORM.MySql 命名空间">Dos.ORM.MySql 命名空间</a>
+  </div>
+  <ul style="display:none;">
       <li>
-        <a href="Dos/ORM/Common/EntityCache.html" target="topicFrame">EntityCache 类</a>
-      </li>
-      <li>
-        <a href="Dos/ORM/Common/EntityState.html" target="topicFrame">EntityState 枚举</a>
-      </li>
-      <li>
-        <a href="Dos/ORM/Common/EntityUtils.html" target="topicFrame">EntityUtils 类</a>
-      </li>
-      <li>
-        <a href="Dos/ORM/Common/JoinType.html" target="topicFrame">JoinType 枚举</a>
+        <a onclick="IframeHref('Dos/ORM/MySql/MySqlProvider.html')" href="javascript:;">MySqlProvider 类</a>
       </li>
   </ul>
   <div id="Dos.ORM.Oracle">
-    <a onclick="ExpandCollapse(this.parentNode.nextSibling);ToggleSwitch(this.childNodes[0]);"><img alt="" title="展开" src="images/expand.png" /></a>
-    <a href="Dos/ORM/Oracle/namespace-summary.html" target="topicFrame" title="Dos.ORM.Oracle 命名空间">Dos.ORM.Oracle 命名空间</a>
+    <a onclick="ExpandCollapse(this.parentNode.nextSibling);ToggleSwitch(this.childNodes[0]);" href="javascript:;"><img alt="" title="展开" src="images/expand.png" /></a>
+    <a onclick="IframeHref('Dos/ORM/Oracle/namespace-summary.html')" href="javascript:;" title="Dos.ORM.Oracle 命名空间">Dos.ORM.Oracle 命名空间</a>
   </div>
   <ul style="display:none;">
       <li>
-        <a href="Dos/ORM/Oracle/OracleProvider.html" target="topicFrame">OracleProvider 类</a>
+        <a onclick="IframeHref('Dos/ORM/Oracle/OracleProvider.html')" href="javascript:;">OracleProvider 类</a>
+      </li>
+  </ul>
+  <div id="Dos.ORM.Sqlite">
+    <a onclick="ExpandCollapse(this.parentNode.nextSibling);ToggleSwitch(this.childNodes[0]);" href="javascript:;"><img alt="" title="展开" src="images/expand.png" /></a>
+    <a onclick="IframeHref('Dos/ORM/Sqlite/namespace-summary.html')" href="javascript:;" title="Dos.ORM.Sqlite 命名空间">Dos.ORM.Sqlite 命名空间</a>
+  </div>
+  <ul style="display:none;">
+      <li>
+        <a onclick="IframeHref('Dos/ORM/Sqlite/SqliteProvider.html')" href="javascript:;">SqliteProvider 类</a>
       </li>
   </ul>
   <div id="Dos.ORM.SqlServer">
-    <a onclick="ExpandCollapse(this.parentNode.nextSibling);ToggleSwitch(this.childNodes[0]);"><img alt="" title="展开" src="images/expand.png" /></a>
-    <a href="Dos/ORM/SqlServer/namespace-summary.html" target="topicFrame" title="Dos.ORM.SqlServer 命名空间">Dos.ORM.SqlServer 命名空间</a>
+    <a onclick="ExpandCollapse(this.parentNode.nextSibling);ToggleSwitch(this.childNodes[0]);" href="javascript:;"><img alt="" title="展开" src="images/expand.png" /></a>
+    <a onclick="IframeHref('Dos/ORM/SqlServer/namespace-summary.html')" href="javascript:;" title="Dos.ORM.SqlServer 命名空间">Dos.ORM.SqlServer 命名空间</a>
   </div>
   <ul style="display:none;">
       <li>
-        <a href="Dos/ORM/SqlServer/SqlServerProvider.html" target="topicFrame">SqlServerProvider 类</a>
+        <a onclick="IframeHref('Dos/ORM/SqlServer/SqlServerProvider.html')" href="javascript:;">SqlServerProvider 类</a>
       </li>
   </ul>
   <div id="Dos.ORM.SqlServer9">
-    <a onclick="ExpandCollapse(this.parentNode.nextSibling);ToggleSwitch(this.childNodes[0]);"><img alt="" title="展开" src="images/expand.png" /></a>
-    <a href="Dos/ORM/SqlServer9/namespace-summary.html" target="topicFrame" title="Dos.ORM.SqlServer9 命名空间">Dos.ORM.SqlServer9 命名空间</a>
+    <a onclick="ExpandCollapse(this.parentNode.nextSibling);ToggleSwitch(this.childNodes[0]);" href="javascript:;"><img alt="" title="展开" src="images/expand.png" /></a>
+    <a onclick="IframeHref('Dos/ORM/SqlServer9/namespace-summary.html')" href="javascript:;" title="Dos.ORM.SqlServer9 命名空间">Dos.ORM.SqlServer9 命名空间</a>
   </div>
   <ul style="display:none;">
       <li>
-        <a href="Dos/ORM/SqlServer9/SqlServer9Provider.html" target="topicFrame">SqlServer9Provider 类</a>
+        <a onclick="IframeHref('Dos/ORM/SqlServer9/SqlServer9Provider.html')" href="javascript:;">SqlServer9Provider 类</a>
       </li>
   </ul>
 </body>

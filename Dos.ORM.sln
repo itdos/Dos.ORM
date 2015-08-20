@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Demo在这里\初�
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "高级玩法demo之分布式应用开发", "高级玩法demo之分布式应用开发", "{EBB57C0A-F81A-448F-BA3F-05CE30721A90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "Demo在这里\中级玩法demo之repository\DataAccess\DataAccess.csproj", "{4B475ED6-5540-42F5-AC03-640FA3F66376}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Demo在这里\中级玩法demo之repository\Common\Common.csproj", "{8FDF9BF2-FFD2-419C-91BF-A6E4E7A38334}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,14 @@ Global
 		{657E4ECD-3CB3-4D79-9393-A2A774B78513}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{657E4ECD-3CB3-4D79-9393-A2A774B78513}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{657E4ECD-3CB3-4D79-9393-A2A774B78513}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B475ED6-5540-42F5-AC03-640FA3F66376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B475ED6-5540-42F5-AC03-640FA3F66376}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B475ED6-5540-42F5-AC03-640FA3F66376}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B475ED6-5540-42F5-AC03-640FA3F66376}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FDF9BF2-FFD2-419C-91BF-A6E4E7A38334}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FDF9BF2-FFD2-419C-91BF-A6E4E7A38334}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FDF9BF2-FFD2-419C-91BF-A6E4E7A38334}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FDF9BF2-FFD2-419C-91BF-A6E4E7A38334}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,5 +69,7 @@ Global
 		{480F951D-51F6-4A27-88CA-AF50E9EE3474} = {1ED5C027-1408-4E1D-822F-233F3B25C38D}
 		{EB7A463E-F934-4697-9081-68179A4A1BE1} = {1ED5C027-1408-4E1D-822F-233F3B25C38D}
 		{657E4ECD-3CB3-4D79-9393-A2A774B78513} = {1ED5C027-1408-4E1D-822F-233F3B25C38D}
+		{8FDF9BF2-FFD2-419C-91BF-A6E4E7A38334} = {FE2E38CF-146F-4E83-B668-0844C128021A}
+		{4B475ED6-5540-42F5-AC03-640FA3F66376} = {FE2E38CF-146F-4E83-B668-0844C128021A}
 	EndGlobalSection
 EndGlobal

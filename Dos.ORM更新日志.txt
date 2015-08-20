@@ -7,7 +7,7 @@
 	*）TransactionScope事务
 	*）多表联查，两次table._.All好像取不到数据。
 
-2015-08-12 Dos.ORM（原Hxj.Data）（v1.10.0.2）
+2015-08-20 Dos.ORM（原Hxj.Data）（v1.10.0.2）
 	*）解决自增主键在批量插入的时候，并不是返回的最后一次插入后返回的自增主键值的Bug，而是把每次插入后返回的自增值累加了。（感谢群友【郑邴镪】发现此Bug）
 	*）解决.Delete<T>(value,value,value)删除的Bug，此删除写法不是删除3条数据，而是当该表有3个主键时才这样写，仅删除一条数据。
 	*）DB.Content.Exists<T>()增加Lambda写法。DB.Content.Count<T>()增加Lambda写法。

@@ -534,7 +534,28 @@ namespace Dos.ORM
 
         }
 
-
+        /// <summary>
+        /// 判断是否存在记录
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public bool Exists<TEntity>(Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return Exists<TEntity>(ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
+        }
+        /// <summary>
+        /// 判断是否存在记录
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public bool Exists<TEntity>(Where where)
+            where TEntity : Entity
+        {
+            return Exists<TEntity>(where.ToWhereClip());
+        }
         /// <summary>
         /// Count
         /// </summary>
@@ -547,7 +568,30 @@ namespace Dos.ORM
         {
             return From<TEntity>().Select(field.Count()).Where(where).ToScalar<int>();
         }
-
+        /// <summary>
+        /// Count
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public int Count<TEntity>(Field field, Where where)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(field.Count()).Where(where).ToScalar<int>();
+        }
+        /// <summary>
+        /// Count
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public int Count<TEntity>(Field field, Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(field.Count()).Where(ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere)).ToScalar<int>();
+        }
         /// <summary>
         /// Count
         /// </summary>
@@ -559,7 +603,28 @@ namespace Dos.ORM
         {
             return From<TEntity>().Select(Field.All.Count()).Where(where).ToScalar<int>();
         }
-
+        /// <summary>
+        /// Count
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public int Count<TEntity>(Where where)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(Field.All.Count()).Where(where).ToScalar<int>();
+        }
+        /// <summary>
+        /// Count
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public int Count<TEntity>(Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(Field.All.Count()).Where(ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere)).ToScalar<int>();
+        }
         #endregion
 
         #region Database
@@ -689,7 +754,7 @@ namespace Dos.ORM
             foreach (TEntity entity in entities)
             {
                 if (entity == null)
-                    break;
+                    break;//2015-08-20  break修改为continue
 
                 UpdateAll<TEntity>(tran,entity);
             }
@@ -859,8 +924,7 @@ namespace Dos.ORM
             foreach (TEntity entity in entities)
             {
                 if (entity.GetModifyFields().Count == 0)
-                    break;
-
+                    continue;//2015-08-20 break修改为continue
                 count += Update<TEntity>(tran,entity, DataUtils.GetPrimaryKeyWhere(entity));
             }
             return count;
@@ -1283,7 +1347,7 @@ namespace Dos.ORM
         public int Delete<TEntity>(params int[] pkValues)
             where TEntity : Entity
         {
-            return DeleteByPrimaryKey<TEntity>(pkValues);
+            return DeleteByPrimaryKey<TEntity>(pkValues.ToArray());
         }
         /// <summary>
         ///  删除
@@ -1291,7 +1355,7 @@ namespace Dos.ORM
         public int Delete<TEntity>(params Guid[] pkValues)
             where TEntity : Entity
         {
-            return DeleteByPrimaryKey<TEntity>(pkValues);
+            return DeleteByPrimaryKey<TEntity>(pkValues.ToArray());
         }
         /// <summary>
         ///  删除
@@ -1299,7 +1363,7 @@ namespace Dos.ORM
         public int Delete<TEntity>(params long[] pkValues)
             where TEntity : Entity
         {
-            return DeleteByPrimaryKey<TEntity>(pkValues);
+            return DeleteByPrimaryKey<TEntity>(pkValues.ToArray());
         }
         /// <summary>
         ///  删除
@@ -1307,7 +1371,7 @@ namespace Dos.ORM
         public int Delete<TEntity>(params string[] pkValues)
             where TEntity : Entity
         {
-            return DeleteByPrimaryKey<TEntity>(pkValues);
+            return DeleteByPrimaryKey<TEntity>(pkValues.ToArray());
         }
         /// <summary>
         /// 
@@ -1363,7 +1427,7 @@ namespace Dos.ORM
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="pkValues"></param>
         /// <returns></returns>
-        internal int DeleteByPrimaryKey<TEntity>(params object[] pkValues)
+        internal int DeleteByPrimaryKey<TEntity>(Array pkValues)//params object[] pkValues 2015-08-20
             where TEntity : Entity
         {
             Check.Require(!EntityCache.IsReadOnly<TEntity>(), string.Concat("Entity(", EntityCache.GetTableName<TEntity>(), ") is readonly!"));
@@ -1594,7 +1658,12 @@ namespace Dos.ORM
             int count = 0;
             foreach (TEntity entity in entities)
             {
-                count += insertExecute<TEntity>(cmdCreator.CreateInsertCommand<TEntity>(entity), tran);
+                //2015-08-20 修改为tcount判断
+                var tcount = insertExecute<TEntity>(cmdCreator.CreateInsertCommand<TEntity>(entity), tran);
+                if (tcount > 1)
+                    count = tcount;
+                else
+                    count += tcount;
             }
             return count;
         }

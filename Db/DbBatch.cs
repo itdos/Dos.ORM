@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Dos.ORM.Common;
 using Dos;
 using Dos.ORM;
@@ -293,25 +294,26 @@ namespace Dos.ORM
             WhereClip where = DataUtils.GetPrimaryKeyWhere(entity);
 
             Check.Require(!WhereClip.IsNullOrEmpty(where), "entity must have the primarykey!");
-
-            Delete<TEntity>(entity, where);
+            Delete<TEntity>(where);
+            //2015-08-20注释
+            //Delete<TEntity>(entity, where);
         }
 
 
+        //2015-08-20注释
+        ///// <summary>
+        /////  删除
+        ///// </summary>
+        ///// <typeparam name="TEntity"></typeparam>
+        ///// <param name="pkValues"></param>
+        ///// <returns></returns>
+        //public void Delete<TEntity>(params object[] pkValues)
+        //    where TEntity : Entity
+        //{
+        //    Check.Require(!EntityCache.IsReadOnly<TEntity>(), string.Concat("Entity(", EntityCache.GetTableName<TEntity>(), ") is readonly!"));
 
-        /// <summary>
-        ///  删除
-        /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <param name="pkValues"></param>
-        /// <returns></returns>
-        public void Delete<TEntity>(params object[] pkValues)
-            where TEntity : Entity
-        {
-            Check.Require(!EntityCache.IsReadOnly<TEntity>(), string.Concat("Entity(", EntityCache.GetTableName<TEntity>(), ") is readonly!"));
-
-            batchcmd.Process(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), DataUtils.GetPrimaryKeyWhere<TEntity>(pkValues)));
-        }
+        //    batchcmd.Process(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), DataUtils.GetPrimaryKeyWhere<TEntity>(pkValues)));
+        //}
 
         /// <summary>
         ///  删除
@@ -324,10 +326,47 @@ namespace Dos.ORM
         {
             Check.Require(!EntityCache.IsReadOnly<TEntity>(), string.Concat("Entity(", EntityCache.GetTableName<TEntity>(), ") is readonly!"));
 
-            batchcmd.Process(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), DataUtils.GetPrimaryKeyWhere<TEntity>(pkValues)));
+            batchcmd.Process(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), DataUtils.GetPrimaryKeyWhere<TEntity>(pkValues.ToArray())));
         }
+        /// <summary>
+        ///  删除
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="pkValues"></param>
+        /// <returns></returns>
+        public void Delete<TEntity>(params int[] pkValues)
+            where TEntity : Entity
+        {
+            Check.Require(!EntityCache.IsReadOnly<TEntity>(), string.Concat("Entity(", EntityCache.GetTableName<TEntity>(), ") is readonly!"));
 
+            batchcmd.Process(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), DataUtils.GetPrimaryKeyWhere<TEntity>(pkValues.ToArray())));
+        }
+        /// <summary>
+        ///  删除
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="pkValues"></param>
+        /// <returns></returns>
+        public void Delete<TEntity>(params long[] pkValues)
+            where TEntity : Entity
+        {
+            Check.Require(!EntityCache.IsReadOnly<TEntity>(), string.Concat("Entity(", EntityCache.GetTableName<TEntity>(), ") is readonly!"));
 
+            batchcmd.Process(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), DataUtils.GetPrimaryKeyWhere<TEntity>(pkValues.ToArray())));
+        }
+        /// <summary>
+        ///  删除
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="pkValues"></param>
+        /// <returns></returns>
+        public void Delete<TEntity>(params Guid[] pkValues)
+            where TEntity : Entity
+        {
+            Check.Require(!EntityCache.IsReadOnly<TEntity>(), string.Concat("Entity(", EntityCache.GetTableName<TEntity>(), ") is readonly!"));
+
+            batchcmd.Process(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), DataUtils.GetPrimaryKeyWhere<TEntity>(pkValues.ToArray())));
+        }
         /// <summary>
         ///  删除
         /// </summary>

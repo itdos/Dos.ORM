@@ -519,7 +519,7 @@ namespace Dos.ORM
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="pkValues"></param>
         /// <returns></returns>
-        internal static WhereClip GetPrimaryKeyWhere<TEntity>(params object[] pkValues)
+        internal static WhereClip GetPrimaryKeyWhere<TEntity>(Array pkValues)//params object[] pkValues  2015-08-20
             where TEntity : Entity
         {
             WhereClip where = new WhereClip();
@@ -533,7 +533,9 @@ namespace Dos.ORM
             int index = keyfields.Length;
             for (int i = 0; i < index; i++)
             {
-                where = where.And(new WhereClip(keyfields[i], pkValues[i], QueryOperator.Equal));
+                where = where.And(new WhereClip(keyfields[i], pkValues.GetValue(i), QueryOperator.Equal)); 
+                //2015-08-20注释
+                //where = where.And(new WhereClip(keyfields[i], pkValues[i], QueryOperator.Equal)); 
                 //where = where.And(keyfields[i].In(pkValues));//2015-06-09
             }
             return where;

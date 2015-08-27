@@ -12,6 +12,7 @@ namespace UI.Controllers
     [ExceptionLog]
     public class HomeController : Controller
     {
+        #region MySql
         public ActionResult MySql()
         {
             return View();
@@ -49,5 +50,12 @@ namespace UI.Controllers
             var result = new TableMySqlLogic().DelUser(param);
             return Json(result);
         }
+        #endregion
+        #region PostgreSql
+        public ActionResult PostgreSql()
+        {
+            return View();
+        }
+        #endregion
     }
 }

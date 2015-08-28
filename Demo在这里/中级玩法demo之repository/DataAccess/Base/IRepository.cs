@@ -23,32 +23,17 @@ using Dos.ORM;
 
 namespace DataAccess
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<T> where T : Entity
     {
-        //DbSet<T> Entities { get; }
         List<T> GetAll();
         /// <summary>
         /// 通用查询
         /// </summary>
-        /// <param name="where"></param>
-        /// <returns></returns>
-        List<T> Query(Expression<Func<T, bool>> where);
-        //IEnumerable<T> QueryEnumerable(Expression<Func<T, bool>> where);
+        List<T> Query(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderBy = null, EnumService.OrderBy ascDesc = EnumService.OrderBy.Asc, int? top = null, int? pageSize = null, int? pageIndex = null);
         /// <summary>
         /// 通用查询
         /// </summary>
-        /// <param name="where"></param>
-        /// <param name="orderBy"></param>
-        /// <returns></returns>
-        List<T> Query(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderBy);
-        /// <summary>
-        /// 通用查询
-        /// </summary>
-        /// <param name="where"></param>
-        /// <param name="orderBy"></param>
-        /// <param name="ascDesc"></param>
-        /// <returns></returns>
-        List<T> Query(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderBy, EnumService.OrderBy ascDesc);
+        List<T> Query(Where<T> where, Expression<Func<T, object>> orderBy = null, EnumService.OrderBy ascDesc = EnumService.OrderBy.Asc, int? top = null, int? pageSize = null, int? pageIndex = null);
         /// <summary>
         /// 增加单个实体
         /// </summary>
@@ -82,7 +67,7 @@ namespace DataAccess
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        int DeleteById(Guid? id);
+        int Delete(Guid? id);
         //void DeleteById(DbContext context, object id);
         /// <summary>
         /// 删除多个实体

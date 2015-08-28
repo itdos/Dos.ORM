@@ -17,13 +17,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Demo在这里\�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Demo在这里\初级玩法demo之mvc简单三层\Model\Model.csproj", "{657E4ECD-3CB3-4D79-9393-A2A774B78513}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "高级玩法demo之分布式应用开发", "高级玩法demo之分布式应用开发", "{EBB57C0A-F81A-448F-BA3F-05CE30721A90}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "高级玩法demo之分布式应用_插件式开发", "高级玩法demo之分布式应用_插件式开发", "{EBB57C0A-F81A-448F-BA3F-05CE30721A90}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "Demo在这里\中级玩法demo之repository\DataAccess\DataAccess.csproj", "{4B475ED6-5540-42F5-AC03-640FA3F66376}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Demo在这里\中级玩法demo之repository\Common\Common.csproj", "{8FDF9BF2-FFD2-419C-91BF-A6E4E7A38334}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM.PostgreSql", "Dos.ORM.PostgreSql\Dos.ORM.PostgreSql.csproj", "{86F95784-A739-41EF-9724-909126C11800}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "Demo在这里\中级玩法demo之repository\UI\UI.csproj", "{5AA2EB95-E694-457A-807F-C65E2F7C4276}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Demo在这里\中级玩法demo之repository\Business\Business.csproj", "{8CA9AAC3-E22E-4861-8595-A7C8E41F1B3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Entities", "Demo在这里\中级玩法demo之repository\DataAccess.Entities\DataAccess.Entities.csproj", "{A5EDCC9F-49E2-4E2C-AB27-2144093F6EF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataCache", "Demo在这里\中级玩法demo之repository\DataCache\DataCache.csproj", "{CB0314A8-A758-43B1-A398-16BC8C9E4A1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +75,22 @@ Global
 		{86F95784-A739-41EF-9724-909126C11800}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86F95784-A739-41EF-9724-909126C11800}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86F95784-A739-41EF-9724-909126C11800}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AA2EB95-E694-457A-807F-C65E2F7C4276}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AA2EB95-E694-457A-807F-C65E2F7C4276}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AA2EB95-E694-457A-807F-C65E2F7C4276}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AA2EB95-E694-457A-807F-C65E2F7C4276}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CA9AAC3-E22E-4861-8595-A7C8E41F1B3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CA9AAC3-E22E-4861-8595-A7C8E41F1B3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CA9AAC3-E22E-4861-8595-A7C8E41F1B3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CA9AAC3-E22E-4861-8595-A7C8E41F1B3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5EDCC9F-49E2-4E2C-AB27-2144093F6EF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5EDCC9F-49E2-4E2C-AB27-2144093F6EF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5EDCC9F-49E2-4E2C-AB27-2144093F6EF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5EDCC9F-49E2-4E2C-AB27-2144093F6EF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB0314A8-A758-43B1-A398-16BC8C9E4A1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB0314A8-A758-43B1-A398-16BC8C9E4A1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB0314A8-A758-43B1-A398-16BC8C9E4A1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB0314A8-A758-43B1-A398-16BC8C9E4A1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,5 +101,9 @@ Global
 		{657E4ECD-3CB3-4D79-9393-A2A774B78513} = {1ED5C027-1408-4E1D-822F-233F3B25C38D}
 		{4B475ED6-5540-42F5-AC03-640FA3F66376} = {FE2E38CF-146F-4E83-B668-0844C128021A}
 		{8FDF9BF2-FFD2-419C-91BF-A6E4E7A38334} = {FE2E38CF-146F-4E83-B668-0844C128021A}
+		{5AA2EB95-E694-457A-807F-C65E2F7C4276} = {FE2E38CF-146F-4E83-B668-0844C128021A}
+		{8CA9AAC3-E22E-4861-8595-A7C8E41F1B3A} = {FE2E38CF-146F-4E83-B668-0844C128021A}
+		{A5EDCC9F-49E2-4E2C-AB27-2144093F6EF5} = {FE2E38CF-146F-4E83-B668-0844C128021A}
+		{CB0314A8-A758-43B1-A398-16BC8C9E4A1C} = {FE2E38CF-146F-4E83-B668-0844C128021A}
 	EndGlobalSection
 EndGlobal

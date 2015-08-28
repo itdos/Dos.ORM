@@ -51,19 +51,50 @@ namespace DataAccess
         /// <summary>
         /// 通用查询
         /// </summary>
-        /// <returns></returns>
-        public List<T> Query(Expression<Func<T, bool>> where)
+        public List<T> Query(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderBy = null, EnumService.OrderBy ascDesc = EnumService.OrderBy.Asc, int? top = null, int? pageSize = null, int? pageIndex = null)
         {
-            return Context.From<T>().Where(where).ToList();
+            var fs = Context.From<T>().Where(where);
+            if (top != null)
+            {
+                fs.Top(top.Value);
+            }
+            else if (pageIndex != null && pageSize != null)
+            {
+                fs.Page(pageSize.Value, pageIndex.Value);
+            }
+            if (orderBy != null)
+            {
+                if (ascDesc == EnumService.OrderBy.Asc)
+                {
+                    return fs.OrderBy(orderBy).ToList();
+                }
+                return fs.OrderByDescending(orderBy).ToList();
+            }
+            return fs.ToList();
         }
         /// <summary>
-        /// 
+        /// 通用查询
         /// </summary>
-        /// <param name="where"></param>
-        /// <returns></returns>
-        public List<T> Query(Where where)
+        public List<T> Query(Where<T> where, Expression<Func<T, object>> orderBy = null, EnumService.OrderBy ascDesc = EnumService.OrderBy.Asc, int? top = null, int? pageSize = null, int? pageIndex = null)
         {
-            return Context.From<T>().Where(where).ToList();
+            var fs = Context.From<T>().Where(where);
+            if (top != null)
+            {
+                fs.Top(top.Value);
+            }
+            else if (pageIndex != null && pageSize != null)
+            {
+                fs.Page(pageSize.Value, pageIndex.Value);
+            }
+            if (orderBy != null)
+            {
+                if (ascDesc == EnumService.OrderBy.Asc)
+                {
+                    return fs.OrderBy(orderBy).ToList();
+                }
+                return fs.OrderByDescending(orderBy).ToList();
+            }
+            return fs.ToList();
         }
         /// <summary>
         /// 根据条件判断是否存在数据
@@ -77,31 +108,18 @@ namespace DataAccess
         /// <summary>
         /// 取总数
         /// </summary>
-        /// <param name="where"></param>
-        /// <returns></returns>
         public int Count(Expression<Func<T, bool>> where)
         {
             return Context.From<T>().Where(where).Count();
         }
         /// <summary>
-        /// 通用查询
+        /// 取总数
         /// </summary>
+        /// <param name="where"></param>
         /// <returns></returns>
-        public List<T> Query(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderBy)
+        public int Count(Where<T> where)
         {
-            return Context.From<T>().Where(where).OrderBy(orderBy).ToList();
-        }
-        /// <summary>
-        /// 通用查询
-        /// </summary>
-        /// <returns></returns>
-        public List<T> Query(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderBy, EnumService.OrderBy ascDesc)
-        {
-            if (ascDesc == EnumService.OrderBy.Desc)
-            {
-                return Context.From<T>().Where(where).OrderByDescending(orderBy).ToList();
-            }
-            return Query(where, orderBy);
+            return Context.From<T>().Where(where).Count();
         }
         #endregion
         #region 插入
@@ -173,8 +191,6 @@ namespace DataAccess
         /// <summary>
         /// 删除单个实体
         /// </summary>
-        /// <param name="entitie"></param>
-        /// <returns></returns>
         public int Delete(T entitie)
         {
             return Context.Delete<T>(entitie);
@@ -182,8 +198,6 @@ namespace DataAccess
         /// <summary>
         /// 删除多个实体
         /// </summary>
-        /// <param name="entities"></param>
-        /// <returns></returns>
         public int Delete(IEnumerable<T> entities)
         {
             return Context.Delete<T>(entities);
@@ -193,13 +207,27 @@ namespace DataAccess
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int DeleteById(Guid? id)
+        public int Delete(Guid? id)
         {
             if (id == null)
             {
                 return 0;
             }
             return Context.Delete<T>(id.Value);
+        }
+        /// <summary>
+        /// 删除单个实体
+        /// </summary>
+        public int Delete(Expression<Func<T, bool>> where)
+        {
+            return Context.Delete<T>(where);
+        }
+        /// <summary>
+        /// 删除单个实体
+        /// </summary>
+        public int Delete(Where<T> where)
+        {
+            return Context.Delete<T>(where.ToWhereClip());
         }
         #endregion
     }

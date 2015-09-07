@@ -34,6 +34,10 @@ namespace Dos.ORM
 
         #region Protected Members
         /// <summary>
+        /// like符号。 --- 2015-09-07
+        /// </summary>
+        protected char likeToken;
+        /// <summary>
         /// 【
         /// </summary>
         protected char leftToken;
@@ -73,7 +77,25 @@ namespace Dos.ORM
             this.rightToken = rightToken;
             this.paramPrefixToken = paramPrefixToken;
         }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:DbProvider"/> class.
+        /// </summary>
+        /// <param name="connectionString">The conn STR.</param>
+        /// <param name="dbProviderFactory">The db provider factory.</param>
+        /// <param name="leftToken">leftToken</param>
+        /// <param name="paramPrefixToken">paramPrefixToken</param>
+        /// <param name="rightToken">rightToken</param>
+        /// <param name="likeToken">likeToken</param>
+        protected DbProvider(string connectionString, DbProviderFactory dbProviderFactory, char leftToken, char rightToken, char paramPrefixToken, char likeToken = '%')
+        {
+            dbConnStrBuilder = new DbConnectionStringBuilder();
+            dbConnStrBuilder.ConnectionString = connectionString;
+            this.dbProviderFactory = dbProviderFactory;
+            this.leftToken = leftToken;
+            this.rightToken = rightToken;
+            this.paramPrefixToken = paramPrefixToken;
+            this.likeToken = likeToken;
+        }
         #endregion
 
 
@@ -375,6 +397,7 @@ namespace Dos.ORM
 
             foreach (DbParameter p in cmd.Parameters)
             {
+                
                 if (!isStoredProcedure)
                 {
                     //TODO 这里可以继续优化
@@ -425,7 +448,24 @@ namespace Dos.ORM
                     p.Value = new Guid(value.ToString());
                     continue;
                 }
-
+                //2015-09-07
+                var v = value.ToString();
+                if (DatabaseType == DatabaseType.MsAccess
+                    && (dbType == DbType.AnsiString || dbType == DbType.String)
+                    && !string.IsNullOrWhiteSpace(v)
+                    && cmd.CommandText.ToLower()
+                    .IndexOf("like " + p.ParameterName.ToLower(), StringComparison.Ordinal) > -1)
+                {
+                    if (v[0] == '%')
+                    {
+                        v = "*" + v.Substring(1);
+                    }
+                    if (v[v.Length-1] == '%')
+                    {
+                        v = v.TrimEnd('%') + "*";
+                    }
+                    p.Value = v;
+                }
                 //if ((dbType == DbType.AnsiString || dbType == DbType.String ||
                 //    dbType == DbType.AnsiStringFixedLength || dbType == DbType.StringFixedLength) && (!(value is string)))
                 //{

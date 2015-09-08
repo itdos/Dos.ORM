@@ -647,10 +647,14 @@ namespace Dos.ORM
             }
             setCache<List<T>>(list, cacheKey);
             //2015-09-08
-            foreach (var m in list)
+            if (list != null)
             {
-                m.ClearModifyFields();
+                foreach (var m in list)
+                {
+                    m.ClearModifyFields();
+                }
             }
+
             return list;
         }
 
@@ -764,7 +768,10 @@ namespace Dos.ORM
 
             setCache<T>(t, cacheKey);
             //2015-09-08
-            t.ClearModifyFields();
+            if (t != null)
+            {
+                t.ClearModifyFields();
+            }
             return t;
         }
 

@@ -1387,8 +1387,8 @@ namespace Dos.ORM
         public FromSection Where(WhereClip where)
         {
             //2015-09-08修改
-            //this.where = where;
-            this.where = this.where && where;
+            this.where = where;
+            //this.where = this.where && where;
             return this;
         }
 
@@ -1401,8 +1401,8 @@ namespace Dos.ORM
         public FromSection GroupBy(GroupByClip groupBy)
         {
             //2015-09-08修改
-            //this.groupBy = groupBy;
-            this.groupBy = this.groupBy && groupBy;
+            this.groupBy = groupBy;
+            //this.groupBy = this.groupBy && groupBy;
             return this;
         }
 
@@ -1415,8 +1415,8 @@ namespace Dos.ORM
         public FromSection Having(WhereClip havingWhere)
         {
             //2015-09-08修改
-            //this.havingWhere = havingWhere;
-            this.havingWhere = this.havingWhere && havingWhere;
+            this.havingWhere = havingWhere;
+            //this.havingWhere = this.havingWhere && havingWhere;
             return this;
         }
 
@@ -1435,8 +1435,8 @@ namespace Dos.ORM
                     tempgroupby = tempgroupby && f.GroupBy;
                 }
                 //2015-09-08修改
-                //this.groupBy = tempgroupby;
-                this.groupBy = this.groupBy && tempgroupby;
+                this.groupBy = tempgroupby;
+                //this.groupBy = this.groupBy && tempgroupby;
             }
             return this;
         }
@@ -1449,8 +1449,8 @@ namespace Dos.ORM
         public FromSection OrderBy(OrderByClip orderBy)
         {
             //2015-09-08修改
-            //this.orderBy = orderBy;
-            this.orderBy = this.orderBy && orderBy;
+            this.orderBy = orderBy;
+            //this.orderBy = this.orderBy && orderBy;
             return this;
         }
 
@@ -1470,8 +1470,8 @@ namespace Dos.ORM
                     temporderby = temporderby && ob;
                 }
                 //2015-09-08修改
-                //this.orderBy =temporderby;
-                this.orderBy = this.orderBy && temporderby;
+                this.orderBy =temporderby;
+                //this.orderBy = this.orderBy && temporderby;
             }
             return this;
         }
@@ -1484,9 +1484,8 @@ namespace Dos.ORM
         /// <returns></returns>
         public FromSection Select(params Field[] fields)
         {
-            //2015-09-08注释
-            //this.fields.Clear();
-
+            //2015-09-08取消注释
+            this.fields.Clear();
             return AddSelect(fields);
         }
 

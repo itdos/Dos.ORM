@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common.cs" />
     <Compile Include="EnumService.cs" />
     <Compile Include="Filter\ExceptionLogAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

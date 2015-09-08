@@ -44,10 +44,9 @@
     <Compile Include="Base\ParamExtentions.cs" />
     <Compile Include="Model\TableMysql.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\TableMysql.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\..\Dos.ORM.csproj">
       <Project>{4bef1983-f275-4807-96ea-25b973bd6e94}</Project>

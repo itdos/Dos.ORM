@@ -8,18 +8,18 @@ namespace DataCache
 {
     public class TableMysqlCache
     {
-        public List<TableMysql> GetExamCost(Guid examRoomId)
+        public TableMysql GetUserModel(Guid userId)
         {
-            var result = CacheBase.Get<List<TableMysql>>("GetExamCost_" + examRoomId);
+            var result = CacheBase.Get<TableMysql>("GetUser" + userId);
             return result;
         }
-        public bool SetExamCost(Guid examRoomId, List<TableMysql> list)
+        public bool SetUserModel(Guid userId, TableMysql list)
         {
-            return CacheBase.Set("GetExamCost_" + examRoomId, list);
+            return CacheBase.Set("GetUser" + userId, list);
         }
-        public bool DelExamCost(Guid examRoomId)
+        public bool DelUserModel(Guid userId)
         {
-            return CacheBase.Remove("GetExamCost_" + examRoomId);
+            return CacheBase.Remove("GetUser" + userId);
         }
     }
 }

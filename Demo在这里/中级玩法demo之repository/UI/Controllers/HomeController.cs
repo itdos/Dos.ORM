@@ -22,9 +22,14 @@ namespace UI.Controllers
         /// </summary>
         public JsonResult GetUser(TestTableParam param)
         {
-            var result = new TableMySqlLogic().GetUser(param);
-            var test = Json(result);
-            return test;
+            var bs = new TableMySqlLogic().GetUser(param);
+            #region 以下逻辑可以重写Json()在内部实现
+            var data = bs.Data as List<TableMysql>;
+            var result = Common.Common.Map<TableMysql, TableMysql_Page1>(data);
+            bs.Data = result;
+            //var test = Json(result);
+            #endregion
+            return Json(bs);
         }
         /// <summary>
         /// 新增数据

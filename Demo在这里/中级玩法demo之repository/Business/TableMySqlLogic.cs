@@ -8,6 +8,7 @@ using System.Data.Common;
 using Common;
 using DataAccess;
 using DataAccess.Entities;
+using DataCache;
 
 namespace Business
 {
@@ -33,7 +34,7 @@ namespace Business
                 where.And(d => d.MobilePhone.Like(param.SearchMobilePhone));
             }
             #endregion
-            
+
             #region 是否分页
             var dateCount = 0;
             if (param.pageIndex != null && param.pageSize != null)
@@ -64,6 +65,8 @@ namespace Business
                 CreateTime = DateTime.Now
             };
             var count = new TableMysqlRepository().Insert(model);
+            //设置缓存
+            new TableMysqlCache().SetUserModel(model.Id, model);
             return new BaseResult(count > 0, count, count > 0 ? "" : "数据库受影响行数为0！");
         }
         /// <summary>
@@ -76,6 +79,8 @@ namespace Business
                 return new BaseResult(false, null, "参数错误！");
             }
             var count = new TableMysqlRepository().Delete(param.Id);
+            //更新缓存
+            new TableMysqlCache().DelUserModel(param.Id.Value);
             return new BaseResult(count > 0, count, count > 0 ? "" : "数据库受影响行数为0！");
         }
         /// <summary>
@@ -87,7 +92,13 @@ namespace Business
             {
                 return new BaseResult(false, null, "参数错误！");
             }
-            var model = new TableMysqlRepository().First(d => d.Id == param.Id);
+            //取缓存
+            var model = new TableMysqlCache().GetUserModel(param.Id.Value);
+            if (model == null)
+            {
+                //如果缓存不存在，则从数据库获取
+                model = new TableMysqlRepository().First(d => d.Id == param.Id);
+            }
             if (model == null)
             {
                 return new BaseResult(false, null, "不存在要修改的数据！");
@@ -96,6 +107,8 @@ namespace Business
             model.IDNumber = param.IDNumber ?? model.IDNumber;
             model.MobilePhone = param.MobilePhone ?? model.MobilePhone;
             var count = new TableMysqlRepository().Update(model);
+            //更新缓存
+            new TableMysqlCache().DelUserModel(param.Id.Value);
             return new BaseResult(true);
         }
     }

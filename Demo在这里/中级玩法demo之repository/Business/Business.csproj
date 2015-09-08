@@ -67,8 +67,13 @@
       <Project>{4b475ed6-5540-42f5-ac03-640fa3f66376}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataCache\DataCache.csproj">
+      <Project>{cb0314a8-a758-43b1-a398-16bc8c9e4a1c}</Project>
+      <Name>DataCache</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

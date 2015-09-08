@@ -74,9 +74,35 @@ namespace Business
                 where.And(d => d.MobilePhone.Like(param.SearchMobilePhone));
             }
             #endregion
+            #region test
+            var tempFs = DB.MySql.From<TableMysql>()
+                .Select(TableMysql._.Id)
+                .Select(TableMysql._.Name)
+                .Select(d=>d.MobilePhone)
+                .Where(d=>d.Id == Guid.NewGuid())
+                .Where(d=>d.Name != "zhouhao")
+                .OrderByDescending(d => d.CreateTime)
+                .OrderBy(d => d.Id)
+                .GroupBy(d => new { d.Id, d.Name })
+                .GroupBy(TableMysql._.Id, TableMysql._.Test1)
+                .ToList();
+            var tempFs2 = DB.MySql.From<TableMysql>()
+                .Select(TableMysql._.Id)
+                .Select(TableMysql._.Test1)
+                .Select(d => d.Test2)
+                .Where(d => d.Test1 == false)
+                .Where(d => d.Test2 != 333)
+                .OrderByDescending(d => d.Name)
+                .OrderBy(d => d.Id)
+                .ToList();
+            #endregion
+
             var fs = DB.MySql.From<TableMysql>()
                 .Where(where)
-                .OrderByDescending(d => d.CreateTime);
+                //.OrderByDescending(TableMysql._.CreateTime, TableMysql._.Id)
+                //.OrderByDescending(d => new { d.CreateTime, d.Id });
+                .OrderByDescending(d => d.CreateTime)
+                .OrderBy(d => d.Id);
             #region 是否分页
             var dateCount = 0;
             if (param.pageIndex != null && param.pageSize != null)

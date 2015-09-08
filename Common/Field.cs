@@ -214,7 +214,7 @@ namespace Dos.ORM
         }
 
         /// <summary>
-        /// 返回属性名  既 fileName
+        /// 返回属性名  即fileName
         /// </summary>
         public string PropertyName
         {

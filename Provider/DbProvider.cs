@@ -448,24 +448,26 @@ namespace Dos.ORM
                     p.Value = new Guid(value.ToString());
                     continue;
                 }
-                //2015-09-07
-                var v = value.ToString();
-                if (DatabaseType == DatabaseType.MsAccess
-                    && (dbType == DbType.AnsiString || dbType == DbType.String)
-                    && !string.IsNullOrWhiteSpace(v)
-                    && cmd.CommandText.ToLower()
-                    .IndexOf("like " + p.ParameterName.ToLower(), StringComparison.Ordinal) > -1)
-                {
-                    if (v[0] == '%')
-                    {
-                        v = "*" + v.Substring(1);
-                    }
-                    if (v[v.Length-1] == '%')
-                    {
-                        v = v.TrimEnd('%') + "*";
-                    }
-                    p.Value = v;
-                }
+                #region 2015-09-08注释
+                ////2015-09-07 写
+                //var v = value.ToString();
+                //if (DatabaseType == DatabaseType.MsAccess
+                //    && (dbType == DbType.AnsiString || dbType == DbType.String)
+                //    && !string.IsNullOrWhiteSpace(v)
+                //    && cmd.CommandText.ToLower()
+                //    .IndexOf("like " + p.ParameterName.ToLower(), StringComparison.Ordinal) > -1)
+                //{
+                //    if (v[0] == '%')
+                //    {
+                //        v = "*" + v.Substring(1);
+                //    }
+                //    if (v[v.Length-1] == '%')
+                //    {
+                //        v = v.TrimEnd('%') + "*";
+                //    }
+                //    p.Value = v;
+                //}
+                #endregion
                 //if ((dbType == DbType.AnsiString || dbType == DbType.String ||
                 //    dbType == DbType.AnsiStringFixedLength || dbType == DbType.StringFixedLength) && (!(value is string)))
                 //{

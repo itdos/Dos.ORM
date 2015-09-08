@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Dos.Common;
 using Dos.ORM;
 
 namespace Business
@@ -16,7 +17,7 @@ namespace Business
         public static readonly DbSession Sqlite = new DbSession("SqliteConn");
         public static readonly DbSession Access = new DbSession("AccessConn");
         public static readonly DbSession Oracle = new DbSession("OracleConn");
-        public static readonly DbSession PostgreSql = new DbSession("PostgreSqlConn");
+        //public static readonly DbSession PostgreSql = new DbSession("PostgreSqlConn");
 
         static DB()
         {
@@ -24,6 +25,7 @@ namespace Business
             {
                 //在此可以记录sql日志
                 //写日志会影响性能，建议开发版本记录sql以便调试，发布正式版本不要记录
+                //LogHelper.Debug(sql, "SQL日志");
             });
             SqlServer.RegisterSqlLogger(delegate(string sql)
             {
@@ -45,11 +47,11 @@ namespace Business
                 //在此可以记录sql日志
                 //写日志会影响性能，建议开发版本记录sql以便调试，发布正式版本不要记录
             });
-            PostgreSql.RegisterSqlLogger(delegate(string sql)
-            {
-                //在此可以记录sql日志
-                //写日志会影响性能，建议开发版本记录sql以便调试，发布正式版本不要记录
-            });
+            //PostgreSql.RegisterSqlLogger(delegate(string sql)
+            //{
+            //    //在此可以记录sql日志
+            //    //写日志会影响性能，建议开发版本记录sql以便调试，发布正式版本不要记录
+            //});
         }
     }
 }

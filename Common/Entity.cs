@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Dos.ORM;
 using Dos.ORM.Common;
 
@@ -143,7 +144,8 @@ namespace Dos.ORM
             return this.entityState;
         }
         /// <summary>
-        /// 恢复实体为默认状态，且标记实体为不做任何数据库操作（仅对.Save()有效果）！
+        /// 1、恢复实体为默认状态。
+        /// 2、标记实体为不做任何数据库操作（仅对.Save()有效果）
         /// </summary>
         public void DeAttach()
         {
@@ -216,19 +218,16 @@ namespace Dos.ORM
                 {
                     bool ishave = false;
 
-                    foreach (ModifyField mf in modifyFields)
+                    foreach (var mf in modifyFields.Where(mf => mf.Field.PropertyName.ToLower().Equals(field.PropertyName.ToLower())))
                     {
-                        if (mf.Field.PropertyName.ToLower().Equals(field.PropertyName.ToLower()))
-                        {
-                            mf.NewValue = newValue;
-                            ishave = true;
-                            break;
-                        }
+                        mf.NewValue = newValue;
+                        ishave = true;
+                        break;
                     }
 
                     if (!ishave)
                     {
-                        ModifyField modifyField = new ModifyField(field, oldValue, newValue);
+                        var modifyField = new ModifyField(field, oldValue, newValue);
                         modifyFields.Add(modifyField);
                     }
                 }

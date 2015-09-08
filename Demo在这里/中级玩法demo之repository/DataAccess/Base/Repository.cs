@@ -97,6 +97,55 @@ namespace DataAccess
             return fs.ToList();
         }
         /// <summary>
+        /// 通用查询
+        /// </summary>
+        public T First(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderBy = null, EnumService.OrderBy ascDesc = EnumService.OrderBy.Asc, int? top = null, int? pageSize = null, int? pageIndex = null)
+        {
+            var fs = Context.From<T>().Where(where);
+            if (top != null)
+            {
+                fs.Top(top.Value);
+            }
+            else if (pageIndex != null && pageSize != null)
+            {
+                fs.Page(pageSize.Value, pageIndex.Value);
+            }
+            if (orderBy != null)
+            {
+                if (ascDesc == EnumService.OrderBy.Asc)
+                {
+                    return fs.OrderBy(orderBy).First();
+                }
+                return fs.OrderByDescending(orderBy).First();
+            }
+            var model = fs.First();
+            return model;
+        }
+        /// <summary>
+        /// 通用查询
+        /// </summary>
+        public T First(Where<T> where, Expression<Func<T, object>> orderBy = null, EnumService.OrderBy ascDesc = EnumService.OrderBy.Asc, int? top = null, int? pageSize = null, int? pageIndex = null)
+        {
+            var fs = Context.From<T>().Where(where);
+            if (top != null)
+            {
+                fs.Top(top.Value);
+            }
+            else if (pageIndex != null && pageSize != null)
+            {
+                fs.Page(pageSize.Value, pageIndex.Value);
+            }
+            if (orderBy != null)
+            {
+                if (ascDesc == EnumService.OrderBy.Asc)
+                {
+                    return fs.OrderBy(orderBy).First();
+                }
+                return fs.OrderByDescending(orderBy).First();
+            }
+            return fs.First();
+        }
+        /// <summary>
         /// 根据条件判断是否存在数据
         /// </summary>
         /// <param name="where"></param>

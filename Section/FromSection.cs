@@ -219,6 +219,15 @@ namespace Dos.ORM
         {
             return (FromSection<T>)base.Having(havingWhere);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public new FromSection<T> Having(Where where)
+        {
+            return (FromSection<T>)base.Having(where.ToWhereClip());
+        }
         public new FromSection<T> Having(Expression<Func<T, bool>> lambdaHaving)
         {
             return (FromSection<T>)base.Having(ExpressionToClip<T>.ToWhereClip(lambdaHaving));
@@ -289,6 +298,37 @@ namespace Dos.ORM
         {
             return (FromSection<T>)base.GroupBy(ExpressionToClip<T>.ToGroupByClip(lambdaGroupBy));
         }
+        #region 2015-09-08新增
+        /// <summary>
+        /// 
+        /// </summary>
+        public new FromSection<T> OrderBy(params Field[] f)
+        {
+            var gb = OrderByClip.None;
+            foreach (var field in f)
+            {
+                gb = gb && field.Asc;
+            }
+            return (FromSection<T>)base.OrderBy(gb);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public new FromSection<T> OrderByDescending(params Field[] f)
+        {
+            var gb = OrderByClip.None;
+            foreach (var field in f)
+            {
+                gb = gb && field.Desc;
+            }
+            return (FromSection<T>)base.OrderBy(gb);
+        }
+        #endregion
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="orderBy"></param>
+        /// <returns></returns>
         public new FromSection<T> OrderBy(OrderByClip orderBy)
         {
             return (FromSection<T>)base.OrderBy(orderBy);
@@ -568,7 +608,6 @@ namespace Dos.ORM
         /// <returns></returns>
         public List<T> ToList()
         {
-
             FromSection from = getPagedFromSection();
             string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "List", "|", formatSql(from.SqlString, from));
             object cacheValue = getCache(cacheKey);
@@ -607,6 +646,11 @@ namespace Dos.ORM
                 reader.Close();
             }
             setCache<List<T>>(list, cacheKey);
+            //2015-09-08
+            foreach (var m in list)
+            {
+                m.ClearModifyFields();
+            }
             return list;
         }
 
@@ -671,7 +715,6 @@ namespace Dos.ORM
             }
 
             setCache<TResult>(t, cacheKey);
-
             return t;
         }
         /// <summary>
@@ -720,7 +763,8 @@ namespace Dos.ORM
             }
 
             setCache<T>(t, cacheKey);
-
+            //2015-09-08
+            t.ClearModifyFields();
             return t;
         }
 
@@ -1335,7 +1379,9 @@ namespace Dos.ORM
         /// <returns></returns>
         public FromSection Where(WhereClip where)
         {
-            this.where = where;
+            //2015-09-08修改
+            //this.where = where;
+            this.where = this.where && where;
             return this;
         }
 
@@ -1347,7 +1393,9 @@ namespace Dos.ORM
         /// <returns></returns>
         public FromSection GroupBy(GroupByClip groupBy)
         {
-            this.groupBy = groupBy;
+            //2015-09-08修改
+            //this.groupBy = groupBy;
+            this.groupBy = this.groupBy && groupBy;
             return this;
         }
 
@@ -1359,7 +1407,9 @@ namespace Dos.ORM
         /// <returns></returns>
         public FromSection Having(WhereClip havingWhere)
         {
-            this.havingWhere = havingWhere;
+            //2015-09-08修改
+            //this.havingWhere = havingWhere;
+            this.havingWhere = this.havingWhere && havingWhere;
             return this;
         }
 
@@ -1377,7 +1427,9 @@ namespace Dos.ORM
                 {
                     tempgroupby = tempgroupby && f.GroupBy;
                 }
-                this.groupBy = tempgroupby;
+                //2015-09-08修改
+                //this.groupBy = tempgroupby;
+                this.groupBy = this.groupBy && tempgroupby;
             }
             return this;
         }
@@ -1389,7 +1441,9 @@ namespace Dos.ORM
         /// <returns></returns>
         public FromSection OrderBy(OrderByClip orderBy)
         {
-            this.orderBy = orderBy;
+            //2015-09-08修改
+            //this.orderBy = orderBy;
+            this.orderBy = this.orderBy && orderBy;
             return this;
         }
 
@@ -1408,9 +1462,10 @@ namespace Dos.ORM
                 {
                     temporderby = temporderby && ob;
                 }
-                this.orderBy = temporderby;
+                //2015-09-08修改
+                //this.orderBy =temporderby;
+                this.orderBy = this.orderBy && temporderby;
             }
-
             return this;
         }
 
@@ -1422,7 +1477,8 @@ namespace Dos.ORM
         /// <returns></returns>
         public FromSection Select(params Field[] fields)
         {
-            this.fields.Clear();
+            //2015-09-08注释
+            //this.fields.Clear();
 
             return AddSelect(fields);
         }

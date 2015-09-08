@@ -30,8 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dos.Common">
-      <HintPath>..\..\..\packages\Dos.Common.1.0.1.6\lib\net40\Dos.Common.dll</HintPath>
+    <Reference Include="Dos.Common, Version=1.0.3.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Dos.Common.1.0.3.1\lib\net40\Dos.Common.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

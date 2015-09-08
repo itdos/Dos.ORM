@@ -24,7 +24,10 @@ namespace DataAccess.Entities
     [Serializable]
     public partial class TableMysql : Entity
     {
-        public TableMysql() : base("TableMysql") { }
+        public TableMysql() : base("TableMysql")
+        {
+            
+        }
 
         #region Model
         private Guid _Id;

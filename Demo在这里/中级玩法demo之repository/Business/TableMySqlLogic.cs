@@ -87,7 +87,7 @@ namespace Business
             {
                 return new BaseResult(false, null, "参数错误！");
             }
-            var model = DB.MySql.From<TableMysql>().Where(d => d.Id == param.Id).First();
+            var model = new TableMysqlRepository().First(d => d.Id == param.Id);
             if (model == null)
             {
                 return new BaseResult(false, null, "不存在要修改的数据！");

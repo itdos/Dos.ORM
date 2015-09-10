@@ -260,6 +260,42 @@ namespace Dos.ORM
         {
             return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        public new FromSection<T> Where<T2>(Expression<Func<T, T2, bool>> lambdaWhere)
+        {
+            return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public new FromSection<T> Where<T2, T3>(Expression<Func<T, T2, T3, bool>> lambdaWhere)
+        {
+            return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public new FromSection<T> Where<T2, T3, T4>(Expression<Func<T, T2, T3, T4, bool>> lambdaWhere)
+        {
+            return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public new FromSection<T> Where<T2, T3, T4, T5>(Expression<Func<T, T2, T3, T4, T5, bool>> lambdaWhere)
+        {
+            return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public new FromSection<T> Where<T2, T3, T4, T5, T6>(Expression<Func<T, T2, T3, T4, T5, T6, bool>> lambdaWhere)
+        {
+            return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
+        }
+
         public new FromSection<T> Select<T2>(Expression<Func<T, T2, bool>> lambdaWhere)
         {
             return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));

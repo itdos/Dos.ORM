@@ -98,7 +98,7 @@ namespace Business
             #endregion
 
             var fs = DB.MySql.From<TableMysql>()
-                .Where(where)
+                .Where<TableMysql>((a,b)=>a.Id == Guid.NewGuid() && b.IDNumber == "11")
                 //.OrderByDescending(TableMysql._.CreateTime, TableMysql._.Id)
                 //.OrderByDescending(d => new { d.CreateTime, d.Id });
                 .OrderByDescending(d => d.CreateTime)

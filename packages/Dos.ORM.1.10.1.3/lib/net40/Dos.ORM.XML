@@ -4837,6 +4837,31 @@
             
             </summary>
         </member>
+        <member name="M:Dos.ORM.FromSection`1.Where``1(System.Linq.Expressions.Expression{System.Func{`0,``0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.FromSection`1.Where``2(System.Linq.Expressions.Expression{System.Func{`0,``0,``1,System.Boolean}})">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.FromSection`1.Where``3(System.Linq.Expressions.Expression{System.Func{`0,``0,``1,``2,System.Boolean}})">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.FromSection`1.Where``4(System.Linq.Expressions.Expression{System.Func{`0,``0,``1,``2,``3,System.Boolean}})">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Dos.ORM.FromSection`1.Where``5(System.Linq.Expressions.Expression{System.Func{`0,``0,``1,``2,``3,``4,System.Boolean}})">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Dos.ORM.FromSection`1.GroupBy(Dos.ORM.GroupByClip)">
             <summary>
             groupby

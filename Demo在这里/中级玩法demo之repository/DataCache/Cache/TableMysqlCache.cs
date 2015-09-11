@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DataAccess.Entities;
+using DataCache.Base;
 
 namespace DataCache
 {
-    public class TableMysqlCache
+    public class TableMysqlCache : CacheBase
     {
         public TableMysql GetUserModel(Guid userId)
         {
-            var result = CacheBase.Get<TableMysql>("GetUser" + userId);
+            var result = Get<TableMysql>("GetUser" + userId);
             return result;
         }
-        public bool SetUserModel(Guid userId, TableMysql list)
+        public bool SetUserModel(TableMysql model)
         {
-            return CacheBase.Set("GetUser" + userId, list);
+            return Set("GetUser" + model.Id, model);
         }
         public bool DelUserModel(Guid userId)
         {
-            return CacheBase.Remove("GetUser" + userId);
+            return Remove("GetUser" + userId);
         }
     }
 }

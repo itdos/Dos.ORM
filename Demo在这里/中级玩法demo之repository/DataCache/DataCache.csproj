@@ -33,6 +33,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dos.Common, Version=1.0.3.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Dos.Common.1.0.3.2\lib\net40\Dos.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
       <Private>True</Private>
@@ -49,8 +53,8 @@
       <HintPath>..\..\..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="StackExchange.Redis, Version=1.0.316.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\StackExchange.Redis.1.0.481\lib\net40\StackExchange.Redis.dll</HintPath>
+    <Reference Include="StackExchange.Redis">
+      <HintPath>..\..\..\packages\StackExchange.Redis.1.0.414\lib\net40\StackExchange.Redis.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -76,6 +80,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\CacheBase.cs" />
+    <Compile Include="Base\ICacheBase.cs" />
+    <Compile Include="Base\IISCacheBase.cs" />
+    <Compile Include="Base\RedisCacheBase.cs" />
+    <Compile Include="Base\RedisConfig.cs" />
     <Compile Include="Cache\TableMysqlCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

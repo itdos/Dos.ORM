@@ -539,6 +539,7 @@ namespace Dos.ORM
                 //}
                 #endregion
                 Type itemType = typeof(T);
+                T t = DataUtils.Create<T>();
                 var key = itemType.FullName;
                 //if (!m_CatchMethod.ContainsKey(key))//Not use the cache for the time being  2015-06-14
                 //{
@@ -555,7 +556,7 @@ namespace Dos.ORM
                 Type[] methodArgs = { typeof(IDataReader) };
                 MethodInfo LAdd = listType.GetMethod("Add");
                 PropertyInfo[] properties = null;
-                getMapped(itemType, reader, out properties);
+                getMapped(t, itemType, reader, out properties);
 #if WRITE_FILE
 				MethodBuilder dm = tb.DefineMethod("ReadEntities", MethodAttributes.Public| MethodAttributes.Static, listType, methodArgs);
 #else
@@ -779,7 +780,7 @@ namespace Dos.ORM
                 }
                 throw new Exception(string.Format("不支持\"{0}\"类型的转换！", pi.PropertyType.Name));
             }
-            private static void getMapped(Type type, IDataReader reader, out PropertyInfo[] mappedProerties)
+            private static void getMapped<T>(T tt, Type type, IDataReader reader, out PropertyInfo[] mappedProerties)
             {
                 mappedProerties = new PropertyInfo[reader.FieldCount];
                 string[] fields = new string[reader.FieldCount];
@@ -790,16 +791,41 @@ namespace Dos.ORM
                 List<PropertyInfo> properties = new List<PropertyInfo>(type.GetProperties());
                 for (int i = 0; i < reader.FieldCount; i++)
                 {
+                    var isOk = false;
                     foreach (PropertyInfo pt in properties)
                     {
                         FieldAttribute fa = Attribute.GetCustomAttribute(pt, typeof(FieldAttribute)) as FieldAttribute;
-                        if ((fa != null && string.Compare(fa.Field, fields[i], true) == 0) || string.Compare(pt.Name, fields[i], true) == 0)
+                        if ((fa != null && string.Compare(fa.Field, fields[i], true) == 0) ||
+                            string.Compare(pt.Name, fields[i], true) == 0)
                         {
                             properties.Remove(pt);
                             mappedProerties[i] = pt;
+                            isOk = true;
                             break;
                         }
                     }
+                    #region 2015-09-14新增
+                    if (!isOk && tt is Entity)
+                    {
+                        if (properties.Any(d => d.Name == "F" + fields[i]))
+                        {
+                            var tempItem = properties.First(d => d.Name == "F" + fields[i]);
+                            properties.Remove(tempItem);
+                            mappedProerties[i] = tempItem;
+                        }
+                        else if (properties.Any(d => d.Name == "_" + fields[i]))
+                        {
+                            var tempItem = properties.First(d => d.Name == "_" + fields[i]);
+                            properties.Remove(tempItem);
+                            mappedProerties[i] = tempItem;
+                        }
+                        //var aa = (tt as Entity).GetFields().Where(d => d.Name == fields[i]);
+                        //if (aa.Any())
+                        //{
+
+                        //}
+                    }
+                    #endregion
                 }
             }
         }

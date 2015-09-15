@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DE14FAC8-0A48-48B5-84B7-F78B929D9878}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dos.ORM</RootNamespace>
+    <AssemblyName>Dos.ORM</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cache\Cache.cs" />
+    <Compile Include="Cache\CacheConfiguration.cs" />
+    <Compile Include="Cache\CacheInfo.cs" />
+    <Compile Include="Common\DataUtils.cs" />
+    <Compile Include="Common\DesignByContract.cs" />
+    <Compile Include="Common\DynamicCalls.cs" />
+    <Compile Include="Common\Entity.cs" />
+    <Compile Include="Common\EntityCache.cs" />
+    <Compile Include="Common\EntityUtils.cs" />
+    <Compile Include="Common\EnumHelper.cs" />
+    <Compile Include="Common\Field.cs" />
+    <Compile Include="Common\ILogable.cs" />
+    <Compile Include="Common\SerializationManager.cs" />
+    <Compile Include="Db\BatchCommander.cs" />
+    <Compile Include="Db\CommandCreator.cs" />
+    <Compile Include="Db\Database.cs" />
+    <Compile Include="Db\DbBatch.cs" />
+    <Compile Include="Db\DbSession.cs" />
+    <Compile Include="Db\DbTrans.cs" />
+    <Compile Include="Expression\Expression.cs" />
+    <Compile Include="Expression\GroupByClip.cs" />
+    <Compile Include="Expression\OrderByClip.cs" />
+    <Compile Include="Expression\WhereClip.cs" />
+    <Compile Include="Expression\WhereClipBuilder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provider\DbProvider.cs" />
+    <Compile Include="Provider\MsAccessProvider.cs" />
+    <Compile Include="Provider\OracleProvider.cs" />
+    <Compile Include="Provider\ProviderFactory.cs" />
+    <Compile Include="Provider\SqlServer9Provider.cs" />
+    <Compile Include="Provider\SqlServerProvider.cs" />
+    <Compile Include="Section\FromSection.cs" />
+    <Compile Include="Section\ProcSection.cs" />
+    <Compile Include="Section\Section.cs" />
+    <Compile Include="Section\SqlSection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Dos.ORM更新日志.txt" />
+    <None Include="LICENSE" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

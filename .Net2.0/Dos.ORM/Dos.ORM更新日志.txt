@@ -1,0 +1,206 @@
+﻿未来版本预告：
+	*）可能会增加.Select(d => new NewClass(){})写法。
+	*）表名增加别名，以支持同一张表可以被INNER JOIN多次。
+	*）GetReturnValues标记为已过时，重载GetOutParam
+	*）sql、存储过程增加动态拼接参数的方法
+	*）lambda写法是取的实体类名，不是实际的表名，当表名与实体类名不一致时，存在Bug。
+	*）TransactionScope事务
+	*）多表联查，两次table._.All好像取不到数据。
+
+2015-09-14 Dos.ORM（原Hxj.Data）（v1.10.1.5）
+	*）解决当字段名为数字时，无法取出数据的bug。（感谢群友【水洼里的鱼】发现此bug）
+	*）增加.Where<T2,T3>((a,b,c)=>...);写法
+	*）解决.ToList()、.ToFirst()返回的实体默认就标记了所有字段为修改状态。
+	*）解决自增主键在批量插入的时候，并不是返回的最后一次插入后返回的自增主键值的Bug，而是把每次插入后返回的自增值累加了。（感谢群友【郑邴镪】发现此Bug）
+	*）解决.Delete<T>(value,value,value)删除的Bug，此删除写法不是删除3条数据，而是当该表有3个主键时才这样写，仅删除一条数据。
+	*）DB.Content.Exists<T>()增加Lambda写法。DB.Content.Count<T>()增加Lambda写法。
+	*）解决MySql子查询bug。原理见：http://www.itdos.com/DataBase/20150812/1150319.html 特别感谢Python同事【晓不得www.songyuchao.com】发现此Bug。
+
+2015-08-12 Dos.ORM（原Hxj.Data）（v1.9.9.9）
+	*）█████重要更新█████笔者在使用含有事务参数方法的过程中，有的trans是最后一个参数，有的是第一个参数，感觉非常杂乱。v1.9.9.9版本对事务参数进行了统一整理，所有事务对象均修改为第一个参数，本次改动会让以前用到trans参数的方法出错，需要将trans参数移动到第一位，我们表示深深的歉意！此举是为了让Dos.ORM用起来更方便、更合理，希望朋友们能理解，谢谢。████████████████████
+	*）【重要更新】增加.Save<T>(List<T>)、.Save<T>(T)方法，给T指定动作（增、删、改），然后事务批量提交。也可以传入事务对象。 
+	*）【重要更新】所有Dos.ORM.Common命名空间下所有方法移入Dos.ORM命名空间下，Dos.ORM.Common命名空间可以不再需要using。
+	*）解决Oracle参数前缀取值错误，把“:”取成了“@”。
+	*）【重要更新】取消实体类的SetPropertyValues映射，考虑到单表查询也会用到别名然后扩展类属性，此时SetPropertyValues无法映射别名数据，因此取消，ORM底层映射全部采用Emit。同时实体生成器v1.8.7.0生成的实体类将不再生成SetPropertyValues方法，此实体类仅适用于Dos.ORM v1.9.9.2 以及上版本。
+	*）解决.Delete<T>("传入string类型主键")无法删除的Bug。
+	*）【重要更新】.Delete<T>()方法，如果没有任何条件，现在会抛出异常：“请传入删除条件，删除整表数据请使用.DeleteAll<T>()方法。”，以防止误删整张表。
+	*）增加.DeleteAll<T>()方法，删除整表数据。
+	*）【重要更新】缓存依赖web.config配置的“HxjCacheConfig”需要修改为“DosCacheConfig”
+	*）解决实体字段赋值为null的时候偶尔无法更新的Bug。
+	*）增加.First<T>()
+	*）解决.OrderBy()一个guid字段lambda写法的Bug。
+	*）解决仅.Select()一个字段然后.ToList<string>()的一个Bug。
+	*）【重要更新】现在实体会默认标记为Attach()，修改实体可以不再需要先将实体.Attach()。例：Model.Name='ITdos'，即代表Name将参与字段的修改。
+	*）优化实例化一个新实体对象，然后直接.Update()的操作。
+	*）优化底层Emit映射。
+	*）优化.Delete<T>(IEnumerable<T> entities)方法，性能大大提升。
+	*）增加.Delete<T>(Where where)重载。
+	*）【重要更新】lambda的常量、变量计算增加缓存，性能提升10-20倍。举例：.Where(d => Convert.ToInt32(Model.Price.ToString())+2/3*5 > 0)，lambda计算默认是通过委托+反射取结果，现在计算公式将会缓存，性能大大提升。
+	*）现在.Where()的lambda支持常量、变量之间的比较，同时比较符号左右不分顺序。
+	*）解决tinyint(1)对应bool类型字段偶尔为0时，映射结果却为true。
+	*）【重要更新】增加多表关联查询的.Where<T,T2,T3>()Lambda表达式写法：.From<T1>().Where<T2, T3, T4>((a, b, c) => a.ID != null && b.Name == "ITdos")。
+	*）【重要更新】Where条件拼接类同上。例：var where = new Where<T1>(); where.And<T2, T3>((a, b, c) => a.ID != null && b.Name == "ITdos");。
+	*）增加.Delete<T>(IEnumerable<T> entities)重载。
+	*）【重要更新】新增Where、Where<T>（同WhereClipBuilder），同时.Where()增加可传入Where对象重载。
+	*）优化了lambda filed.In()、.NotIn()传入数组的类型。（之前是string字段只能传string数组，guid只能传guid数组。现在无限制，int字段同样可以传入string数组，strng字段同样可以传入int数组。）
+	*）解决.FromSql()在MySql、Oracle下参数名使用"@"与字段名一样时（如：WHERE ID=@ID）报错的Bug。
+	*）解决.OrderBy()Lambda表达式不支持DateTime等特殊类型字段的Bug。
+	*）解决.OrderBy()单个字段Lambda表达式无法Desc的Bug。
+	*）解决lambda表达式传值的一个Bug。
+
+2015-05-31 Dos.ORM（原Hxj.Data）（v1.9.5）
+	*）【重要更新】.LeftJoin<T>()和.InnerJoin<T>()增加Lambda表达式写法：.LeftJoin<Product>((a, b) => a.ProductID == b.ID)。
+	*）【重要更新】增加多表关联查询的.Select<T2,T3,T4>()Lambda表达式写法：.From<T1>().Select<T2, T3,T4>((a, b, c, d) => new { a.Column1, b.Column2, c.Column3, d.Column4 })。生成Sql：SELCT T1.Column1,T2.Column2,T3.Column3,T4.Column4 FROM
+	*）.Where()增加Lambda表达式字段与字段比较：.Where(d => d.Column1 == d.Column2)。
+	*）重写.FromSql().ToList<T>()方法，现在支持映射任意实体类。
+	*）【重要更新】lambda表达式增加支持字段函数：As()、Sum()
+	*）【重要更新】新增.ToList<T>()写法，T若为类(class)，会把数据直接映射至class。T若为数据类型（如:Guid、string），则需要选择一个字段：.Select(d=>d.ColumnName).ToList<Guid>()
+	*）【重要更新】lambda表达式增加支持字段函数：Like()、Contains()（同Like）、StartsWith()、EndsWith()、In()、NotIn()、IsNull()、IsNotNull()
+	*）解决.SelectIn()、.SelectNotIn()传入length=0的数组时ORM报错。
+	*）解决使用.Select(d=>d.ColumnName).ToList()查询指定字段会报错。
+
+2015-05-18 Dos.ORM（原Hxj.Data）（v1.8.6.2）
+	*）字段.SelectIn()增加重载：.SelectIn<T>(List<T> values)
+	*）字段增加.In()，效果同.SelectIn()
+	*）字段.SelectNotIn()增加重载：.SelectNotIn<T>(List<T> values)
+	*）字段增加.NotIn()，效果同.SelectNotIn()
+	*）.Insert<T>()增加重载：.Insert<T>(IEnumerable<T> entities)
+
+2015-05-16 Dos.ORM（原Hxj.Data）（v1.8.6.1）
+	*）.Update<T>()增加重载：.Update<T>(IEnumerable<T> entities)
+
+2015-05-15 Dos.ORM（原Hxj.Data）（v1.8.6）
+	*）From<T>()增加.First()，效果同.ToFirst()
+	*）【重要更新】现在多表关联查询.ToList()支持“扩展字段”Mapping了。“扩展字段”可直接使用“贫血模型”，如：public string Name{get;set;}
+
+2015-05-10 Dos.ORM（原Hxj.Data）（v1.8.5）
+	*）【重要更新】From<T>().GroupBy()增加Lambda表达式写法
+	*）【重要更新】From<T>().OrderBy()增加Lambda表达式写法
+	*）增加From<T>().OrderByDescending()
+	*）【重要更新】From<T>().Having()增加Lambda表达式写法
+	*）【重要更新】From<T>().Select()增加Lambda表达式写法
+
+2015-05-05 Dos.ORM（原Hxj.Data）（v1.8.1）
+	*）解决Dos.ORM在MySql下仍然调用Hxj.Data.MySql的Bug，现在会正确调用Dos.ORM.MySql。Sqlite同理。
+
+2015-05-03 Dos.ORM（原Hxj.Data）（v1.8.0）
+	*）Hxj.Data正式开源，实体生成器一并开源。
+	*）【重要更新】Hxj.Data正式更名为Dos.ORM，与Dos.WorkFlow、Dos.WeChat等形成产品线。老程序集迁移至新程序集：将【using Hxj.Data;】全部替换为【using Dos.ORM;】、将【using Hxj.Data.Common;】全部替换成【using Dos.ORM.Common;】即可！（勾选“区分大小写”、“全字匹配”，选中“整个解决方案”，点击“全部替换”。）
+	*）【重要更新】From<T>().Where()增加Lambda表达式“==”、“!=”写法。
+	*）【重要更新】Delete<T>().Where()增加Lambda表达式“==”、“!=”写法。
+	*）随机16位字母参数名修改为“表名+参数+全局序号(以继续保证唯一)”，使增、删、查、改性能提升50%。
+	*）单条数据插入去除事务，性能提升10%。
+	*）批量Insert、Update、Delete由void更改为返回受影响行数。
+	*）QueryOperator、DataUtils、Field 增加IsNotNULL。
+	*）Field增加Like，同Contain。
+	*）【重要更新】新增WhereClipBuilder<T>，以及And、Or的Lambda表达式“==”、“!=”写法。
+
+Hxj.Data(V1.7.4.7)
+	增加UpdateAll方法更新实体全部字段。
+
+Hxj.Data(V1.7.4.6)
+	修正存储过程名和参数名重复时的参数替换问题。
+
+Hxj.Data(V1.7.4.5)
+	修正access的bool类型支持。
+
+Hxj.Data(V1.7.4.4)
+	修正oracle执行存储过程的参数问题。
+
+Hxj.Data(V1.7.4.3)
+1、增加对字段的Distinct操作，例如：Products._.ID.Distinct()  
+
+Hxj.Data(V1.7.4.2)
+1、增加缓存操作，获取缓存数量、获取缓存键值列表、清除所有缓存。
+
+Hxj.Data(V1.7.4.1)
+1、修正Access数据库多次联合查询的错误。
+
+Hxj.Data(V1.7.4)
+1、修正Access数据库创建DbSession失败。
+
+Hxj.Data(V1.7.3.2)
+1、WhereClip.Exists方法，用来生成exists (select * from table )这种条件。
+2、修正oracle子查询中表别名不能使用as关键字。
+
+Hxj.Data(V1.7.3.1)
+1、增加DbTrans类方法：
+ FromSql(string sql) //事务内执行sql语句
+ FromPro(string proName) //事务内执行存储过程
+
+Hxj.Data(V1.7.3)
+1、增加FromSection的Having方法，在增加处理groupby的having条件，原先的where方法则where条件。
+（由于之前版本的having条件是where方法，所以会存在功能差异，升级时请注意。）
+
+Hxj.Data(V1.7.2.1)
+1、修正oracle批处理。
+
+Hxj.Data(V1.7.2)
+1、增加WhereClipBuilder,用来快速构造WhereClip。
+2、修正oracle的查询。
+
+Hxj.Data (V1.7.1.1)
+1、增加FromSection.ToFirstDefault()方法，当查询不到数据则默认构造一个实体。
+2、增加FromSection.GroupBy(params Field field)方法，设置分组。
+
+Hxj.Data (V1.7.1)
+1、优化oracle查询。
+2、增加Field.SelectIn处理int类型就不参数化，直接生成例如： Field in (1,2,3)
+3、修正oracle支持。
+
+Hxj.Data (V1.7.0)
+1、支持MySql。
+
+Hxj.Data (V1.6.7)
+1、增加Hxj.Data.Common.EntityUtils.SetDocumentValue方法，用于Web页面赋值。
+2、其他修正。
+
+Hxj.Data (V1.6.6)
+1、修正由于string to whereclip的隐式转换，导致Delete<TEntity>(params object[] pkValues)在传入字符串类型无法调用。
+2、增加Insert<TEntity>(params TEntity[] entities)
+       Update<TEntity>(params TEntity[] entities)方法
+
+
+Hxj.Data (V1.6.5)
+1、修正Hxj.Data.Common.EntityUtils.UpdateModel
+       Hxj.Data.Common.EntityUtils.TryUpdateModel
+   方法无法赋值的问题（在实体属性首字母大写）
+2、修正更新的时候无法排除自增长字段。
+3、增加Hxj.Data.Common.EntityUtils.SetValue<TEntity>(TEntity toEntity, TEntity fromEntity)方法实体之间赋值。
+
+
+Hxj.Data (V1.6.4)
+1、优化分页，当分页到达过半时，分页则是先倒叙取count-startindex+1,再正序取pagesize数据。
+2、增加FromSection.AddSelect(FromSection),可对查询列中加子查询。
+3、增加string to WhereClip的隐式转换。
+
+
+Hxj.Data (V1.6.3)
+1、增加DbTrans.FromSection 查询。
+2、修正实体类属性首字母大写后，生成实体主键条件无法生成。
+3、修正其他BUG。
+
+
+2010.1.30
+0.5.0
+增强了事务和批处理。
+修正了一些bug
+
+2009.12.18
+增强子查询
+增加Hxj.Data.Cache
+修正batch错误 
+修正一些小bug
+
+2009.11.5
+修正子查询错误
+修改WhereClip的Bug
+
+2009.10.16
+版本0.2
+修正添加、更新失败
+修正Union查询出错
+其他一些小Bug的修复
+
+2009.09.22
+发布一个版本 0.1 版本

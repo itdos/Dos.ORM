@@ -3,7 +3,7 @@
 * 文 件 名：Biz_CarsInfoLogic
 * Copyright(c) 青之软件
 * CLR 版本: 4.0.30319.17929
-* 创 建 人：ITdos
+* 创 建 人：周浩
 * 电子邮箱：admin@itdos.com
 * 创建日期：2014/10/1 11:00:49
 * 文件描述：
@@ -21,22 +21,31 @@ using System.Runtime.Serialization;
 
 namespace Model.Base
 {
+    [DataContract(IsReference = true)]
     public abstract class Param
     {
-        protected Param()
-        {
-        }
-        public int? page { get; set; }
-        public int? total { get; set; }
-        public int? records { get; set; }
-        public int? top { get; set; }
+        /// <summary>
+        /// 前多少条
+        /// </summary>
+        [DataMember]
+        public int? _Top { get; set; }
         /// <summary>
         /// 每页多少条
         /// </summary>
-        public int? pageSize { get; set; }
+        [DataMember]
+        public int? _PageSize { get; set; }
         /// <summary>
-        /// 第几页
+        /// 第几页。1开始计数
         /// </summary>
-        public int? pageIndex { get; set; }
+        [DataMember]
+        public int? _PageIndex { get; set; }
+        /// <summary>
+        /// 排序字段
+        /// </summary>
+        public string _OrderBy { get; set; }
+        /// <summary>
+        /// 排序方式
+        /// </summary>
+        public string _OrderByType { get; set; }
     }
 }

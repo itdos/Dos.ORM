@@ -18,7 +18,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using Common;
 using Dos.ORM;
 
 namespace DataAccess
@@ -29,11 +28,11 @@ namespace DataAccess
         /// <summary>
         /// 通用查询
         /// </summary>
-        List<T> Query(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderBy = null, EnumService.OrderBy ascDesc = EnumService.OrderBy.Asc, int? top = null, int? pageSize = null, int? pageIndex = null);
+        List<T> Query(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderBy = null, string ascOrDesc = "asc", int? top = null, int? pageSize = null, int? pageIndex = null);
         /// <summary>
         /// 通用查询
         /// </summary>
-        List<T> Query(Where<T> where, Expression<Func<T, object>> orderBy = null, EnumService.OrderBy ascDesc = EnumService.OrderBy.Asc, int? top = null, int? pageSize = null, int? pageIndex = null);
+        List<T> Query(Where<T> where, Expression<Func<T, object>> orderBy = null, string ascOrDesc = "asc", int? top = null, int? pageSize = null, int? pageIndex = null);
         /// <summary>
         /// 增加单个实体
         /// </summary>
@@ -75,12 +74,5 @@ namespace DataAccess
         /// <param name="entities"></param>
         /// <returns></returns>
         int Delete(IEnumerable<T> entities);
-        //void Delete(DbContext context, IEnumerable<T> entities);
-        ///// <summary>
-        ///// 根据id获取实体
-        ///// </summary>
-        ///// <param name="key"></param>
-        ///// <returns></returns>
-        ////T GetById(object key);
     }
 }

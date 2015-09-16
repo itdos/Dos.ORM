@@ -7,28 +7,32 @@ using Newtonsoft.Json;
 
 namespace DataCache.Base
 {
+    /// <summary>
+    /// 可以根据情况使用不同的缓存机制。这里也可以做成反射+缓存机制来动态配置使用哪种缓存机制。
+    /// </summary>
     public class CacheBase
     {
-        /// <summary>
-        /// 声明使用哪种缓存
-        /// </summary>
-        public static IISCacheBase Cache = new IISCacheBase();
-        //public static RedisCacheBase Cache = new RedisCacheBase();
-        public bool Remove(string key)
+        public static IISCacheBase IisCache = new IISCacheBase();
+        public static RedisCacheBase RedisCache = new RedisCacheBase();
+        public static bool Remove(string key)
         {
-            return Cache.Remove(key);
+            if (false)
+            {
+                return RedisCache.Remove(key);
+            }
+            return IisCache.Remove(key);
         }
-        public bool Set<T>(string key, T value)
+        public static bool Set<T>(string key, T value)
         {
-            return Cache.Set(key, JsonConvert.SerializeObject(value));
+            return IisCache.Set(key, JsonConvert.SerializeObject(value));
         }
-        public bool Set<T>(string key, T value, TimeSpan expiresIn)
+        public static bool Set<T>(string key, T value, TimeSpan expiresIn)
         {
-            return Cache.Set(key, JsonConvert.SerializeObject(value), expiresIn);
+            return IisCache.Set(key, JsonConvert.SerializeObject(value), expiresIn);
         }
-        public T Get<T>(string key)
+        public static T Get<T>(string key)
         {
-            return Cache.Get<T>(key);
+            return IisCache.Get<T>(key);
         }
     }
 }

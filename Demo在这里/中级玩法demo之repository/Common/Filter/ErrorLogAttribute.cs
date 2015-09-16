@@ -19,6 +19,21 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+#region << 版 本 注 释 >>
+/****************************************************
+* 文 件 名：
+* Copyright(c) 青之软件
+* CLR 版本: 4.0.30319.17929
+* 创 建 人：周浩
+* 电子邮箱：admin@itdos.com
+* 创建日期：2015/09/10 14:08:52
+* 文件描述：
+******************************************************
+* 修 改 人：
+* 修改日期：
+* 备注描述：
+*******************************************************/
+#endregion
 using Dos.Common;
 
 namespace Common
@@ -26,16 +41,18 @@ namespace Common
     /// <summary>
     /// 表示一个特性，该特性用于处理由操作方法引发的异常。
     /// </summary>
-    public class ExceptionLogAttribute : HandleErrorAttribute
+    public class ErrorLogAttribute : HandleErrorAttribute
     {
         public override void OnException(ExceptionContext filterContext)
         {
             base.OnException(filterContext);
             filterContext.Result = new JsonResult
             {
-                Data = new BaseResult(false,null,"系统异常！异常信息：" + filterContext.Exception.Message),
+                Data = new BaseResult(false, null, filterContext.Exception.Message),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
+            //记录错误日志文件
+            LogHelper.Error(filterContext.Exception.Message + filterContext.Exception.StackTrace);
             filterContext.ExceptionHandled = true;
         }
     }

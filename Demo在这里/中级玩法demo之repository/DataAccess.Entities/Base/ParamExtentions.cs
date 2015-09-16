@@ -20,7 +20,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace DataAccess.Entities
+namespace DataAccess.Entities.Base
 {
     public class TestTableParam : Param
     {

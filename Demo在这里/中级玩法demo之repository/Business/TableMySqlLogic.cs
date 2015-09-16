@@ -8,7 +8,9 @@ using System.Data.Common;
 using Common;
 using DataAccess;
 using DataAccess.Entities;
+using DataAccess.Entities.Base;
 using DataCache;
+using QzCRM.Common;
 
 namespace Business
 {
@@ -37,13 +39,13 @@ namespace Business
 
             #region 是否分页
             var dateCount = 0;
-            if (param.pageIndex != null && param.pageSize != null)
+            if (param._PageIndex != null && param._PageSize != null)
             {
                 //取总数，以计算共多少页。自行考虑将总数缓存。
-                dateCount = new TableMysqlRepository().Count(where);//.SetCacheTimeOut(10)
+                dateCount = TableMysqlRepository.Count(where);//.SetCacheTimeOut(10)
             }
             #endregion
-            var list = new TableMysqlRepository().Query(where, d => d.CreateTime, EnumService.OrderBy.Desc, null, param.pageSize, param.pageIndex);
+            var list = TableMysqlRepository.Query(where, d => d.CreateTime, "desc", null, param._PageSize, param._PageIndex);
             return new BaseResult(true, list, "", dateCount);
         }
         /// <summary>
@@ -54,7 +56,7 @@ namespace Business
             if (string.IsNullOrWhiteSpace(param.Name) || string.IsNullOrWhiteSpace(param.MobilePhone)
                     || string.IsNullOrWhiteSpace(param.IDNumber))
             {
-                return new BaseResult(false, null, "参数错误！");
+                return new BaseResult(false, null, Msg.ParamError);
             }
             var model = new TableMysql
             {
@@ -64,10 +66,10 @@ namespace Business
                 MobilePhone = param.MobilePhone,
                 CreateTime = DateTime.Now
             };
-            var count = new TableMysqlRepository().Insert(model);
+            var count = TableMysqlRepository.Insert(model);
             //设置缓存
-            new TableMysqlCache().SetUserModel(model);
-            return new BaseResult(count > 0, count, count > 0 ? "" : "数据库受影响行数为0！");
+            TableMysqlCache.SetUserModel(model);
+            return new BaseResult(count > 0, count, count > 0 ? "" : Msg.Line0);
         }
         /// <summary>
         /// 删除数据。必须传入Id
@@ -76,12 +78,12 @@ namespace Business
         {
             if (param.Id == null)
             {
-                return new BaseResult(false, null, "参数错误！");
+                return new BaseResult(false, null, Msg.ParamError);
             }
-            var count = new TableMysqlRepository().Delete(param.Id);
+            var count = TableMysqlRepository.Delete(param.Id);
             //更新缓存
-            new TableMysqlCache().DelUserModel(param.Id.Value);
-            return new BaseResult(count > 0, count, count > 0 ? "" : "数据库受影响行数为0！");
+            TableMysqlCache.DelUserModel(param.Id.Value);
+            return new BaseResult(count > 0, count, count > 0 ? "" : Msg.Line0);
         }
         /// <summary>
         /// 修改数据。必须传入Id
@@ -90,25 +92,25 @@ namespace Business
         {
             if (param.Id == null)
             {
-                return new BaseResult(false, null, "参数错误！");
+                return new BaseResult(false, null, Msg.ParamError);
             }
             //取缓存
-            var model = new TableMysqlCache().GetUserModel(param.Id.Value);
+            var model = TableMysqlCache.GetUserModel(param.Id.Value);
             if (model == null)
             {
                 //如果缓存不存在，则从数据库获取
-                model = new TableMysqlRepository().First(d => d.Id == param.Id);
+                model = TableMysqlRepository.First(d => d.Id == param.Id);
             }
             if (model == null)
             {
-                return new BaseResult(false, null, "不存在要修改的数据！");
+                return new BaseResult(false, null, Msg.NoExist);
             }
             model.Name = param.Name ?? model.Name;
             model.IDNumber = param.IDNumber ?? model.IDNumber;
             model.MobilePhone = param.MobilePhone ?? model.MobilePhone;
-            var count = new TableMysqlRepository().Update(model);
+            var count = TableMysqlRepository.Update(model);
             //更新缓存
-            new TableMysqlCache().DelUserModel(param.Id.Value);
+            TableMysqlCache.DelUserModel(param.Id.Value);
             return new BaseResult(true);
         }
     }

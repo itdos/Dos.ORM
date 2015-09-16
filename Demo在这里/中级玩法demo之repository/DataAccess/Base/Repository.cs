@@ -20,38 +20,41 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using Common;
+using Dos.Common;
 using Dos.ORM;
 using Dos.ORM.Common;
 
 namespace DataAccess
 {
-    public abstract class Repository<T> : IRepository<T> where T : Entity
+    public abstract class Repository<T> where T : Entity//: IRepository<T> 
     {
         /// <summary>
         /// 
         /// </summary>
-        public static readonly DbSession Context = new DbSession("MySqlConn");
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        protected Repository()
-        {
+        public static readonly DbSession Context = new DbSession("QzCRMconn");
 
+        static Repository()
+        {
+            Context.RegisterSqlLogger(delegate(string sql)
+            {
+                //在此可以记录sql日志
+                //写日志会影响性能，建议开发版本记录sql以便调试，发布正式版本不要记录
+                LogHelper.Debug(sql, "SQL日志");
+            });
         }
         #region 查询
         /// <summary>
         /// 获取整表数据
         /// </summary>
         /// <returns></returns>
-        public List<T> GetAll()
+        public static List<T> GetAll()
         {
             return Context.From<T>().ToList();
         }
         /// <summary>
         /// 通用查询
         /// </summary>
-        public List<T> Query(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderBy = null, EnumService.OrderBy ascDesc = EnumService.OrderBy.Asc, int? top = null, int? pageSize = null, int? pageIndex = null)
+        public static List<T> Query(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderBy = null, string ascOrDesc = "asc", int? top = null, int? pageSize = null, int? pageIndex = null)
         {
             var fs = Context.From<T>().Where(where);
             if (top != null)
@@ -64,18 +67,21 @@ namespace DataAccess
             }
             if (orderBy != null)
             {
-                if (ascDesc == EnumService.OrderBy.Asc)
+                if (ascOrDesc.ToLower() == "asc")
                 {
-                    return fs.OrderBy(orderBy).ToList();
+                    fs.OrderBy(orderBy);
                 }
-                return fs.OrderByDescending(orderBy).ToList();
+                else
+                {
+                    fs.OrderByDescending(orderBy);
+                }
             }
             return fs.ToList();
         }
         /// <summary>
         /// 通用查询
         /// </summary>
-        public List<T> Query(Where<T> where, Expression<Func<T, object>> orderBy = null, EnumService.OrderBy ascDesc = EnumService.OrderBy.Asc, int? top = null, int? pageSize = null, int? pageIndex = null)
+        public static List<T> Query(Where<T> where, Expression<Func<T, object>> orderBy = null, string ascOrDesc = "asc", int? top = null, int? pageSize = null, int? pageIndex = null)
         {
             var fs = Context.From<T>().Where(where);
             if (top != null)
@@ -88,18 +94,21 @@ namespace DataAccess
             }
             if (orderBy != null)
             {
-                if (ascDesc == EnumService.OrderBy.Asc)
+                if (ascOrDesc.ToLower() == "asc")
                 {
-                    return fs.OrderBy(orderBy).ToList();
+                    fs.OrderBy(orderBy);
                 }
-                return fs.OrderByDescending(orderBy).ToList();
+                else
+                {
+                    fs.OrderByDescending(orderBy);
+                }
             }
             return fs.ToList();
         }
         /// <summary>
         /// 通用查询
         /// </summary>
-        public T First(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderBy = null, EnumService.OrderBy ascDesc = EnumService.OrderBy.Asc, int? top = null, int? pageSize = null, int? pageIndex = null)
+        public static List<T> Query(Where<T> where, OrderByClip orderBy = null, string ascOrDesc = "asc", int? top = null, int? pageSize = null, int? pageIndex = null)
         {
             var fs = Context.From<T>().Where(where);
             if (top != null)
@@ -112,7 +121,27 @@ namespace DataAccess
             }
             if (orderBy != null)
             {
-                if (ascDesc == EnumService.OrderBy.Asc)
+                fs.OrderBy(orderBy);
+            }
+            return fs.ToList();
+        }
+        /// <summary>
+        /// 通用查询
+        /// </summary>
+        public static T First(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderBy = null, string ascOrDesc = "asc", int? top = null, int? pageSize = null, int? pageIndex = null)
+        {
+            var fs = Context.From<T>().Where(where);
+            if (top != null)
+            {
+                fs.Top(top.Value);
+            }
+            else if (pageIndex != null && pageSize != null)
+            {
+                fs.Page(pageSize.Value, pageIndex.Value);
+            }
+            if (orderBy != null)
+            {
+                if (ascOrDesc.ToLower() == "asc")
                 {
                     return fs.OrderBy(orderBy).First();
                 }
@@ -124,7 +153,7 @@ namespace DataAccess
         /// <summary>
         /// 通用查询
         /// </summary>
-        public T First(Where<T> where, Expression<Func<T, object>> orderBy = null, EnumService.OrderBy ascDesc = EnumService.OrderBy.Asc, int? top = null, int? pageSize = null, int? pageIndex = null)
+        public static T First(Where<T> where, Expression<Func<T, object>> orderBy = null, string ascOrDesc = "asc", int? top = null, int? pageSize = null, int? pageIndex = null)
         {
             var fs = Context.From<T>().Where(where);
             if (top != null)
@@ -137,7 +166,7 @@ namespace DataAccess
             }
             if (orderBy != null)
             {
-                if (ascDesc == EnumService.OrderBy.Asc)
+                if (ascOrDesc.ToLower() == "asc")
                 {
                     return fs.OrderBy(orderBy).First();
                 }
@@ -150,14 +179,14 @@ namespace DataAccess
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
-        public bool Any(Expression<Func<T, bool>> where)
+        public static bool Any(Expression<Func<T, bool>> where)
         {
             return Context.Exists<T>(where);
         }
         /// <summary>
         /// 取总数
         /// </summary>
-        public int Count(Expression<Func<T, bool>> where)
+        public static int Count(Expression<Func<T, bool>> where)
         {
             return Context.From<T>().Where(where).Count();
         }
@@ -166,7 +195,7 @@ namespace DataAccess
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
-        public int Count(Where<T> where)
+        public static int Count(Where<T> where)
         {
             return Context.From<T>().Where(where).Count();
         }
@@ -177,7 +206,7 @@ namespace DataAccess
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public int Insert(T entity)
+        public static int Insert(T entity)
         {
             return Context.Insert<T>(entity);
         }
@@ -187,7 +216,7 @@ namespace DataAccess
         /// <param name="context"></param>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public void Insert(DbTrans context, T entity)
+        public static void Insert(DbTrans context, T entity)
         {
             Context.Insert<T>(context, entity);
             //context.Set<T>().Add(entity);
@@ -197,11 +226,11 @@ namespace DataAccess
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
-        public int Insert(IEnumerable<T> entities)
+        public static int Insert(IEnumerable<T> entities)
         {
             return Context.Insert<T>(entities);
         }
-        public void Insert(DbTrans context, IEnumerable<T> entities)
+        public static void Insert(DbTrans context, IEnumerable<T> entities)
         {
             Context.Insert<T>(context, entities.ToArray());
         }
@@ -212,11 +241,25 @@ namespace DataAccess
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public int Update(T entity)
+        public static int Update(T entity)
         {
             return Context.Update(entity);
         }
-        public void Update(DbTrans context, T entity)
+        /// <summary>
+        /// 更新单个实体
+        /// </summary>
+        public static int Update(T entity, Where where)
+        {
+            return Context.Update(entity, where);
+        }
+        /// <summary>
+        /// 更新单个实体
+        /// </summary>
+        public static int Update(T entity, Expression<Func<T, bool>> lambdaWhere)
+        {
+            return Context.Update(entity, lambdaWhere);
+        }
+        public static void Update(DbTrans context, T entity)
         {
             Context.Update(context, entity);
         }
@@ -225,13 +268,13 @@ namespace DataAccess
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
-        public int Update(IEnumerable<T> entities)
+        public static int Update(IEnumerable<T> entities)
         {
             var enumerable = entities as T[] ?? entities.ToArray();
             Context.Update(enumerable.ToArray());
             return 1;
         }
-        public void Update(DbTrans context, IEnumerable<T> entities)
+        public static void Update(DbTrans context, IEnumerable<T> entities)
         {
             Context.Update(context, entities.ToArray());
         }
@@ -240,14 +283,14 @@ namespace DataAccess
         /// <summary>
         /// 删除单个实体
         /// </summary>
-        public int Delete(T entitie)
+        public static int Delete(T entitie)
         {
             return Context.Delete<T>(entitie);
         }
         /// <summary>
         /// 删除多个实体
         /// </summary>
-        public int Delete(IEnumerable<T> entities)
+        public static int Delete(IEnumerable<T> entities)
         {
             return Context.Delete<T>(entities);
         }
@@ -256,7 +299,7 @@ namespace DataAccess
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public int Delete(Guid? id)
+        public static int Delete(Guid? id)
         {
             if (id == null)
             {
@@ -267,14 +310,14 @@ namespace DataAccess
         /// <summary>
         /// 删除单个实体
         /// </summary>
-        public int Delete(Expression<Func<T, bool>> where)
+        public static int Delete(Expression<Func<T, bool>> where)
         {
             return Context.Delete<T>(where);
         }
         /// <summary>
         /// 删除单个实体
         /// </summary>
-        public int Delete(Where<T> where)
+        public static int Delete(Where<T> where)
         {
             return Context.Delete<T>(where.ToWhereClip());
         }

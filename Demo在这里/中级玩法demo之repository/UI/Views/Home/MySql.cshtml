@@ -29,8 +29,8 @@
                     SearchName: avBody.SearchName,
                     SearchIDNumber: avBody.SearchIDNumber,
                     SearchMobilePhone: avBody.SearchMobilePhone,
-                    pageIndex: avBody.PageIndex + 1,
-                    pageSize: avBody.PageSize
+                    _PageIndex: avBody.PageIndex + 1,
+                    _PageSize: avBody.PageSize
                 }, function (result) {
                     if (result.IsSuccess) {
                         avBody.Users = result.Data;
@@ -51,8 +51,8 @@
                     SearchName: avBody.SearchName,
                     SearchIDNumber: avBody.SearchIDNumber,
                     SearchMobilePhone: avBody.SearchMobilePhone,
-                    pageIndex: avBody.PageIndex + 1,
-                    pageSize: avBody.PageSize
+                    _PageIndex: avBody.PageIndex + 1,
+                    _PageSize: avBody.PageSize
                 }, function (result) {
                     if (result.IsSuccess) {
                         avBody.Users = result.Data;

@@ -105,11 +105,11 @@ namespace Business
                 .OrderBy(d => d.Id);
             #region 是否分页
             var dateCount = 0;
-            if (param.pageIndex != null && param.pageSize != null)
+            if (param._PageIndex != null && param._PageSize != null)
             {
                 //取总数，以计算共多少页。自行考虑将总数缓存。
                 dateCount = fs.Count();//.SetCacheTimeOut(10)
-                fs.Page(param.pageSize.Value, param.pageIndex.Value);
+                fs.Page(param._PageSize.Value, param._PageIndex.Value);
             }
             #endregion
             var list = fs.ToList();

@@ -6,10 +6,11 @@ using System.Web.Mvc;
 using Business;
 using Common;
 using DataAccess.Entities;
+using DataAccess.Entities.Base;
 
 namespace UI.Controllers
 {
-    [ExceptionLog]
+    [ErrorLog]
     public class HomeController : Controller
     {
         #region MySql

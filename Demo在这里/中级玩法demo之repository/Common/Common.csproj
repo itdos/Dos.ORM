@@ -75,6 +75,7 @@
     <Compile Include="Filter\AuthorizationAttribute.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="EnumService.cs" />
+    <Compile Include="Filter\CustomController.cs" />
     <Compile Include="Filter\ErrorLogAttribute.cs" />
     <Compile Include="Msg.cs" />
     <Compile Include="NpoiHelper.cs" />

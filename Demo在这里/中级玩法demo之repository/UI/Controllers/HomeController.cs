@@ -11,7 +11,7 @@ using DataAccess.Entities.Base;
 namespace UI.Controllers
 {
     [ErrorLog]
-    public class HomeController : Controller
+    public class HomeController : CustomController
     {
         #region MySql
         public ActionResult MySql()

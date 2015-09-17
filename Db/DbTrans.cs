@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Linq;
 using Dos;
 using Dos.ORM;
 
@@ -227,13 +228,21 @@ namespace Dos.ORM
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="entities"></param>
-        public void UpdateAll<TEntity>(params TEntity[] entities)
+        public int UpdateAll<TEntity>(params TEntity[] entities)
             where TEntity : Entity
         {
-            dbSession.UpdateAll<TEntity>(trans, entities);
+            return dbSession.UpdateAll<TEntity>(trans, entities);
         }
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entities"></param>
+        public int UpdateAll<TEntity>(IEnumerable<TEntity> entities)
+            where TEntity : Entity
+        {
+            return dbSession.UpdateAll<TEntity>(trans, entities.ToArray());
+        }
         /// <summary>
         /// 更新全部字段  
         /// </summary>
@@ -266,13 +275,21 @@ namespace Dos.ORM
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="entities"></param>
-        public void Update<TEntity>(params TEntity[] entities)
+        public int Update<TEntity>(params TEntity[] entities)
             where TEntity : Entity
         {
-            dbSession.Update<TEntity>(trans, entities);
+            return dbSession.Update<TEntity>(trans, entities);
         }
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entities"></param>
+        public int Update<TEntity>(IEnumerable<TEntity> entities)
+            where TEntity : Entity
+        {
+            return dbSession.Update<TEntity>(trans, entities.ToArray());
+        }
         /// <summary>
         /// 更新  
         /// </summary>
@@ -413,12 +430,21 @@ namespace Dos.ORM
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="entities"></param>
         /// <returns></returns>
-        public void Insert<TEntity>(params TEntity[] entities)
+        public int Insert<TEntity>(params TEntity[] entities)
             where TEntity : Entity
         {
-            dbSession.Insert<TEntity>(entities);
+            return dbSession.Insert<TEntity>(entities);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entities"></param>
+        public int Insert<TEntity>(IEnumerable<TEntity> entities)
+            where TEntity : Entity
+        {
+            return dbSession.Insert<TEntity>(entities);
+        }
         /// <summary>
         /// 添加
         /// </summary>

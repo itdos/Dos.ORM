@@ -744,22 +744,21 @@ namespace Dos.ORM
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="tran"></param>
         /// <param name="entities"></param>
-        public void UpdateAll<TEntity>(DbTransaction tran, params TEntity[] entities)
+        public int UpdateAll<TEntity>(DbTransaction tran, params TEntity[] entities)
             where TEntity : Entity
         {
 
             if (null == entities || entities.Length == 0)
-                return;
-
+                return 0;
+            var count = 0;
             foreach (TEntity entity in entities)
             {
                 if (entity == null)
                     break;//2015-08-20  break修改为continue
 
-                UpdateAll<TEntity>(tran,entity);
+                count += UpdateAll<TEntity>(tran, entity);
             }
-
-
+            return count;
         }
 
 

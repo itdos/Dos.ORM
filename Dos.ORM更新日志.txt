@@ -7,7 +7,8 @@
 	*）TransactionScope事务
 	*）多表联查，两次table._.All好像取不到数据。
 
-2015-09-14 Dos.ORM（原Hxj.Data）（v1.10.1.5）
+2015-09-17 Dos.ORM（原Hxj.Data）（v1.10.1.7）
+	*）事务Insert、Update完善部分重载，且无返回void修改为返回int。
 	*）解决当字段名为数字时，无法取出数据的bug。（感谢群友【水洼里的鱼】发现此bug）
 	*）增加.Where<T2,T3>((a,b,c)=>...);写法
 	*）解决.ToList()、.ToFirst()返回的实体默认就标记了所有字段为修改状态。

@@ -26,7 +26,7 @@ namespace DataAccess.Entities
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string IDNumber { get; set; }
-        public string MobilPhone { get; set; }
+        public string MobilePhone { get; set; }
         public DateTime CreateTime { get; set; }
     }
     /// <summary>

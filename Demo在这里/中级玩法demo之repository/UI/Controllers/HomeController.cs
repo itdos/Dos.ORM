@@ -26,6 +26,7 @@ namespace UI.Controllers
             var bs = new TableMySqlLogic().GetUser(param);
             #region 以下逻辑可以重写Json()在内部实现
             var data = bs.Data as List<TableMysql>;
+            //Map目的是过滤前端不需要的字段，如一张表有100个字段，但是前端grid只需要显示10个字段，那么就有90个字段前端其实是不需要的，所以需要在这里过滤掉那90个字段，即在TableMysql_Page1设置前端需要的字段。
             var result = Common.Common.Map<TableMysql, TableMysql_Page1>(data);
             bs.Data = result;
             //var test = Json(result);

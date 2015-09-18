@@ -17,7 +17,7 @@ namespace Business
     public class TestTableLogic
     {
         /// <summary>
-        /// 获取数据。
+        /// 获取数据。此数据会持续增长，所以不建议一次性缓存。建议单个Model实体缓存。
         /// </summary>
         public BaseResult GetUser(TestTableParam param)
         {
@@ -47,6 +47,22 @@ namespace Business
             #endregion
             var list = TestTableRepository.Query(where, d => d.CreateTime, "desc", null, param._PageSize, param._PageIndex);
             return new BaseResult(true, list, "", dateCount);
+        }
+        public BaseResult GetUserModel(TestTableParam param)
+        {
+            if (param.Id == null)
+            {
+                return new BaseResult(false, null, Msg.ParamError);
+            }
+            //取缓存
+            var model = TestTableCache.GetUserModel(param.Id.Value);
+            if (model == null)
+            {
+                //如果缓存不存在，则从数据库获取
+                model = TestTableRepository.First(d => d.Id == param.Id);
+                TestTableCache.SetUserModel(model);
+            }
+            return new BaseResult(true, model);
         }
         /// <summary>
         /// 新增数据。必须传入姓名Name，手机号MobilePhone，身份证号IDNumber
@@ -94,21 +110,14 @@ namespace Business
             {
                 return new BaseResult(false, null, Msg.ParamError);
             }
-            //取缓存
-            var model = TestTableCache.GetUserModel(param.Id.Value);
-            if (model == null)
-            {
-                //如果缓存不存在，则从数据库获取
-                model = TestTableRepository.First(d => d.Id == param.Id);
-            }
-            if (model == null)
-            {
-                return new BaseResult(false, null, Msg.NoExist);
-            }
-            model.Name = param.Name ?? model.Name;
-            model.IDNumber = param.IDNumber ?? model.IDNumber;
-            model.MobilePhone = param.MobilePhone ?? model.MobilePhone;
-            var count = TestTableRepository.Update(model);
+            var model = new TestTable();
+            if (param.Name != null)
+                model.Name = param.Name;
+            if (param.IDNumber != null)
+                model.IDNumber = param.IDNumber;
+            if (param.MobilePhone != null)
+                model.MobilePhone = param.MobilePhone;
+            var count = TestTableRepository.Update(model, d => d.Id == param.Id);
             //更新缓存
             TestTableCache.DelUserModel(param.Id.Value);
             return new BaseResult(true);

@@ -7,7 +7,7 @@ using DataCache.Base;
 
 namespace DataCache
 {
-    public class TableMysqlCache : CacheBase
+    public class TestTableCache : CacheBase
     {
         public static TestTable GetUserModel(Guid userId)
         {

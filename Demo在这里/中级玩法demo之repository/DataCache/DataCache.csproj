@@ -84,7 +84,7 @@
     <Compile Include="Base\IISCacheBase.cs" />
     <Compile Include="Base\RedisCacheBase.cs" />
     <Compile Include="Base\RedisConfig.cs" />
-    <Compile Include="TableMysqlCache.cs" />
+    <Compile Include="TestTableCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

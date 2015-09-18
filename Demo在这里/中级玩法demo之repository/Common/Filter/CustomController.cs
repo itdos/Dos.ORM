@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using NPOI.HSSF.Record.CF;
 
 namespace Common
 {
@@ -47,7 +49,8 @@ namespace Common
             {
                 var writer = new JsonTextWriter(response.Output)
                 {
-                    Formatting = Formatting
+                    Formatting = Formatting,
+                    DateFormatString = "yyyy-MM-dd HH:mm:ss"
                 };
                 var serializer = JsonSerializer.Create(SerializerSettings);
                 serializer.Serialize(writer, Data); writer.Flush();

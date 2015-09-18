@@ -50,7 +50,7 @@
     <Compile Include="Base\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base\Repository.cs" />
-    <Compile Include="TableMysqlRepository.cs" />
+    <Compile Include="TestTableRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Dos.ORM.csproj">

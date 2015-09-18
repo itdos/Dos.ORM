@@ -14,7 +14,7 @@ using QzCRM.Common;
 
 namespace Business
 {
-    public class TableMySqlLogic
+    public class TestTableLogic
     {
         /// <summary>
         /// 获取数据。
@@ -42,10 +42,10 @@ namespace Business
             if (param._PageIndex != null && param._PageSize != null)
             {
                 //取总数，以计算共多少页。自行考虑将总数缓存。
-                dateCount = TableMysqlRepository.Count(where);//.SetCacheTimeOut(10)
+                dateCount = TestTableRepository.Count(where);//.SetCacheTimeOut(10)
             }
             #endregion
-            var list = TableMysqlRepository.Query(where, d => d.CreateTime, "desc", null, param._PageSize, param._PageIndex);
+            var list = TestTableRepository.Query(where, d => d.CreateTime, "desc", null, param._PageSize, param._PageIndex);
             return new BaseResult(true, list, "", dateCount);
         }
         /// <summary>
@@ -66,9 +66,9 @@ namespace Business
                 MobilePhone = param.MobilePhone,
                 CreateTime = DateTime.Now
             };
-            var count = TableMysqlRepository.Insert(model);
+            var count = TestTableRepository.Insert(model);
             //设置缓存
-            TableMysqlCache.SetUserModel(model);
+            TestTableCache.SetUserModel(model);
             return new BaseResult(count > 0, count, count > 0 ? "" : Msg.Line0);
         }
         /// <summary>
@@ -80,9 +80,9 @@ namespace Business
             {
                 return new BaseResult(false, null, Msg.ParamError);
             }
-            var count = TableMysqlRepository.Delete(param.Id);
+            var count = TestTableRepository.Delete(param.Id);
             //更新缓存
-            TableMysqlCache.DelUserModel(param.Id.Value);
+            TestTableCache.DelUserModel(param.Id.Value);
             return new BaseResult(count > 0, count, count > 0 ? "" : Msg.Line0);
         }
         /// <summary>
@@ -95,11 +95,11 @@ namespace Business
                 return new BaseResult(false, null, Msg.ParamError);
             }
             //取缓存
-            var model = TableMysqlCache.GetUserModel(param.Id.Value);
+            var model = TestTableCache.GetUserModel(param.Id.Value);
             if (model == null)
             {
                 //如果缓存不存在，则从数据库获取
-                model = TableMysqlRepository.First(d => d.Id == param.Id);
+                model = TestTableRepository.First(d => d.Id == param.Id);
             }
             if (model == null)
             {
@@ -108,9 +108,9 @@ namespace Business
             model.Name = param.Name ?? model.Name;
             model.IDNumber = param.IDNumber ?? model.IDNumber;
             model.MobilePhone = param.MobilePhone ?? model.MobilePhone;
-            var count = TableMysqlRepository.Update(model);
+            var count = TestTableRepository.Update(model);
             //更新缓存
-            TableMysqlCache.DelUserModel(param.Id.Value);
+            TestTableCache.DelUserModel(param.Id.Value);
             return new BaseResult(true);
         }
     }

@@ -31,7 +31,7 @@ namespace DataAccess
         /// <summary>
         /// 
         /// </summary>
-        public static readonly DbSession Context = new DbSession("QzCRMconn");
+        public static readonly DbSession Context = new DbSession("MySqlConn");
 
         static Repository()
         {

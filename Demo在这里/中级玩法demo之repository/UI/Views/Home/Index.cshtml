@@ -10,6 +10,7 @@
     <link href="~/Content/Bootstrap/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.11.1.min.js"></script>
     <script src="~/Scripts/avalon.min.js"></script>
+    <script src="~/Scripts/Common.js"></script>
     <script src="~/Scripts/jquery.pagination.js"></script>
     <script src="~/Content/Bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript">
@@ -70,6 +71,7 @@
                 }, function (result) {
                     if (result.IsSuccess) {
                         avBody.GetUser();
+                        alert("新增成功！");
                     } else {
                         alert("新增失败！异常信息：" + result.Message);
                     }
@@ -83,6 +85,7 @@
                     }, function (result) {
                         if (result.IsSuccess) {
                             avBody.GetUser();
+                            alert("删除成功！");
                         } else {
                             alert("删除失败！异常信息：" + result.Message);
                         }
@@ -136,6 +139,9 @@
                 <input type="text" ms-value="el.IDNumber" ms-attr-id="'IDNumber_'+el.Id"/></td>
             <td>
                 <input type="text" ms-value="el.MobilePhone" ms-attr-id="'MobilePhone_'+el.Id"/></td>
+            <td>
+                {{ShiftDate(el.CreateTime).Format('yyyy-MM-dd HH:mm:ss')}}
+            <td>
             <td>
                 <input value="修改" type="button" class="btn btn-primary btn-xs" ms-click="UptUser(el)"/>
                 <input value="删除" type="button" class="btn btn-primary btn-xs" ms-click="DelUser(el)"/>

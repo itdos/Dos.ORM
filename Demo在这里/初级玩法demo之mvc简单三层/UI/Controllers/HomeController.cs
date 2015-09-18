@@ -9,11 +9,11 @@ using UI.Handler;
 
 namespace UI.Controllers
 {
-    [ExceptionLog]
+    [ErrorLog]
     public class HomeController : Controller
     {
-        #region MySql
-        public ActionResult MySql()
+        #region Oracle、MySql、SqlServer、PostgreSql等
+        public ActionResult Index()
         {
             return View();
         }
@@ -22,7 +22,7 @@ namespace UI.Controllers
         /// </summary>
         public JsonResult GetUser(TestTableParam param)
         {
-            var result = new TableMySqlLogic().GetUser(param);
+            var result = new TestTableLogic().GetUser(param);
             var test = Json(result);
             return test;
         }
@@ -31,7 +31,7 @@ namespace UI.Controllers
         /// </summary>
         public JsonResult AddUser(TestTableParam param)
         {
-            var result = new TableMySqlLogic().AddUser(param);
+            var result = new TestTableLogic().AddUser(param);
             return Json(result);
         }
         /// <summary>
@@ -39,7 +39,7 @@ namespace UI.Controllers
         /// </summary>
         public JsonResult UptUser(TestTableParam param)
         {
-            var result = new TableMySqlLogic().UptUser(param);
+            var result = new TestTableLogic().UptUser(param);
             return Json(result);
         }
         /// <summary>
@@ -47,14 +47,8 @@ namespace UI.Controllers
         /// </summary>
         public JsonResult DelUser(TestTableParam param)
         {
-            var result = new TableMySqlLogic().DelUser(param);
+            var result = new TestTableLogic().DelUser(param);
             return Json(result);
-        }
-        #endregion
-        #region PostgreSql
-        public ActionResult PostgreSql()
-        {
-            return View();
         }
         #endregion
     }

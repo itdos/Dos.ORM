@@ -9,12 +9,12 @@ namespace DataCache
 {
     public class TableMysqlCache : CacheBase
     {
-        public static TableMysql GetUserModel(Guid userId)
+        public static TestTable GetUserModel(Guid userId)
         {
-            var result = Get<TableMysql>("GetUser" + userId);
+            var result = Get<TestTable>("GetUser" + userId);
             return result;
         }
-        public static bool SetUserModel(TableMysql model)
+        public static bool SetUserModel(TestTable model)
         {
             return Set("GetUser" + model.Id, model);
         }

@@ -21,7 +21,7 @@ namespace DataAccess.Entities
     /// <summary>
     /// 如果前端不需要Test1、Test2、Test3这三个字段，可以建立此ViewModel。
     /// </summary>
-    public class TableMysql_Page1
+    public class TestTable_Page1
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -32,7 +32,7 @@ namespace DataAccess.Entities
     /// <summary>
     /// 同张表可以建立多个ViewModel，以适应不同页面不同列数。
     /// </summary>
-    public class TableMysql_Page2
+    public class TestTable_Page2
     {
 
     }

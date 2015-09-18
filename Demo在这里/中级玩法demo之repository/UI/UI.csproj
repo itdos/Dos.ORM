@@ -132,6 +132,7 @@
     <Content Include="Content\pagination.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\avalon.min.js" />
+    <Content Include="Scripts\Common.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="Scripts\jquery.pagination.js" />
     <Content Include="Web.config">
@@ -147,13 +148,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\MySql.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Dos.ORM.csproj">

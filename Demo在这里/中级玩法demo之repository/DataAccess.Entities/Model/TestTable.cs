@@ -16,24 +16,24 @@ using System.Data.Common;
 using Dos.ORM;
 using Dos.ORM.Common;
 
-namespace Model
+namespace DataAccess.Entities
 {
 
     /// <summary>
-    /// 实体类TableMysql 。(属性说明自动提取数据库字段的描述信息)
+    /// 实体类TestTable 。(属性说明自动提取数据库字段的描述信息)
     /// </summary>
     [Serializable]
-    public partial class TableMysql : Entity
+    public partial class TestTable : Entity
     {
-        public TableMysql() : base("TableMysql") { }
+        public TestTable() : base("TestTable") { }
 
         #region Model
         private Guid _Id;
         private string _Name;
         private string _IDNumber;
         private string _MobilePhone;
-        private bool? _Test1 = true;
-        private int? _Test2 = 50;
+        private bool? _Test1;
+        private int? _Test2;
         private string _Test3;
         private DateTime _CreateTime;
         /// <summary>
@@ -184,39 +184,39 @@ namespace Model
             /// <summary>
             /// * 
             /// </summary>
-            public readonly static Field All = new Field("*", "TableMysql");
+            public readonly static Field All = new Field("*", "TestTable");
             /// <summary>
             /// 
             /// </summary>
-            public readonly static Field Id = new Field("Id", "TableMysql", "Id");
+            public readonly static Field Id = new Field("Id", "TestTable", "Id");
             /// <summary>
             /// 
             /// </summary>
-            public readonly static Field Name = new Field("Name", "TableMysql", "Name");
+            public readonly static Field Name = new Field("Name", "TestTable", "Name");
             /// <summary>
             /// 
             /// </summary>
-            public readonly static Field IDNumber = new Field("IDNumber", "TableMysql", "IDNumber");
+            public readonly static Field IDNumber = new Field("IDNumber", "TestTable", "IDNumber");
             /// <summary>
             /// 
             /// </summary>
-            public readonly static Field MobilePhone = new Field("MobilePhone", "TableMysql", "MobilePhone");
+            public readonly static Field MobilePhone = new Field("MobilePhone", "TestTable", "MobilePhone");
             /// <summary>
             /// 
             /// </summary>
-            public readonly static Field Test1 = new Field("Test1", "TableMysql", "Test1");
+            public readonly static Field Test1 = new Field("Test1", "TestTable", "Test1");
             /// <summary>
             /// 
             /// </summary>
-            public readonly static Field Test2 = new Field("Test2", "TableMysql", "Test2");
+            public readonly static Field Test2 = new Field("Test2", "TestTable", "Test2");
             /// <summary>
             /// 
             /// </summary>
-            public readonly static Field Test3 = new Field("Test3", "TableMysql", "Test3");
+            public readonly static Field Test3 = new Field("Test3", "TestTable", "Test3");
             /// <summary>
             /// 
             /// </summary>
-            public readonly static Field CreateTime = new Field("CreateTime", "TableMysql", "CreateTime");
+            public readonly static Field CreateTime = new Field("CreateTime", "TestTable", "CreateTime");
         }
         #endregion
 

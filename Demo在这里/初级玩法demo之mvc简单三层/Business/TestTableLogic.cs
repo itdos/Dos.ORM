@@ -10,56 +10,14 @@ using System.Data.Common;
 
 namespace Business
 {
-    public class TablePostgreSqlLogic
+    public class TestTableLogic
     {
         /// <summary>
         /// 获取数据。
         /// </summary>
         public BaseResult GetUser(TestTableParam param)
         {
-            #region 测试子查询修改
-            //var model = new TestTable
-            //{
-            //    IDNumber = "XXXXXXXXXX"
-            //};
-            //var count2 = DB.MySql.Update<TestTable>(model, TestTable._.Id.SubQueryIn(
-            //    DB.MySql.From<TestTable>().Select(d => d.Id).Where(d => d.IDNumber == "777")
-            //));
-            ////以上同Sql语句：
-            ////update TestTable  set IDNumber='XXXXXXX' where Id in 
-            ////              (SELECT Id from TestTable where IDNumber='777')
-            #endregion
-            #region 测试批量Save
-            //var listModel = new List<TestTable>();
-            //var model1 = new TestTable()
-            //{
-            //    Id = Guid.NewGuid(),
-            //    IDNumber = "0000",
-            //    CreateTime = DateTime.Now,
-            //    MobilePhone = "000",
-            //    Name = "00000"
-            //};
-            //var model2 = new TestTable()
-            //{
-            //    Id = Guid.Parse("fdc87fad-0e80-49b2-aab0-c52d1fcd1297"),
-            //    IDNumber = "000",
-            //    CreateTime = DateTime.Now,
-            //    MobilePhone = "000",
-            //    Name = "00000"
-            //};
-            //var model3 = new TestTable()
-            //{
-            //    Id = Guid.Parse("68805e30-5bc4-43ae-8ad7-8464be215e69")
-            //};
-            //model1.Attach(EntityState.Added);
-            //model2.Attach(EntityState.Modified);
-            //model3.Attach(EntityState.Deleted);
-            //listModel.Add(model1);
-            //listModel.Add(model2);
-            //listModel.Add(model3);
-            //var count = DB.MySql.Save<TestTable>(listModel);
-            #endregion
-            var where = new Where<TableMysql>();
+            var where = new Where<TestTable>();
             #region 模糊搜索条件
             if (!string.IsNullOrWhiteSpace(param.SearchName))
             {
@@ -74,9 +32,10 @@ namespace Business
                 where.And(d => d.MobilePhone.Like(param.SearchMobilePhone));
             }
             #endregion
-            var fs = DB.MySql.From<TableMysql>()
+            var fs = DB.MySql.From<TestTable>()
                 .Where(where)
-                .OrderByDescending(d => d.CreateTime);
+                //.OrderByDescending(TableMysql._.CreateTime, TableMysql._.Id)
+                .OrderByDescending(d => new { d.CreateTime, d.Id });
             #region 是否分页
             var dateCount = 0;
             if (param._PageIndex != null && param._PageSize != null)
@@ -99,7 +58,7 @@ namespace Business
             {
                 return new BaseResult(false, null, "参数错误！");
             }
-            var model = new TableMysql
+            var model = new TestTable
             {
                 Id = Guid.NewGuid(),
                 Name = param.Name,
@@ -107,7 +66,7 @@ namespace Business
                 MobilePhone = param.MobilePhone,
                 CreateTime = DateTime.Now
             };
-            var count = DB.MySql.Insert<TableMysql>(model);
+            var count = DB.MySql.Insert<TestTable>(model);
             return new BaseResult(count > 0, count, count > 0 ? "" : "数据库受影响行数为0！");
         }
         /// <summary>
@@ -119,7 +78,7 @@ namespace Business
             {
                 return new BaseResult(false, null, "参数错误！");
             }
-            var count = DB.MySql.Delete<TableMysql>(d => d.Id == param.Id);
+            var count = DB.MySql.Delete<TestTable>(d => d.Id == param.Id);
             return new BaseResult(count > 0, count, count > 0 ? "" : "数据库受影响行数为0！");
         }
         /// <summary>
@@ -131,7 +90,7 @@ namespace Business
             {
                 return new BaseResult(false, null, "参数错误！");
             }
-            var model = DB.MySql.From<TableMysql>().Where(d => d.Id == param.Id).First();
+            var model = DB.MySql.From<TestTable>().Where(d => d.Id == param.Id).First();
             if (model == null)
             {
                 return new BaseResult(false, null, "不存在要修改的数据！");
@@ -139,7 +98,7 @@ namespace Business
             model.Name = param.Name ?? model.Name;
             model.IDNumber = param.IDNumber ?? model.IDNumber;
             model.MobilePhone = param.MobilePhone ?? model.MobilePhone;
-            var count = DB.MySql.Update<TableMysql>(model);
+            var count = DB.MySql.Update<TestTable>(model);
             return new BaseResult(true);
         }
     }

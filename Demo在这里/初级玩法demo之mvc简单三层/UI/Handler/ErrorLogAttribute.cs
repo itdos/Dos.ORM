@@ -27,7 +27,7 @@ namespace UI.Handler
     /// <summary>
     /// 表示一个特性，该特性用于处理由操作方法引发的异常。
     /// </summary>
-    public class ExceptionLogAttribute : HandleErrorAttribute
+    public class ErrorLogAttribute : HandleErrorAttribute
     {
         public override void OnException(ExceptionContext filterContext)
         {

@@ -21,7 +21,7 @@ namespace Business
         /// </summary>
         public BaseResult GetUser(TestTableParam param)
         {
-            var where = new Where<TableMysql>();
+            var where = new Where<TestTable>();
             #region 模糊搜索条件
             if (!string.IsNullOrWhiteSpace(param.SearchName))
             {
@@ -58,7 +58,7 @@ namespace Business
             {
                 return new BaseResult(false, null, Msg.ParamError);
             }
-            var model = new TableMysql
+            var model = new TestTable
             {
                 Id = Guid.NewGuid(),
                 Name = param.Name,

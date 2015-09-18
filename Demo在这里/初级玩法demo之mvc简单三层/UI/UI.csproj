@@ -126,7 +126,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Handler\ExceptionLogAttribute.cs" />
+    <Compile Include="Handler\ErrorLogAttribute.cs" />
     <Compile Include="Models\TestTableViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -141,6 +141,7 @@
     <Content Include="Scripts\avalon.min.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="Scripts\jquery.pagination.js" />
+    <Content Include="Scripts\Common.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -153,15 +154,12 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\SqlServer.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\MySql.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Dos.ORM.csproj">
@@ -191,13 +189,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Home\Sqlite.cshtml" />
-    <Content Include="Views\Home\PostgreSql.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Home\Access.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Views\Home\Oracle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

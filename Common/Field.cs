@@ -731,7 +731,9 @@ namespace Dos.ORM
         {
             if (values.Length == 0)
             {
-                return WhereClip.All;
+                return new WhereClip("1=2");
+                //2015-09-22注释
+                //return WhereClip.All;
             }
             Check.Require(!Field.IsNullOrEmpty(field),
                 "filed could not be null or empty");

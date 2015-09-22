@@ -7,7 +7,8 @@
 	*）TransactionScope事务
 	*）多表联查，两次table._.All好像取不到数据。
 
-2015-09-17 Dos.ORM（原Hxj.Data）（v1.10.1.7）
+2015-09-22 Dos.ORM（原Hxj.Data）（v1.10.1.8）
+	*）现在Where的.In()条件，如果传入的数组为空，会生成一个“1=2”始终为false的条件，以防止误修改整张表。（感谢群友【闪电】发此现此Bug。）
 	*）事务Insert、Update完善部分重载，且无返回void修改为返回int。
 	*）解决当字段名为数字时，无法取出数据的bug。（感谢群友【水洼里的鱼】发现此bug）
 	*）增加.Where<T2,T3>((a,b,c)=>...);写法

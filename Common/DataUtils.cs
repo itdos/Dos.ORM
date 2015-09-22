@@ -788,6 +788,22 @@ namespace Dos.ORM
                     return 0;
                 }
             }
+            //2015-09-22
+            public static float ToFloat(object value)
+            {
+                if (value is Single || value is float)
+                {
+                    return (float)value;
+                }
+                try
+                {
+                    return Convert.ToSingle(value);
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
             public static Guid ToGuid(object value)
             {
                 if (value is Guid)
@@ -906,6 +922,21 @@ namespace Dos.ORM
                 catch
                 {
                     return new Nullable<double>();
+                }
+            }
+            public static Nullable<float> ToNFloat(object value)
+            {
+                if (value is Single || value is float)
+                {
+                    return new Nullable<float>((float)value);
+                }
+                try
+                {
+                    return new Nullable<float>(Convert.ToSingle(value));
+                }
+                catch
+                {
+                    return new Nullable<float>();
                 }
             }
             public static Nullable<Guid> ToNGuid(object value)

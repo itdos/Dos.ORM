@@ -508,6 +508,7 @@ namespace Dos.ORM
             private static readonly MethodInfo Reader_Read = typeof(IDataReader).GetMethod("Read");
             private static readonly MethodInfo Reader_GetValues = typeof(IDataRecord).GetMethod("GetValues", new Type[] { typeof(object[]) });
             private static readonly MethodInfo Convert_IsDBNull = typeof(DataUtils.DBConvert).GetMethod("IsDBNull", new Type[] { typeof(object) });
+
             private static readonly MethodInfo Convert_ToInt16 = typeof(DataUtils.DBConvert).GetMethod("ToInt16", new Type[] { typeof(object) });
             private static readonly MethodInfo Convert_ToInt32 = typeof(DataUtils.DBConvert).GetMethod("ToInt32", new Type[] { typeof(object) });
             private static readonly MethodInfo Convert_ToInt64 = typeof(DataUtils.DBConvert).GetMethod("ToInt64", new Type[] { typeof(object) });
@@ -515,7 +516,9 @@ namespace Dos.ORM
             private static readonly MethodInfo Convert_ToDateTime = typeof(DataUtils.DBConvert).GetMethod("ToDateTime", new Type[] { typeof(object) });
             private static readonly MethodInfo Convert_ToDecimal = typeof(DataUtils.DBConvert).GetMethod("ToDecimal", new Type[] { typeof(object) });
             private static readonly MethodInfo Convert_ToDouble = typeof(DataUtils.DBConvert).GetMethod("ToDouble", new Type[] { typeof(object) });
+            private static readonly MethodInfo Convert_ToFloat = typeof(DataUtils.DBConvert).GetMethod("ToFloat", new Type[] { typeof(object) });
             private static readonly MethodInfo Convert_ToGuid = typeof(DataUtils.DBConvert).GetMethod("ToGuid", new Type[] { typeof(object) });
+
             private static readonly MethodInfo Convert_ToNullInt16 = typeof(DataUtils.DBConvert).GetMethod("ToNInt16", new Type[] { typeof(object) });
             private static readonly MethodInfo Convert_ToNullInt32 = typeof(DataUtils.DBConvert).GetMethod("ToNInt32", new Type[] { typeof(object) });
             private static readonly MethodInfo Convert_ToNullInt64 = typeof(DataUtils.DBConvert).GetMethod("ToNInt64", new Type[] { typeof(object) });
@@ -523,6 +526,7 @@ namespace Dos.ORM
             private static readonly MethodInfo Convert_ToNullDateTime = typeof(DataUtils.DBConvert).GetMethod("ToNDateTime", new Type[] { typeof(object) });
             private static readonly MethodInfo Convert_ToNullDecimal = typeof(DataUtils.DBConvert).GetMethod("ToNDecimal", new Type[] { typeof(object) });
             private static readonly MethodInfo Convert_ToNullDouble = typeof(DataUtils.DBConvert).GetMethod("ToNDouble", new Type[] { typeof(object) });
+            private static readonly MethodInfo Convert_ToNullFloat = typeof(DataUtils.DBConvert).GetMethod("ToNFloat", new Type[] { typeof(object) });
             private static readonly MethodInfo Convert_ToNullGuid = typeof(DataUtils.DBConvert).GetMethod("ToNGuid", new Type[] { typeof(object) });
             private delegate T ReadEntityInvoker<T>(IDataReader dr);
             private static Dictionary<string, DynamicMethod> m_CatchMethod;
@@ -738,6 +742,9 @@ namespace Dos.ORM
                     case TypeCode.Double:
                         ilg.Emit(OpCodes.Call, Convert_ToDouble);
                         return;
+                    case TypeCode.Single:
+                        ilg.Emit(OpCodes.Call, Convert_ToFloat);
+                        return;
                 }
                 Type type = Nullable.GetUnderlyingType(pi.PropertyType);
                 if (type != null)
@@ -765,6 +772,9 @@ namespace Dos.ORM
                             return;
                         case TypeCode.Double:
                             ilg.Emit(OpCodes.Call, Convert_ToNullDouble);
+                            return;
+                        case TypeCode.Single:
+                            ilg.Emit(OpCodes.Call, Convert_ToNullFloat);
                             return;
                     }
                     if (type.Name == "Guid")

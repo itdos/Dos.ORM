@@ -819,6 +819,12 @@ namespace Dos.ORM
                     return new Guid();
                 }
             }
+            public static byte[] ToByteArr(object value)
+            {
+                var arr = value as byte[];
+                return arr;
+            }
+
             public static Nullable<short> ToNInt16(object value)
             {
                 if (value is short)

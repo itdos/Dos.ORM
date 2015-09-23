@@ -518,6 +518,7 @@ namespace Dos.ORM
             private static readonly MethodInfo Convert_ToDouble = typeof(DataUtils.DBConvert).GetMethod("ToDouble", new Type[] { typeof(object) });
             private static readonly MethodInfo Convert_ToFloat = typeof(DataUtils.DBConvert).GetMethod("ToFloat", new Type[] { typeof(object) });
             private static readonly MethodInfo Convert_ToGuid = typeof(DataUtils.DBConvert).GetMethod("ToGuid", new Type[] { typeof(object) });
+            private static readonly MethodInfo Convert_ToByteArr = typeof(DataUtils.DBConvert).GetMethod("ToByteArr", new Type[] { typeof(object) });
 
             private static readonly MethodInfo Convert_ToNullInt16 = typeof(DataUtils.DBConvert).GetMethod("ToNInt16", new Type[] { typeof(object) });
             private static readonly MethodInfo Convert_ToNullInt32 = typeof(DataUtils.DBConvert).GetMethod("ToNInt32", new Type[] { typeof(object) });
@@ -528,6 +529,7 @@ namespace Dos.ORM
             private static readonly MethodInfo Convert_ToNullDouble = typeof(DataUtils.DBConvert).GetMethod("ToNDouble", new Type[] { typeof(object) });
             private static readonly MethodInfo Convert_ToNullFloat = typeof(DataUtils.DBConvert).GetMethod("ToNFloat", new Type[] { typeof(object) });
             private static readonly MethodInfo Convert_ToNullGuid = typeof(DataUtils.DBConvert).GetMethod("ToNGuid", new Type[] { typeof(object) });
+
             private delegate T ReadEntityInvoker<T>(IDataReader dr);
             private static Dictionary<string, DynamicMethod> m_CatchMethod;
             public static List<T> Map<T>(IDataReader reader)
@@ -786,6 +788,11 @@ namespace Dos.ORM
                 if (pi.PropertyType.Name == "Guid")
                 {
                     ilg.Emit(OpCodes.Call, Convert_ToGuid);
+                    return;
+                }
+                else if (pi.PropertyType.Name == "Byte[]")
+                {
+                    ilg.Emit(OpCodes.Call, Convert_ToByteArr);
                     return;
                 }
                 throw new Exception(string.Format("不支持\"{0}\"类型的转换！", pi.PropertyType.Name));

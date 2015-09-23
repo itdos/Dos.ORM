@@ -7,8 +7,9 @@
 	*）TransactionScope事务
 	*）多表联查，两次table._.All好像取不到数据。
 
-2015-09-22 Dos.ORM（原Hxj.Data）（v1.10.1.9）
-	*）解决float/Singe类型底层Emit映射出错的Bug。（感谢同事【娟妹儿】发现此Bug。）
+2015-09-23 Dos.ORM（原Hxj.Data）（v1.10.2.0）
+	*）现在支持byte[]类型Emit映射了，意味着orm再次支持iamge、varbinary、blob等等类型的存取。
+	*）解决float/Single类型底层Emit映射出错的Bug。（感谢同事【娟妹儿】发现此Bug。）
 	*）现在Where的.In()条件，如果传入的数组为空，会生成一个“1=2”始终为false的条件，以防止误修改整张表、查询时应该返回无数据却返回整表数据等等。（感谢群友【闪电】发现此Bug。）
 	*）事务Insert、Update完善部分重载，且无返回void修改为返回int。
 	*）解决当字段名为数字时，无法取出数据的bug。（感谢群友【水洼里的鱼】发现此bug）

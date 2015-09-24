@@ -812,7 +812,19 @@ namespace Dos.ORM
 
             return ExecuteNonQuery(cmdCreator.CreateUpdateCommand<TEntity>(entity.GetFields(), entity.GetValues(), where), tran);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="tran"></param>
+        /// <param name="entity"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public int UpdateAll<TEntity>(DbTransaction tran, TEntity entity, Where where)
+            where TEntity : Entity
+        {
+            return UpdateAll(tran, entity, where.ToWhereClip());
+        }
 
         /// <summary>
         /// 更新  
@@ -1493,7 +1505,7 @@ namespace Dos.ORM
         /// <param name="pkValues"></param>
         /// <param name="tran"></param>
         /// <returns></returns>
-        internal int DeleteByPrimaryKey<TEntity>(DbTransaction tran, params object[] pkValues)
+        internal int DeleteByPrimaryKey<TEntity>(DbTransaction tran, params Array[] pkValues)
             where TEntity : Entity
         {
             Check.Require(!EntityCache.IsReadOnly<TEntity>(), string.Concat("Entity(", EntityCache.GetTableName<TEntity>(), ") is readonly!"));

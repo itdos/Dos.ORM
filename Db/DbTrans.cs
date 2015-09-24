@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
+using System.Linq.Expressions;
 using Dos;
 using Dos.ORM;
 
@@ -267,7 +268,18 @@ namespace Dos.ORM
         {
             return dbSession.UpdateAll<TEntity>(trans,entity, where);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entity"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public int UpdateAll<TEntity>(TEntity entity, Where where)
+            where TEntity : Entity
+        {
+            return dbSession.UpdateAll<TEntity>(trans, entity, where);
+        }
 
 
         /// <summary>
@@ -314,8 +326,30 @@ namespace Dos.ORM
         {
             return dbSession.Update<TEntity>(trans,entity, where);
         }
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entity"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public int Update<TEntity>(TEntity entity, Where where)
+            where TEntity : Entity
+        {
+            return dbSession.Update<TEntity>(trans, entity, where);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entity"></param>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public int Update<TEntity>(TEntity entity, Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return dbSession.Update<TEntity>(trans, entity, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
+        }
         /// <summary>
         /// 更新单个值
         /// </summary>
@@ -329,10 +363,32 @@ namespace Dos.ORM
         {
             return dbSession.Update<TEntity>(trans,field, value, where);
         }
-
-
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="value"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public int Update<TEntity>(Field field, object value, Where where)
+            where TEntity : Entity
+        {
+            return dbSession.Update<TEntity>(trans, field, value, where);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="value"></param>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public int Update<TEntity>(Field field, object value, Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return dbSession.Update<TEntity>(trans, field, value, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
+        }
         /// <summary>
         /// 更新多个值
         /// </summary>
@@ -345,8 +401,30 @@ namespace Dos.ORM
         {
             return dbSession.Update<TEntity>(trans,fieldValue, where);
         }
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="fieldValue"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public int Update<TEntity>(Dictionary<Field, object> fieldValue, Where where)
+              where TEntity : Entity
+        {
+            return dbSession.Update<TEntity>(trans, fieldValue, where);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="fieldValue"></param>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public int Update<TEntity>(Dictionary<Field, object> fieldValue, Expression<Func<TEntity, bool>> lambdaWhere)
+              where TEntity : Entity
+        {
+            return dbSession.Update<TEntity>(trans, fieldValue, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
+        }
         /// <summary>
         /// 更新
         /// </summary>
@@ -360,8 +438,32 @@ namespace Dos.ORM
         {
             return dbSession.Update<TEntity>(trans,fields, values, where);
         }
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="fields"></param>
+        /// <param name="values"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public int Update<TEntity>(Field[] fields, object[] values, Where where)
+            where TEntity : Entity
+        {
+            return dbSession.Update<TEntity>(trans, fields, values, where);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="fields"></param>
+        /// <param name="values"></param>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public int Update<TEntity>(Field[] fields, object[] values, Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return dbSession.Update<TEntity>(trans, fields, values, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
+        }
 
         #endregion
 
@@ -379,21 +481,17 @@ namespace Dos.ORM
         {
             return dbSession.Delete<TEntity>(trans,entity);
         }
-
-
-
-        /// <summary>
-        ///  删除
-        /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <param name="pkValues"></param>
-        /// <returns></returns>
-        public int Delete<TEntity>(params object[] pkValues)
-            where TEntity : Entity
-        {
-            return dbSession.DeleteByPrimaryKey<TEntity>(trans, pkValues);
-        }
-
+        ///// <summary>
+        /////  删除
+        ///// </summary>
+        ///// <typeparam name="TEntity"></typeparam>
+        ///// <param name="pkValues"></param>
+        ///// <returns></returns>
+        //public int Delete<TEntity>(params object[] pkValues)
+        //    where TEntity : Entity
+        //{
+        //    return dbSession.DeleteByPrimaryKey<TEntity>(trans, pkValues);
+        //}
         /// <summary>
         ///  删除
         /// </summary>
@@ -405,8 +503,21 @@ namespace Dos.ORM
         {
             return dbSession.DeleteByPrimaryKey<TEntity>(trans, pkValues);
         }
-
-
+        public int Delete<TEntity>(params Guid[] pkValues)
+            where TEntity : Entity
+        {
+            return dbSession.DeleteByPrimaryKey<TEntity>(trans, pkValues);
+        }
+        public int Delete<TEntity>(params long[] pkValues)
+            where TEntity : Entity
+        {
+            return dbSession.DeleteByPrimaryKey<TEntity>(trans, pkValues);
+        }
+        public int Delete<TEntity>(params int[] pkValues)
+            where TEntity : Entity
+        {
+            return dbSession.DeleteByPrimaryKey<TEntity>(trans, pkValues);
+        }
         /// <summary>
         ///  删除
         /// </summary>
@@ -418,7 +529,28 @@ namespace Dos.ORM
         {
             return dbSession.Delete<TEntity>(trans,where);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public int Delete<TEntity>(Where where)
+            where TEntity : Entity
+        {
+            return dbSession.Delete<TEntity>(trans, where.ToWhereClip());
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public int Delete<TEntity>(Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return dbSession.Delete<TEntity>(trans, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
+        }
         #endregion
 
 

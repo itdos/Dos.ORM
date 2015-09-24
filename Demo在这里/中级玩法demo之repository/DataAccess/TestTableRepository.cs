@@ -19,6 +19,7 @@ using System.Linq;
 using System.Text;
 using DataAccess.Entities;
 using Common;
+using DataAccess.Base;
 
 namespace DataAccess
 {

@@ -20,7 +20,7 @@ using System.Linq.Expressions;
 using System.Text;
 using Dos.ORM;
 
-namespace DataAccess
+namespace DataAccess.Base
 {
     public interface IRepository<T> where T : Entity
     {

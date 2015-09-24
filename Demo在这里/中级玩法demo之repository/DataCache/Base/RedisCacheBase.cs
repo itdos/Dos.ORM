@@ -84,7 +84,12 @@ namespace DataCache.Base
         }
         public T Get<T>(string key)
         {
-            return JsonConvert.DeserializeObject<T>(Cache.StringGet(key));
+            var result = Cache.StringGet(key);
+            if (result != RedisValue.Null)
+            {
+                return JsonConvert.DeserializeObject<T>(result);
+            }
+            return default(T);
         }
     }
 }

@@ -24,11 +24,11 @@ namespace DataCache.Base
         }
         public static bool Set<T>(string key, T value)
         {
-            return IisCache.Set(key, JsonConvert.SerializeObject(value));
+            return IisCache.Set(key, value);
         }
         public static bool Set<T>(string key, T value, TimeSpan expiresIn)
         {
-            return IisCache.Set(key, JsonConvert.SerializeObject(value), expiresIn);
+            return IisCache.Set(key, value, expiresIn);
         }
         public static T Get<T>(string key)
         {

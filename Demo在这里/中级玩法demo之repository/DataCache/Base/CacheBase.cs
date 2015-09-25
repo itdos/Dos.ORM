@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dos.ORM.NoSql;
 using Newtonsoft.Json;
 
 namespace DataCache.Base
@@ -12,27 +13,22 @@ namespace DataCache.Base
     /// </summary>
     public class CacheBase
     {
-        public static IISCacheBase IisCache = new IISCacheBase();
-        public static RedisCacheBase RedisCache = new RedisCacheBase();
+        public static NoSqlSession noSql = new NoSqlSession();
         public static bool Remove(string key)
         {
-            if (false)
-            {
-                return RedisCache.Remove(key);
-            }
-            return IisCache.Remove(key);
+            return noSql.Remove(key);
         }
         public static bool Set<T>(string key, T value)
         {
-            return IisCache.Set(key, value);
+            return noSql.Set(key, value);
         }
         public static bool Set<T>(string key, T value, TimeSpan expiresIn)
         {
-            return IisCache.Set(key, value, expiresIn);
+            return noSql.Set(key, value, expiresIn);
         }
         public static T Get<T>(string key)
         {
-            return IisCache.Get<T>(key);
+            return noSql.Get<T>(key);
         }
     }
 }

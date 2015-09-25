@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM", ".Net2.0\Dos.ORM\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM", ".Net3.5\Dos.ORM\Dos.ORM.csproj", "{00276991-3686-4EC7-BEB8-680C21BCDAC5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM.NoSql", "Dos.ORM.NoSql\Dos.ORM.NoSql.csproj", "{68ECE3A9-015E-4D52-B828-68A0668FB8F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{00276991-3686-4EC7-BEB8-680C21BCDAC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00276991-3686-4EC7-BEB8-680C21BCDAC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00276991-3686-4EC7-BEB8-680C21BCDAC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68ECE3A9-015E-4D52-B828-68A0668FB8F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68ECE3A9-015E-4D52-B828-68A0668FB8F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68ECE3A9-015E-4D52-B828-68A0668FB8F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68ECE3A9-015E-4D52-B828-68A0668FB8F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

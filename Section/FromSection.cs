@@ -1568,7 +1568,8 @@ namespace Dos.ORM
             {
                 foreach (Field field in fields)
                 {
-                    Field f = this.fields.Find(delegate(Field fi) { return fi.Name.Equals(field.Name); });
+                    //2015-09-25修改
+                    Field f = this.fields.Find(fi => fi.Name.Equals(field.Name) && fi.TableName.Equals(field.TableName));
                     if (Field.IsNullOrEmpty(f))
                         this.fields.Add(field);
                 }

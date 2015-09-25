@@ -16,12 +16,16 @@
 
 using System;
 using System.Collections.Concurrent;
+using System.Configuration;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 
-namespace DataCache.Base
+namespace Dos.ORM.NoSql
 {
-    public class RedisCacheBase : ICacheBase
+    /// <summary>
+    /// Redis缓存。需要在AppSetting中配置：RedisHost、RedisPort
+    /// </summary>
+    public class Redis : ICache
     {
         /// <summary>
         /// 
@@ -32,7 +36,9 @@ namespace DataCache.Base
             {
                 return new RedisConfig()
              {
-                 Hosts = "192.168.2.150:6379"
+                 Hosts = ConfigurationManager.AppSettings["RedisHost"]
+                 + ":" +
+                 ConfigurationManager.AppSettings["RedisPort"]
              };
             }
         }
@@ -40,6 +46,7 @@ namespace DataCache.Base
         /// <summary>
         /// 获取client
         /// </summary>
+        /// <returns></returns>
         private static ConnectionMultiplexer GetMultiplexer(RedisConfig config)
         {
             ConnectionMultiplexer multiplexer = null;

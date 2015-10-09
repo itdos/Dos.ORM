@@ -27,6 +27,7 @@ namespace Dos.ORM.NoSql
     /// </summary>
     public class Redis : ICache
     {
+        private static RedisConfig _conf;
         /// <summary>
         /// 
         /// </summary>
@@ -34,14 +35,40 @@ namespace Dos.ORM.NoSql
         {
             get
             {
-                return new RedisConfig()
-             {
-                 Hosts = ConfigurationManager.AppSettings["RedisHost"]
-                 + ":" +
-                 ConfigurationManager.AppSettings["RedisPort"]
-             };
+                if (_conf == null)
+                {
+                    return new RedisConfig()
+                    {
+                        Hosts = ConfigurationManager.AppSettings["RedisHost"]
+                        + ":" +
+                        ConfigurationManager.AppSettings["RedisPort"]
+                    };
+                }
+                return _conf;
             }
+            set { _conf = value; }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Redis()
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Redis(string host,string port,string pwd)
+        {
+            Conf = new RedisConfig()
+            {
+                Hosts = host
+                + ":" +
+                port
+            };
+        }
+
         static ConcurrentDictionary<string, ConnectionMultiplexer> _multiplexers = new ConcurrentDictionary<string, ConnectionMultiplexer>();
         /// <summary>
         /// 获取client

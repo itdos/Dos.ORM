@@ -19,7 +19,7 @@ namespace Dos.ORM.NoSql
         /// <summary>
         /// 缓存对象
         /// </summary>
-        public ICache Cache;
+        private ICache Cache;
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -38,6 +38,25 @@ namespace Dos.ORM.NoSql
                     Cache = new Redis();
                     break;
                 case "iis":
+                    NoSqlType = NoSqlType.IIS;
+                    Cache = new IIS();
+                    break;
+                default:
+                    throw new Exception("暂时不支持的NoSql数据库！");
+            }
+        }
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public NoSqlSession(NoSqlType noSqlType,string host = "",string port = "",string pwd = "")
+        {
+            switch (noSqlType)
+            {
+                case NoSqlType.Redis:
+                    NoSqlType = NoSqlType.Redis;
+                    Cache = new Redis(host, port, pwd);
+                    break;
+                case NoSqlType.IIS:
                     NoSqlType = NoSqlType.IIS;
                     Cache = new IIS();
                     break;

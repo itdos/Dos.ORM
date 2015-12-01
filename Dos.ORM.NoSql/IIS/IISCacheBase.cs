@@ -34,18 +34,23 @@ namespace Dos.ORM.NoSql
         }
         public bool Set<T>(string key, T value)
         {
-            Dos.Common.CacheHelper.Set(key, value);
+            Dos.Common.CacheHelper.Set(key, JsonConvert.SerializeObject(value));
             return true;
         }
 
         public bool Set<T>(string key, T value, TimeSpan expiresIn)
         {
-            Dos.Common.CacheHelper.Set(key, value, expiresIn.Seconds);
+            Dos.Common.CacheHelper.Set(key, JsonConvert.SerializeObject(value), expiresIn.Seconds);
             return true;
         }
         public T Get<T>(string key)
         {
-            return JsonConvert.DeserializeObject<T>(Dos.Common.CacheHelper.Get(key).ToString());
+            var result = Dos.Common.CacheHelper.Get(key);
+            if (result != null)
+            {
+                return JsonConvert.DeserializeObject<T>(Dos.Common.CacheHelper.Get(key).ToString());
+            }
+            return default(T);
         }
     }
 }

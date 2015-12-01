@@ -412,7 +412,30 @@ namespace Dos.ORM
         {
             return From<TEntity>().Select(field.Sum()).Where(where).ToScalar();
         }
-
+        /// <summary>
+        /// Sum
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public object Sum<TEntity>(Field field, Where where)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(field.Sum()).Where(where).ToScalar();
+        }
+        /// <summary>
+        /// Sum
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public object Sum<TEntity>(Field field, Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(field.Sum()).Where(lambdaWhere).ToScalar();
+        }
         /// <summary>
         /// Max
         /// </summary>
@@ -425,7 +448,30 @@ namespace Dos.ORM
         {
             return From<TEntity>().Select(field.Max()).Where(where).ToScalar();
         }
-
+        /// <summary>
+        /// Max
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public object Max<TEntity>(Field field, Where where)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(field.Max()).Where(where).ToScalar();
+        }
+        /// <summary>
+        /// Max
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public object Max<TEntity>(Field field, Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(field.Max()).Where(lambdaWhere).ToScalar();
+        }
         /// <summary>
         /// Min
         /// </summary>
@@ -438,7 +484,30 @@ namespace Dos.ORM
         {
             return From<TEntity>().Select(field.Min()).Where(where).ToScalar();
         }
-
+        /// <summary>
+        /// Min
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public object Min<TEntity>(Field field, Where where)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(field.Min()).Where(where).ToScalar();
+        }
+        /// <summary>
+        /// Min
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public object Min<TEntity>(Field field, Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(field.Min()).Where(lambdaWhere).ToScalar();
+        }
         /// <summary>
         /// Avg
         /// </summary>
@@ -451,10 +520,30 @@ namespace Dos.ORM
         {
             return From<TEntity>().Select(field.Avg()).Where(where).ToScalar();
         }
-
-
-
-
+        /// <summary>
+        /// Avg
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public object Avg<TEntity>(Field field, Where where)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(field.Avg()).Where(where).ToScalar();
+        }
+        /// <summary>
+        /// Avg
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public object Avg<TEntity>(Field field, Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(field.Avg()).Where(lambdaWhere).ToScalar();
+        }
         /// <summary>
         /// Sum
         /// </summary>
@@ -468,7 +557,32 @@ namespace Dos.ORM
         {
             return From<TEntity>().Select(field.Sum()).Where(where).ToScalar<TResult>();
         }
-
+        /// <summary>
+        /// Sum
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public TResult Sum<TEntity, TResult>(Field field, Where where)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(field.Sum()).Where(where).ToScalar<TResult>();
+        }
+        /// <summary>
+        /// Sum
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public TResult Sum<TEntity, TResult>(Field field, Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(field.Sum()).Where(lambdaWhere).ToScalar<TResult>();
+        }
         /// <summary>
         /// Max
         /// </summary>
@@ -482,7 +596,32 @@ namespace Dos.ORM
         {
             return From<TEntity>().Select(field.Max()).Where(where).ToScalar<TResult>();
         }
-
+        /// <summary>
+        /// Max
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public TResult Max<TEntity, TResult>(Field field, Where where)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(field.Max()).Where(where).ToScalar<TResult>();
+        }
+        /// <summary>
+        /// Max
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public TResult Max<TEntity, TResult>(Field field, Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(field.Max()).Where(lambdaWhere).ToScalar<TResult>();
+        }
         /// <summary>
         /// Min
         /// </summary>
@@ -496,7 +635,32 @@ namespace Dos.ORM
         {
             return From<TEntity>().Select(field.Min()).Where(where).ToScalar<TResult>();
         }
-
+        /// <summary>
+        /// Min
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public TResult Min<TEntity, TResult>(Field field, Where where)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(field.Min()).Where(where).ToScalar<TResult>();
+        }
+        /// <summary>
+        /// Min
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public TResult Min<TEntity, TResult>(Field field, Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(field.Min()).Where(lambdaWhere).ToScalar<TResult>();
+        }
         /// <summary>
         /// Avg
         /// </summary>
@@ -510,7 +674,32 @@ namespace Dos.ORM
         {
             return From<TEntity>().Select(field.Avg()).Where(where).ToScalar<TResult>();
         }
-
+        /// <summary>
+        /// Avg
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public TResult Avg<TEntity, TResult>(Field field, Where where)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(field.Avg()).Where(where).ToScalar<TResult>();
+        }
+        /// <summary>
+        /// Avg
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="field"></param>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public TResult Avg<TEntity, TResult>(Field field, Expression<Func<TEntity, bool>> lambdaWhere)
+            where TEntity : Entity
+        {
+            return From<TEntity>().Select(field.Avg()).Where(lambdaWhere).ToScalar<TResult>();
+        }
         /// <summary>
         /// 判断是否存在记录
         /// </summary>

@@ -1,23 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "初级玩法demo之mvc简单三层", "初级玩法demo之mvc简单三层", "{1ED5C027-1408-4E1D-822F-233F3B25C38D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "中级玩法demo之repository", "中级玩法demo之repository", "{FE2E38CF-146F-4E83-B668-0844C128021A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "高级玩法demo之分布式应用_插件式开发", "高级玩法demo之分布式应用_插件式开发", "{EBB57C0A-F81A-448F-BA3F-05CE30721A90}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Net2.0", ".Net2.0", "{BB6C1E5E-4C7D-4514-80F1-35E1BFBFF16D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Net3.5", ".Net3.5", "{5C960AAC-476F-44BF-9D17-D540CCEEC4EB}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM", "Dos.ORM.csproj", "{4BEF1983-F275-4807-96EA-25B973BD6E94}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM.MySql", "Dos.ORM.MySql\Dos.ORM.MySql.csproj", "{54954798-4117-45FE-92F8-2B32A62E7FBC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM.Sqlite", "Dos.ORM.Sqlite\Dos.ORM.Sqlite.csproj", "{7A0CBBA2-6322-4765-8A68-24AF58C24F79}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "初级玩法demo之mvc简单三层", "初级玩法demo之mvc简单三层", "{1ED5C027-1408-4E1D-822F-233F3B25C38D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "中级玩法demo之repository", "中级玩法demo之repository", "{FE2E38CF-146F-4E83-B668-0844C128021A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "Demo在这里\初级玩法demo之mvc简单三层\UI\UI.csproj", "{480F951D-51F6-4A27-88CA-AF50E9EE3474}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Demo在这里\初级玩法demo之mvc简单三层\Business\Business.csproj", "{EB7A463E-F934-4697-9081-68179A4A1BE1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Demo在这里\初级玩法demo之mvc简单三层\Model\Model.csproj", "{657E4ECD-3CB3-4D79-9393-A2A774B78513}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "高级玩法demo之分布式应用_插件式开发", "高级玩法demo之分布式应用_插件式开发", "{EBB57C0A-F81A-448F-BA3F-05CE30721A90}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "Demo在这里\中级玩法demo之repository\DataAccess\DataAccess.csproj", "{4B475ED6-5540-42F5-AC03-640FA3F66376}"
 EndProject
@@ -33,15 +39,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Entities", "Demo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataCache", "Demo在这里\中级玩法demo之repository\DataCache\DataCache.csproj", "{CB0314A8-A758-43B1-A398-16BC8C9E4A1C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Net2.0", ".Net2.0", "{BB6C1E5E-4C7D-4514-80F1-35E1BFBFF16D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Net3.5", ".Net3.5", "{5C960AAC-476F-44BF-9D17-D540CCEEC4EB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM", ".Net2.0\Dos.ORM\Dos.ORM.csproj", "{DE14FAC8-0A48-48B5-84B7-F78B929D9878}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM", ".Net3.5\Dos.ORM\Dos.ORM.csproj", "{00276991-3686-4EC7-BEB8-680C21BCDAC5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM.NoSql", "Dos.ORM.NoSql\Dos.ORM.NoSql.csproj", "{68ECE3A9-015E-4D52-B828-68A0668FB8F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DNX.Core", "DNX.Core", "{30DE4D22-A3DD-41E5-94BD-2C2720D2E52A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

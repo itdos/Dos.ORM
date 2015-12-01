@@ -20,6 +20,13 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -180,7 +187,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Business\Business.csproj">
       <Project>{eb7a463e-f934-4697-9081-68179a4a1be1}</Project>
-      <Name>Business %28初级玩法demo之mvc简单三层\Business%29</Name>
+      <Name>Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{657e4ecd-3cb3-4d79-9393-a2a774b78513}</Project>

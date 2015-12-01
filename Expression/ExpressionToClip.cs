@@ -361,7 +361,7 @@ namespace Dos.ORM
                         {
                             return new Field(keyRightName, rightMe.Expression.Type.Name).IsNotNull();
                         }
-                        throw new Exception("null值只支持等于或不等于！");
+                        throw new Exception("null值只支持等于或不等于！出错比较符：" + co.ToString());
                     }
                     return new WhereClip(new Field(keyRightName, rightMe.Expression.Type.Name), value, co);
                 }

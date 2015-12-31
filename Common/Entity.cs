@@ -116,7 +116,7 @@ namespace Dos.ORM
         {
             this.tableName = tableName;
             this.isAttached = true;
-           // this.paramCount = 0;
+            // this.paramCount = 0;
         }
 
 
@@ -130,7 +130,32 @@ namespace Dos.ORM
             this.isAttached = true;
         }
         /// <summary>
-        /// 将实体置为指定状态
+        /// 将实体所有字段置为修改状态
+        /// </summary>
+        public void AttachAll()
+        {
+            AttachAll(false);
+        }
+        /// <summary>
+        /// 将实体所有字段置为修改状态
+        /// </summary>
+        /// <param name="ignoreNullOrEmpty">忽略null值字段与空字符串字段</param>
+        public void AttachAll(bool ignoreNullOrEmpty)
+        {
+            var fs = this.GetFields();
+            var values = this.GetValues();
+            for (int i = 0; i < fs.Length; i++)
+            {
+                if (ignoreNullOrEmpty && (values[i] == null || string.IsNullOrEmpty(values[i].ToString())))
+                {
+                    continue;
+                }
+                this.modifyFields.Add(new ModifyField(fs[i], values[i], values[i]));
+            }
+        }
+
+        /// <summary>
+        /// 将实体置为指定状态（仅对.Save()有效果）
         /// </summary>
         public void Attach(EntityState entityState)
         {

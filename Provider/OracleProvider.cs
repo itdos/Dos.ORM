@@ -158,6 +158,11 @@ namespace Dos.ORM.Oracle
                         oracleParam.OracleType = OracleType.NClob;
                         p.Value = SerializationManager.Serialize(value);
                         break;
+                    //2015-12-31  新增
+                    case DbType.Guid:
+                        oracleParam.OracleType = OracleType.Char;//AnsiStringFixedLength  
+                        p.Value = SerializationManager.Serialize(value);
+                        break;
                 }
             }
 

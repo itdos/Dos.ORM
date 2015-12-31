@@ -7,8 +7,10 @@
 	*）TransactionScope事务
 	*）
 
-2015-10-29 Dos.ORM（原Hxj.Data）（v1.10.2.3）
-	*）解决多表联查N张表同时.Select(Table._.All,Table2._.All)却只能查出第一张表数据的Bug。
+2015-12-31 Dos.ORM（原Hxj.Data）（v1.10.2.6）
+	*）解决Oracle存储Guid类型的Bug。（感谢群友【随风】提供解决方案）
+	*）新增实体类.AttachAll()方法，将实体所有字段置为修改状态。
+	*）解决多表联查N张表时，.Select(Table._.All, Table2._.All)却只能查出第一张表数据的Bug。
 	*）大量完善事务的lambda写法、Where条件重载。
 	*）现在支持byte[]类型Emit映射了，意味着orm再次支持image、varbinary、blob等等类型的存取。
 	*）解决float/Single类型底层Emit映射出错的Bug。（感谢同事【娟妹儿】发现此Bug。）

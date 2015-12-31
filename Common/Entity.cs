@@ -150,6 +150,10 @@ namespace Dos.ORM
                 {
                     continue;
                 }
+                if (this.modifyFields.Any(d => d.Field.FieldName == fs[i].FieldName))
+                {
+                    continue;
+                }
                 this.modifyFields.Add(new ModifyField(fs[i], values[i], values[i]));
             }
         }

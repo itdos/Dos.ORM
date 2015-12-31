@@ -46,9 +46,12 @@ namespace Business
             }
             #endregion
             var list = TestTableRepository.Query(where, d => d.CreateTime, "desc", null, param._PageSize, param._PageIndex);
+            list[0].Id = Guid.NewGuid();
             list[0].AttachAll();
             var a = list[0].GetModifyFields();
             var b = list[1].GetModifyFields();
+            list[0].Id = Guid.NewGuid();
+            var aaaa = TestTableRepository.Insert(list[0]);
             return new BaseResult(true, list, "", dateCount);
         }
         public BaseResult GetUserModel(TestTableParam param)

@@ -7,7 +7,7 @@
 	*）TransactionScope事务
 	*）
 
-2015-12-31 Dos.ORM（原Hxj.Data）（v1.10.2.6）
+2015-12-31 Dos.ORM（原Hxj.Data）（v1.10.2.7）
 	*）解决Oracle存储Guid类型的Bug。（感谢群友【随风】提供解决方案）
 	*）新增实体类.AttachAll()方法，将实体所有字段置为修改状态。
 	*）解决多表联查N张表时，.Select(Table._.All, Table2._.All)却只能查出第一张表数据的Bug。

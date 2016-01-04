@@ -21,7 +21,7 @@ namespace Business
         /// </summary>
         public BaseResult GetUser(TestTableParam param)
         {
-            var where = new Where<TestTable>();
+            var where = new Where<TestTable1>();
             #region 模糊搜索条件
             if (!string.IsNullOrWhiteSpace(param.SearchName))
             {
@@ -46,12 +46,12 @@ namespace Business
             }
             #endregion
             var list = TestTableRepository.Query(where, d => d.CreateTime, "desc", null, param._PageSize, param._PageIndex);
-            list[0].Id = Guid.NewGuid();
-            list[0].AttachAll();
-            var a = list[0].GetModifyFields();
-            var b = list[1].GetModifyFields();
-            list[0].Id = Guid.NewGuid();
-            var aaaa = TestTableRepository.Insert(list[0]);
+            //list[0].Id = Guid.NewGuid();
+            //list[0].AttachAll();
+            //var a = list[0].GetModifyFields();
+            //var b = list[1].GetModifyFields();
+            //list[0].Id = Guid.NewGuid();
+            //var aaaa = TestTableRepository.Insert(list[0]);
             return new BaseResult(true, list, "", dateCount);
         }
         public BaseResult GetUserModel(TestTableParam param)
@@ -80,7 +80,7 @@ namespace Business
             {
                 return new BaseResult(false, null, Msg.ParamError);
             }
-            var model = new TestTable
+            var model = new TestTable1
             {
                 Id = Guid.NewGuid(),
                 Name = param.Name,
@@ -116,7 +116,7 @@ namespace Business
             {
                 return new BaseResult(false, null, Msg.ParamError);
             }
-            var model = new TestTable();
+            var model = new TestTable1();
             if (param.Name != null)
                 model.Name = param.Name;
             if (param.IDNumber != null)

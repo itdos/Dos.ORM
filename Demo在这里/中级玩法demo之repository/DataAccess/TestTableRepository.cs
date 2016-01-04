@@ -26,7 +26,7 @@ namespace DataAccess
     /// <summary>
     /// 数据库处理层。多表联查、复杂的Dos.ORM写法都可以丢到这层来写。
     /// </summary>
-    public class TestTableRepository : Repository<TestTable>
+    public class TestTableRepository : Repository<TestTable1>
     {
         /// <summary>
         /// 

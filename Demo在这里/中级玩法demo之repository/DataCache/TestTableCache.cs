@@ -9,12 +9,12 @@ namespace DataCache
 {
     public class TestTableCache : CacheBase
     {
-        public static TestTable GetUserModel(Guid userId)
+        public static TestTable1 GetUserModel(Guid userId)
         {
-            var result = Get<TestTable>("GetUser" + userId);
+            var result = Get<TestTable1>("GetUser" + userId);
             return result;
         }
-        public static bool SetUserModel(TestTable model)
+        public static bool SetUserModel(TestTable1 model)
         {
             return Set("GetUser" + model.Id, model);
         }

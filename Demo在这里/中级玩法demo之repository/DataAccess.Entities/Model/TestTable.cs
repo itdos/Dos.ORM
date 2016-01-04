@@ -23,9 +23,10 @@ namespace DataAccess.Entities
     /// 实体类TestTable 。(属性说明自动提取数据库字段的描述信息)
     /// </summary>
     [Serializable]
-    public partial class TestTable : Entity
+    [Entity("TestTable")]
+    public partial class TestTable1 : Entity
     {
-        public TestTable() : base("TestTable") { }
+        public TestTable1() { }
 
         #region Model
         private Guid _Id;

@@ -17,6 +17,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -180,9 +181,9 @@ namespace Dos.ORM
             string key = GetMemberName(e.Arguments[0], out function, out member);
             if (isNull)
             {
-                return new Field(key, member.Expression.Type.Name).IsNull();
+                return new Field(key, GetTableName(member.Expression.Type)).IsNull();
             }
-            return new Field(key, member.Expression.Type.Name).IsNotNull();
+            return new Field(key, GetTableName(member.Expression.Type)).IsNotNull();
         }
 
         private static WhereClip ConvertInCall(MethodCallExpression e, bool notIn = false)
@@ -205,9 +206,9 @@ namespace Dos.ORM
             }
             if (notIn)
             {
-                return new Field(key, member.Expression.Type.Name).SelectNotIn(list.ToArray());
+                return new Field(key, GetTableName(member.Expression.Type)).SelectNotIn(list.ToArray());
             }
-            return new Field(key, member.Expression.Type.Name).SelectIn(list.ToArray());
+            return new Field(key, GetTableName(member.Expression.Type)).SelectIn(list.ToArray());
         }
 
         private static WhereClip ConvertLikeCall(MethodCallExpression e, string left, string right, bool isLike = false)
@@ -220,7 +221,7 @@ namespace Dos.ORM
                 object value = GetValue(isLike ? e.Arguments[1] : e.Arguments[0]);
                 if (value != null && value is string)
                 {
-                    return new WhereClip(new Field(key, member.Expression.Type.Name),
+                    return new WhereClip(new Field(key, GetTableName(member.Expression.Type)),
                         string.Concat(left, value, right), QueryOperator.Like);
                 }
             }
@@ -324,7 +325,7 @@ namespace Dos.ORM
                 else
                 {
                     var keyRightName = GetMemberName(expRight, out rightFunction, out rightMe);
-                    
+
                     if (expLeft.NodeType == ExpressionType.MemberAccess)
                     {
                         var left = (MemberExpression)expLeft;
@@ -334,11 +335,11 @@ namespace Dos.ORM
                             var keyLeft = GetMemberName(expLeft, out functionLeft, out left);
                             if (keyRightName.Contains("$"))
                             {
-                                return new WhereClip(new Field(keyLeft, left.Expression.Type.Name), GetValue(expRight), co);
+                                return new WhereClip(new Field(keyLeft, GetTableName(left.Expression.Type)), GetValue(expRight), co);
                             }
                             else
                             {
-                                return new WhereClip(new Field(keyRightName, rightMe.Expression.Type.Name), new Field(keyLeft, left.Expression.Type.Name), co);
+                                return new WhereClip(new Field(keyRightName, GetTableName(rightMe.Expression.Type)), new Field(keyLeft, GetTableName(left.Expression.Type)), co);
                             }
                         }
                     }
@@ -355,15 +356,15 @@ namespace Dos.ORM
                     {
                         if (co == QueryOperator.Equal)
                         {
-                            return new Field(keyRightName, rightMe.Expression.Type.Name).IsNull();
+                            return new Field(keyRightName, GetTableName(rightMe.Expression.Type)).IsNull();
                         }
                         if (co == QueryOperator.NotEqual)
                         {
-                            return new Field(keyRightName, rightMe.Expression.Type.Name).IsNotNull();
+                            return new Field(keyRightName, GetTableName(rightMe.Expression.Type)).IsNotNull();
                         }
                         throw new Exception("null值只支持等于或不等于！出错比较符：" + co.ToString());
                     }
-                    return new WhereClip(new Field(keyRightName, rightMe.Expression.Type.Name), value, co);
+                    return new WhereClip(new Field(keyRightName, GetTableName(rightMe.Expression.Type)), value, co);
                 }
             }
             else
@@ -390,7 +391,7 @@ namespace Dos.ORM
                     {
                         ColumnFunction functionRight;
                         var keyRight = GetMemberName(expRight, out functionRight, out right);
-                        return new WhereClip(new Field(key, leftMe.Expression.Type.Name), new Field(keyRight, right.Expression.Type.Name), co);
+                        return new WhereClip(new Field(key, GetTableName(leftMe.Expression.Type)), new Field(keyRight, right.Expression.Type.Name), co);
                     }
                 }
                 object value = GetValue(expRight);
@@ -398,15 +399,15 @@ namespace Dos.ORM
                 {
                     if (co == QueryOperator.Equal)
                     {
-                        return new Field(key, leftMe.Expression.Type.Name).IsNull();
+                        return new Field(key, GetTableName(leftMe.Expression.Type)).IsNull();
                     }
                     if (co == QueryOperator.NotEqual)
                     {
-                        return new Field(key, leftMe.Expression.Type.Name).IsNotNull();
+                        return new Field(key, GetTableName(leftMe.Expression.Type)).IsNotNull();
                     }
                     throw new Exception("null值只支持等于或不等于！");
                 }
-                return new WhereClip(new Field(key, leftMe.Expression.Type.Name), value, co);
+                return new WhereClip(new Field(key, GetTableName(leftMe.Expression.Type)), value, co);
             }
         }
 
@@ -429,7 +430,7 @@ namespace Dos.ORM
             if (exprBody is MemberExpression)
             {
                 var e = (MemberExpression)exprBody;
-                return new GroupByClip(new Field(e.Member.Name, e.Expression.Type.Name));
+                return new GroupByClip(new Field(e.Member.Name, GetTableName(e.Expression.Type)));
             }
             if (exprBody is NewExpression)
             {
@@ -439,7 +440,7 @@ namespace Dos.ORM
                 GroupByClip gb = GroupByClip.None;
                 foreach (MemberExpression member in exNew.Arguments)
                 {
-                    gb = gb && new Field(member.Member.Name, member.Expression.Type.Name).GroupBy;
+                    gb = gb && new Field(member.Member.Name, GetTableName(member.Expression.Type)).GroupBy;
                 }
                 return gb;
             }
@@ -452,11 +453,11 @@ namespace Dos.ORM
                 //GroupByClip gb = GroupByClip.None;
                 //foreach (MemberExpression member in exNew.Arguments)
                 //{
-                //    gb = gb && new Field(member.Member.Name, member.Expression.Type.Name).GroupBy;
+                //    gb = gb && new Field(member.Member.Name, GetTableName(member.Expression.Type)).GroupBy;
                 //}
                 //return gb;
             }
-            
+
             throw new Exception("暂时不支持的Group by lambda写法！请使用经典写法！");
         }
 
@@ -476,11 +477,11 @@ namespace Dos.ORM
                 OrderByClip gb = OrderByClip.None;
                 if (orderBy == OrderByOperater.DESC)
                 {
-                    gb = gb && new Field(e.Member.Name, e.Expression.Type.Name).Desc;
+                    gb = gb && new Field(e.Member.Name, GetTableName(e.Expression.Type)).Desc;
                 }
                 else
                 {
-                    gb = gb && new Field(e.Member.Name, e.Expression.Type.Name).Asc;
+                    gb = gb && new Field(e.Member.Name, GetTableName(e.Expression.Type)).Asc;
                 }
                 return gb;
             }
@@ -494,11 +495,11 @@ namespace Dos.ORM
                 {
                     if (orderBy == OrderByOperater.DESC)
                     {
-                        gb = gb && new Field(member.Member.Name, member.Expression.Type.Name).Desc;
+                        gb = gb && new Field(member.Member.Name, GetTableName(member.Expression.Type)).Desc;
                     }
                     else
                     {
-                        gb = gb && new Field(member.Member.Name, member.Expression.Type.Name).Asc;
+                        gb = gb && new Field(member.Member.Name, GetTableName(member.Expression.Type)).Asc;
                     }
                 }
                 return gb;
@@ -544,7 +545,7 @@ namespace Dos.ORM
             if (exprBody is MemberExpression)
             {
                 var e = (MemberExpression)exprBody;
-                return new[] { new Field(e.Member.Name, e.Expression.Type.Name) };
+                return new[] { new Field(e.Member.Name, GetTableName(e.Expression.Type)) };
             }
             if (exprBody is MethodCallExpression)
             {
@@ -567,7 +568,7 @@ namespace Dos.ORM
                 var i = 0;
                 foreach (MemberExpression member in exNew.Arguments)
                 {
-                    f[i] = new Field(member.Member.Name, member.Expression.Type.Name);
+                    f[i] = new Field(member.Member.Name, GetTableName(member.Expression.Type));
                     i++;
                 }
                 return f;
@@ -591,11 +592,11 @@ namespace Dos.ORM
             switch (e.Method.Name)
             {
                 case "Sum":
-                    return new[] { new Field(key, member.Expression.Type.Name).Sum() };
+                    return new[] { new Field(key, GetTableName(member.Expression.Type)).Sum() };
                 case "Avg":
-                    return new[] { new Field(key, member.Expression.Type.Name).Avg() };
+                    return new[] { new Field(key, GetTableName(member.Expression.Type)).Avg() };
                 case "Len":
-                    return new[] { new Field(key, member.Expression.Type.Name).Len() };
+                    return new[] { new Field(key, GetTableName(member.Expression.Type)).Len() };
             }
             throw new Exception("暂时不支持的Lambda表达式写法(" + e.Method.Name + ")！请使用经典写法！");
         }
@@ -609,10 +610,26 @@ namespace Dos.ORM
                 object value = GetValue(e.Arguments[1]);
                 if (value != null && value is string)
                 {
-                    return new[] { new Field(key, member.Expression.Type.Name) { AliasName = value.ToString() } };
+                    return new[] { new Field(key, GetTableName(member.Expression.Type)) { AliasName = value.ToString() } };
                 }
             }
             throw new Exception("'As'仅支持一个参数，参数应为字符串且不允许为空");
+        }
+
+        private static string GetTableName(Type type)
+        {
+            var af = type.GetCustomAttributesData()
+                            .Where(d => d.Constructor.DeclaringType == typeof(Entity))
+                            .Select(d => new AttributeFactory(d)).FirstOrDefault();
+            if (af != null)
+            {
+                var afe = af.Create() as Entity;
+                if (afe != null)
+                {
+                    return afe.GetTableName();
+                }
+            }
+            return type.Name;
         }
     }
 }

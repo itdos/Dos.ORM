@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using Dos.ORM;
 using Dos.ORM.Common;
 
@@ -70,7 +71,7 @@ namespace Dos.ORM
     /// 实体信息
     /// </summary>
     [Serializable]
-    public abstract class Entity
+    public class Entity : Attribute
     {
 
         /// <summary>
@@ -104,6 +105,16 @@ namespace Dos.ORM
         /// </summary>
         public Entity()
         {
+            var af = this.GetType().GetCustomAttributesData()
+                            .Where(d => d.Constructor.DeclaringType == typeof(Entity))
+                            .Select(d => new AttributeFactory(d)).FirstOrDefault();
+            if (af != null)
+            {
+                var afe = af.Create() as Entity;
+                this.tableName = afe != null ? afe.GetTableName() : this.GetType().Name;
+            }
+            else
+                this.tableName = this.GetType().Name;
             this.isAttached = true;
             //this.paramCount = 0;
         }
@@ -350,5 +361,42 @@ namespace Dos.ORM
             return tableName;
         }
 
+    }
+    public class AttributeFactory
+    {
+        public AttributeFactory(CustomAttributeData data)
+        {
+            this.Data = data;
+
+            var ctorInvoker = new ConstructorInvoker(data.Constructor);
+            var ctorArgs = data.ConstructorArguments.Select(a => a.Value).ToArray();
+            this.m_attributeCreator = () => ctorInvoker.Invoke(ctorArgs);
+
+            this.m_propertySetters = new List<Action<object>>();
+            foreach (var arg in data.NamedArguments)
+            {
+                var property = (PropertyInfo)arg.MemberInfo;
+                var propertyAccessor = new PropertyAccessor(property);
+                var value = arg.TypedValue.Value;
+                this.m_propertySetters.Add(o => propertyAccessor.SetValue(o, value));
+            }
+        }
+
+        public CustomAttributeData Data { get; private set; }
+
+        private Func<object> m_attributeCreator;
+        private List<Action<object>> m_propertySetters;
+
+        public Attribute Create()
+        {
+            var attribute = this.m_attributeCreator();
+
+            foreach (var setter in this.m_propertySetters)
+            {
+                setter(attribute);
+            }
+
+            return (Attribute)attribute;
+        }
     }
 }

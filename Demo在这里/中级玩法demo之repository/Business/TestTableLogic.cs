@@ -7,6 +7,7 @@ using Dos.ORM;
 using System.Data.Common;
 using Common;
 using DataAccess;
+using DataAccess.Base;
 using DataAccess.Entities;
 using DataAccess.Entities.Base;
 using DataCache;

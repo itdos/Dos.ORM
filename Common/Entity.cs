@@ -19,8 +19,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
-using Dos.ORM;
-using Dos.ORM.Common;
 
 namespace Dos.ORM
 {
@@ -66,14 +64,39 @@ namespace Dos.ORM
 
 
     }
+    /// <summary>
+    /// 标记实体类表名
+    /// </summary>
+    public class Table : Attribute
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        private string tableName;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tableName"></param>
+        public Table(string tableName)
+        {
+            this.tableName = tableName;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public string GetTableName()
+        {
+            return tableName;
+        }
+    }
 
     /// <summary>
     /// 实体信息
     /// </summary>
     [Serializable]
-    public class Entity : Attribute
+    public class Entity
     {
-
         /// <summary>
         /// 表名
         /// </summary>
@@ -105,17 +128,17 @@ namespace Dos.ORM
         /// </summary>
         public Entity()
         {
-            var af = this.GetType().GetCustomAttributesData()
-                            .Where(d => d.Constructor.DeclaringType == typeof(Entity))
+            var af = GetType().GetCustomAttributesData()
+                            .Where(d => d.Constructor.DeclaringType == typeof(Table))
                             .Select(d => new AttributeFactory(d)).FirstOrDefault();
             if (af != null)
             {
-                var afe = af.Create() as Entity;
-                this.tableName = afe != null ? afe.GetTableName() : this.GetType().Name;
+                var afe = af.Create() as Table;
+                this.tableName = afe != null ? afe.GetTableName() : GetType().Name;
             }
             else
-                this.tableName = this.GetType().Name;
-            this.isAttached = true;
+                tableName = GetType().Name;
+            isAttached = true;
             //this.paramCount = 0;
         }
 
@@ -126,7 +149,7 @@ namespace Dos.ORM
         public Entity(string tableName)
         {
             this.tableName = tableName;
-            this.isAttached = true;
+            isAttached = true;
             // this.paramCount = 0;
         }
 
@@ -138,7 +161,7 @@ namespace Dos.ORM
         /// </summary>
         public void Attach()
         {
-            this.isAttached = true;
+            isAttached = true;
         }
         /// <summary>
         /// 将实体所有字段置为修改状态
@@ -153,19 +176,19 @@ namespace Dos.ORM
         /// <param name="ignoreNullOrEmpty">忽略null值字段与空字符串字段</param>
         public void AttachAll(bool ignoreNullOrEmpty)
         {
-            var fs = this.GetFields();
-            var values = this.GetValues();
+            var fs = GetFields();
+            var values = GetValues();
             for (int i = 0; i < fs.Length; i++)
             {
                 if (ignoreNullOrEmpty && (values[i] == null || string.IsNullOrEmpty(values[i].ToString())))
                 {
                     continue;
                 }
-                if (this.modifyFields.Any(d => d.Field.FieldName == fs[i].FieldName))
+                if (modifyFields.Any(d => d.Field.FieldName == fs[i].FieldName))
                 {
                     continue;
                 }
-                this.modifyFields.Add(new ModifyField(fs[i], values[i], values[i]));
+                modifyFields.Add(new ModifyField(fs[i], values[i], values[i]));
             }
         }
 
@@ -181,7 +204,7 @@ namespace Dos.ORM
         /// </summary>
         public EntityState GetEntityState()
         {
-            return this.entityState;
+            return entityState;
         }
         /// <summary>
         /// 1、恢复实体为默认状态。
@@ -189,8 +212,8 @@ namespace Dos.ORM
         /// </summary>
         public void DeAttach()
         {
-            this.isAttached = false;
-            this.entityState = EntityState.Unchanged;
+            isAttached = false;
+            entityState = EntityState.Unchanged;
         }
 
 
@@ -366,19 +389,19 @@ namespace Dos.ORM
     {
         public AttributeFactory(CustomAttributeData data)
         {
-            this.Data = data;
+            Data = data;
 
             var ctorInvoker = new ConstructorInvoker(data.Constructor);
             var ctorArgs = data.ConstructorArguments.Select(a => a.Value).ToArray();
-            this.m_attributeCreator = () => ctorInvoker.Invoke(ctorArgs);
+            m_attributeCreator = () => ctorInvoker.Invoke(ctorArgs);
 
-            this.m_propertySetters = new List<Action<object>>();
+            m_propertySetters = new List<Action<object>>();
             foreach (var arg in data.NamedArguments)
             {
                 var property = (PropertyInfo)arg.MemberInfo;
                 var propertyAccessor = new PropertyAccessor(property);
                 var value = arg.TypedValue.Value;
-                this.m_propertySetters.Add(o => propertyAccessor.SetValue(o, value));
+                m_propertySetters.Add(o => propertyAccessor.SetValue(o, value));
             }
         }
 
@@ -389,9 +412,9 @@ namespace Dos.ORM
 
         public Attribute Create()
         {
-            var attribute = this.m_attributeCreator();
+            var attribute = m_attributeCreator();
 
-            foreach (var setter in this.m_propertySetters)
+            foreach (var setter in m_propertySetters)
             {
                 setter(attribute);
             }

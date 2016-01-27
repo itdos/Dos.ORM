@@ -28,7 +28,7 @@ using Dos.ORM;
 namespace Dos.ORM.Common
 {
     /// <summary>
-    /// 此类占位用，以兼容以前代码不会报错。
+    /// 此类占位用，以兼容以前代码"using Dos.ORM.Common;"不会报错。
     /// </summary>
     public class DosORMCommon
     {

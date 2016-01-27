@@ -391,7 +391,10 @@ namespace Dos.ORM
                     {
                         ColumnFunction functionRight;
                         var keyRight = GetMemberName(expRight, out functionRight, out right);
-                        return new WhereClip(new Field(key, GetTableName(leftMe.Expression.Type)), new Field(keyRight, right.Expression.Type.Name), co);
+                        return new WhereClip(
+                            new Field(key, GetTableName(leftMe.Expression.Type)),
+                            new Field(keyRight, GetTableName(right.Expression.Type))
+                            , co);
                     }
                 }
                 object value = GetValue(expRight);
@@ -619,11 +622,11 @@ namespace Dos.ORM
         private static string GetTableName(Type type)
         {
             var af = type.GetCustomAttributesData()
-                            .Where(d => d.Constructor.DeclaringType == typeof(Entity))
+                            .Where(d => d.Constructor.DeclaringType == typeof(Table))
                             .Select(d => new AttributeFactory(d)).FirstOrDefault();
             if (af != null)
             {
-                var afe = af.Create() as Entity;
+                var afe = af.Create() as Table;
                 if (afe != null)
                 {
                     return afe.GetTableName();

@@ -14,7 +14,6 @@ using System;
 using System.Data;
 using System.Data.Common;
 using Dos.ORM;
-using Dos.ORM.Common;
 
 namespace DataAccess.Entities
 {
@@ -22,12 +21,9 @@ namespace DataAccess.Entities
     /// <summary>
     /// 实体类TestTable 。(属性说明自动提取数据库字段的描述信息)
     /// </summary>
-    [Serializable]
-    [Entity("TestTable")]
+    [Table("TestTable")]
     public partial class TestTable1 : Entity
     {
-        public TestTable1() { }
-
         #region Model
         private Guid _Id;
         private string _Name;

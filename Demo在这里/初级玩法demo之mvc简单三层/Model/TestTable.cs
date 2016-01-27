@@ -36,6 +36,18 @@ namespace Model
         private int? _Test2;
         private string _Test3;
         private DateTime _CreateTime;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public Guid TypeId
+        //{
+        //    get { return _Id; }
+        //    set
+        //    {
+        //        this.OnPropertyValueChange(_.Id, _Id, value);
+        //        this._Id = value;
+        //    }
+        //}
         /// <summary>
         /// 
         /// </summary>

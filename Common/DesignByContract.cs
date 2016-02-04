@@ -1,103 +1,9 @@
-﻿// Design By Contract Framework C# Implementation
-//
-// Last Updated: 
-//
-// By Teddy (shijie.ma@gmail.com) @ 2 Oct, 2007
-//
-// Introduction Article to the Latest Enhanced Version:
-//
-// http://www.cnblogs.com/teddyma/archive/2007/10/05/914656.html
-//
-// Change History:
-//
-// 3 Oct, 2007
-// Added the ICheckStrategy interface and several predefined Check Strategies to simplify common check usage.
-//
-// 13 Jul, 2002      
-// The initial version got from http://www.codeproject.com/csharp/designbycontract.asp
-//
-// Description:
-//
-// Provides support for Design By Contract
-// as described by Bertrand Meyer in his seminal book,
-// Object-Oriented Software Construction (2nd Ed) Prentice Hall 1997
-// (See chapters 11 and 12).
-//
-// See also Building Bug-free O-O Software: An Introduction to Design by Contract
-// http://www.eiffel.com/doc/manuals/technology/contract/
-//
-// The following conditional compilation symbols are supported:
-// 
-// These suggestions are based on Bertrand Meyer's Object-Oriented Software Construction (2nd Ed) p393
-// 
-// DBC_CHECK_ALL           - Check assertions - implies checking preconditions, postconditions and invariants
-// DBC_CHECK_INVARIANT     - Check invariants - implies checking preconditions and postconditions
-// DBC_CHECK_POSTCONDITION - Check postconditions - implies checking preconditions 
-// DBC_CHECK_PRECONDITION  - Check preconditions only, e.g., in Release build
-// 
-// A suggested default usage scenario is the following:
-//
-// #if DEBUG
-// #define DBC_CHECK_ALL
-// #else
-// #define DBC_CHECK_PRECONDITION
-// #endif
-//
-// Alternatively, you can define these in the project properties dialog.
-//
-// If you wish to use trace or debug assertion statements, intended for Debug scenarios,
-// rather than exception handling then you can specify the following line in your application entry point 
-// and maybe make it dependent on conditional compilation flags or configuration file settings, e.g.,
-// Default is to use exception handling, or uncomment the following lines to use trace or debug assertion.
-//
-// #define USE_TRACE_ASSERTION
-// or
-// #define USE_DEBUG_ASSERTION
-//
-// You can direct output to a Trace listener. For example, you could insert
-// (You can replace the System.Diagnostics.Trace here with System.Diagnostics.Debug
-// if you are using Debug Assertion)
-//
-// System.Diagnostics.Trace.Listeners.Clear();
-// System.Diagnostics.Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
-// 
-// or direct output to a file or the Event Log.
-// 
-// (Note: For ASP.NET clients use the Listeners collection
-// of the Debug, not the Trace, object and, for a Release build, only exception-handling
-// is possible.)
-//
-
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Collections;
 
 namespace Dos.ORM
 {
-    /// <summary>
-    /// Design By Contract Checks.
-    /// 
-    /// Each method generates an exception or
-    /// a trace assertion statement if the contract is broken.
-    /// </summary>
-    /// <remarks>
-    /// This example shows how to call the Require method.
-    /// Assume DBC_CHECK_PRECONDITION is defined.
-    /// <code>
-    /// public void Test(int x)
-    /// {
-    /// 	try
-    /// 	{
-    ///			Check.Require(x > 1, "x must be > 1");
-    ///		}
-    ///		catch (System.Exception ex)
-    ///		{
-    ///			Console.WriteLine(ex.ToString());
-    ///		}
-    ///	}
-    /// </code>
-    /// </remarks>
-    /// 
     public sealed class Check
     {
         #region Const Literals
@@ -769,8 +675,7 @@ namespace Dos.ORM
 #endif
         #endregion // End Use Exception Or Trace/Debug Assertion?
 
-    } // End Check
-
+    }
     #region Exceptions
 
     /// <summary>
@@ -880,5 +785,4 @@ namespace Dos.ORM
     }
 
     #endregion // Exception classes
-
-} // End Design By Contract
+}

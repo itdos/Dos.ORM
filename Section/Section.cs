@@ -15,7 +15,9 @@
 **************************************************************************/
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Data.Common;
 using Dos.ORM;
@@ -23,6 +25,9 @@ using Dos.ORM.Common;
 using Dos.ORM.Common;
 using System.Data;
 using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
+using System.Threading;
 
 namespace Dos.ORM
 {
@@ -73,14 +78,15 @@ namespace Dos.ORM
         public TEntity ToFirst<TEntity>()
             where TEntity : Entity
         {
-            TEntity t = null;
+            //TEntity t = null;
             using (IDataReader reader = ToDataReader())
             {
-                var tempt = EntityUtils.Mapper.Map<TEntity>(reader);
-                if (tempt.Any())
-                {
-                    t = tempt.First();
-                }
+                //var tempt = EntityUtils.Mapper.Map<TEntity>(reader);
+                //if (tempt.Any())
+                //{
+                //    t = tempt.First();
+                //}
+                return EntityUtils.ReaderToEnumerable<TEntity>(reader).First();
                 #region 2015-08-10注释
                 //if (reader.Read())
                 //{
@@ -89,7 +95,7 @@ namespace Dos.ORM
                 //}
                 #endregion
             }
-            return t;
+            //return t;
         }
 
         /// <summary>
@@ -107,24 +113,43 @@ namespace Dos.ORM
 
             return t;
         }
-
-
         /// <summary>
         /// 返回实体列表
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <returns></returns>
-        public List<TEntity> ToList<TEntity>() //where TEntity : Entity
+        public List<TEntity> ToList<TEntity>()
         {
-            List<TEntity> listT = new List<TEntity>();
+            //List<TEntity> listT = new List<TEntity>();
             using (IDataReader reader = ToDataReader())
             {
-                listT = EntityUtils.Mapper.Map<TEntity>(reader);
-                reader.Close();
+                //listT = EntityUtils.Mapper.Map<TEntity>(reader);
+                //reader.Close();
+                return EntityUtils.ReaderToEnumerable<TEntity>(reader).ToList();
             }
-            return listT;
+            //return listT;
         }
-
+        /// <summary>
+        /// 返回懒加载数据
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <returns></returns>
+        public IEnumerable<TEntity> ToEnumerable<TEntity>()
+        {
+            IEnumerable<TEntity> result;
+            using (IDataReader reader = ToDataReader())
+            {
+                var info = new EntityUtils.CacheInfo()
+                {
+                    Deserializer = EntityUtils.GetDeserializer(typeof(TEntity), reader, 0, -1, false)
+                };
+                while (reader.Read())
+                {
+                    dynamic next = info.Deserializer(reader);
+                    yield return (TEntity)next;
+                }
+            }
+        }
 
         /// <summary>
         /// 返回DataReader

@@ -60,9 +60,6 @@ namespace Dos.ORM
             this.oldValue = oldValue;
             this.newValue = newValue;
         }
-
-
-
     }
     /// <summary>
     /// 标记实体类表名
@@ -107,6 +104,7 @@ namespace Dos.ORM
         /// </summary>
         private bool isAttached = true;
 
+        private bool isFilterModifyFields = false;//2016-02-03新增
         /// <summary>
         /// 实体状态
         /// </summary>
@@ -120,25 +118,29 @@ namespace Dos.ORM
         /// 修改的字段集合
         /// </summary>
         private List<ModifyField> modifyFields = new List<ModifyField>();
-
         #region 构造函数
-
+        
         /// <summary>
         /// 构造函数
         /// </summary>
         public Entity()
         {
-            var af = GetType().GetCustomAttributesData()
-                            .Where(d => d.Constructor.DeclaringType == typeof(Table))
-                            .Select(d => new AttributeFactory(d)).FirstOrDefault();
-            if (af != null)
-            {
-                var afe = af.Create() as Table;
-                this.tableName = afe != null ? afe.GetTableName() : GetType().Name;
-            }
-            else
-                tableName = GetType().Name;
+            #region 2016-02-03注释
+            //var af = GetType().GetCustomAttributesData()
+            //                .Where(d => d.Constructor.DeclaringType == typeof(Table))
+            //                .Select(d => new AttributeFactory(d)).FirstOrDefault();
+            //if (af != null)
+            //{
+            //    var afe = af.Create() as Table;
+            //    this.tableName = afe != null ? afe.GetTableName() : GetType().Name;
+            //}
+            //else
+            //    tableName = GetType().Name;
+            #endregion
+            var tbl = GetType().GetCustomAttribute<Table>(false) as Table;
+            tableName = tbl != null ? tbl.GetTableName() : GetType().Name;
             isAttached = true;
+
             //this.paramCount = 0;
         }
 
@@ -184,10 +186,10 @@ namespace Dos.ORM
                 {
                     continue;
                 }
-                if (modifyFields.Any(d => d.Field.FieldName == fs[i].FieldName))
-                {
-                    continue;
-                }
+                //if (modifyFields.Any(d => d.Field.FieldName == fs[i].FieldName))
+                //{
+                //    continue;
+                //}
                 modifyFields.Add(new ModifyField(fs[i], values[i], values[i]));
             }
         }
@@ -215,12 +217,6 @@ namespace Dos.ORM
             isAttached = false;
             entityState = EntityState.Unchanged;
         }
-
-
-
-
-
-
         /// <summary>
         /// 记录 字段修改  
         /// </summary>
@@ -235,7 +231,6 @@ namespace Dos.ORM
                 //if (null == oldValue && null == newValue)
                 //return;
                 #endregion
-
                 #region 取消这个判断 2015-07-01
                 //if (null != oldValue && null != newValue && newValue.Equals(oldValue))
                 //{
@@ -279,27 +274,31 @@ namespace Dos.ORM
 
                 lock (modifyFields)
                 {
-                    bool ishave = false;
+                    #region 2016-02-02 注释
+                    //bool ishave = false;
 
-                    foreach (var mf in modifyFields.Where(mf => mf.Field.PropertyName.ToLower().Equals(field.PropertyName.ToLower())))
-                    {
-                        mf.NewValue = newValue;
-                        ishave = true;
-                        break;
-                    }
+                    //foreach (var mf in modifyFields.Where(mf => mf.Field.PropertyName.ToLower().Equals(field.PropertyName.ToLower())))
+                    //{
+                    //    mf.NewValue = newValue;
+                    //    ishave = true;
+                    //    break;
+                    //}
 
-                    if (!ishave)
+                    //if (!ishave)
+                    //{
+                    //    modifyFields.Add(new ModifyField(field, oldValue, newValue));
+                    //}
+                    #endregion
+
+                    //if (modifyFields.All(d => d.Field.PropertyName != field.PropertyName))
                     {
-                        var modifyField = new ModifyField(field, oldValue, newValue);
-                        modifyFields.Add(modifyField);
+                        isFilterModifyFields = true;
+                        modifyFields.Add(new ModifyField(field, oldValue, newValue));
                     }
+                    
                 }
-
             }
-
         }
-
-
         /// <summary>
         /// 清除修改记录
         /// </summary>
@@ -364,10 +363,31 @@ namespace Dos.ORM
         /// </summary>
         public List<ModifyField> GetModifyFields()
         {
+            if (isFilterModifyFields)
+            {
+                var newFileds = new List<ModifyField>();
+                for (int i = modifyFields.Count - 1; i >= 0; i--)
+                {
+                    newFileds.Add(modifyFields[i]);
+                }
+                newFileds = newFileds.Distinct(new ModelComparer()).ToList();
+                isFilterModifyFields = false;
+                modifyFields = newFileds;
+                return newFileds;
+            }
             return modifyFields;
         }
-
-
+        private class ModelComparer : IEqualityComparer<ModifyField>
+        {
+            public bool Equals(ModifyField x, ModifyField y)
+            {
+                return string.Equals(x.Field.PropertyName, y.Field.PropertyName, StringComparison.CurrentCultureIgnoreCase);
+            }
+            public int GetHashCode(ModifyField obj)
+            {
+                return obj.Field.PropertyName.ToUpper().GetHashCode();
+            }
+        }
         /// <summary>
         /// 是否只读
         /// </summary>
@@ -385,41 +405,41 @@ namespace Dos.ORM
         }
 
     }
-    public class AttributeFactory
-    {
-        public AttributeFactory(CustomAttributeData data)
-        {
-            Data = data;
+    //public class AttributeFactory
+    //{
+    //    public AttributeFactory(CustomAttributeData data)
+    //    {
+    //        Data = data;
 
-            var ctorInvoker = new ConstructorInvoker(data.Constructor);
-            var ctorArgs = data.ConstructorArguments.Select(a => a.Value).ToArray();
-            m_attributeCreator = () => ctorInvoker.Invoke(ctorArgs);
+    //        var ctorInvoker = new ConstructorInvoker(data.Constructor);
+    //        var ctorArgs = data.ConstructorArguments.Select(a => a.Value).ToArray();
+    //        m_attributeCreator = () => ctorInvoker.Invoke(ctorArgs);
 
-            m_propertySetters = new List<Action<object>>();
-            foreach (var arg in data.NamedArguments)
-            {
-                var property = (PropertyInfo)arg.MemberInfo;
-                var propertyAccessor = new PropertyAccessor(property);
-                var value = arg.TypedValue.Value;
-                m_propertySetters.Add(o => propertyAccessor.SetValue(o, value));
-            }
-        }
+    //        m_propertySetters = new List<Action<object>>();
+    //        foreach (var arg in data.NamedArguments)
+    //        {
+    //            var property = (PropertyInfo)arg.MemberInfo;
+    //            var propertyAccessor = new PropertyAccessor(property);
+    //            var value = arg.TypedValue.Value;
+    //            m_propertySetters.Add(o => propertyAccessor.SetValue(o, value));
+    //        }
+    //    }
 
-        public CustomAttributeData Data { get; private set; }
+    //    public CustomAttributeData Data { get; private set; }
 
-        private Func<object> m_attributeCreator;
-        private List<Action<object>> m_propertySetters;
+    //    private Func<object> m_attributeCreator;
+    //    private List<Action<object>> m_propertySetters;
 
-        public Attribute Create()
-        {
-            var attribute = m_attributeCreator();
+    //    public Attribute Create()
+    //    {
+    //        var attribute = m_attributeCreator();
 
-            foreach (var setter in m_propertySetters)
-            {
-                setter(attribute);
-            }
+    //        foreach (var setter in m_propertySetters)
+    //        {
+    //            setter(attribute);
+    //        }
 
-            return (Attribute)attribute;
-        }
-    }
+    //        return (Attribute)attribute;
+    //    }
+    //}
 }

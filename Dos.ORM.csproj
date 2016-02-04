@@ -60,6 +60,7 @@
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data.OracleClient" />
@@ -100,11 +101,6 @@
     <Compile Include="Expression\ExpressionVisitor.cs" />
     <Compile Include="Expression\FastEvaluator.cs" />
     <Compile Include="Expression\FastPartialEvaluator.cs" />
-    <Compile Include="Expression\ConstructorInvoker.cs" />
-    <Compile Include="Expression\FastReflection.cs" />
-    <Compile Include="Expression\FieldAccessor.cs" />
-    <Compile Include="Expression\MethodInvoker.cs" />
-    <Compile Include="Expression\PropertyAccessor.cs" />
     <Compile Include="Expression\HashedListCache.cs" />
     <Compile Include="Expression\IEvaluator.cs" />
     <Compile Include="Expression\IExpressionCache.cs" />

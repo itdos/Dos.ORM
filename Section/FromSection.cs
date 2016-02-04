@@ -15,12 +15,17 @@
 **************************************************************************/
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Data;
 using System.Data.Common;
+using System.Reflection;
+using System.Reflection.Emit;
+using System.Threading;
 using Dos.ORM.Common;
 using System.Web;
 using System.Web.Caching;
@@ -28,6 +33,10 @@ using System.Web.Caching;
 
 namespace Dos.ORM
 {
+    public static class aa
+    {
+        
+    }
 
     /// <summary>
     /// 查询
@@ -589,8 +598,8 @@ namespace Dos.ORM
             FromSection from = getPagedFromSection();
             if (typet.IsClass && !notClass.Contains(typet.Name))
             {
-                string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "List", "|",
-                    formatSql(from.SqlString, from));
+                //string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "List", "|", formatSql(from.SqlString, from));
+                string cacheKey = string.Format("{0}List|{1}", dbProvider.ConnectionStringsName, formatSql(from.SqlString, from));
                 object cacheValue = getCache(cacheKey);
 
                 if (null != cacheValue)
@@ -600,7 +609,8 @@ namespace Dos.ORM
                 List<TResult> list = new List<TResult>();
                 using (IDataReader reader = ToDataReader(from))
                 {
-                    list = EntityUtils.Mapper.Map<TResult>(reader);
+                    //list = EntityUtils.Mapper.Map<TResult>(reader);
+                    list = EntityUtils.ReaderToEnumerable<TResult>(reader).ToList();
                     reader.Close();
                 }
                 setCache<List<TResult>>(list, cacheKey);
@@ -637,7 +647,6 @@ namespace Dos.ORM
                 return list;
             }
         }
-
         /// <summary>
         /// To List&lt;T>
         /// </summary>
@@ -645,7 +654,7 @@ namespace Dos.ORM
         public List<T> ToList()
         {
             FromSection from = getPagedFromSection();
-            string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "List", "|", formatSql(from.SqlString, from));
+            string cacheKey = string.Format("{0}List|{1}",dbProvider.ConnectionStringsName, formatSql(from.SqlString, from));
             object cacheValue = getCache(cacheKey);
             if (null != cacheValue)
             {
@@ -654,7 +663,9 @@ namespace Dos.ORM
             List<T> list = new List<T>();
             using (IDataReader reader = ToDataReader(from))
             {
-                list = EntityUtils.Mapper.Map<T>(reader);
+                #region 2016-02-02注释
+                //list = EntityUtils.Mapper.Map<T>(reader);
+                #endregion
                 #region 2015-08-10注释
                 //if (@from.Joins.Any() || from.Fields.Any())
                 //{
@@ -679,7 +690,7 @@ namespace Dos.ORM
                 //    }
                 //}
                 #endregion
-                reader.Close();
+                list = EntityUtils.ReaderToEnumerable<T>(reader).ToList();
             }
             setCache<List<T>>(list, cacheKey);
             //2015-09-08
@@ -690,10 +701,28 @@ namespace Dos.ORM
                     m.ClearModifyFields();
                 }
             }
-
             return list;
         }
-
+        /// <summary>
+        /// 返回懒加载数据
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<T> ToEnumerable()
+        {
+            FromSection from = getPagedFromSection();
+            using (IDataReader reader = ToDataReader(from))
+            {
+                var info = new EntityUtils.CacheInfo
+                {
+                    Deserializer = EntityUtils.GetDeserializer(typeof (T), reader, 0, -1, false)
+                };
+                while (reader.Read())
+                {
+                    dynamic next= info.Deserializer(reader);
+                    yield return (T)next;
+                }
+            }
+        }
         /// <summary>
         /// 返回第一个实体  如果为null，则默认实例化一个
         /// </summary>
@@ -734,7 +763,8 @@ namespace Dos.ORM
                 return ToFirst() as TResult;
             }
             FromSection from = this.Top(1).getPagedFromSection();
-            string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "FirstT", "|", formatSql(from.SqlString, from));
+            //string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "FirstT", "|", formatSql(from.SqlString, from));
+            string cacheKey = string.Format("{0}FirstT|{1}", dbProvider.ConnectionStringsName, formatSql(from.SqlString, from));
             object cacheValue = getCache(cacheKey);
 
             if (null != cacheValue)
@@ -746,12 +776,13 @@ namespace Dos.ORM
             TResult t = default(TResult);
             using (IDataReader reader = ToDataReader(from))
             {
-                var tempt = EntityUtils.Mapper.Map<TResult>(reader);
-                if (tempt.Any())
-                {
-                    t = tempt.First();
-                }
-                reader.Close();
+                //var tempt = EntityUtils.Mapper.Map<TResult>(reader);
+                //if (tempt.Any())
+                //{
+                //    t = tempt.First();
+                //}
+                //reader.Close();
+                t = EntityUtils.ReaderToEnumerable<TResult>(reader).First();
             }
 
             setCache<TResult>(t, cacheKey);
@@ -764,7 +795,8 @@ namespace Dos.ORM
         public T ToFirst()
         {
             FromSection from = this.Top(1).getPagedFromSection();
-            string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "FirstT", "|", formatSql(from.SqlString, from));
+            //string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "FirstT", "|", formatSql(from.SqlString, from));
+            string cacheKey = string.Format("{0}FirstT|{1}", dbProvider.ConnectionStringsName, formatSql(from.SqlString, from));
             object cacheValue = getCache(cacheKey);
 
             if (null != cacheValue)
@@ -776,11 +808,11 @@ namespace Dos.ORM
             T t = null;
             using (IDataReader reader = ToDataReader(from))
             {
-                var tempt = EntityUtils.Mapper.Map<T>(reader);
-                if (tempt.Any())
-                {
-                    t = tempt.First();
-                }
+                //var tempt = EntityUtils.Mapper.Map<T>(reader);
+                //if (tempt.Any())
+                //{
+                //    t = tempt.First();
+                //}
                 #region 2015-08-10注释
                 //if (@from.Joins.Any() || from.Fields.Any())
                 //{
@@ -799,7 +831,8 @@ namespace Dos.ORM
                 //    }
                 //}
                 #endregion
-                reader.Close();
+                //reader.Close();
+                t = EntityUtils.ReaderToEnumerable<T>(reader).First();
             }
 
             setCache<T>(t, cacheKey);
@@ -1506,7 +1539,7 @@ namespace Dos.ORM
                     temporderby = temporderby && ob;
                 }
                 //2015-09-08修改
-                this.orderBy =temporderby;
+                this.orderBy = temporderby;
                 //this.orderBy = this.orderBy && temporderby;
             }
             return this;
@@ -1672,8 +1705,8 @@ namespace Dos.ORM
         /// <returns></returns>
         internal int Count(FromSection from)
         {
-            string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "COUNT", "|", formatSql(from.CountSqlString, from));
-
+            //string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "COUNT", "|", formatSql(from.CountSqlString, from));
+            string cacheKey = string.Format("{0}COUNT|{1}", dbProvider.ConnectionStringsName, formatSql(from.CountSqlString, from));
             object cacheValue = getCache(cacheKey);
             if (null != cacheValue)
             {
@@ -1752,7 +1785,8 @@ namespace Dos.ORM
         public DataSet ToDataSet()
         {
             FromSection from = getPagedFromSection();
-            string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "DataSet", "|", formatSql(from.SqlString, from));
+            //string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "DataSet", "|", formatSql(from.SqlString, from));
+            string cacheKey = string.Format("{0}DataSet|{1}", dbProvider.ConnectionStringsName, formatSql(from.SqlString, from));
             object cacheValue = getCache(cacheKey);
             if (null != cacheValue)
             {
@@ -1839,7 +1873,8 @@ namespace Dos.ORM
             Check.Require(!this.fields[0].PropertyName.Trim().Equals("*"), "fields cound not be * !");
 
             FromSection from = getPagedFromSection();
-            string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "Scalar", "|", formatSql(from.SqlString, from));
+            //string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "Scalar", "|", formatSql(from.SqlString, from));
+            string cacheKey = string.Format("{0}Scalar|{1}", dbProvider.ConnectionStringsName, formatSql(from.SqlString, from));
             object cacheValue = getCache(cacheKey);
             if (null != cacheValue)
             {

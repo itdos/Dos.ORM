@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Reflection;
@@ -963,6 +964,102 @@ namespace Dos.ORM
                 }
             }
         }
+        private static T ConvertObj<T>(dynamic obj)
+        {
+            return (T)obj;
+        }
+        /// <summary>
+        /// Internal use only
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This method is for internal usage only", false)]
+        public static char ReadChar(object value)
+        {
+            if (value == null || value is DBNull) throw new ArgumentNullException("value");
+            string s = value as string;
+            if (s == null || s.Length != 1) throw new ArgumentException("A single-character was expected", "value");
+            return s[0];
+        }
+        /// <summary>
+        /// Internal use only
+        /// </summary>
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This method is for internal usage only", false)]
+        public static char? ReadNullableChar(object value)
+        {
+            if (value == null || value is DBNull) return null;
+            string s = value as string;
+            if (s == null || s.Length != 1) throw new ArgumentException("A single-character was expected", "value");
+            return s[0];
+        }
+        /// <summary>
+        /// Throws a data exception, only used internally
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <param name="index"></param>
+        /// <param name="reader"></param>
+        public static void ThrowDataException(Exception ex, int index, IDataReader reader)
+        {
+            string name = "(n/a)", value = "(n/a)";
+            if (reader != null && index >= 0 && index < reader.FieldCount)
+            {
+                name = reader.GetName(index);
+                object val = reader.GetValue(index);
+                if (val == null || val is DBNull)
+                {
+                    value = "<null>";
+                }
+                else
+                {
+                    value = Convert.ToString(val) + " - " + Type.GetTypeCode(val.GetType());
+                }
+            }
+            throw new DataException(string.Format("Error parsing column {0} ({1}={2})", index, name, value), ex);
+        }
+    }
 
+    public static class DosORMCommonExpand
+    {
+        private static Dictionary<MemberInfo, Object> _micache1 = new Dictionary<MemberInfo, Object>();
+        private static Dictionary<MemberInfo, Object> _micache2 = new Dictionary<MemberInfo, Object>();
+        /// <summary>
+        /// 获取自定义特性，带有缓存功能，避免因.Net内部GetCustomAttributes没有缓存而带来的损耗
+        /// </summary>
+        /// <typeparam name="TAttribute"></typeparam>
+        /// <param name="member"></param>
+        /// <param name="inherit"></param>
+        /// <returns></returns>
+        public static TAttribute[] GetCustomAttributes<TAttribute>(this MemberInfo member, Boolean inherit)
+        {
+            if (member == null) return new TAttribute[0];
+
+            // 根据是否可继承，分属两个缓存集合
+            var cache = inherit ? _micache1 : _micache2;
+
+            Object obj = null;
+            if (cache.TryGetValue(member, out obj)) return (TAttribute[])obj;
+            lock (cache)
+            {
+                if (cache.TryGetValue(member, out obj)) return (TAttribute[])obj;
+
+                var atts = member.GetCustomAttributes(typeof(TAttribute), inherit) as TAttribute[];
+                var att = atts == null ? new TAttribute[0] : atts;
+                cache[member] = att;
+                return att;
+            }
+        }
+        /// <summary>获取自定义属性</summary>
+        /// <typeparam name="TAttribute"></typeparam>
+        /// <param name="member"></param>
+        /// <param name="inherit"></param>
+        /// <returns></returns>
+        public static TAttribute GetCustomAttribute<TAttribute>(this MemberInfo member, Boolean inherit)
+        {
+            var atts = member.GetCustomAttributes<TAttribute>(inherit);
+            if (atts == null || atts.Length < 1) return default(TAttribute);
+            return atts[0];
+        }
     }
 }

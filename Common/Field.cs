@@ -140,7 +140,11 @@ namespace Dos.ORM
         /// 所有字段   就是  *  
         /// </summary>
         public static readonly Field All = new Field("*");
-
+        
+        /// <summary>
+        /// 值 
+        /// </summary>
+        //public object value;//2016-02-02新增
         #endregion
 
         #region 属性

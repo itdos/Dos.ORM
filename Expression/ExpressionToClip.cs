@@ -621,18 +621,20 @@ namespace Dos.ORM
 
         private static string GetTableName(Type type)
         {
-            var af = type.GetCustomAttributesData()
-                            .Where(d => d.Constructor.DeclaringType == typeof(Table))
-                            .Select(d => new AttributeFactory(d)).FirstOrDefault();
-            if (af != null)
-            {
-                var afe = af.Create() as Table;
-                if (afe != null)
-                {
-                    return afe.GetTableName();
-                }
-            }
-            return type.Name;
+            var tbl = type.GetCustomAttribute<Table>(false) as Table;
+            return tbl != null ? tbl.GetTableName() : type.Name;
+            //var af = type.GetCustomAttributesData()
+            //                .Where(d => d.Constructor.DeclaringType == typeof(Table))
+            //                .Select(d => new AttributeFactory(d)).FirstOrDefault();
+            //if (af != null)
+            //{
+            //    var afe = af.Create() as Table;
+            //    if (afe != null)
+            //    {
+            //        return afe.GetTableName();
+            //    }
+            //}
+            //return type.Name;
         }
     }
 }

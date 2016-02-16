@@ -69,16 +69,22 @@ namespace Dos.ORM
             return DataUtils.ConvertValue<TResult>(ToScalar());
         }
 
-
+        /// <summary>
+        /// 返回第一个实体，同ToFirst()。无数据返回Null。
+        /// </summary>
+        /// <returns></returns>
+        public TEntity First<TEntity>()
+        {
+            return ToFirst<TEntity>();
+        }
         /// <summary>
         /// 返回单个实体
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <returns></returns>
         public TEntity ToFirst<TEntity>()
-            where TEntity : Entity
         {
-            //TEntity t = null;
+            TEntity t = default(TEntity);
             using (IDataReader reader = ToDataReader())
             {
                 //var tempt = EntityUtils.Mapper.Map<TEntity>(reader);
@@ -86,7 +92,11 @@ namespace Dos.ORM
                 //{
                 //    t = tempt.First();
                 //}
-                return EntityUtils.ReaderToEnumerable<TEntity>(reader).First();
+                var result = EntityUtils.ReaderToEnumerable<TEntity>(reader).ToArray();
+                if (result.Any())
+                {
+                    t = result.First();
+                }
                 #region 2015-08-10注释
                 //if (reader.Read())
                 //{
@@ -95,7 +105,7 @@ namespace Dos.ORM
                 //}
                 #endregion
             }
-            //return t;
+            return t;
         }
 
         /// <summary>

@@ -832,7 +832,11 @@ namespace Dos.ORM
                 //}
                 #endregion
                 //reader.Close();
-                t = EntityUtils.ReaderToEnumerable<T>(reader).First();
+                var result = EntityUtils.ReaderToEnumerable<T>(reader).ToArray();
+                if (result.Any())
+                {
+                    t = result.First();
+                }
             }
 
             setCache<T>(t, cacheKey);

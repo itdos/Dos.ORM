@@ -968,13 +968,8 @@ namespace Dos.ORM
         {
             return (T)obj;
         }
-        /// <summary>
-        /// Internal use only
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("This method is for internal usage only", false)]
+        [Obsolete("此方法仅供内部使用", false)]
         public static char ReadChar(object value)
         {
             if (value == null || value is DBNull) throw new ArgumentNullException("value");

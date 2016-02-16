@@ -1,19 +1,19 @@
-﻿/*************************************************************************
- * 
- * Hxj.Data
- * 
- * 2010-2-10
- * 
- * steven hu   
- *  
- * Support: http://www.cnblogs.com/huxj
- *   
- * 
- * Change History:
- * 
- * 
-**************************************************************************/
-
+﻿#region << 版 本 注 释 >>
+/****************************************************
+* 文 件 名：
+* Copyright(c) IT大师
+* CLR 版本: 4.0.30319.18408
+* 创 建 人：steven hu
+* 电子邮箱：
+* 官方网站：
+* 创建日期：2010-2-10
+* 文件描述：
+******************************************************
+* 修 改 人：ITdos
+* 修改日期：2016-02-16
+* 备注描述：
+*******************************************************/
+#endregion
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -507,34 +507,34 @@ namespace Dos.ORM
         //}
         //        internal class Mapper
         //        {
-        //            private static readonly MethodInfo Object_ToString = typeof(object).GetMethod("ToString");
-        //            private static readonly MethodInfo Reader_Read = typeof(IDataReader).GetMethod("Read");
-        //            private static readonly MethodInfo Reader_GetValues = typeof(IDataRecord).GetMethod("GetValues", new Type[] { typeof(object[]) });
-        //            private static readonly MethodInfo Convert_IsDBNull = typeof(DataUtils.DBConvert).GetMethod("IsDBNull", new Type[] { typeof(object) });
+        private static readonly MethodInfo Object_ToString = typeof(object).GetMethod("ToString");
+        private static readonly MethodInfo Reader_Read = typeof(IDataReader).GetMethod("Read");
+        private static readonly MethodInfo Reader_GetValues = typeof(IDataRecord).GetMethod("GetValues", new Type[] { typeof(object[]) });
+        private static readonly MethodInfo Convert_IsDBNull = typeof(DataUtils.DBConvert).GetMethod("IsDBNull", new Type[] { typeof(object) });
 
-        //            private static readonly MethodInfo Convert_ToInt16 = typeof(DataUtils.DBConvert).GetMethod("ToInt16", new Type[] { typeof(object) });
-        //            private static readonly MethodInfo Convert_ToInt32 = typeof(DataUtils.DBConvert).GetMethod("ToInt32", new Type[] { typeof(object) });
-        //            private static readonly MethodInfo Convert_ToInt64 = typeof(DataUtils.DBConvert).GetMethod("ToInt64", new Type[] { typeof(object) });
-        //            private static readonly MethodInfo Convert_ToBoolean = typeof(DataUtils.DBConvert).GetMethod("ToBoolean", new Type[] { typeof(object) });
-        //            private static readonly MethodInfo Convert_ToDateTime = typeof(DataUtils.DBConvert).GetMethod("ToDateTime", new Type[] { typeof(object) });
-        //            private static readonly MethodInfo Convert_ToDecimal = typeof(DataUtils.DBConvert).GetMethod("ToDecimal", new Type[] { typeof(object) });
-        //            private static readonly MethodInfo Convert_ToDouble = typeof(DataUtils.DBConvert).GetMethod("ToDouble", new Type[] { typeof(object) });
-        //            private static readonly MethodInfo Convert_ToFloat = typeof(DataUtils.DBConvert).GetMethod("ToFloat", new Type[] { typeof(object) });
-        //            private static readonly MethodInfo Convert_ToGuid = typeof(DataUtils.DBConvert).GetMethod("ToGuid", new Type[] { typeof(object) });
-        //            private static readonly MethodInfo Convert_ToByteArr = typeof(DataUtils.DBConvert).GetMethod("ToByteArr", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToInt16 = typeof(DataUtils.DBConvert).GetMethod("ToInt16", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToInt32 = typeof(DataUtils.DBConvert).GetMethod("ToInt32", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToInt64 = typeof(DataUtils.DBConvert).GetMethod("ToInt64", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToBoolean = typeof(DataUtils.DBConvert).GetMethod("ToBoolean", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToDateTime = typeof(DataUtils.DBConvert).GetMethod("ToDateTime", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToDecimal = typeof(DataUtils.DBConvert).GetMethod("ToDecimal", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToDouble = typeof(DataUtils.DBConvert).GetMethod("ToDouble", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToFloat = typeof(DataUtils.DBConvert).GetMethod("ToFloat", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToGuid = typeof(DataUtils.DBConvert).GetMethod("ToGuid", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToByteArr = typeof(DataUtils.DBConvert).GetMethod("ToByteArr", new Type[] { typeof(object) });
 
-        //            private static readonly MethodInfo Convert_ToNullInt16 = typeof(DataUtils.DBConvert).GetMethod("ToNInt16", new Type[] { typeof(object) });
-        //            private static readonly MethodInfo Convert_ToNullInt32 = typeof(DataUtils.DBConvert).GetMethod("ToNInt32", new Type[] { typeof(object) });
-        //            private static readonly MethodInfo Convert_ToNullInt64 = typeof(DataUtils.DBConvert).GetMethod("ToNInt64", new Type[] { typeof(object) });
-        //            private static readonly MethodInfo Convert_ToNullBoolean = typeof(DataUtils.DBConvert).GetMethod("ToNBoolean", new Type[] { typeof(object) });
-        //            private static readonly MethodInfo Convert_ToNullDateTime = typeof(DataUtils.DBConvert).GetMethod("ToNDateTime", new Type[] { typeof(object) });
-        //            private static readonly MethodInfo Convert_ToNullDecimal = typeof(DataUtils.DBConvert).GetMethod("ToNDecimal", new Type[] { typeof(object) });
-        //            private static readonly MethodInfo Convert_ToNullDouble = typeof(DataUtils.DBConvert).GetMethod("ToNDouble", new Type[] { typeof(object) });
-        //            private static readonly MethodInfo Convert_ToNullFloat = typeof(DataUtils.DBConvert).GetMethod("ToNFloat", new Type[] { typeof(object) });
-        //            private static readonly MethodInfo Convert_ToNullGuid = typeof(DataUtils.DBConvert).GetMethod("ToNGuid", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToNullInt16 = typeof(DataUtils.DBConvert).GetMethod("ToNInt16", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToNullInt32 = typeof(DataUtils.DBConvert).GetMethod("ToNInt32", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToNullInt64 = typeof(DataUtils.DBConvert).GetMethod("ToNInt64", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToNullBoolean = typeof(DataUtils.DBConvert).GetMethod("ToNBoolean", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToNullDateTime = typeof(DataUtils.DBConvert).GetMethod("ToNDateTime", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToNullDecimal = typeof(DataUtils.DBConvert).GetMethod("ToNDecimal", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToNullDouble = typeof(DataUtils.DBConvert).GetMethod("ToNDouble", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToNullFloat = typeof(DataUtils.DBConvert).GetMethod("ToNFloat", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToNullGuid = typeof(DataUtils.DBConvert).GetMethod("ToNGuid", new Type[] { typeof(object) });
 
-        //            private delegate T ReadEntityInvoker<T>(IDataReader dr);
-        //            private static Dictionary<string, DynamicMethod> m_CatchMethod;
+        private delegate T ReadEntityInvoker<T>(IDataReader dr);
+        private static Dictionary<string, DynamicMethod> m_CatchMethod;
         //            public static List<T> Map<T>(IDataReader reader)
         //            {
         //                if (reader == null || reader.IsClosed)
@@ -718,88 +718,88 @@ namespace Dos.ORM
         //                    }
         //                }
         //            }
-        //            private static void convertValue(ILGenerator ilg, PropertyInfo pi)
-        //            {
-        //                TypeCode code = Type.GetTypeCode(pi.PropertyType);
-        //                switch (code)
-        //                {
-        //                    case TypeCode.Int16:
-        //                        ilg.Emit(OpCodes.Call, Convert_ToInt16);
-        //                        return;
-        //                    case TypeCode.Int32:
-        //                        ilg.Emit(OpCodes.Call, Convert_ToInt32);
-        //                        return;
-        //                    case TypeCode.Int64:
-        //                        ilg.Emit(OpCodes.Call, Convert_ToInt64);
-        //                        return;
-        //                    case TypeCode.Boolean:
-        //                        ilg.Emit(OpCodes.Call, Convert_ToBoolean);
-        //                        return;
-        //                    case TypeCode.String:
-        //                        ilg.Emit(OpCodes.Callvirt, Object_ToString);
-        //                        return;
-        //                    case TypeCode.DateTime:
-        //                        ilg.Emit(OpCodes.Call, Convert_ToDateTime);
-        //                        return;
-        //                    case TypeCode.Decimal:
-        //                        ilg.Emit(OpCodes.Call, Convert_ToDecimal);
-        //                        return;
-        //                    case TypeCode.Double:
-        //                        ilg.Emit(OpCodes.Call, Convert_ToDouble);
-        //                        return;
-        //                    case TypeCode.Single:
-        //                        ilg.Emit(OpCodes.Call, Convert_ToFloat);
-        //                        return;
-        //                }
-        //                Type type = Nullable.GetUnderlyingType(pi.PropertyType);
-        //                if (type != null)
-        //                {
-        //                    code = Type.GetTypeCode(type);
-        //                    switch (code)
-        //                    {
-        //                        case TypeCode.Int16:
-        //                            ilg.Emit(OpCodes.Call, Convert_ToNullInt16);
-        //                            return;
-        //                        case TypeCode.Int32:
-        //                            ilg.Emit(OpCodes.Call, Convert_ToNullInt32);
-        //                            return;
-        //                        case TypeCode.Int64:
-        //                            ilg.Emit(OpCodes.Call, Convert_ToNullInt64);
-        //                            return;
-        //                        case TypeCode.Boolean:
-        //                            ilg.Emit(OpCodes.Call, Convert_ToNullBoolean);
-        //                            return;
-        //                        case TypeCode.DateTime:
-        //                            ilg.Emit(OpCodes.Call, Convert_ToNullDateTime);
-        //                            return;
-        //                        case TypeCode.Decimal:
-        //                            ilg.Emit(OpCodes.Call, Convert_ToNullDecimal);
-        //                            return;
-        //                        case TypeCode.Double:
-        //                            ilg.Emit(OpCodes.Call, Convert_ToNullDouble);
-        //                            return;
-        //                        case TypeCode.Single:
-        //                            ilg.Emit(OpCodes.Call, Convert_ToNullFloat);
-        //                            return;
-        //                    }
-        //                    if (type.Name == "Guid")
-        //                    {
-        //                        ilg.Emit(OpCodes.Call, Convert_ToNullGuid);
-        //                        return;
-        //                    }
-        //                }
-        //                if (pi.PropertyType.Name == "Guid")
-        //                {
-        //                    ilg.Emit(OpCodes.Call, Convert_ToGuid);
-        //                    return;
-        //                }
-        //                else if (pi.PropertyType.Name == "Byte[]")
-        //                {
-        //                    ilg.Emit(OpCodes.Call, Convert_ToByteArr);
-        //                    return;
-        //                }
-        //                throw new Exception(string.Format("不支持\"{0}\"类型的转换！", pi.PropertyType.Name));
-        //            }
+        private static void ConvertValue(ILGenerator ilg, Type pi)//PropertyInfo pi
+        {
+            TypeCode code = Type.GetTypeCode(pi);
+            switch (code)
+            {
+                case TypeCode.Int16:
+                    ilg.Emit(OpCodes.Call, Convert_ToInt16);
+                    return;
+                case TypeCode.Int32:
+                    ilg.Emit(OpCodes.Call, Convert_ToInt32);
+                    return;
+                case TypeCode.Int64:
+                    ilg.Emit(OpCodes.Call, Convert_ToInt64);
+                    return;
+                case TypeCode.Boolean:
+                    ilg.Emit(OpCodes.Call, Convert_ToBoolean);
+                    return;
+                case TypeCode.String:
+                    ilg.Emit(OpCodes.Callvirt, Object_ToString);
+                    return;
+                case TypeCode.DateTime:
+                    ilg.Emit(OpCodes.Call, Convert_ToDateTime);
+                    return;
+                case TypeCode.Decimal:
+                    ilg.Emit(OpCodes.Call, Convert_ToDecimal);
+                    return;
+                case TypeCode.Double:
+                    ilg.Emit(OpCodes.Call, Convert_ToDouble);
+                    return;
+                case TypeCode.Single:
+                    ilg.Emit(OpCodes.Call, Convert_ToFloat);
+                    return;
+            }
+            Type type = Nullable.GetUnderlyingType(pi);
+            if (type != null)
+            {
+                code = Type.GetTypeCode(type);
+                switch (code)
+                {
+                    case TypeCode.Int16:
+                        ilg.Emit(OpCodes.Call, Convert_ToNullInt16);
+                        return;
+                    case TypeCode.Int32:
+                        ilg.Emit(OpCodes.Call, Convert_ToNullInt32);
+                        return;
+                    case TypeCode.Int64:
+                        ilg.Emit(OpCodes.Call, Convert_ToNullInt64);
+                        return;
+                    case TypeCode.Boolean:
+                        ilg.Emit(OpCodes.Call, Convert_ToNullBoolean);
+                        return;
+                    case TypeCode.DateTime:
+                        ilg.Emit(OpCodes.Call, Convert_ToNullDateTime);
+                        return;
+                    case TypeCode.Decimal:
+                        ilg.Emit(OpCodes.Call, Convert_ToNullDecimal);
+                        return;
+                    case TypeCode.Double:
+                        ilg.Emit(OpCodes.Call, Convert_ToNullDouble);
+                        return;
+                    case TypeCode.Single:
+                        ilg.Emit(OpCodes.Call, Convert_ToNullFloat);
+                        return;
+                }
+                if (type.Name == "Guid")
+                {
+                    ilg.Emit(OpCodes.Call, Convert_ToNullGuid);
+                    return;
+                }
+            }
+            if (pi.Name == "Guid")
+            {
+                ilg.Emit(OpCodes.Call, Convert_ToGuid);
+                return;
+            }
+            if (pi.Name == "Byte[]")
+            {
+                ilg.Emit(OpCodes.Call, Convert_ToByteArr);
+                return;
+            }
+            throw new Exception(string.Format("不支持\"{0}\"类型的转换！", pi.Name));
+        }
         //            private static void getMapped<T>(T tt, Type type, IDataReader reader, out PropertyInfo[] mappedProerties)
         //            {
         //                mappedProerties = new PropertyInfo[reader.FieldCount];
@@ -1137,7 +1137,8 @@ namespace Dos.ORM
                         }
                         else
                         {
-                            il.EmitCall(OpCodes.Call, typeof(DataUtils).GetMethod("ConvertObj", BindingFlags.Static | BindingFlags.NonPublic).MakeGenericMethod(memberType), null);
+                            //il.EmitCall(OpCodes.Call, typeof(EntityUtils).GetMethod("ConvertObj", BindingFlags.Static | BindingFlags.NonPublic).MakeGenericMethod(memberType), null);
+                            ConvertValue(il, properties.First(d => String.Equals(d.Name, item.Name, StringComparison.CurrentCultureIgnoreCase)).Type);
                         }
                         if (nullUnderlyingType != null && (nullUnderlyingType.IsEnum || nullUnderlyingType == typeof(bool)))
                         {
@@ -1199,7 +1200,27 @@ namespace Dos.ORM
             il.Emit(OpCodes.Ret);
             return (Func<IDataReader, object>)dm.CreateDelegate(typeof(Func<IDataReader, object>));
         }
+        static MethodInfo GetOperator(Type from, Type to)
+        {
+            if (to == null) return null;
+            MethodInfo[] fromMethods, toMethods;
+            return ResolveOperator(fromMethods = from.GetMethods(BindingFlags.Static | BindingFlags.Public), from, to, "op_Implicit")
+                ?? ResolveOperator(toMethods = to.GetMethods(BindingFlags.Static | BindingFlags.Public), from, to, "op_Implicit")
+                ?? ResolveOperator(fromMethods, from, to, "op_Explicit")
+                ?? ResolveOperator(toMethods, from, to, "op_Explicit");
 
+        }
+        static MethodInfo ResolveOperator(MethodInfo[] methods, Type from, Type to, string name)
+        {
+            for (int i = 0; i < methods.Length; i++)
+            {
+                if (methods[i].Name != name || methods[i].ReturnType != to) continue;
+                var args = methods[i].GetParameters();
+                if (args.Length != 1 || args[0].ParameterType != from) continue;
+                return methods[i];
+            }
+            return null;
+        }
         public class FastExpando : System.Dynamic.DynamicObject, IDictionary<string, object>
         {
             IDictionary<string, object> data;

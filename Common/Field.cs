@@ -1422,15 +1422,29 @@ public static class FieldExtend
     /// <summary>
     /// Sum
     /// </summary>
-    public static int Sum(this object key)
+    public static decimal Sum(this object key)
     {
         throw new Exception(Tips);
     }
-    ///// <summary>
-    ///// Sum
-    ///// </summary>
-    //public static int Summ(this object key)
-    //{
-    //    throw new Exception(Tips);
-    //}
+    /// <summary>
+    /// Count
+    /// </summary>
+    public static int Count(this object key)
+    {
+        throw new Exception(Tips);
+    }
+    /// <summary>
+    /// Avg
+    /// </summary>
+    public static decimal Avg(this object key)
+    {
+        throw new Exception(Tips);
+    }
+    /// <summary>
+    /// Len
+    /// </summary>
+    public static int Len(this object key)
+    {
+        throw new Exception(Tips);
+    }
 }

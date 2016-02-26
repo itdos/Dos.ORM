@@ -472,41 +472,6 @@ namespace Dos.ORM
             }
 
         }
-        //public static TResult EntityCopy<TResult>(object input)
-        //{
-        //    if (input == null)
-        //    {
-        //        return default(TResult);
-        //    }
-        //    if (input.GetType() == typeof(TResult))
-        //    {
-        //        return (TResult)input;
-        //    }
-        //    return (TResult)EntityCopy(input, typeof(TResult));
-        //}
-
-        //public static List<TResult> EntityCopy<TEntity, TResult>(IList<TEntity> input)
-        //{
-        //    return input.Select(entity => EntityCopy<TResult>(entity)).ToList();
-        //}
-
-        //private static object EntityCopy(object input, Type targetType)
-        //{
-        //    var objResult = Activator.CreateInstance(targetType);
-        //    var properties = targetType.GetProperties();
-        //    var type = input.GetType();
-        //    foreach (var info in properties)
-        //    {
-        //        if (!info.CanWrite) continue;
-        //        var property = type.GetProperty(info.Name);
-        //        if (property == null) continue;
-        //        var objTemp = property.GetValue(input, null);
-        //        info.SetValue(objResult, objTemp, null);
-        //    }
-        //    return objResult;
-        //}
-        //        internal class Mapper
-        //        {
         private static readonly MethodInfo Object_ToString = typeof(object).GetMethod("ToString");
         private static readonly MethodInfo Reader_Read = typeof(IDataReader).GetMethod("Read");
         private static readonly MethodInfo Reader_GetValues = typeof(IDataRecord).GetMethod("GetValues", new Type[] { typeof(object[]) });
@@ -532,192 +497,8 @@ namespace Dos.ORM
         private static readonly MethodInfo Convert_ToNullDouble = typeof(DataUtils.DBConvert).GetMethod("ToNDouble", new Type[] { typeof(object) });
         private static readonly MethodInfo Convert_ToNullFloat = typeof(DataUtils.DBConvert).GetMethod("ToNFloat", new Type[] { typeof(object) });
         private static readonly MethodInfo Convert_ToNullGuid = typeof(DataUtils.DBConvert).GetMethod("ToNGuid", new Type[] { typeof(object) });
-
         private delegate T ReadEntityInvoker<T>(IDataReader dr);
         private static Dictionary<string, DynamicMethod> m_CatchMethod;
-        //            public static List<T> Map<T>(IDataReader reader)
-        //            {
-        //                if (reader == null || reader.IsClosed)
-        //                {
-        //                    throw new Exception("连接已关闭！");
-        //                }
-        //                #region  Not use the cache for the time being  2015-06-14
-        //                //if (m_CatchMethod == null)
-        //                //{
-        //                //    m_CatchMethod = new Dictionary<string, DynamicMethod>();
-        //                //}
-        //                #endregion
-        //                Type itemType = typeof(T);
-        //                T t = DataUtils.Create<T>();
-        //                var key = itemType.FullName;
-        //                //if (!m_CatchMethod.ContainsKey(key))//Not use the cache for the time being  2015-06-14
-        //                //{
-        //#if WRITE_FILE
-        //                AssemblyName aName = new AssemblyName("DynamicAssembly");
-        //                AssemblyBuilder ab = AppDomain.CurrentDomain.DefineDynamicAssembly(aName, AssemblyBuilderAccess.RunAndSave);
-        //                ModuleBuilder mb = ab.DefineDynamicModule(aName.Name, aName.Name + ".dll");
-        //                TypeBuilder tb = mb.DefineType("DynamicType", TypeAttributes.Public);
-        //#endif
-        //                Type listType = typeof(List<T>);
-        //                Type objectType = typeof(object);
-        //                Type objArrayType = typeof(object[]);
-        //                Type boolType = typeof(bool);
-        //                Type[] methodArgs = { typeof(IDataReader) };
-        //                MethodInfo LAdd = listType.GetMethod("Add");
-        //                PropertyInfo[] properties = null;
-        //                getMapped(t, itemType, reader, out properties);
-        //#if WRITE_FILE
-        //                MethodBuilder dm = tb.DefineMethod("ReadEntities", MethodAttributes.Public| MethodAttributes.Static, listType, methodArgs);
-        //#else
-        //                DynamicMethod dm = new DynamicMethod("ReadEntities", listType, methodArgs, typeof(Mapper));
-        //#endif
-        //                ILGenerator ilg = dm.GetILGenerator();
-        //                //List<T> list;
-        //                LocalBuilder list = ilg.DeclareLocal(listType);
-        //                //T item;
-        //                LocalBuilder item = ilg.DeclareLocal(itemType);
-        //                //object[] values;
-        //                LocalBuilder values = ilg.DeclareLocal(objArrayType);
-        //                //object objValue;
-        //                LocalBuilder objValue = ilg.DeclareLocal(objectType);
-        //                //type nulls
-        //                LocalBuilder[] typeNulls = null;
-        //                initNulls(properties, ilg, out typeNulls);
-
-        //                Label exit = ilg.DefineLabel();
-        //                Label loop = ilg.DefineLabel();
-        //                Label[] lblArray = new Label[properties.Length * 2];
-        //                for (int i = 0; i < lblArray.Length; i++)
-        //                {
-        //                    lblArray[i] = ilg.DefineLabel();
-        //                }
-        //                //list = new List<T>();
-        //                ilg.Emit(OpCodes.Newobj, listType.GetConstructor(Type.EmptyTypes));
-        //                ilg.Emit(OpCodes.Stloc_S, list);
-
-        //                //values=new object[FieldCount];
-        //                ilg.Emit(OpCodes.Ldc_I4, reader.FieldCount);
-        //                ilg.Emit(OpCodes.Newarr, objectType);
-        //                ilg.Emit(OpCodes.Stloc_S, values);
-
-        //                // while (arg.Read()) {
-        //                ilg.MarkLabel(loop);
-        //                ilg.Emit(OpCodes.Ldarg_0);
-        //                ilg.Emit(OpCodes.Callvirt, Reader_Read);
-        //                ilg.Emit(OpCodes.Brfalse, exit);
-
-        //                //reader.GetValues(values);
-        //                ilg.Emit(OpCodes.Ldarg_0);
-        //                ilg.Emit(OpCodes.Ldloc_S, values);
-        //                ilg.Emit(OpCodes.Callvirt, Reader_GetValues);
-        //                ilg.Emit(OpCodes.Pop);
-
-        //                //item=new T(); 
-        //                ilg.Emit(OpCodes.Newobj, itemType.GetConstructor(Type.EmptyTypes));
-        //                ilg.Emit(OpCodes.Stloc_S, item);
-
-        //                //item.Property=Convert(values[index]);
-        //                for (int index = 0; index < properties.Length; index++)
-        //                {
-        //                    PropertyInfo pi = properties[index];
-        //                    if (pi == null)
-        //                    {
-        //                        continue;
-        //                    }
-
-        //                    //objValue=value[index];
-        //                    ilg.Emit(OpCodes.Ldloc_S, values);
-        //                    ilg.Emit(OpCodes.Ldc_I4, index);
-        //                    ilg.Emit(OpCodes.Ldelem_Ref);
-        //                    ilg.Emit(OpCodes.Stloc_S, objValue);
-
-        //                    //tmpBool=Convert.IsDBNull(objValue);
-        //                    ilg.Emit(OpCodes.Ldloc_S, objValue);
-        //                    ilg.Emit(OpCodes.Call, Convert_IsDBNull);
-
-        //                    //if (!tmpBool){
-        //                    ilg.Emit(OpCodes.Brtrue_S, lblArray[index * 2]);
-
-        //                    //item.Field=Convert(objValue).ToXXX();
-        //                    ilg.Emit(OpCodes.Ldloc_S, item);
-        //                    ilg.Emit(OpCodes.Ldloc_S, objValue);
-
-        //                    convertValue(ilg, pi);
-
-        //                    ilg.Emit(OpCodes.Callvirt, pi.GetSetMethod());
-        //                    //}
-        //                    ilg.Emit(OpCodes.Br_S, lblArray[index * 2 + 1]);
-        //                    //else {
-        //                    ilg.MarkLabel(lblArray[index * 2]);
-        //                    //item.Field=objValue;
-        //                    ilg.Emit(OpCodes.Ldloc_S, item);
-        //                    ilg.Emit(OpCodes.Ldloc_S, typeNulls[index]);
-        //                    ilg.Emit(OpCodes.Callvirt, pi.GetSetMethod());
-        //                    //}
-        //                    ilg.MarkLabel(lblArray[index * 2 + 1]);
-        //                }
-
-        //                //list.Add(item);
-        //                ilg.Emit(OpCodes.Ldloc_S, list);
-        //                ilg.Emit(OpCodes.Ldloc_S, item);
-        //                ilg.Emit(OpCodes.Callvirt, LAdd);
-        //                //}
-        //                ilg.Emit(OpCodes.Br, loop);
-        //                ilg.MarkLabel(exit);
-
-        //                // return list;
-        //                ilg.Emit(OpCodes.Ldloc_S, list);
-        //                ilg.Emit(OpCodes.Ret);
-        //#if WRITE_FILE
-        //                Type t = tb.CreateType();
-        //                ab.Save(aName.Name + ".dll");
-        //#else
-        //                //m_CatchMethod.Add(key, dm);//Not use the cache for the time being  2015-06-14
-        //#endif
-        //                //if (m_CatchMethod.Count > 100)Not use the cache for the time being  2015-06-14
-        //                {
-
-        //                }
-        //                //}
-
-        //                //if (m_CatchMethod.ContainsKey(key))Not use the cache for the time being  2015-06-14
-        //                //{
-        //                //DynamicMethod dm = m_CatchMethod[key];//Not use the cache for the time being  2015-06-14
-        //                ReadEntityInvoker<List<T>> invoker = dm.CreateDelegate(typeof(ReadEntityInvoker<List<T>>)) as ReadEntityInvoker<List<T>>;
-        //                try// 2015-07-02
-        //                {
-        //                    return invoker.Invoke(reader);
-        //                }
-        //                catch (Exception)
-        //                {
-        //                    reader.Close();
-        //                    throw;
-        //                }
-        //                //}
-        //                throw new Exception("没有找到对应类型的处理方法。");
-        //            }
-        //            private static void initNulls(PropertyInfo[] properties, ILGenerator ilg, out LocalBuilder[] typeNulls)
-        //            {
-        //                typeNulls = new LocalBuilder[properties.Length];
-        //                for (int index = 0; index < properties.Length; index++)
-        //                {
-        //                    PropertyInfo pi = properties[index];
-        //                    if (pi != null)
-        //                    {
-        //                        typeNulls[index] = ilg.DeclareLocal(pi.PropertyType);
-        //                        if (pi.PropertyType.IsValueType)
-        //                        {
-        //                            ilg.Emit(OpCodes.Ldloca_S, typeNulls[index]);
-        //                            ilg.Emit(OpCodes.Initobj, pi.PropertyType);
-        //                        }
-        //                        else
-        //                        {
-        //                            ilg.Emit(OpCodes.Ldnull);
-        //                            ilg.Emit(OpCodes.Stloc_S, typeNulls[index]);
-        //                        }
-        //                    }
-        //                }
-        //            }
         private static void ConvertValue(ILGenerator ilg, Type pi)//PropertyInfo pi
         {
             TypeCode code = Type.GetTypeCode(pi);
@@ -800,55 +581,6 @@ namespace Dos.ORM
             }
             throw new Exception(string.Format("不支持\"{0}\"类型的转换！", pi.Name));
         }
-        //            private static void getMapped<T>(T tt, Type type, IDataReader reader, out PropertyInfo[] mappedProerties)
-        //            {
-        //                mappedProerties = new PropertyInfo[reader.FieldCount];
-        //                string[] fields = new string[reader.FieldCount];
-        //                for (int i = 0; i < reader.FieldCount; i++)
-        //                {
-        //                    fields[i] = reader.GetName(i);
-        //                }
-        //                List<PropertyInfo> properties = new List<PropertyInfo>(type.GetProperties());
-        //                for (int i = 0; i < reader.FieldCount; i++)
-        //                {
-        //                    var isOk = false;
-        //                    foreach (PropertyInfo pt in properties)
-        //                    {
-        //                        FieldAttribute fa = Attribute.GetCustomAttribute(pt, typeof(FieldAttribute)) as FieldAttribute;
-        //                        if ((fa != null && string.Compare(fa.Field, fields[i], true) == 0) ||
-        //                            string.Compare(pt.Name, fields[i], true) == 0)
-        //                        {
-        //                            properties.Remove(pt);
-        //                            mappedProerties[i] = pt;
-        //                            isOk = true;
-        //                            break;
-        //                        }
-        //                    }
-        //                    #region 2015-09-14新增
-        //                    if (!isOk && tt is Entity)
-        //                    {
-        //                        if (properties.Any(d => d.Name == "F" + fields[i]))
-        //                        {
-        //                            var tempItem = properties.First(d => d.Name == "F" + fields[i]);
-        //                            properties.Remove(tempItem);
-        //                            mappedProerties[i] = tempItem;
-        //                        }
-        //                        else if (properties.Any(d => d.Name == "_" + fields[i]))
-        //                        {
-        //                            var tempItem = properties.First(d => d.Name == "_" + fields[i]);
-        //                            properties.Remove(tempItem);
-        //                            mappedProerties[i] = tempItem;
-        //                        }
-        //                        //var aa = (tt as Entity).GetFields().Where(d => d.Name == fields[i]);
-        //                        //if (aa.Any())
-        //                        //{
-
-        //                        //}
-        //                    }
-        //                    #endregion
-        //                }
-        //            }
-        //        }
         static readonly Dictionary<Type, DbType> typeMap;
         static EntityUtils()
         {
@@ -1137,7 +869,6 @@ namespace Dos.ORM
                         }
                         else
                         {
-                            //il.EmitCall(OpCodes.Call, typeof(EntityUtils).GetMethod("ConvertObj", BindingFlags.Static | BindingFlags.NonPublic).MakeGenericMethod(memberType), null);
                             ConvertValue(il, properties.First(d => String.Equals(d.Name, item.Name, StringComparison.CurrentCultureIgnoreCase)).Type);
                         }
                         if (nullUnderlyingType != null && (nullUnderlyingType.IsEnum || nullUnderlyingType == typeof(bool)))
@@ -1147,14 +878,7 @@ namespace Dos.ORM
                     }
                     if (item.Property != null)
                     {
-                        if (type.IsValueType)
-                        {
-                            il.Emit(OpCodes.Call, item.Property.Setter);
-                        }
-                        else
-                        {
-                            il.Emit(OpCodes.Callvirt, item.Property.Setter);
-                        }
+                        il.Emit(type.IsValueType ? OpCodes.Call : OpCodes.Callvirt, item.Property.Setter);
                     }
                     else
                     {
@@ -1175,17 +899,9 @@ namespace Dos.ORM
                     il.MarkLabel(finishLabel);
                     first = false;
                 }
-                //first = false;
                 index += 1;
             }
-            if (type.IsValueType)
-            {
-                il.Emit(OpCodes.Pop);
-            }
-            else
-            {
-                il.Emit(OpCodes.Stloc_1);
-            }
+            il.Emit(type.IsValueType ? OpCodes.Pop : OpCodes.Stloc_1);
             il.MarkLabel(allDone);
             il.BeginCatchBlock(typeof(Exception));
             il.Emit(OpCodes.Ldloc_0);
@@ -1221,6 +937,9 @@ namespace Dos.ORM
             }
             return null;
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public class FastExpando : System.Dynamic.DynamicObject, IDictionary<string, object>
         {
             IDictionary<string, object> data;

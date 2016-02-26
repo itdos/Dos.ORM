@@ -598,7 +598,6 @@ namespace Dos.ORM
             FromSection from = getPagedFromSection();
             if (typet.IsClass && !notClass.Contains(typet.Name))
             {
-                //string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "List", "|", formatSql(from.SqlString, from));
                 string cacheKey = string.Format("{0}List|{1}", dbProvider.ConnectionStringsName, formatSql(from.SqlString, from));
                 object cacheValue = getCache(cacheKey);
 
@@ -609,7 +608,6 @@ namespace Dos.ORM
                 List<TResult> list = new List<TResult>();
                 using (IDataReader reader = ToDataReader(from))
                 {
-                    //list = EntityUtils.Mapper.Map<TResult>(reader);
                     list = EntityUtils.ReaderToEnumerable<TResult>(reader).ToList();
                     reader.Close();
                 }
@@ -663,43 +661,13 @@ namespace Dos.ORM
             List<T> list = new List<T>();
             using (IDataReader reader = ToDataReader(from))
             {
-                #region 2016-02-02注释
-                //list = EntityUtils.Mapper.Map<T>(reader);
-                #endregion
-                #region 2015-08-10注释
-                //if (@from.Joins.Any() || from.Fields.Any())
-                //{
-                //    //list = new EmitMapper.Mappers.DataReaderToObjectMapper<T>().ReadCollection(reader).ToList();
-                //    //while (reader.Read())
-                //    //{
-                //    //    T t = EmitMapper.ObjectMapperManager.DefaultInstance.GetMapper<IDataReader, T>().Map(reader);
-                //    //    list.Add(t);
-                //    //}
-                //    //DataRecordInternal
-                //    //T result = MapUsingState(reader, reader);
-                //    //list = EmitMapper.ObjectMapperManager.DefaultInstance.GetMapper<IDataReader, List<T>>().Map(reader);
-                //    list = EntityUtils.Mapper.Map<T>(reader);
-                //}
-                //else
-                //{
-                //    while (reader.Read())
-                //    {
-                //        T t = DataUtils.Create<T>();
-                //        t.SetPropertyValues(reader);
-                //        list.Add(t);
-                //    }
-                //}
-                #endregion
                 list = EntityUtils.ReaderToEnumerable<T>(reader).ToList();
             }
             setCache<List<T>>(list, cacheKey);
             //2015-09-08
-            if (list != null)
+            foreach (var m in list)
             {
-                foreach (var m in list)
-                {
-                    m.ClearModifyFields();
-                }
+                m.ClearModifyFields();
             }
             return list;
         }
@@ -776,12 +744,6 @@ namespace Dos.ORM
             TResult t = default(TResult);
             using (IDataReader reader = ToDataReader(from))
             {
-                //var tempt = EntityUtils.Mapper.Map<TResult>(reader);
-                //if (tempt.Any())
-                //{
-                //    t = tempt.First();
-                //}
-                //reader.Close();
                 t = EntityUtils.ReaderToEnumerable<TResult>(reader).First();
             }
 
@@ -795,7 +757,6 @@ namespace Dos.ORM
         public T ToFirst()
         {
             FromSection from = this.Top(1).getPagedFromSection();
-            //string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "FirstT", "|", formatSql(from.SqlString, from));
             string cacheKey = string.Format("{0}FirstT|{1}", dbProvider.ConnectionStringsName, formatSql(from.SqlString, from));
             object cacheValue = getCache(cacheKey);
 
@@ -808,30 +769,6 @@ namespace Dos.ORM
             T t = null;
             using (IDataReader reader = ToDataReader(from))
             {
-                //var tempt = EntityUtils.Mapper.Map<T>(reader);
-                //if (tempt.Any())
-                //{
-                //    t = tempt.First();
-                //}
-                #region 2015-08-10注释
-                //if (@from.Joins.Any() || from.Fields.Any())
-                //{
-                //    var tempt = EntityUtils.Mapper.Map<T>(reader);
-                //    if (tempt.Any())
-                //    {
-                //        t = tempt.First();
-                //    }
-                //}
-                //else
-                //{
-                //    if (reader.Read())
-                //    {
-                //        t = DataUtils.Create<T>();
-                //        t.SetPropertyValues(reader);
-                //    }
-                //}
-                #endregion
-                //reader.Close();
                 var result = EntityUtils.ReaderToEnumerable<T>(reader).ToArray();
                 if (result.Any())
                 {

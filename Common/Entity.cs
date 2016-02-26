@@ -119,7 +119,7 @@ namespace Dos.ORM
         /// </summary>
         private List<ModifyField> modifyFields = new List<ModifyField>();
         #region 构造函数
-        
+
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -186,10 +186,6 @@ namespace Dos.ORM
                 {
                     continue;
                 }
-                //if (modifyFields.Any(d => d.Field.FieldName == fs[i].FieldName))
-                //{
-                //    continue;
-                //}
                 modifyFields.Add(new ModifyField(fs[i], values[i], values[i]));
             }
         }
@@ -218,7 +214,7 @@ namespace Dos.ORM
             entityState = EntityState.Unchanged;
         }
         /// <summary>
-        /// 记录 字段修改  
+        /// 记录字段修改
         /// </summary>
         /// <param name="field"></param>
         /// <param name="oldValue"></param>
@@ -227,75 +223,10 @@ namespace Dos.ORM
         {
             if (isAttached)
             {
-                #region 取消这个判断 2015-07-22
-                //if (null == oldValue && null == newValue)
-                //return;
-                #endregion
-                #region 取消这个判断 2015-07-01
-                //if (null != oldValue && null != newValue && newValue.Equals(oldValue))
-                //{
-                //    return;
-                //    #region HXJ HACK
-
-                //    Type t = newValue.GetType();
-                //    if (t == typeof(int))
-                //    {
-                //        if ((int)newValue != 0)
-                //            return;
-                //    }
-                //    else if (t == typeof(decimal))
-                //    {
-                //        if (default(decimal) != (decimal)newValue)
-                //            return;
-                //    }
-                //    else if (t == typeof(long))
-                //    {
-                //        if (default(long) != (long)newValue)
-                //            return;
-                //    }
-                //    else if (t == typeof(bool))
-                //    {
-                //        if (default(bool) != (bool)newValue)
-                //            return;
-                //    }
-                //    else if (t == typeof(Single))
-                //    {
-                //        if (default(Single) != (Single)newValue)
-                //            return;
-                //    }                   
-                //    else
-                //    {
-                //        return;
-                //    }
-
-                //    #endregion
-                //}
-                #endregion
-
                 lock (modifyFields)
                 {
-                    #region 2016-02-02 注释
-                    //bool ishave = false;
-
-                    //foreach (var mf in modifyFields.Where(mf => mf.Field.PropertyName.ToLower().Equals(field.PropertyName.ToLower())))
-                    //{
-                    //    mf.NewValue = newValue;
-                    //    ishave = true;
-                    //    break;
-                    //}
-
-                    //if (!ishave)
-                    //{
-                    //    modifyFields.Add(new ModifyField(field, oldValue, newValue));
-                    //}
-                    #endregion
-
-                    //if (modifyFields.All(d => d.Field.PropertyName != field.PropertyName))
-                    {
-                        isFilterModifyFields = true;
-                        modifyFields.Add(new ModifyField(field, oldValue, newValue));
-                    }
-                    
+                    isFilterModifyFields = true;
+                    modifyFields.Add(new ModifyField(field, oldValue, newValue));
                 }
             }
         }

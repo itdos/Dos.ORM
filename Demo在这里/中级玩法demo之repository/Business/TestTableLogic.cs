@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,8 +54,51 @@ namespace Business
             //var b = list[1].GetModifyFields();
             //list[0].Id = Guid.NewGuid();
             //var aaaa = TestTableRepository.Insert(list[0]);
+            #region 测试事务
+            var trans = Db.Context.BeginTransaction();
+            var mmmm = new TestTable1();
+            try
+            {
+                trans.Delete(new List<TestTable1>());
+                Db.Context.Delete(trans, new List<TestTable1>());
+                trans.Update(mmmm);
+                throw new Exception("xxxxxxxx"); 
+                trans.Commit();
+            }
+            catch (Exception)
+            {
+                trans.Rollback();
+            }
+            finally
+            {
+                trans.Close();
+            }
+
+            #endregion
+
+            //var aaaaaa = GetAaa();
+            Aaa(new List<TestTable1>());
+            Aaa(trans, new List<TestTable1>());
+            //Aaa(aaaaaa);
+
             return new BaseResult(true, list, "", dateCount);
         }
+
+        public void Aaa(IList<TestTable1> list)
+        {
+
+        }
+        public void Aaa(DbTransaction tran, IList<TestTable1> list)
+        {
+
+        }
+
+        public IList<TestTable1> GetAaa()
+        {
+            return new List<TestTable1>();
+        }
+
+
         public BaseResult GetUserModel(TestTableParam param)
         {
             if (param.Id == null)
@@ -87,7 +131,12 @@ namespace Business
                 Name = param.Name,
                 IDNumber = param.IDNumber,
                 MobilePhone = param.MobilePhone,
-                CreateTime = DateTime.Now
+                CreateTime = DateTime.Now,
+                T2 = 0,
+                T3 = 0,
+                T4= true,
+                T7 = 0,
+                T9 = 0
             };
             var count = TestTableRepository.Insert(model);
             //设置缓存

@@ -10,7 +10,7 @@ namespace Business
     /// <summary>
     /// 
     /// </summary>
-    public class DB
+    public class Db
     {
         public static readonly DbSession MySql = new DbSession("MySqlConn");
         //public static readonly DbSession SqlServer = new DbSession("SqlServerConn");
@@ -19,7 +19,7 @@ namespace Business
         //public static readonly DbSession Oracle = new DbSession("OracleConn");
         //public static readonly DbSession PostgreSql = new DbSession("PostgreSqlConn");
 
-        static DB()
+        static Db()
         {
             MySql.RegisterSqlLogger(delegate(string sql)
             {

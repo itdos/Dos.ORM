@@ -1,31 +1,57 @@
-﻿namespace Dos.ORM
+﻿#region << 版 本 注 释 >>
+/****************************************************
+* 文 件 名：
+* Copyright(c) ITdos
+* CLR 版本: 4.0.30319.18408
+* 创 建 人：steven hu
+* 电子邮箱：
+* 官方网站：www.ITdos.com
+* 创建日期：2010-2-10
+* 文件描述：
+******************************************************
+* 修 改 人：
+* 修改日期：
+* 备注描述：
+*******************************************************/
+#endregion
+namespace Dos.ORM
 {
     using System;
     using System.Collections.Generic;
     using System.Reflection;
     using System.Reflection.Emit;
 
-    /// <summary>Delegate for calling a method that is not known at runtime.</summary>
-    /// <param name="target">the object to be called or null if the call is to a static method.</param>
-    /// <param name="paramters">the parameters to the method.</param>
-    /// <returns>the return value for the method or null if it doesn't return anything.</returns>
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="parameters"></param>
+    /// <returns></returns>
     public delegate object FastInvokeHandler(object target, object[] parameters);
 
-    /// <summary>Delegate for creating and object at runtime using the default constructor.</summary>
-    /// <returns>the newly created object.</returns>
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public delegate object FastCreateInstanceHandler();
 
-    /// <summary>Delegate to get an arbitraty property at runtime.</summary>
-    /// <param name="target">the object instance whose property will be obtained.</param>
-    /// <returns>the property value.</returns>
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <returns></returns>
     public delegate object FastPropertyGetHandler(object target);
 
-    /// <summary>Delegate to set an arbitrary property at runtime.</summary>
-    /// <param name="target">the object instance whose property will be modified.</param>
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
     /// <param name="parameter"></param>
     public delegate void FastPropertySetHandler(object target, object parameter);
 
-    /// <summary>Class with helper methods for dynamic invocation generating IL on the fly.</summary>
+    /// <summary>
+    /// 
+    /// </summary>
     public static class DynamicCalls
     {
         /// <summary>
@@ -39,7 +65,6 @@
             {
                 if (dictInvoker.ContainsKey(methodInfo)) return (FastInvokeHandler)dictInvoker[methodInfo];
 
-                // generates a dynamic method to generate a FastInvokeHandler delegate
                 DynamicMethod dynamicMethod = new DynamicMethod(string.Empty, typeof(object), new Type[] { typeof(object), typeof(object[]) }, methodInfo.DeclaringType.Module);
 
                 ILGenerator ilGenerator = dynamicMethod.GetILGenerator();
@@ -48,7 +73,6 @@
 
                 Type[] paramTypes = new Type[parameters.Length];
 
-                // copies the parameter types to an array
                 for (int i = 0; i < paramTypes.Length; i++)
                 {
                     if (parameters[i].ParameterType.IsByRef)
@@ -59,13 +83,11 @@
 
                 LocalBuilder[] locals = new LocalBuilder[paramTypes.Length];
 
-                // generates a local variable for each parameter
                 for (int i = 0; i < paramTypes.Length; i++)
                 {
                     locals[i] = ilGenerator.DeclareLocal(paramTypes[i], true);
                 }
 
-                // creates code to copy the parameters to the local variables
                 for (int i = 0; i < paramTypes.Length; i++)
                 {
                     ilGenerator.Emit(OpCodes.Ldarg_1);
@@ -77,11 +99,9 @@
 
                 if (!methodInfo.IsStatic)
                 {
-                    // loads the object into the stack
                     ilGenerator.Emit(OpCodes.Ldarg_0);
                 }
 
-                // loads the parameters copied to the local variables into the stack
                 for (int i = 0; i < paramTypes.Length; i++)
                 {
                     if (parameters[i].ParameterType.IsByRef)
@@ -89,18 +109,8 @@
                     else
                         ilGenerator.Emit(OpCodes.Ldloc, locals[i]);
                 }
+                ilGenerator.EmitCall(!methodInfo.IsStatic ? OpCodes.Callvirt : OpCodes.Call, methodInfo, null);
 
-                // calls the method
-                if (!methodInfo.IsStatic)
-                {
-                    ilGenerator.EmitCall(OpCodes.Callvirt, methodInfo, null);
-                }
-                else
-                {
-                    ilGenerator.EmitCall(OpCodes.Call, methodInfo, null);
-                }
-
-                // creates code for handling the return value
                 if (methodInfo.ReturnType == typeof(void))
                 {
                     ilGenerator.Emit(OpCodes.Ldnull);
@@ -109,8 +119,6 @@
                 {
                     EmitBoxIfNeeded(ilGenerator, methodInfo.ReturnType);
                 }
-
-                // iterates through the parameters updating the parameters passed by ref
                 for (int i = 0; i < paramTypes.Length; i++)
                 {
                     if (parameters[i].ParameterType.IsByRef)
@@ -123,15 +131,9 @@
                         ilGenerator.Emit(OpCodes.Stelem_Ref);
                     }
                 }
-
-                // returns the value to the caller
                 ilGenerator.Emit(OpCodes.Ret);
-
-                // converts the DynamicMethod to a FastInvokeHandler delegate to call to the method
                 FastInvokeHandler invoker = (FastInvokeHandler)dynamicMethod.CreateDelegate(typeof(FastInvokeHandler));
-
                 dictInvoker.Add(methodInfo, invoker);
-
                 return invoker;
             }
         }
@@ -141,27 +143,23 @@
         /// </summary>
         private static Dictionary<Type, FastCreateInstanceHandler> dictCreator = new Dictionary<Type, FastCreateInstanceHandler>();
 
-        /// <summary>Gets the instance creator delegate that can be use to create instances of the specified type.</summary>
-        /// <param name="type">The type of the objects we want to create.</param>
-        /// <returns>A delegate that can be used to create the objects.</returns>
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public static FastCreateInstanceHandler GetInstanceCreator(Type type)
         {
             lock (dictCreator)
             {
                 if (dictCreator.ContainsKey(type)) return (FastCreateInstanceHandler)dictCreator[type];
-
-                // generates a dynamic method to generate a FastCreateInstanceHandler delegate
                 DynamicMethod dynamicMethod = new DynamicMethod(string.Empty, type, new Type[0], typeof(DynamicCalls).Module);
 
                 ILGenerator ilGenerator = dynamicMethod.GetILGenerator();
-
-                // generates code to create a new object of the specified type using the default constructor
                 ilGenerator.Emit(OpCodes.Newobj, type.GetConstructor(Type.EmptyTypes));
 
-                // returns the value to the caller
                 ilGenerator.Emit(OpCodes.Ret);
 
-                // converts the DynamicMethod to a FastCreateInstanceHandler delegate to create the object
                 FastCreateInstanceHandler creator = (FastCreateInstanceHandler)dynamicMethod.CreateDelegate(typeof(FastCreateInstanceHandler));
 
                 dictCreator.Add(type, creator);
@@ -181,24 +179,18 @@
             {
                 if (dictGetter.ContainsKey(propInfo)) return (FastPropertyGetHandler)dictGetter[propInfo];
 
-                // generates a dynamic method to generate a FastPropertyGetHandler delegate
                 DynamicMethod dynamicMethod = new DynamicMethod(string.Empty, typeof(object), new Type[] { typeof(object) }, propInfo.DeclaringType.Module);
 
                 ILGenerator ilGenerator = dynamicMethod.GetILGenerator();
 
-                // loads the object into the stack
                 ilGenerator.Emit(OpCodes.Ldarg_0);
 
-                // calls the getter
                 ilGenerator.EmitCall(OpCodes.Callvirt, propInfo.GetGetMethod(), null);
 
-                // creates code for handling the return value
                 EmitBoxIfNeeded(ilGenerator, propInfo.PropertyType);
 
-                // returns the value to the caller
                 ilGenerator.Emit(OpCodes.Ret);
 
-                // converts the DynamicMethod to a FastPropertyGetHandler delegate to get the property
                 FastPropertyGetHandler getter = (FastPropertyGetHandler)dynamicMethod.CreateDelegate(typeof(FastPropertyGetHandler));
 
                 dictGetter.Add(propInfo, getter);
@@ -218,27 +210,20 @@
             {
                 if (dictSetter.ContainsKey(propInfo)) return (FastPropertySetHandler)dictSetter[propInfo];
 
-                // generates a dynamic method to generate a FastPropertySetHandler delegate
                 DynamicMethod dynamicMethod = new DynamicMethod(string.Empty, null, new Type[] { typeof(object), typeof(object) }, propInfo.DeclaringType.Module);
 
                 ILGenerator ilGenerator = dynamicMethod.GetILGenerator();
 
-                // loads the object into the stack
                 ilGenerator.Emit(OpCodes.Ldarg_0);
 
-                // loads the parameter from the stack
                 ilGenerator.Emit(OpCodes.Ldarg_1);
 
-                // cast to the proper type (unboxing if needed)
                 EmitCastToReference(ilGenerator, propInfo.PropertyType);
 
-                // calls the setter
                 ilGenerator.EmitCall(OpCodes.Callvirt, propInfo.GetSetMethod(), null);
 
-                // terminates the call
                 ilGenerator.Emit(OpCodes.Ret);
 
-                // converts the DynamicMethod to a FastPropertyGetHandler delegate to get the property
                 FastPropertySetHandler setter = (FastPropertySetHandler)dynamicMethod.CreateDelegate(typeof(FastPropertySetHandler));
 
                 dictSetter.Add(propInfo, setter);
@@ -247,9 +232,11 @@
             }
         }
 
-        /// <summary>Emits the cast to a reference, unboxing if needed.</summary>
-        /// <param name="il">The MSIL generator.</param>
-        /// <param name="type">The type to cast.</param>
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ilGenerator"></param>
+        /// <param name="type"></param>
         private static void EmitCastToReference(ILGenerator ilGenerator, System.Type type)
         {
             if (type.IsValueType)
@@ -262,9 +249,11 @@
             }
         }
 
-        /// <summary>Boxes a type if needed.</summary>
-        /// <param name="ilGenerator">The MSIL generator.</param>
-        /// <param name="type">The type.</param>
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ilGenerator"></param>
+        /// <param name="type"></param>
         private static void EmitBoxIfNeeded(ILGenerator ilGenerator, System.Type type)
         {
             if (type.IsValueType)
@@ -273,12 +262,13 @@
             }
         }
 
-        /// <summary>Emits code to save an integer to the evaluation stack.</summary>
-        /// <param name="ilGeneartor">The MSIL generator.</param>
-        /// <param name="value">The value to push.</param>
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ilGenerator"></param>
+        /// <param name="value"></param>
         private static void EmitFastInt(ILGenerator ilGenerator, int value)
         {
-            // for small integers, emit the proper opcode
             switch (value)
             {
                 case -1:
@@ -312,8 +302,6 @@
                     ilGenerator.Emit(OpCodes.Ldc_I4_8);
                     return;
             }
-
-            // for bigger values emit the short or long opcode
             if (value > -129 && value < 128)
             {
                 ilGenerator.Emit(OpCodes.Ldc_I4_S, (SByte)value);

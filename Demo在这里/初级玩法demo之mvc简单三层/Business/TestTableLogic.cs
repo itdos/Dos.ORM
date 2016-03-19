@@ -32,20 +32,26 @@ namespace Business
                 where.And(d => d.MobilePhone.Like(param.SearchMobilePhone));
             }
             #endregion
-            var fs = DB.MySql.From<TestTable>()
+            var fs = Db.MySql.From<TestTable>()
                 .Where(where)
-                //.OrderByDescending(TableMysql._.CreateTime, TableMysql._.Id)
                 .OrderByDescending(d => new { d.CreateTime, d.Id });
             #region 是否分页
             var dateCount = 0;
             if (param._PageIndex != null && param._PageSize != null)
             {
-                //取总数，以计算共多少页。自行考虑将总数缓存。
-                dateCount = fs.Count();//.SetCacheTimeOut(10)
+                //取总数，以计算共多少页。
+                dateCount = fs.Count();
                 fs.Page(param._PageSize.Value, param._PageIndex.Value);
             }
             #endregion
             var list = fs.ToList();
+
+            #region 测试自连接
+
+           var ll =  Db.MySql.From<TestTable>()
+               .LeftJoin<TestTable>((a, b) => a.Id == b.Id)
+               .ToList();
+            #endregion
             return new BaseResult(true, list, "", dateCount);
         }
         /// <summary>
@@ -64,9 +70,14 @@ namespace Business
                 Name = param.Name,
                 IDNumber = param.IDNumber,
                 MobilePhone = param.MobilePhone,
-                CreateTime = DateTime.Now
+                CreateTime = DateTime.Now,
+                T2 = 0,
+                T3 = 0,
+                T4 = true,
+                T7 = 0,
+                T9 = 0
             };
-            var count = DB.MySql.Insert<TestTable>(model);
+            var count = Db.MySql.Insert<TestTable>(model);
             return new BaseResult(count > 0, count, count > 0 ? "" : "数据库受影响行数为0！");
         }
         /// <summary>
@@ -78,7 +89,7 @@ namespace Business
             {
                 return new BaseResult(false, null, "参数错误！");
             }
-            var count = DB.MySql.Delete<TestTable>(d => d.Id == param.Id);
+            var count = Db.MySql.Delete<TestTable>(d => d.Id == param.Id);
             return new BaseResult(count > 0, count, count > 0 ? "" : "数据库受影响行数为0！");
         }
         /// <summary>
@@ -90,7 +101,7 @@ namespace Business
             {
                 return new BaseResult(false, null, "参数错误！");
             }
-            var model = DB.MySql.From<TestTable>().Where(d => d.Id == param.Id).First();
+            var model = Db.MySql.From<TestTable>().Where(d => d.Id == param.Id).First();
             if (model == null)
             {
                 return new BaseResult(false, null, "不存在要修改的数据！");
@@ -98,7 +109,7 @@ namespace Business
             model.Name = param.Name ?? model.Name;
             model.IDNumber = param.IDNumber ?? model.IDNumber;
             model.MobilePhone = param.MobilePhone ?? model.MobilePhone;
-            var count = DB.MySql.Update<TestTable>(model);
+            var count = Db.MySql.Update<TestTable>(model);
             return new BaseResult(true);
         }
     }

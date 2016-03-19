@@ -1,18 +1,19 @@
-﻿/*************************************************************************
- * 
- * Hxj.Data
- * 
- * 2010-2-10
- * 
- * steven hu   
- *  
- * Support: http://www.cnblogs.com/huxj
- *   
- * 
- * Change History:
- * 
- * 
-**************************************************************************/
+﻿#region << 版 本 注 释 >>
+/****************************************************
+* 文 件 名：
+* Copyright(c) ITdos
+* CLR 版本: 4.0.30319.18408
+* 创 建 人：steven hu
+* 电子邮箱：
+* 官方网站：www.ITdos.com
+* 创建日期：2010-2-10
+* 文件描述：
+******************************************************
+* 修 改 人：
+* 修改日期：
+* 备注描述：
+*******************************************************/
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -97,18 +98,21 @@ namespace Dos.ORM
         /// <summary>
         /// 表名
         /// </summary>
-        private string tableName;
-
+        private string _tableName;
+        /// <summary>
+        /// 别名
+        /// </summary>
+        private string _tableAsName;
         /// <summary>
         /// 是否
         /// </summary>
-        private bool isAttached = true;
+        private bool _isAttached;
 
-        private bool isFilterModifyFields = false;//2016-02-03新增
+        private bool _isFilterModifyFields = false;//2016-02-03新增
         /// <summary>
         /// 实体状态
         /// </summary>
-        private EntityState entityState = EntityState.Unchanged;
+        private EntityState _entityState = EntityState.Unchanged;
 
         ///// <summary>
         ///// 参数计数器  2015-07-30
@@ -117,7 +121,7 @@ namespace Dos.ORM
         /// <summary>
         /// 修改的字段集合
         /// </summary>
-        private List<ModifyField> modifyFields = new List<ModifyField>();
+        private List<ModifyField> _modifyFields = new List<ModifyField>();
         #region 构造函数
 
         /// <summary>
@@ -125,45 +129,26 @@ namespace Dos.ORM
         /// </summary>
         public Entity()
         {
-            #region 2016-02-03注释
-            //var af = GetType().GetCustomAttributesData()
-            //                .Where(d => d.Constructor.DeclaringType == typeof(Table))
-            //                .Select(d => new AttributeFactory(d)).FirstOrDefault();
-            //if (af != null)
-            //{
-            //    var afe = af.Create() as Table;
-            //    this.tableName = afe != null ? afe.GetTableName() : GetType().Name;
-            //}
-            //else
-            //    tableName = GetType().Name;
-            #endregion
             var tbl = GetType().GetCustomAttribute<Table>(false) as Table;
-            tableName = tbl != null ? tbl.GetTableName() : GetType().Name;
-            isAttached = true;
-
-            //this.paramCount = 0;
+            _tableName = tbl != null ? tbl.GetTableName() : GetType().Name;
+            _isAttached = true;
         }
-
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="tableName">表名</param>
         public Entity(string tableName)
         {
-            this.tableName = tableName;
-            isAttached = true;
-            // this.paramCount = 0;
+            this._tableName = tableName;
+            _isAttached = true;
         }
-
-
         #endregion
-
         /// <summary>
         /// 将实体置为修改状态
         /// </summary>
         public void Attach()
         {
-            isAttached = true;
+            _isAttached = true;
         }
         /// <summary>
         /// 将实体所有字段置为修改状态
@@ -186,7 +171,7 @@ namespace Dos.ORM
                 {
                     continue;
                 }
-                modifyFields.Add(new ModifyField(fs[i], values[i], values[i]));
+                _modifyFields.Add(new ModifyField(fs[i], values[i], values[i]));
             }
         }
 
@@ -195,14 +180,14 @@ namespace Dos.ORM
         /// </summary>
         public void Attach(EntityState entityState)
         {
-            this.entityState = entityState;
+            this._entityState = entityState;
         }
         /// <summary>
         /// 获取实体状态
         /// </summary>
         public EntityState GetEntityState()
         {
-            return entityState;
+            return _entityState;
         }
         /// <summary>
         /// 1、恢复实体为默认状态。
@@ -210,8 +195,8 @@ namespace Dos.ORM
         /// </summary>
         public void DeAttach()
         {
-            isAttached = false;
-            entityState = EntityState.Unchanged;
+            _isAttached = false;
+            _entityState = EntityState.Unchanged;
         }
         /// <summary>
         /// 记录字段修改
@@ -221,12 +206,12 @@ namespace Dos.ORM
         /// <param name="newValue"></param>
         public void OnPropertyValueChange(Field field, object oldValue, object newValue)
         {
-            if (isAttached)
+            if (_isAttached)
             {
-                lock (modifyFields)
+                lock (_modifyFields)
                 {
-                    isFilterModifyFields = true;
-                    modifyFields.Add(new ModifyField(field, oldValue, newValue));
+                    _isFilterModifyFields = true;
+                    _modifyFields.Add(new ModifyField(field, oldValue, newValue));
                 }
             }
         }
@@ -235,7 +220,7 @@ namespace Dos.ORM
         /// </summary>
         public void ClearModifyFields()
         {
-            modifyFields.Clear();
+            _modifyFields.Clear();
         }
         //2015-08-10 将没有任何地方使用此方法
         /// <summary>
@@ -244,7 +229,6 @@ namespace Dos.ORM
         /// <param name="reader">The reader.</param>
         [Obsolete("此方法作废！实体类可以不再需要！")]
         public virtual void SetPropertyValues(IDataReader reader) { }
-
         //2015-08-10 将没有任何地方使用此方法
         /// <summary>
         /// Sets the property values.
@@ -252,26 +236,21 @@ namespace Dos.ORM
         /// <param name="row">The row.</param>
         [Obsolete("此方法作废！实体类可以不再需要！")]
         public virtual void SetPropertyValues(DataRow row) { }
-
         /// <summary>
         /// GetFields
         /// </summary>
         /// <returns></returns>
         public virtual Field[] GetFields() { return null; }
-
         /// <summary>
         /// GetValues
         /// </summary>
         /// <returns></returns>
         public virtual object[] GetValues() { return null; }
-
         /// <summary>
         /// GetPrimaryKeyFields
         /// </summary>
         /// <returns></returns>
         public virtual Field[] GetPrimaryKeyFields() { return null; }
-
-
         /// <summary>
         /// 标识列
         /// </summary>
@@ -279,7 +258,6 @@ namespace Dos.ORM
         {
             return null;
         }
-
         /// <summary>
         /// 标识列的名称（例如如Oracle中Sequence名称）
         /// </summary>
@@ -288,25 +266,24 @@ namespace Dos.ORM
         {
             return null;
         }
-
         /// <summary>
         /// 返回修改记录
         /// </summary>
         public List<ModifyField> GetModifyFields()
         {
-            if (isFilterModifyFields)
+            if (_isFilterModifyFields)
             {
                 var newFileds = new List<ModifyField>();
-                for (int i = modifyFields.Count - 1; i >= 0; i--)
+                for (int i = _modifyFields.Count - 1; i >= 0; i--)
                 {
-                    newFileds.Add(modifyFields[i]);
+                    newFileds.Add(_modifyFields[i]);
                 }
                 newFileds = newFileds.Distinct(new ModelComparer()).ToList();
-                isFilterModifyFields = false;
-                modifyFields = newFileds;
+                _isFilterModifyFields = false;
+                _modifyFields = newFileds;
                 return newFileds;
             }
-            return modifyFields;
+            return _modifyFields;
         }
         private class ModelComparer : IEqualityComparer<ModifyField>
         {
@@ -326,51 +303,19 @@ namespace Dos.ORM
         {
             return false;
         }
-
         /// <summary>
         /// 获取表名
         /// </summary>
         public string GetTableName()
         {
-            return tableName;
+            return _tableName;
         }
-
+        /// <summary>
+        /// 获取表名别名
+        /// </summary>
+        public string GetTableAsName()
+        {
+            return _tableAsName;
+        }
     }
-    //public class AttributeFactory
-    //{
-    //    public AttributeFactory(CustomAttributeData data)
-    //    {
-    //        Data = data;
-
-    //        var ctorInvoker = new ConstructorInvoker(data.Constructor);
-    //        var ctorArgs = data.ConstructorArguments.Select(a => a.Value).ToArray();
-    //        m_attributeCreator = () => ctorInvoker.Invoke(ctorArgs);
-
-    //        m_propertySetters = new List<Action<object>>();
-    //        foreach (var arg in data.NamedArguments)
-    //        {
-    //            var property = (PropertyInfo)arg.MemberInfo;
-    //            var propertyAccessor = new PropertyAccessor(property);
-    //            var value = arg.TypedValue.Value;
-    //            m_propertySetters.Add(o => propertyAccessor.SetValue(o, value));
-    //        }
-    //    }
-
-    //    public CustomAttributeData Data { get; private set; }
-
-    //    private Func<object> m_attributeCreator;
-    //    private List<Action<object>> m_propertySetters;
-
-    //    public Attribute Create()
-    //    {
-    //        var attribute = m_attributeCreator();
-
-    //        foreach (var setter in m_propertySetters)
-    //        {
-    //            setter(attribute);
-    //        }
-
-    //        return (Attribute)attribute;
-    //    }
-    //}
 }

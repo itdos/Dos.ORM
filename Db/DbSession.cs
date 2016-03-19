@@ -1,18 +1,19 @@
-﻿/*************************************************************************
- * 
- * Hxj.Data
- * 
- * 2010-2-10
- * 
- * steven hu   
- *  
- * Support: http://www.cnblogs.com/huxj
- *   
- * 
- * Change History:
- * 
- * 
-**************************************************************************/
+﻿#region << 版 本 注 释 >>
+/****************************************************
+* 文 件 名：
+* Copyright(c) ITdos
+* CLR 版本: 4.0.30319.18408
+* 创 建 人：steven hu
+* 电子邮箱：
+* 官方网站：www.ITdos.com
+* 创建日期：2010-2-10
+* 文件描述：
+******************************************************
+* 修 改 人：
+* 修改日期：
+* 备注描述：
+*******************************************************/
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -221,7 +222,7 @@ namespace Dos.ORM
         /// <param name="connStr">The conn STR.</param>
         public static void SetDefault(string assemblyName, string className, string connStr)
         {
-            DbProvider provider = ProviderFactory.CreateDbProvider(assemblyName, className, connStr,null);
+            DbProvider provider = ProviderFactory.CreateDbProvider(assemblyName, className, connStr, null);
             if (provider == null)
             {
                 throw new NotSupportedException(string.Format("Cannot construct DbProvider by specified parameters: {0}, {1}, {2}",
@@ -362,7 +363,7 @@ namespace Dos.ORM
         /// <param name="connStr">连接字符串</param>
         public DbSession(string assemblyName, string className, string connStr)
         {
-            DbProvider provider = ProviderFactory.CreateDbProvider(assemblyName, className, connStr,null);
+            DbProvider provider = ProviderFactory.CreateDbProvider(assemblyName, className, connStr, null);
             if (provider == null)
             {
                 throw new NotSupportedException(string.Format("Cannot construct DbProvider by specified parameters: {0}, {1}, {2}",
@@ -973,7 +974,7 @@ namespace Dos.ORM
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="tran"></param>
         /// <param name="entity"></param>
-        public int UpdateAll<TEntity>(DbTransaction tran,TEntity entity)
+        public int UpdateAll<TEntity>(DbTransaction tran, TEntity entity)
             where TEntity : Entity
         {
             if (entity == null)
@@ -983,7 +984,7 @@ namespace Dos.ORM
 
             Check.Require(!WhereClip.IsNullOrEmpty(where), "entity must have the primarykey!");
 
-            return UpdateAll<TEntity>(tran,entity, where );
+            return UpdateAll<TEntity>(tran, entity, where);
         }
 
         /// <summary>
@@ -993,7 +994,7 @@ namespace Dos.ORM
         /// <param name="tran"></param>
         /// <param name="where"></param>
         /// <param name="entity"></param>
-        public int UpdateAll<TEntity>(DbTransaction tran,TEntity entity, WhereClip where)
+        public int UpdateAll<TEntity>(DbTransaction tran, TEntity entity, WhereClip where)
             where TEntity : Entity
         {
             if (entity == null)
@@ -1061,6 +1062,16 @@ namespace Dos.ORM
             return Update(entities.ToArray());
         }
         /// <summary>
+        /// 更新  
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entities"></param>
+        public int Update<TEntity>(List<TEntity> entities)
+            where TEntity : Entity
+        {
+            return Update(entities.ToArray());
+        }
+        /// <summary>
         /// 更新
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
@@ -1096,7 +1107,7 @@ namespace Dos.ORM
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="tran"></param>
         /// <param name="entity"></param>
-        public int Update<TEntity>(DbTransaction tran,TEntity entity)
+        public int Update<TEntity>(DbTransaction tran, TEntity entity)
             where TEntity : Entity
         {
             if (entity.GetModifyFields().Count == 0)
@@ -1106,7 +1117,7 @@ namespace Dos.ORM
 
             Check.Require(!WhereClip.IsNullOrEmpty(where), "entity must have the primarykey!");
 
-            return Update<TEntity>(tran,entity, where);
+            return Update<TEntity>(tran, entity, where);
         }
         /// <summary>
         /// 更新
@@ -1125,7 +1136,7 @@ namespace Dos.ORM
             {
                 if (entity.GetModifyFields().Count == 0)
                     continue;//2015-08-20 break修改为continue
-                count += Update<TEntity>(tran,entity, DataUtils.GetPrimaryKeyWhere(entity));
+                count += Update<TEntity>(tran, entity, DataUtils.GetPrimaryKeyWhere(entity));
             }
             return count;
 
@@ -1133,7 +1144,30 @@ namespace Dos.ORM
         /// <summary>
         /// 更新
         /// </summary>
-        public int Update<TEntity>(DbTransaction tran,TEntity entity, WhereClip where)
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="tran"></param>
+        /// <param name="entities"></param>
+        public int Update<TEntity>(DbTransaction tran, List<TEntity> entities)
+            where TEntity : Entity
+        {
+            return Update(tran, entities.ToArray());
+
+        }
+        /// <summary>
+        /// 更新
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="tran"></param>
+        /// <param name="entities"></param>
+        public int Update<TEntity>(DbTransaction tran, IEnumerable<TEntity> entities)
+            where TEntity : Entity
+        {
+            return Update(tran, entities.ToArray());
+        }
+        /// <summary>
+        /// 更新
+        /// </summary>
+        public int Update<TEntity>(DbTransaction tran, TEntity entity, WhereClip where)
             where TEntity : Entity
         {
             if (entity.GetModifyFields().Count == 0)
@@ -1143,18 +1177,18 @@ namespace Dos.ORM
         /// <summary>
         /// 
         /// </summary>
-        public int Update<TEntity>(DbTransaction tran,TEntity entity, Expression<Func<TEntity, bool>> lambdaWhere)
+        public int Update<TEntity>(DbTransaction tran, TEntity entity, Expression<Func<TEntity, bool>> lambdaWhere)
             where TEntity : Entity
         {
-            return Update<TEntity>(tran,entity, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
+            return Update<TEntity>(tran, entity, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
         }
         /// <summary>
         /// 
         /// </summary>
-        public int Update<TEntity>(DbTransaction tran,TEntity entity, Where where)
+        public int Update<TEntity>(DbTransaction tran, TEntity entity, Where where)
             where TEntity : Entity
         {
-            return Update<TEntity>(tran,entity, where.ToWhereClip() );
+            return Update<TEntity>(tran, entity, where.ToWhereClip());
         }
         /// <summary>
         /// 更新单个值
@@ -1197,7 +1231,7 @@ namespace Dos.ORM
         /// <param name="where"></param>
         /// <param name="tran"></param>
         /// <returns></returns>
-        public int Update<TEntity>(DbTransaction tran,Field field, object value, WhereClip where )
+        public int Update<TEntity>(DbTransaction tran, Field field, object value, WhereClip where)
             where TEntity : Entity
         {
             if (Field.IsNullOrEmpty(field))
@@ -1208,18 +1242,18 @@ namespace Dos.ORM
         /// <summary>
         /// 
         /// </summary>
-        public int Update<TEntity>(DbTransaction tran,Field field, object value, Expression<Func<TEntity, bool>> lambdaWhere)
+        public int Update<TEntity>(DbTransaction tran, Field field, object value, Expression<Func<TEntity, bool>> lambdaWhere)
             where TEntity : Entity
         {
-            return Update<TEntity>(tran,field, value, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
+            return Update<TEntity>(tran, field, value, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
         }
         /// <summary>
         /// 
         /// </summary>
-        public int Update<TEntity>(DbTransaction tran,Field field, object value, Where where)
+        public int Update<TEntity>(DbTransaction tran, Field field, object value, Where where)
             where TEntity : Entity
         {
-            return Update<TEntity>(tran,field, value, where.ToWhereClip());
+            return Update<TEntity>(tran, field, value, where.ToWhereClip());
         }
 
         /// <summary>
@@ -1270,7 +1304,7 @@ namespace Dos.ORM
         /// <param name="where"></param>
         /// <param name="tran"></param>
         /// <returns></returns>
-        public int Update<TEntity>(DbTransaction tran,Dictionary<Field, object> fieldValue, WhereClip where)
+        public int Update<TEntity>(DbTransaction tran, Dictionary<Field, object> fieldValue, WhereClip where)
               where TEntity : Entity
         {
             if (null == fieldValue || fieldValue.Count == 0)
@@ -1294,18 +1328,18 @@ namespace Dos.ORM
         /// <summary>
         /// 
         /// </summary>
-        public int Update<TEntity>(DbTransaction tran,Dictionary<Field, object> fieldValue, Expression<Func<TEntity, bool>> lambdaWhere)
+        public int Update<TEntity>(DbTransaction tran, Dictionary<Field, object> fieldValue, Expression<Func<TEntity, bool>> lambdaWhere)
             where TEntity : Entity
         {
-            return Update<TEntity>(tran,fieldValue, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
+            return Update<TEntity>(tran, fieldValue, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
         }
         /// <summary>
         /// 
         /// </summary>
-        public int Update<TEntity>(DbTransaction tran,Dictionary<Field, object> fieldValue, Where where)
+        public int Update<TEntity>(DbTransaction tran, Dictionary<Field, object> fieldValue, Where where)
             where TEntity : Entity
         {
-            return Update<TEntity>(tran,fieldValue, where.ToWhereClip());
+            return Update<TEntity>(tran, fieldValue, where.ToWhereClip());
         }
         ///// <summary>
         ///// 
@@ -1443,7 +1477,7 @@ namespace Dos.ORM
         /// <param name="where"></param>
         /// <param name="tran"></param>
         /// <returns></returns>
-        public int Update<TEntity>(DbTransaction tran,Field[] fields, object[] values, WhereClip where)
+        public int Update<TEntity>(DbTransaction tran, Field[] fields, object[] values, WhereClip where)
             where TEntity : Entity
         {
             if (null == fields || fields.Length == 0)
@@ -1454,18 +1488,18 @@ namespace Dos.ORM
         /// <summary>
         /// 
         /// </summary>
-        public int Update<TEntity>(DbTransaction tran,Field[] fields, object[] values, Expression<Func<TEntity, bool>> lambdaWhere)
+        public int Update<TEntity>(DbTransaction tran, Field[] fields, object[] values, Expression<Func<TEntity, bool>> lambdaWhere)
             where TEntity : Entity
         {
-            return Update<TEntity>(tran,fields, values, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
+            return Update<TEntity>(tran, fields, values, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
         }
         /// <summary>
         /// 
         /// </summary>
-        public int Update<TEntity>(DbTransaction tran,Field[] fields, object[] values, Where where)
+        public int Update<TEntity>(DbTransaction tran, Field[] fields, object[] values, Where where)
             where TEntity : Entity
         {
-            return Update<TEntity>(tran,fields, values, where.ToWhereClip());
+            return Update<TEntity>(tran, fields, values, where.ToWhereClip());
         }
         #endregion
 
@@ -1514,14 +1548,65 @@ namespace Dos.ORM
         /// <param name="entity"></param>
         /// <param name="tran"></param>
         /// <returns></returns>
-        public int Delete<TEntity>(DbTransaction tran,TEntity entity)
+        public int Delete<TEntity>(DbTransaction tran, TEntity entity)
             where TEntity : Entity
         {
             Check.Require(!EntityCache.IsReadOnly<TEntity>(), string.Concat("Entity(", EntityCache.GetTableName<TEntity>(), ") is readonly!"));
 
-            return Delete<TEntity>(tran,DataUtils.GetPrimaryKeyWhere(entity));
+            return Delete<TEntity>(tran, DataUtils.GetPrimaryKeyWhere(entity));
         }
+        /// <summary>
+        /// 更新
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="tran"></param>
+        /// <param name="entities"></param>
+        public int Delete<TEntity>(DbTransaction tran, params TEntity[] entities)
+            where TEntity : Entity
+        {
+            var eCount = entities.Count();
+            switch (eCount)
+            {
+                case 0:
+                    return 0;
+                case 1:
+                    return Delete(tran, entities.First());
+                default:
+                    //TODO 修改成In条件，性能更高。 
+                    var listKey = new List<object>();
+                    var where = new Where();
+                    var f = entities.First().GetPrimaryKeyFields().First();
+                    foreach (var entity in entities)
+                    {
+                        listKey.Add(DataUtils.GetPropertyValue(entity, f.Name));
+                    }
+                    where.And(f.In(listKey));
+                    return Delete<TEntity>(tran, where);
+            }
+        }
+        /// <summary>
+        /// 更新
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="tran"></param>
+        /// <param name="entities"></param>
+        public int Delete<TEntity>(DbTransaction tran, List<TEntity> entities)
+            where TEntity : Entity
+        {
+            return Delete(tran, entities.ToArray());
 
+        }
+        /// <summary>
+        /// 更新
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="tran"></param>
+        /// <param name="entities"></param>
+        public int Delete<TEntity>(DbTransaction tran, IEnumerable<TEntity> entities)
+            where TEntity : Entity
+        {
+            return Delete(tran, entities.ToArray());
+        }
 
 
         ///// <summary>
@@ -1710,14 +1795,22 @@ namespace Dos.ORM
         /// <summary>
         ///  删除
         /// </summary>
-        public int Delete<TEntity>(DbTransaction tran,WhereClip where)
+        public int Delete<TEntity>(DbTransaction tran, WhereClip where)
             where TEntity : Entity
         {
             Check.Require(!EntityCache.IsReadOnly<TEntity>(), string.Concat("Entity(", EntityCache.GetTableName<TEntity>(), ") is readonly!"));
 
             return ExecuteNonQuery(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), where), tran);
         }
-
+        /// <summary>
+        ///  删除
+        /// </summary>
+        public int Delete<TEntity>(DbTransaction tran, Where where)
+            where TEntity : Entity
+        {
+            Check.Require(!EntityCache.IsReadOnly<TEntity>(), string.Concat("Entity(", EntityCache.GetTableName<TEntity>(), ") is readonly!"));
+            return ExecuteNonQuery(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), where.ToWhereClip()), tran);
+        }
         /// <summary>
         ///  删除
         /// </summary>
@@ -1729,10 +1822,10 @@ namespace Dos.ORM
         /// <summary>
         ///  删除
         /// </summary>
-        public int Delete<TEntity>(DbTransaction tran,Expression<Func<TEntity, bool>> lambdaWhere)
+        public int Delete<TEntity>(DbTransaction tran, Expression<Func<TEntity, bool>> lambdaWhere)
             where TEntity : Entity
         {
-            return Delete<TEntity>(tran,ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
+            return Delete<TEntity>(tran, ExpressionToClip<TEntity>.ToWhereClip(lambdaWhere));
         }
         /// <summary>
         ///  删除
@@ -1758,7 +1851,7 @@ namespace Dos.ORM
         public int DeleteAll<TEntity>()
             where TEntity : Entity
         {
-            return Delete<TEntity>(d=> true);
+            return Delete<TEntity>(d => true);
         }
         ///// <summary>
         ///// 
@@ -1816,7 +1909,17 @@ namespace Dos.ORM
         {
             return Insert(entities.ToArray());
         }
-
+        /// <summary>
+        /// 添加
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entities"></param>
+        /// <returns></returns>
+        public int Insert<TEntity>(List<TEntity> entities)
+            where TEntity : Entity
+        {
+            return Insert(entities.ToArray());
+        }
         /// <summary>
         /// 添加
         /// </summary>
@@ -1838,7 +1941,7 @@ namespace Dos.ORM
         /// <param name="entity"></param>
         /// <param name="tran"></param>
         /// <returns></returns>
-        public int Insert<TEntity>(DbTransaction tran,TEntity entity)
+        public int Insert<TEntity>(DbTransaction tran, TEntity entity)
             where TEntity : Entity
         {
             return insertExecute<TEntity>(cmdCreator.CreateInsertCommand<TEntity>(entity), tran);
@@ -1867,7 +1970,30 @@ namespace Dos.ORM
             }
             return count;
         }
-
+        /// <summary>
+        /// 添加
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entities"></param>
+        /// <param name="tran"></param>
+        /// <returns></returns>
+        public int Insert<TEntity>(DbTransaction tran, List<TEntity> entities)
+            where TEntity : Entity
+        {
+            return Insert(tran, entities.ToArray());
+        }
+        /// <summary>
+        /// 添加
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entities"></param>
+        /// <param name="tran"></param>
+        /// <returns></returns>
+        public int Insert<TEntity>(DbTransaction tran, IEnumerable<TEntity> entities)
+            where TEntity : Entity
+        {
+            return Insert(tran, entities.ToArray());
+        }
         /// <summary>
         /// 添加
         /// </summary>
@@ -1889,7 +2015,7 @@ namespace Dos.ORM
         /// <param name="values"></param>
         /// <param name="tran"></param>
         /// <returns></returns>
-        public int Insert<TEntity>(DbTransaction tran,Field[] fields, object[] values)
+        public int Insert<TEntity>(DbTransaction tran, Field[] fields, object[] values)
             where TEntity : Entity
         {
             return insertExecute<TEntity>(cmdCreator.CreateInsertCommand<TEntity>(fields, values), tran);
@@ -2064,32 +2190,32 @@ namespace Dos.ORM
         /// <summary>
         /// 将实体批量提交至数据库。每个实体需要手动标记EntityState状态。
         /// </summary>
-        public int Save<TEntity>(DbTransaction tran,IEnumerable<TEntity> entities)
+        public int Save<TEntity>(DbTransaction tran, IEnumerable<TEntity> entities)
             where TEntity : Entity
         {
             int count = 0;
-                foreach (var entity in entities)
+            foreach (var entity in entities)
+            {
+                var es = entity.GetEntityState();
+                switch (es)
                 {
-                    var es = entity.GetEntityState();
-                    switch (es)
-                    {
-                        case EntityState.Added:
-                            count += Insert<TEntity>(tran, entity);
-                            break;
-                        case EntityState.Deleted:
-                            count += Delete<TEntity>(tran, entity);
-                            break;
-                        case EntityState.Modified:
-                            count += Update<TEntity>(tran, entity);
-                            break;
-                    }
+                    case EntityState.Added:
+                        count += Insert<TEntity>(tran, entity);
+                        break;
+                    case EntityState.Deleted:
+                        count += Delete<TEntity>(tran, entity);
+                        break;
+                    case EntityState.Modified:
+                        count += Update<TEntity>(tran, entity);
+                        break;
                 }
+            }
             return count;
         }
         /// <summary>
         ///保存实体。需要手动标记EntityState状态。
         /// </summary>
-        public int Save<TEntity>(DbTransaction tran,TEntity entity)
+        public int Save<TEntity>(DbTransaction tran, TEntity entity)
             where TEntity : Entity
         {
             int count = 0;
@@ -2097,13 +2223,13 @@ namespace Dos.ORM
             switch (es)
             {
                 case EntityState.Added:
-                    count = Insert<TEntity>(tran,entity);
+                    count = Insert<TEntity>(tran, entity);
                     break;
                 case EntityState.Deleted:
-                    count = Delete<TEntity>(tran,entity);
+                    count = Delete<TEntity>(tran, entity);
                     break;
                 case EntityState.Modified:
-                    count = Update<TEntity>(tran,entity);
+                    count = Update<TEntity>(tran, entity);
                     break;
             }
             return count;

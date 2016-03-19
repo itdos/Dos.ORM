@@ -1,18 +1,19 @@
-﻿/*************************************************************************
- * 
- * Hxj.Data
- * 
- * 2010-2-10
- * 
- * steven hu   
- *  
- * Support: http://www.cnblogs.com/huxj
- *   
- * 
- * Change History:
- * 
- * 
-**************************************************************************/
+﻿#region << 版 本 注 释 >>
+/****************************************************
+* 文 件 名：
+* Copyright(c) ITdos
+* CLR 版本: 4.0.30319.18408
+* 创 建 人：steven hu
+* 电子邮箱：
+* 官方网站：www.ITdos.com
+* 创建日期：2010-2-10
+* 文件描述：
+******************************************************
+* 修 改 人：
+* 修改日期：
+* 备注描述：
+*******************************************************/
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -303,6 +304,16 @@ namespace Dos.ORM
             return dbSession.Update<TEntity>(trans, entities.ToArray());
         }
         /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entities"></param>
+        public int Update<TEntity>(List<TEntity> entities)
+            where TEntity : Entity
+        {
+            return dbSession.Update<TEntity>(trans, entities.ToArray());
+        }
+        /// <summary>
         /// 更新  
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
@@ -481,6 +492,26 @@ namespace Dos.ORM
         {
             return dbSession.Delete<TEntity>(trans,entity);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entities"></param>
+        public int Delete<TEntity>(IEnumerable<TEntity> entities)
+            where TEntity : Entity
+        {
+            return dbSession.Delete<TEntity>(entities);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entities"></param>
+        public int Delete<TEntity>(List<TEntity> entities)
+            where TEntity : Entity
+        {
+            return dbSession.Delete<TEntity>(entities);
+        }
         ///// <summary>
         /////  删除
         ///// </summary>
@@ -573,6 +604,16 @@ namespace Dos.ORM
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="entities"></param>
         public int Insert<TEntity>(IEnumerable<TEntity> entities)
+            where TEntity : Entity
+        {
+            return dbSession.Insert<TEntity>(entities);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entities"></param>
+        public int Insert<TEntity>(List<TEntity> entities)
             where TEntity : Entity
         {
             return dbSession.Insert<TEntity>(entities);

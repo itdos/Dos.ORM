@@ -1,22 +1,20 @@
-﻿/*************************************************************************
- * 
- * Hxj.Data
- * 
- * 2010-2-10
- * 
- * steven hu   
- *  
- * Support: http://www.cnblogs.com/huxj
- *   
- * 
- * Change History:
- * 
- * 
-**************************************************************************/
-
+﻿#region << 版 本 注 释 >>
+/****************************************************
+* 文 件 名：
+* Copyright(c) ITdos
+* CLR 版本: 4.0.30319.18408
+* 创 建 人：steven hu
+* 电子邮箱：
+* 官方网站：www.ITdos.com
+* 创建日期：2010-2-10
+* 文件描述：
+******************************************************
+* 修 改 人：
+* 修改日期：
+* 备注描述：
+*******************************************************/
+#endregion
 using System.Collections.Generic;
-using Dos.ORM.Common;
-
 namespace Dos.ORM
 {
     /// <summary>
@@ -27,12 +25,12 @@ namespace Dos.ORM
         /// <summary>
         /// 保存实体列表
         /// </summary>
-        private static Dictionary<string, object> entityList = new Dictionary<string, object>();
+        private static Dictionary<string, object> _entityList = new Dictionary<string, object>();
 
         /// <summary>
         /// lock object
         /// </summary>
-        private static object lockObj = new object();
+        private static readonly object LockObj = new object();
 
 
         /// <summary>
@@ -40,7 +38,7 @@ namespace Dos.ORM
         /// </summary>
         public static void Reset()
         {
-            entityList.Clear();
+            _entityList.Clear();
         }
 
         /// <summary>
@@ -49,9 +47,9 @@ namespace Dos.ORM
         public static void Reset<TEntity>()
             where TEntity : Entity
         {
-            string typestring = typeof(TEntity).ToString();
-            if (entityList.ContainsKey(typestring))
-                entityList.Remove(typestring);
+            var typestring = typeof(TEntity).ToString();
+            if (_entityList.ContainsKey(typestring))
+                _entityList.Remove(typestring);
         }
 
         /// <summary>
@@ -72,18 +70,18 @@ namespace Dos.ORM
         private static TEntity getTEntity<TEntity>()
             where TEntity : Entity
         {
-            string typestring = typeof(TEntity).ToString();
+            var typestring = typeof(TEntity).ToString();
 
-            if (entityList.ContainsKey(typestring))
-                return (TEntity)entityList[typestring];
+            if (_entityList.ContainsKey(typestring))
+                return (TEntity)_entityList[typestring];
 
-            lock (lockObj)
+            lock (LockObj)
             {
-                if (entityList.ContainsKey(typestring))
-                    return (TEntity)entityList[typestring];
+                if (_entityList.ContainsKey(typestring))
+                    return (TEntity)_entityList[typestring];
 
-                TEntity t = DataUtils.Create<TEntity>();
-                entityList.Add(typestring, t);
+                var t = DataUtils.Create<TEntity>();
+                _entityList.Add(typestring, t);
                 return t;
             }
         }
@@ -117,7 +115,7 @@ namespace Dos.ORM
         public static Field GetFirstField<TEntity>()
             where TEntity : Entity
         {
-            Field[] fields = GetFields<TEntity>();
+            var fields = GetFields<TEntity>();
             if (null != fields && fields.Length > 0)
                 return fields[0];
             return null;

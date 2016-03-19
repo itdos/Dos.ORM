@@ -1,13 +1,14 @@
 ﻿未来版本预告：
-	*）可能会增加.Select(d => new NewClass(){})写法。
-	*）表名增加别名，以支持同一张表可以被INNER JOIN多次。
-	*）GetReturnValues标记为已过时，重载GetOutParam
+	*）增加.Select(d => new NewClass(){})写法
+	*）表名增加别名，以支持同一张表可以被INNER JOIN多次
 	*）sql、存储过程增加动态拼接参数的方法
-	*）TransactionScope事务
 	
 /*-----------------------------------------------------------------------------------------------*/
 
-2016-02-26 Dos.ORM（原Hxj.Data）（v1.10.4.1）
+2016-03-19 Dos.ORM（原Hxj.Data）（v1.10.4.4）
+	*）新增一些增加、删除、修改重载方法，更方便地传入批量实体进行增删改。
+	*）解决一个地方.First()无数据会抛出异常，现在会正确返回null。
+	*）FromSection类的WhereClip属性修改为GetWhereCip()方法，解决代码书写过程中.Where()总是智能联想成.WhereClip造成不方便。
 	*）Lambda增加As别名、Sum/Count等聚合函数的写法。
 	*）优化底层Emit映射，解决一系列不常见Bug。
 	*）解决上个版本改动引起的.ToList<T>()大数据性能问题，现在提升了5倍实体映射效率，性能继续与dapper媲美。（非常感谢群友【落メ尘】发现此问题）

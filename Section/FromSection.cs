@@ -1,18 +1,19 @@
-﻿/*************************************************************************
- * 
- * Hxj.Data
- * 
- * 2010-2-10
- * 
- * steven hu   
- *  
- * Support: http://www.cnblogs.com/huxj
- *   
- * 
- * Change History:
- * 
- * 
-**************************************************************************/
+﻿#region << 版 本 注 释 >>
+/****************************************************
+* 文 件 名：
+* Copyright(c) ITdos
+* CLR 版本: 4.0.30319.18408
+* 创 建 人：steven hu
+* 电子邮箱：
+* 官方网站：www.ITdos.com
+* 创建日期：2010/2/10
+* 文件描述：
+******************************************************
+* 修 改 人：
+* 修改日期：
+* 备注描述：
+*******************************************************/
+#endregion
 
 using System;
 using System.Collections;
@@ -741,10 +742,14 @@ namespace Dos.ORM
             }
 
 
-            TResult t = default(TResult);
+            TResult t = null;
             using (IDataReader reader = ToDataReader(from))
             {
-                t = EntityUtils.ReaderToEnumerable<TResult>(reader).First();
+                var result = EntityUtils.ReaderToEnumerable<TResult>(reader).ToArray();
+                if (result.Any())
+                {
+                    t = result.First();
+                }
             }
 
             setCache<TResult>(t, cacheKey);
@@ -1226,12 +1231,9 @@ namespace Dos.ORM
         /// <summary>
         /// 返回 条件
         /// </summary>
-        public WhereClip WhereClip
+        public WhereClip GetWhereClip()
         {
-            get
-            {
-                return where;
-            }
+            return where;
         }
 
         /// <summary>

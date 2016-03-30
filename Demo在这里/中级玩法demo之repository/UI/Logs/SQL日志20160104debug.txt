@@ -1,0 +1,713 @@
+2016-01-04 11:05:46
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 11:05:46
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable1`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 11:44:38
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 11:44:38
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable1`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 11:45:09
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 11:45:43
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable1`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 11:45:49
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 11:45:49
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable1`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 11:45:58
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:22:32
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:22:40
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable1`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:22:49
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:22:55
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable1`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:23:38
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:23:46
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:23:47
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:02
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:02
+Text:	INSERT INTO `TestTable` (`Id`,`Name`,`IDNumber`,`MobilePhone`,`CreateTime`) VALUES (?TestTable_Id_1,?TestTable_Name_2,?TestTable_IDNumber_3,?TestTable_MobilePhone_4,?TestTable_CreateTime_5)	
+Parameters:
+?TestTable_Id_1[String] = c6491ca7-1d82-463a-ba47-f273eefc94c7
+?TestTable_Name_2[String] = 111
+?TestTable_IDNumber_3[String] = 222
+?TestTable_MobilePhone_4[String] = 333
+?TestTable_CreateTime_5[DateTime] = 2016/1/4 12:24:02
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:03
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:03
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:05
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:05
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:09
+Text:	DELETE FROM `TestTable` WHERE `TestTable`.`Id` = ?TestTable_Id_6	
+Parameters:
+?TestTable_Id_6[String] = c6491ca7-1d82-463a-ba47-f273eefc94c7
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:10
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:10
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:11
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:11
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:21
+Text:	UPDATE `TestTable` SET `Name`=?TestTable_Name_8,`IDNumber`=?TestTable_IDNumber_9,`MobilePhone`=?TestTable_MobilePhone_10 WHERE `TestTable`.`Id` = ?TestTable_Id_7	
+Parameters:
+?TestTable_Name_8[String] = bbb1
+?TestTable_IDNumber_9[String] = bbb2
+?TestTable_MobilePhone_10[String] = bbb3
+?TestTable_Id_7[String] = 893c3015-1b3f-41a7-a0bc-3856e6a5c07e
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:21
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:21
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:22
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:22
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:23
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:23
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:24
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:24:24
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:29:31
+Text:	UPDATE `TestTable` SET `Name`=?TestTable_Name_12,`IDNumber`=?TestTable_IDNumber_13,`MobilePhone`=?TestTable_MobilePhone_14 WHERE `TestTable`.`Id` = ?TestTable_Id_11	
+Parameters:
+?TestTable_Name_12[String] = bbb222
+?TestTable_IDNumber_13[String] = bbb22
+?TestTable_MobilePhone_14[String] = bbb2222
+?TestTable_Id_11[String] = 9c146611-ea9b-49ec-8668-0604e56b3cde
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:29:31
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:29:31
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:29:50
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:29:51
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:30:15
+Text:	INSERT INTO `TestTable` (`Id`,`Name`,`IDNumber`,`MobilePhone`,`Test1`,`Test2`,`Test3`,`CreateTime`) VALUES (?TestTable_Id_1,?TestTable_Name_2,?TestTable_IDNumber_3,?TestTable_MobilePhone_4,?TestTable_Test1_5,?TestTable_Test2_6,?TestTable_Test3_7,?TestTable_CreateTime_8)	
+Parameters:
+?TestTable_Id_1[String] = 96d14f35-3163-48f7-8e9f-ddbdd8f4f612
+?TestTable_Name_2[String] = bbb
+?TestTable_IDNumber_3[String] = bbb
+?TestTable_MobilePhone_4[String] = bbb
+?TestTable_Test1_5[SByte] = 1
+?TestTable_Test2_6[Int32] = 50
+?TestTable_Test3_7[AnsiString] = 
+?TestTable_CreateTime_8[DateTime] = 2015/9/18 10:46:54
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:30:19
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:30:19
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:30:20
+Text:	INSERT INTO `TestTable` (`Id`,`Name`,`IDNumber`,`MobilePhone`,`Test1`,`Test2`,`Test3`,`CreateTime`) VALUES (?TestTable_Id_9,?TestTable_Name_10,?TestTable_IDNumber_11,?TestTable_MobilePhone_12,?TestTable_Test1_13,?TestTable_Test2_14,?TestTable_Test3_15,?TestTable_CreateTime_16)	
+Parameters:
+?TestTable_Id_9[String] = 0c1914ec-d5b3-48ac-82c1-de6d3f0e5bb6
+?TestTable_Name_10[String] = bbb
+?TestTable_IDNumber_11[String] = bbb
+?TestTable_MobilePhone_12[String] = bbb
+?TestTable_Test1_13[SByte] = 1
+?TestTable_Test2_14[Int32] = 50
+?TestTable_Test3_15[AnsiString] = 
+?TestTable_CreateTime_16[DateTime] = 2015/9/18 10:46:54
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:30:20
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:30:20
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:30:21
+Text:	INSERT INTO `TestTable` (`Id`,`Name`,`IDNumber`,`MobilePhone`,`Test1`,`Test2`,`Test3`,`CreateTime`) VALUES (?TestTable_Id_17,?TestTable_Name_18,?TestTable_IDNumber_19,?TestTable_MobilePhone_20,?TestTable_Test1_21,?TestTable_Test2_22,?TestTable_Test3_23,?TestTable_CreateTime_24)	
+Parameters:
+?TestTable_Id_17[String] = 09ac6cd9-2711-458f-b760-2a4a4f9c18b9
+?TestTable_Name_18[String] = bbb
+?TestTable_IDNumber_19[String] = bbb
+?TestTable_MobilePhone_20[String] = bbb
+?TestTable_Test1_21[SByte] = 1
+?TestTable_Test2_22[Int32] = 50
+?TestTable_Test3_23[AnsiString] = 
+?TestTable_CreateTime_24[DateTime] = 2015/9/18 10:46:54
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:34:55
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:35:29
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:35:30
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:35:30
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 12:35:50
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 13:13:23
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable1`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 13:17:45
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 13:25:40
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable1`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 14:46:31
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 14:46:53
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable1`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 14:47:21
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 14:53:42
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 14:53:42
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 14:53:42
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 14:55:14
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 14:57:00
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 14:57:00
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 14:57:00
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 14:59:51
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:00:37
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:00:38
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:00:38
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:27
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:27
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:28
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:28
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:31
+Text:	INSERT INTO `TestTable` (`Id`,`Name`,`IDNumber`,`MobilePhone`,`CreateTime`) VALUES (?TestTable_Id_1,?TestTable_Name_2,?TestTable_IDNumber_3,?TestTable_MobilePhone_4,?TestTable_CreateTime_5)	
+Parameters:
+?TestTable_Id_1[String] = fbb63756-5b54-497c-b01a-43b519b597aa
+?TestTable_Name_2[String] = 11
+?TestTable_IDNumber_3[String] = 111
+?TestTable_MobilePhone_4[String] = 11
+?TestTable_CreateTime_5[DateTime] = 2016/1/4 15:02:31
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:31
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:31
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:32
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:32
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:35
+Text:	DELETE FROM `TestTable` WHERE `TestTable`.`Id` = ?TestTable_Id_6	
+Parameters:
+?TestTable_Id_6[String] = 09ac6cd9-2711-458f-b760-2a4a4f9c18b9
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:35
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:35
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:36
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:36
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:39
+Text:	UPDATE `TestTable` SET `Name`=?TestTable_Name_8,`IDNumber`=?TestTable_IDNumber_9,`MobilePhone`=?TestTable_MobilePhone_10 WHERE `TestTable`.`Id` = ?TestTable_Id_7	
+Parameters:
+?TestTable_Name_8[String] = bbb2222
+?TestTable_IDNumber_9[String] = bbb222
+?TestTable_MobilePhone_10[String] = bbb2222
+?TestTable_Id_7[String] = 0c1914ec-d5b3-48ac-82c1-de6d3f0e5bb6
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:39
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:39
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:40
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:40
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:41
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:41
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:41
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:41
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:45
+Text:	DELETE FROM `TestTable` WHERE `TestTable`.`Id` = ?TestTable_Id_11	
+Parameters:
+?TestTable_Id_11[String] = 893c3015-1b3f-41a7-a0bc-3856e6a5c07e
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:46
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:46
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:47
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:02:47
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:14:35
+Text:	 SELECT count(*) as r_cnt FROM `TestTable1`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:30
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:30
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:31
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:31
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:34
+Text:	UPDATE `TestTable` SET `Name`=?TestTable_Name_2,`IDNumber`=?TestTable_IDNumber_3,`MobilePhone`=?TestTable_MobilePhone_4 WHERE `TestTable`.`Id` = ?TestTable_Id_1	
+Parameters:
+?TestTable_Name_2[String] = 11
+?TestTable_IDNumber_3[String] = 11111
+?TestTable_MobilePhone_4[String] = 11
+?TestTable_Id_1[String] = fbb63756-5b54-497c-b01a-43b519b597aa
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:34
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:34
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:35
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:35
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:36
+Text:	UPDATE `TestTable` SET `Name`=?TestTable_Name_6,`IDNumber`=?TestTable_IDNumber_7,`MobilePhone`=?TestTable_MobilePhone_8 WHERE `TestTable`.`Id` = ?TestTable_Id_5	
+Parameters:
+?TestTable_Name_6[String] = bbb
+?TestTable_IDNumber_7[String] = bbb1
+?TestTable_MobilePhone_8[String] = bbb
+?TestTable_Id_5[String] = 0a4b78e3-62ba-4988-811a-43c028de9c5a
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:36
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:36
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:37
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:37
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:38
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:38
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:39
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:39
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:41
+Text:	DELETE FROM `TestTable` WHERE `TestTable`.`Id` = ?TestTable_Id_9	
+Parameters:
+?TestTable_Id_9[String] = 96d14f35-3163-48f7-8e9f-ddbdd8f4f612
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:41
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:41
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:42
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:42
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:45
+Text:	INSERT INTO `TestTable` (`Id`,`Name`,`IDNumber`,`MobilePhone`,`CreateTime`) VALUES (?TestTable_Id_10,?TestTable_Name_11,?TestTable_IDNumber_12,?TestTable_MobilePhone_13,?TestTable_CreateTime_14)	
+Parameters:
+?TestTable_Id_10[String] = cbec3f51-6d3a-4215-8dcb-e58bcc4573a4
+?TestTable_Name_11[String] = 123
+?TestTable_IDNumber_12[String] = 123
+?TestTable_MobilePhone_13[String] = 123
+?TestTable_CreateTime_14[DateTime] = 2016/1/4 15:15:45
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:45
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:45
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:46
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-01-04 15:15:46
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------

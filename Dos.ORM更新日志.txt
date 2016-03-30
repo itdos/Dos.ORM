@@ -5,7 +5,9 @@
 	
 /*-----------------------------------------------------------------------------------------------*/
 
-2016-03-19 Dos.ORM（原Hxj.Data）（v1.10.4.4）
+2016-03-30 Dos.ORM（原Hxj.Data）（v1.10.4.7）
+	*）Lambda写法的.Count()等等扩增都移动至Dos.ORM的命名空间下。
+	*）Lambda增加支持Equals写法：.Where(d => d.Filed.Equals(value))
 	*）新增一些增加、删除、修改重载方法，更方便地传入批量实体进行增删改。
 	*）解决一个地方.First()无数据会抛出异常，现在会正确返回null。
 	*）FromSection类的WhereClip属性修改为GetWhereCip()方法，解决代码书写过程中.Where()总是智能联想成.WhereClip造成不方便。

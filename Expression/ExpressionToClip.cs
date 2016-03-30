@@ -168,6 +168,8 @@ namespace Dos.ORM
                     return ConvertLikeCall(mce, "%", "%");
                 case "Like":
                     return ConvertLikeCall(mce, "%", "%", true);
+                case "Equals":
+                    return ConvertEqualsCall(mce);
                 case "In":
                     return ConvertInCall(mce);
                 case "NotIn":
@@ -187,10 +189,22 @@ namespace Dos.ORM
             ColumnFunction function;
             MemberExpression member;
             var key = GetMemberName(mce.Arguments[0], out function, out member);
-            return isNull ? new Field(key, GetTableName(member.Expression.Type)).IsNull() 
+            return isNull ? new Field(key, GetTableName(member.Expression.Type)).IsNull()
                 : new Field(key, GetTableName(member.Expression.Type)).IsNotNull();
         }
-
+        private static WhereClip ConvertEqualsCall(MethodCallExpression mce, bool isLike = false)
+        {
+            ColumnFunction function;
+            MemberExpression member;
+            var key = GetMemberName(mce.Object, out function, out member);
+            var value = GetValue(mce.Arguments[0]);
+            if (value != null)
+            {
+                return new WhereClip(new Field(key, GetTableName(member.Expression.Type)),
+                    string.Concat(value), QueryOperator.Equal);
+            }
+            throw new Exception("'Like'仅支持一个参数，参数应为字符串且不允许为空");
+        }
         private static WhereClip ConvertInCall(MethodCallExpression mce, bool notIn = false)
         {
             ColumnFunction function;
@@ -200,13 +214,13 @@ namespace Dos.ORM
             var ie = GetValue(mce.Arguments[1]);
             if (ie is IEnumerable)
             {
-                list.AddRange(((IEnumerable) GetValue(mce.Arguments[1])).Cast<object>());
+                list.AddRange(((IEnumerable)GetValue(mce.Arguments[1])).Cast<object>());
             }
             else
             {
                 list.Add(ie);
             }
-            return notIn ? new Field(key, GetTableName(member.Expression.Type)).SelectNotIn(list.ToArray()) 
+            return notIn ? new Field(key, GetTableName(member.Expression.Type)).SelectNotIn(list.ToArray())
                 : new Field(key, GetTableName(member.Expression.Type)).SelectIn(list.ToArray());
         }
 
@@ -289,8 +303,8 @@ namespace Dos.ORM
                 if (expRight.NodeType == ExpressionType.Constant ||
                     (expRight.NodeType == ExpressionType.MemberAccess && ((MemberExpression)expRight).Expression == null))
                 {
-                    return DataUtils.ConvertValue<bool>(fastEvaluator.Eval(be)) 
-                        ? new WhereClip(" 1=2 ") 
+                    return DataUtils.ConvertValue<bool>(fastEvaluator.Eval(be))
+                        ? new WhereClip(" 1=2 ")
                         : new WhereClip(" 1=1 ");
                 }
                 else
@@ -403,7 +417,7 @@ namespace Dos.ORM
                 var exNew = (NewExpression)exprBody;
                 var type = exNew.Constructor.DeclaringType;
                 var list = new List<string>(exNew.Arguments.Count);
-                return exNew.Arguments.Cast<MemberExpression>().Aggregate(GroupByClip.None, (current, member) 
+                return exNew.Arguments.Cast<MemberExpression>().Aggregate(GroupByClip.None, (current, member)
                     => current && new Field(member.Member.Name, GetTableName(member.Expression.Type)).GroupBy);
             }
             if (exprBody is UnaryExpression)
@@ -561,8 +575,8 @@ namespace Dos.ORM
             MemberExpression member;
             var key = GetMemberName(e.Arguments[0], out function, out member);
             Field f;
-            f = string.IsNullOrWhiteSpace(aliasName) 
-                ? new Field(key, GetTableName(member.Expression.Type)) 
+            f = string.IsNullOrWhiteSpace(aliasName)
+                ? new Field(key, GetTableName(member.Expression.Type))
                 : new Field(key, GetTableName(member.Expression.Type), null, null, "", aliasName);
             switch (e.Method.Name)
             {

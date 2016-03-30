@@ -1,0 +1,296 @@
+2016-03-29 10:56:38
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 10:56:38
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 10:56:44
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 10:56:44
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 10:58:38
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 10:58:38
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 10:58:38
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 10:58:38
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:02:33
+Text:	 SELECT count(*) as r_cnt FROM `TestTable` WHERE (`TestTable`.`Name` LIKE ?TestTable_Name_1)	
+Parameters:
+?TestTable_Name_1[String] = 11
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:02:33
+Text:	 SELECT   * FROM `TestTable`  WHERE (`TestTable`.`Name` LIKE ?TestTable_Name_1) ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+Parameters:
+?TestTable_Name_1[String] = 11
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:02:33
+Text:	 SELECT count(*) as r_cnt FROM `TestTable` WHERE (`TestTable`.`Name` LIKE ?TestTable_Name_2)	
+Parameters:
+?TestTable_Name_2[String] = 11
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:02:33
+Text:	 SELECT   * FROM `TestTable`  WHERE (`TestTable`.`Name` LIKE ?TestTable_Name_2) ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+Parameters:
+?TestTable_Name_2[String] = 11
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:04:42
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:04:43
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:04:44
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:04:44
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:04:59
+Text:	 SELECT count(*) as r_cnt FROM `TestTable` WHERE (`TestTable`.`Name` = ?TestTable_Name_1)	
+Parameters:
+?TestTable_Name_1[String] = 1
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:05:01
+Text:	 SELECT   * FROM `TestTable`  WHERE (`TestTable`.`Name` = ?TestTable_Name_1) ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+Parameters:
+?TestTable_Name_1[String] = 1
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:05:01
+Text:	 SELECT count(*) as r_cnt FROM `TestTable` WHERE (`TestTable`.`Name` = ?TestTable_Name_2)	
+Parameters:
+?TestTable_Name_2[String] = 1
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:05:10
+Text:	 SELECT   * FROM `TestTable`  WHERE (`TestTable`.`Name` = ?TestTable_Name_2) ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+Parameters:
+?TestTable_Name_2[String] = 1
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:05:16
+Text:	 SELECT count(*) as r_cnt FROM `TestTable` WHERE (`TestTable`.`Name` = ?TestTable_Name_3)	
+Parameters:
+?TestTable_Name_3[String] = 11
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:05:16
+Text:	 SELECT   * FROM `TestTable`  WHERE (`TestTable`.`Name` = ?TestTable_Name_3) ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+Parameters:
+?TestTable_Name_3[String] = 11
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:05:16
+Text:	 SELECT count(*) as r_cnt FROM `TestTable` WHERE (`TestTable`.`Name` = ?TestTable_Name_4)	
+Parameters:
+?TestTable_Name_4[String] = 11
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:05:16
+Text:	 SELECT   * FROM `TestTable`  WHERE (`TestTable`.`Name` = ?TestTable_Name_4) ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+Parameters:
+?TestTable_Name_4[String] = 11
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:05:40
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:05:40
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:05:40
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:05:40
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:06:00
+Text:	 SELECT count(*) as r_cnt FROM `TestTable` WHERE ( NOT `TestTable`.`Name` = ?TestTable_Name_1)	
+Parameters:
+?TestTable_Name_1[String] = 11
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:06:00
+Text:	 SELECT   * FROM `TestTable`  WHERE ( NOT `TestTable`.`Name` = ?TestTable_Name_1) ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+Parameters:
+?TestTable_Name_1[String] = 11
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:06:04
+Text:	 SELECT count(*) as r_cnt FROM `TestTable` WHERE ( NOT `TestTable`.`Name` = ?TestTable_Name_2)	
+Parameters:
+?TestTable_Name_2[String] = 11
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:06:04
+Text:	 SELECT   * FROM `TestTable`  WHERE ( NOT `TestTable`.`Name` = ?TestTable_Name_2) ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+Parameters:
+?TestTable_Name_2[String] = 11
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:07:12
+Text:	 SELECT count(*) as r_cnt FROM `TestTable` WHERE ( NOT `TestTable`.`Name` = ?TestTable_Name_3)	
+Parameters:
+?TestTable_Name_3[String] = 11
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:07:21
+Text:	 SELECT   * FROM `TestTable`  WHERE ( NOT `TestTable`.`Name` = ?TestTable_Name_3) ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+Parameters:
+?TestTable_Name_3[String] = 11
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:07:29
+Text:	 SELECT count(*) as r_cnt FROM `TestTable` WHERE ( NOT `TestTable`.`Name` = ?TestTable_Name_4)	
+Parameters:
+?TestTable_Name_4[String] = 11
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:07:30
+Text:	 SELECT   * FROM `TestTable`  WHERE ( NOT `TestTable`.`Name` = ?TestTable_Name_4) ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+Parameters:
+?TestTable_Name_4[String] = 11
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:07:36
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:07:36
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:07:36
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:07:36
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:07:37
+Text:	 SELECT count(*) as r_cnt FROM `TestTable` WHERE ( NOT `TestTable`.`Name` = ?TestTable_Name_5)	
+Parameters:
+?TestTable_Name_5[String] = 1
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:07:37
+Text:	 SELECT   * FROM `TestTable`  WHERE ( NOT `TestTable`.`Name` = ?TestTable_Name_5) ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+Parameters:
+?TestTable_Name_5[String] = 1
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:07:37
+Text:	 SELECT count(*) as r_cnt FROM `TestTable` WHERE ( NOT `TestTable`.`Name` = ?TestTable_Name_6)	
+Parameters:
+?TestTable_Name_6[String] = 1
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:07:37
+Text:	 SELECT   * FROM `TestTable`  WHERE ( NOT `TestTable`.`Name` = ?TestTable_Name_6) ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+Parameters:
+?TestTable_Name_6[String] = 1
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:07:40
+Text:	 SELECT count(*) as r_cnt FROM `TestTable` WHERE ( NOT `TestTable`.`Name` = ?TestTable_Name_7)	
+Parameters:
+?TestTable_Name_7[String] = nnnn
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:07:40
+Text:	 SELECT   * FROM `TestTable`  WHERE ( NOT `TestTable`.`Name` = ?TestTable_Name_7) ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+Parameters:
+?TestTable_Name_7[String] = nnnn
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:07:40
+Text:	 SELECT count(*) as r_cnt FROM `TestTable` WHERE ( NOT `TestTable`.`Name` = ?TestTable_Name_8)	
+Parameters:
+?TestTable_Name_8[String] = nnnn
+
+
+-----------------------------------------------------------------------------
+2016-03-29 11:07:40
+Text:	 SELECT   * FROM `TestTable`  WHERE ( NOT `TestTable`.`Name` = ?TestTable_Name_8) ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+Parameters:
+?TestTable_Name_8[String] = nnnn
+
+
+-----------------------------------------------------------------------------

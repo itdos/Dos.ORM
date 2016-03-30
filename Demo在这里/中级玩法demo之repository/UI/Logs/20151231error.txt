@@ -1,0 +1,104 @@
+2015-12-31 16:16:06
+已添加了具有相同键的项。   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 Dos.ORM.CommandCreator.CreateInsertCommand[TEntity](Field[] fields, Object[] values) 位置 d:\工作\GitHub\Dos.ORM\Db\CommandCreator.cs:行号 250
+   在 Dos.ORM.CommandCreator.CreateInsertCommand[TEntity](TEntity entity) 位置 d:\工作\GitHub\Dos.ORM\Db\CommandCreator.cs:行号 306
+   在 Dos.ORM.DbSession.Insert[TEntity](TEntity entity) 位置 d:\工作\GitHub\Dos.ORM\Db\DbSession.cs:行号 1829
+   在 DataAccess.Base.Repository`1.Insert(T entity) 位置 d:\工作\GitHub\Dos.ORM\Demo在这里\中级玩法demo之repository\DataAccess\Base\Repository.cs:行号 206
+   在 Business.TestTableLogic.GetUser(TestTableParam param) 位置 d:\工作\GitHub\Dos.ORM\Demo在这里\中级玩法demo之repository\Business\TestTableLogic.cs:行号 54
+   在 UI.Controllers.HomeController.GetUser(TestTableParam param) 位置 d:\工作\GitHub\Dos.ORM\Demo在这里\中级玩法demo之repository\UI\Controllers\HomeController.cs:行号 26
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+-----------------------------------------------------------------------------
+2015-12-31 16:17:20
+已添加了具有相同键的项。   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 Dos.ORM.CommandCreator.CreateInsertCommand[TEntity](Field[] fields, Object[] values) 位置 d:\工作\GitHub\Dos.ORM\Db\CommandCreator.cs:行号 250
+   在 Dos.ORM.CommandCreator.CreateInsertCommand[TEntity](TEntity entity) 位置 d:\工作\GitHub\Dos.ORM\Db\CommandCreator.cs:行号 306
+   在 Dos.ORM.DbSession.Insert[TEntity](TEntity entity) 位置 d:\工作\GitHub\Dos.ORM\Db\DbSession.cs:行号 1829
+   在 DataAccess.Base.Repository`1.Insert(T entity) 位置 d:\工作\GitHub\Dos.ORM\Demo在这里\中级玩法demo之repository\DataAccess\Base\Repository.cs:行号 206
+   在 Business.TestTableLogic.GetUser(TestTableParam param) 位置 d:\工作\GitHub\Dos.ORM\Demo在这里\中级玩法demo之repository\Business\TestTableLogic.cs:行号 54
+   在 UI.Controllers.HomeController.GetUser(TestTableParam param) 位置 d:\工作\GitHub\Dos.ORM\Demo在这里\中级玩法demo之repository\UI\Controllers\HomeController.cs:行号 26
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+-----------------------------------------------------------------------------
+2015-12-31 16:17:33
+已添加了具有相同键的项。   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 Dos.ORM.CommandCreator.CreateInsertCommand[TEntity](Field[] fields, Object[] values) 位置 d:\工作\GitHub\Dos.ORM\Db\CommandCreator.cs:行号 250
+   在 Dos.ORM.CommandCreator.CreateInsertCommand[TEntity](TEntity entity) 位置 d:\工作\GitHub\Dos.ORM\Db\CommandCreator.cs:行号 306
+   在 Dos.ORM.DbSession.Insert[TEntity](TEntity entity) 位置 d:\工作\GitHub\Dos.ORM\Db\DbSession.cs:行号 1829
+   在 DataAccess.Base.Repository`1.Insert(T entity) 位置 d:\工作\GitHub\Dos.ORM\Demo在这里\中级玩法demo之repository\DataAccess\Base\Repository.cs:行号 206
+   在 Business.TestTableLogic.GetUser(TestTableParam param) 位置 d:\工作\GitHub\Dos.ORM\Demo在这里\中级玩法demo之repository\Business\TestTableLogic.cs:行号 54
+   在 UI.Controllers.HomeController.GetUser(TestTableParam param) 位置 d:\工作\GitHub\Dos.ORM\Demo在这里\中级玩法demo之repository\UI\Controllers\HomeController.cs:行号 26
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+-----------------------------------------------------------------------------
+2015-12-31 16:18:12
+已添加了具有相同键的项。   在 System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   在 System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   在 System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   在 Dos.ORM.CommandCreator.CreateInsertCommand[TEntity](Field[] fields, Object[] values) 位置 d:\工作\GitHub\Dos.ORM\Db\CommandCreator.cs:行号 250
+   在 Dos.ORM.CommandCreator.CreateInsertCommand[TEntity](TEntity entity) 位置 d:\工作\GitHub\Dos.ORM\Db\CommandCreator.cs:行号 306
+   在 Dos.ORM.DbSession.Insert[TEntity](TEntity entity) 位置 d:\工作\GitHub\Dos.ORM\Db\DbSession.cs:行号 1829
+   在 DataAccess.Base.Repository`1.Insert(T entity) 位置 d:\工作\GitHub\Dos.ORM\Demo在这里\中级玩法demo之repository\DataAccess\Base\Repository.cs:行号 206
+   在 Business.TestTableLogic.GetUser(TestTableParam param) 位置 d:\工作\GitHub\Dos.ORM\Demo在这里\中级玩法demo之repository\Business\TestTableLogic.cs:行号 54
+   在 UI.Controllers.HomeController.GetUser(TestTableParam param) 位置 d:\工作\GitHub\Dos.ORM\Demo在这里\中级玩法demo之repository\UI\Controllers\HomeController.cs:行号 26
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass8`1.<BeginSynchronous>b__7(IAsyncResult _)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeActionMethodWithFilters>b__36(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+-----------------------------------------------------------------------------

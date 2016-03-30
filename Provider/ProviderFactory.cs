@@ -79,7 +79,7 @@ namespace Dos.ORM
                     databaseType = DatabaseType.SqlServer;
                 }
             }
-            else if (string.Compare(className, "System.Data.SqlClient", true) == 0 || string.Compare(className, "Dos.ORM.SqlServer", true) == 0)
+            else if (String.Compare(className, "System.Data.SqlClient", StringComparison.OrdinalIgnoreCase) == 0 || String.Compare(className, "Dos.ORM.SqlServer", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 className = typeof(SqlServer.SqlServerProvider).ToString();
                 if (databaseType == null)
@@ -87,7 +87,7 @@ namespace Dos.ORM
                     databaseType = DatabaseType.SqlServer;
                 }
             }
-            else if (string.Compare(className, "Dos.ORM.SqlServer9", true) == 0 || className.IndexOf("SqlServer9", StringComparison.OrdinalIgnoreCase) >= 0 || className.IndexOf("sqlserver2005", StringComparison.OrdinalIgnoreCase) >= 0 || className.IndexOf("sql2005", StringComparison.OrdinalIgnoreCase) >= 0)
+            else if (String.Compare(className, "Dos.ORM.SqlServer9", StringComparison.OrdinalIgnoreCase) == 0 || className.IndexOf("SqlServer9", StringComparison.OrdinalIgnoreCase) >= 0 || className.IndexOf("sqlserver2005", StringComparison.OrdinalIgnoreCase) >= 0 || className.IndexOf("sql2005", StringComparison.OrdinalIgnoreCase) >= 0)
             {
                 className = typeof(SqlServer9.SqlServer9Provider).ToString();
                 if (databaseType == null)
@@ -139,14 +139,8 @@ namespace Dos.ORM
             {
                 System.Reflection.Assembly ass;
 
-                if (assemblyName == null)
-                {
-                    ass = typeof(DbProvider).Assembly;
-                }
-                else
-                {
-                    ass = System.Reflection.Assembly.Load(assemblyName);
-                }
+                ass = assemblyName == null ? typeof(DbProvider).Assembly 
+                    : System.Reflection.Assembly.Load(assemblyName);
 
                 DbProvider retProvider = ass.CreateInstance(className, false, System.Reflection.BindingFlags.Default, null, new object[] { connectionString }, null, null) as DbProvider;
                 if (retProvider != null && databaseType != null)

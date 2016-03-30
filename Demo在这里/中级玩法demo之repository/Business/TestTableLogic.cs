@@ -27,7 +27,7 @@ namespace Business
             #region 模糊搜索条件
             if (!string.IsNullOrWhiteSpace(param.SearchName))
             {
-                where.And(d => d.Name.Like(param.SearchName));
+                where.And(d => !d.Name.Equals(param.SearchName));
             }
             if (!string.IsNullOrWhiteSpace(param.SearchIDNumber))
             {

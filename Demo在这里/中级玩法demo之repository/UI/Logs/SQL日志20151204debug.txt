@@ -1,0 +1,78 @@
+2015-12-04 10:01:50
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2015-12-04 10:01:50
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2015-12-04 10:01:50
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2015-12-04 10:01:50
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2015-12-04 10:07:29
+Text:	 SELECT count(*) as r_cnt FROM `TestTable` WHERE (`TestTable`.`Name` LIKE ?TestTable_Name_1)	
+Parameters:
+?TestTable_Name_1[String] = %1%
+
+
+-----------------------------------------------------------------------------
+2015-12-04 10:07:29
+Text:	 SELECT   * FROM `TestTable`  WHERE (`TestTable`.`Name` LIKE ?TestTable_Name_1) ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+Parameters:
+?TestTable_Name_1[String] = %1%
+
+
+-----------------------------------------------------------------------------
+2015-12-04 10:07:29
+Text:	 SELECT count(*) as r_cnt FROM `TestTable` WHERE (`TestTable`.`Name` LIKE ?TestTable_Name_2)	
+Parameters:
+?TestTable_Name_2[String] = %1%
+
+
+-----------------------------------------------------------------------------
+2015-12-04 10:07:29
+Text:	 SELECT   * FROM `TestTable`  WHERE (`TestTable`.`Name` LIKE ?TestTable_Name_2) ORDER BY `TestTable`.`CreateTime` DESC  limit 0,5	
+Parameters:
+?TestTable_Name_2[String] = %1%
+
+
+-----------------------------------------------------------------------------
+2015-12-04 10:08:05
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2015-12-04 10:08:05
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable1`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2015-12-04 10:10:10
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2015-12-04 11:14:11
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable1`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------
+2015-12-04 11:14:21
+Text:	 SELECT count(*) as r_cnt FROM `TestTable`	
+
+
+-----------------------------------------------------------------------------
+2015-12-04 11:39:26
+Text:	 SELECT   * FROM `TestTable`  ORDER BY `TestTable1`.`CreateTime` DESC  limit 0,5	
+
+
+-----------------------------------------------------------------------------

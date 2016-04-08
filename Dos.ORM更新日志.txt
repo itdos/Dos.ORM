@@ -5,7 +5,9 @@
 	
 /*-----------------------------------------------------------------------------------------------*/
 
-2016-03-30 Dos.ORM（原Hxj.Data）（v1.10.4.7）
+2016-04-08 Dos.ORM（原Hxj.Data）（v1.10.5.0）
+	*）现在支持SqlServer表名自定义用户，如dbo.TableName修改为other.TableName，只需要设置实体类[Table("TableName", "other")]。
+	*）现在支持表名中含有“.”符号了。
 	*）Lambda写法的.Count()等等扩增都移动至Dos.ORM的命名空间下。
 	*）Lambda增加支持Equals写法：.Where(d => d.Filed.Equals(value))
 	*）新增一些增加、删除、修改重载方法，更方便地传入批量实体进行增删改。

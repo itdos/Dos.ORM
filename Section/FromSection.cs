@@ -63,7 +63,7 @@ namespace Dos.ORM
         /// <param name="database"></param>
         /// <param name="trans"></param>
         public FromSection(Database database, DbTransaction trans)
-            : base(database, database.DbProvider.BuildTableName(EntityCache.GetTableName<T>()), trans)
+            : base(database, database.DbProvider.BuildTableName(EntityCache.GetTableName<T>(), EntityCache.GetUserName<T>()), trans)
         {
 
         }
@@ -76,7 +76,7 @@ namespace Dos.ORM
         public FromSection<T> InnerJoin<TEntity>(WhereClip where)
              where TEntity : Entity
         {
-            return join(EntityCache.GetTableName<TEntity>(), where, JoinType.InnerJoin);
+            return join(EntityCache.GetTableName<TEntity>(),EntityCache.GetUserName<TEntity>(), where, JoinType.InnerJoin);
         }
         /// <summary>
         /// Inner Join。Lambda写法：.InnerJoin&lt;Model2>((d1,d2) => d1.ID == d2.ID)
@@ -84,7 +84,7 @@ namespace Dos.ORM
         public FromSection<T> InnerJoin<TEntity>(Expression<Func<T, TEntity, bool>> lambdaWhere)
              where TEntity : Entity
         {
-            return join(EntityCache.GetTableName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.InnerJoin);
+            return join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.InnerJoin);
         }
         /// <summary>
         /// Cross Join
@@ -95,7 +95,7 @@ namespace Dos.ORM
         public FromSection<T> CrossJoin<TEntity>(WhereClip where)
             where TEntity : Entity
         {
-            return join(EntityCache.GetTableName<TEntity>(), where, JoinType.CrossJoin);
+            return join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), where, JoinType.CrossJoin);
         }
         /// <summary>
         /// Right Join
@@ -106,7 +106,7 @@ namespace Dos.ORM
         public FromSection<T> RightJoin<TEntity>(WhereClip where)
             where TEntity : Entity
         {
-            return join(EntityCache.GetTableName<TEntity>(), where, JoinType.RightJoin);
+            return join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), where, JoinType.RightJoin);
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace Dos.ORM
         public FromSection<T> LeftJoin<TEntity>(WhereClip where)
              where TEntity : Entity
         {
-            return join(EntityCache.GetTableName<TEntity>(), where, JoinType.LeftJoin);
+            return join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), where, JoinType.LeftJoin);
         }
         /// <summary>
         /// Left Join。Lambda写法：.LeftJoin&lt;Model2>((d1,d2) => d1.ID == d2.ID)
@@ -129,7 +129,7 @@ namespace Dos.ORM
         public FromSection<T> LeftJoin<TEntity>(Expression<Func<T, TEntity, bool>> lambdaWhere)
              where TEntity : Entity
         {
-            return join(EntityCache.GetTableName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.LeftJoin);
+            return join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.LeftJoin);
         }
         /// <summary>
         /// Full Join
@@ -140,19 +140,20 @@ namespace Dos.ORM
         public FromSection<T> FullJoin<TEntity>(WhereClip where)
             where TEntity : Entity
         {
-            return join(EntityCache.GetTableName<TEntity>(), where, JoinType.FullJoin);
+            return join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), where, JoinType.FullJoin);
         }
 
         /// <summary>
         /// 连接
         /// </summary>
         /// <param name="tableName"></param>
+        /// <param name="userName"></param>
         /// <param name="where"></param>
         /// <param name="joinType"></param>
         /// <returns></returns>
-        private new FromSection<T> join(string tableName, WhereClip where, JoinType joinType)
+        private new FromSection<T> join(string tableName,string userName, WhereClip where, JoinType joinType)
         {
-            return (FromSection<T>)base.join(tableName, where, joinType);
+            return (FromSection<T>)base.join(tableName,userName, where, joinType);
 
             //if (string.IsNullOrEmpty(tableName) || WhereClip.IsNullOrEmpty(where))
             //    return this;
@@ -1857,15 +1858,16 @@ namespace Dos.ORM
         /// 连接
         /// </summary>
         /// <param name="tableName"></param>
+        /// <param name="userName"></param>
         /// <param name="where"></param>
         /// <param name="joinType"></param>
         /// <returns></returns>
-        protected FromSection join(string tableName, WhereClip where, JoinType joinType)
+        protected FromSection join(string tableName,string userName, WhereClip where, JoinType joinType)
         {
             if (string.IsNullOrEmpty(tableName) || WhereClip.IsNullOrEmpty(where))
                 return this;
 
-            tableName = dbProvider.BuildTableName(tableName);
+            tableName = dbProvider.BuildTableName(tableName, userName);
 
             if (!joins.ContainsKey(tableName))
             {
@@ -1906,11 +1908,12 @@ namespace Dos.ORM
         /// Inner Join
         /// </summary>
         /// <param name="tableName"></param>
+        /// <param name="userName"></param>
         /// <param name="where"></param>
         /// <returns></returns>
-        public FromSection InnerJoin(string tableName, WhereClip where)
+        public FromSection InnerJoin(string tableName, WhereClip where,string userName = null)
         {
-            return join(tableName, where, JoinType.InnerJoin);
+            return join(tableName,userName, where, JoinType.InnerJoin);
         }
 
 
@@ -1919,11 +1922,12 @@ namespace Dos.ORM
         /// Left Join
         /// </summary>
         /// <param name="tableName"></param>
+        /// <param name="userName"></param>
         /// <param name="where"></param>
         /// <returns></returns>
-        public FromSection LeftJoin(string tableName, WhereClip where)
+        public FromSection LeftJoin(string tableName, WhereClip where,string userName= null)
         {
-            return join(tableName, where, JoinType.LeftJoin);
+            return join(tableName,userName, where, JoinType.LeftJoin);
         }
 
 
@@ -1932,11 +1936,12 @@ namespace Dos.ORM
         /// Right Join
         /// </summary>
         /// <param name="tableName"></param>
+        /// <param name="userName"></param>
         /// <param name="where"></param>
         /// <returns></returns>
-        public FromSection RightJoin(string tableName, WhereClip where)
+        public FromSection RightJoin(string tableName, WhereClip where,string userName= null)
         {
-            return join(tableName, where, JoinType.RightJoin);
+            return join(tableName,userName, where, JoinType.RightJoin);
         }
 
 
@@ -1944,11 +1949,12 @@ namespace Dos.ORM
         /// Cross Join
         /// </summary>
         /// <param name="tableName"></param>
+        /// <param name="userName"></param>
         /// <param name="where"></param>
         /// <returns></returns>
-        public FromSection CrossJoin(string tableName, WhereClip where)
+        public FromSection CrossJoin(string tableName, WhereClip where,string userName = null)
         {
-            return join(tableName, where, JoinType.CrossJoin);
+            return join(tableName,userName, where, JoinType.CrossJoin);
         }
 
 
@@ -1957,11 +1963,12 @@ namespace Dos.ORM
         /// Full Join
         /// </summary>
         /// <param name="tableName"></param>
+        /// <param name="userName"></param>
         /// <param name="where"></param>
         /// <returns></returns>
-        public FromSection FullJoin(string tableName, WhereClip where)
+        public FromSection FullJoin(string tableName, WhereClip where, string userName = null)
         {
-            return join(tableName, where, JoinType.FullJoin);
+            return join(tableName,userName, where, JoinType.FullJoin);
         }
 
         #endregion

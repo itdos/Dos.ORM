@@ -218,8 +218,6 @@ namespace Dos.ORM
         {
             return new FromSection(dbSession.Db, tableName, trans);
         }
-
-
         #endregion
 
 

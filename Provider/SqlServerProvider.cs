@@ -62,7 +62,8 @@ namespace Dos.ORM.SqlServer
             {
                 return nameStr.Insert(0, new string(paramPrefixToken, 1));
             }
-            return nameStr;
+            //剔除参数中的“.” 2016-04-08 added
+            return nameStr.Replace(".", "_");
         }
 
 

@@ -10,9 +10,16 @@ namespace DataAccess.Base
     public class Db
     {
         public static readonly DbSession Context = new DbSession("MySqlConn");
+        public static readonly DbSession dbSql = new DbSession(DatabaseType.SqlServer9, @"server=.\sql2008r2;uid=sa;pwd=sa;database=OrchardITdos;");
         static Db()
         {
             Context.RegisterSqlLogger(delegate(string sql)
+            {
+                //在此可以记录sql日志
+                //写日志会影响性能，建议开发版本记录sql以便调试，发布正式版本不要记录
+                //LogHelper.Debug(sql, "SQL日志");
+            });
+            dbSql.RegisterSqlLogger(delegate(string sql)
             {
                 //在此可以记录sql日志
                 //写日志会影响性能，建议开发版本记录sql以便调试，发布正式版本不要记录

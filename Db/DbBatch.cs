@@ -327,7 +327,7 @@ namespace Dos.ORM
         {
             Check.Require(!EntityCache.IsReadOnly<TEntity>(), string.Concat("Entity(", EntityCache.GetTableName<TEntity>(), ") is readonly!"));
 
-            batchcmd.Process(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), DataUtils.GetPrimaryKeyWhere<TEntity>(pkValues.ToArray())));
+            batchcmd.Process(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), DataUtils.GetPrimaryKeyWhere<TEntity>(pkValues.ToArray())));
         }
         /// <summary>
         ///  删除
@@ -340,7 +340,7 @@ namespace Dos.ORM
         {
             Check.Require(!EntityCache.IsReadOnly<TEntity>(), string.Concat("Entity(", EntityCache.GetTableName<TEntity>(), ") is readonly!"));
 
-            batchcmd.Process(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), DataUtils.GetPrimaryKeyWhere<TEntity>(pkValues.ToArray())));
+            batchcmd.Process(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), DataUtils.GetPrimaryKeyWhere<TEntity>(pkValues.ToArray())));
         }
         /// <summary>
         ///  删除
@@ -353,7 +353,7 @@ namespace Dos.ORM
         {
             Check.Require(!EntityCache.IsReadOnly<TEntity>(), string.Concat("Entity(", EntityCache.GetTableName<TEntity>(), ") is readonly!"));
 
-            batchcmd.Process(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), DataUtils.GetPrimaryKeyWhere<TEntity>(pkValues.ToArray())));
+            batchcmd.Process(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), DataUtils.GetPrimaryKeyWhere<TEntity>(pkValues.ToArray())));
         }
         /// <summary>
         ///  删除
@@ -366,7 +366,7 @@ namespace Dos.ORM
         {
             Check.Require(!EntityCache.IsReadOnly<TEntity>(), string.Concat("Entity(", EntityCache.GetTableName<TEntity>(), ") is readonly!"));
 
-            batchcmd.Process(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), DataUtils.GetPrimaryKeyWhere<TEntity>(pkValues.ToArray())));
+            batchcmd.Process(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), DataUtils.GetPrimaryKeyWhere<TEntity>(pkValues.ToArray())));
         }
         /// <summary>
         ///  删除
@@ -379,7 +379,7 @@ namespace Dos.ORM
         {
             Check.Require(!EntityCache.IsReadOnly<TEntity>(), string.Concat("Entity(", EntityCache.GetTableName<TEntity>(), ") is readonly!"));
 
-            batchcmd.Process(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), where));
+            batchcmd.Process(cmdCreator.CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), where));
         }
 
         #endregion

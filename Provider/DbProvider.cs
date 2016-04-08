@@ -231,23 +231,39 @@ namespace Dos.ORM
             {
                 if ("@?:".Contains(nameStr[0].ToString()))
                 {
-                    return nameStr.Substring(1).Insert(0, new string(paramPrefixToken, 1));
+                    nameStr = nameStr.Substring(1).Insert(0, new string(paramPrefixToken, 1));
                 }
-                else {
-                    return nameStr.Insert(0, new string(paramPrefixToken, 1));
+                else
+                {
+                    nameStr = nameStr.Insert(0, new string(paramPrefixToken, 1));
                 }
             }
-            return nameStr;
+            //剔除参数中的“.” 2016-04-08 added
+            return nameStr.Replace(".", "_");
         }
 
         /// <summary>
         /// Builds the name of the table.
         /// </summary>
         /// <param name="name">The name.</param>
+        /// <param name="userName">The name.</param>
         /// <returns></returns>
-        public virtual string BuildTableName(string name)
+        public virtual string BuildTableName(string name, string userName)
         {
-            return string.Concat(leftToken.ToString(), name.Trim(leftToken, rightToken), rightToken.ToString());
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return "";
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(userName))
+                {
+                    return string.Concat(leftToken.ToString(), name.Trim(leftToken, rightToken), rightToken.ToString());
+                }
+                return string.Concat(leftToken.ToString(), userName.Trim(leftToken, rightToken), rightToken.ToString())
+                    + "."
+                    + string.Concat(leftToken.ToString(), name.Trim(leftToken, rightToken), rightToken.ToString());
+            }
         }
 
 
@@ -398,16 +414,16 @@ namespace Dos.ORM
 
             foreach (DbParameter p in cmd.Parameters)
             {
-                
+
                 if (!isStoredProcedure)
                 {
                     //TODO 这里可以继续优化
                     if (cmd.CommandText.IndexOf(p.ParameterName, StringComparison.Ordinal) == -1)
                     {
                         //2015-08-11修改
-                        cmd.CommandText = cmd.CommandText.Replace("@"+p.ParameterName.Substring(1), p.ParameterName);
-                        cmd.CommandText = cmd.CommandText.Replace("?"+p.ParameterName.Substring(1), p.ParameterName);
-                        cmd.CommandText = cmd.CommandText.Replace(":"+p.ParameterName.Substring(1), p.ParameterName);
+                        cmd.CommandText = cmd.CommandText.Replace("@" + p.ParameterName.Substring(1), p.ParameterName);
+                        cmd.CommandText = cmd.CommandText.Replace("?" + p.ParameterName.Substring(1), p.ParameterName);
+                        cmd.CommandText = cmd.CommandText.Replace(":" + p.ParameterName.Substring(1), p.ParameterName);
                         //if (p.ParameterName.Substring(0, 1) == "?" || p.ParameterName.Substring(0, 1) == ":"
                         //        || p.ParameterName.Substring(0, 1) == "@")
                         //    cmd.CommandText = cmd.CommandText.Replace(paramPrefixToken + p.ParameterName.Substring(1), p.ParameterName);

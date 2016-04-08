@@ -70,14 +70,25 @@ namespace Dos.ORM
         /// <summary>
         /// 
         /// </summary>
-        private string tableName;
+        private string _tableName;
+        private string _userName;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="tableName"></param>
         public Table(string tableName)
         {
-            this.tableName = tableName;
+            this._tableName = tableName;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="username"></param>
+        public Table(string tableName,string username)
+        {
+            this._tableName = tableName;
+            this._userName = username;
         }
         /// <summary>
         /// 
@@ -85,7 +96,15 @@ namespace Dos.ORM
         /// <returns></returns>
         public string GetTableName()
         {
-            return tableName;
+            return _tableName;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public string GetUserName()
+        {
+            return _userName;
         }
     }
 
@@ -99,6 +118,10 @@ namespace Dos.ORM
         /// 表名
         /// </summary>
         private string _tableName;
+        /// <summary>
+        /// 
+        /// </summary>
+        private string _userName;
         /// <summary>
         /// 别名
         /// </summary>
@@ -131,6 +154,7 @@ namespace Dos.ORM
         {
             var tbl = GetType().GetCustomAttribute<Table>(false) as Table;
             _tableName = tbl != null ? tbl.GetTableName() : GetType().Name;
+            _userName = tbl != null ? tbl.GetUserName() :"";
             _isAttached = true;
         }
         /// <summary>
@@ -140,6 +164,17 @@ namespace Dos.ORM
         public Entity(string tableName)
         {
             this._tableName = tableName;
+            _isAttached = true;
+        }
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="tableName">表名</param>
+        /// <param name="userName"></param>
+        public Entity(string tableName,string userName)
+        {
+            this._tableName = tableName;
+            this._userName = userName;
             _isAttached = true;
         }
         #endregion
@@ -309,6 +344,13 @@ namespace Dos.ORM
         public string GetTableName()
         {
             return _tableName;
+        }
+        /// <summary>
+        /// 获取表名
+        /// </summary>
+        public string GetUserName()
+        {
+            return _userName;
         }
         /// <summary>
         /// 获取表名别名

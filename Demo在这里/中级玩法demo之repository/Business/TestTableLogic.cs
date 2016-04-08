@@ -55,31 +55,46 @@ namespace Business
             //list[0].Id = Guid.NewGuid();
             //var aaaa = TestTableRepository.Insert(list[0]);
             #region 测试事务
-            var trans = Db.Context.BeginTransaction();
-            var mmmm = new TestTable1();
-            try
-            {
-                trans.Delete(new List<TestTable1>());
-                Db.Context.Delete(trans, new List<TestTable1>());
-                trans.Update(mmmm);
-                throw new Exception("xxxxxxxx"); 
-                trans.Commit();
-            }
-            catch (Exception)
-            {
-                trans.Rollback();
-            }
-            finally
-            {
-                trans.Close();
-            }
-
+            //var trans = Db.Context.BeginTransaction();
+            //var mmmm = new TestTable1();
+            //try
+            //{
+            //    trans.Delete(new List<TestTable1>());
+            //    Db.Context.Delete(trans, new List<TestTable1>());
+            //    trans.Update(mmmm);
+            //    throw new Exception("xxxxxxxx"); 
+            //    trans.Commit();
+            //}
+            //catch (Exception)
+            //{
+            //    trans.Rollback();
+            //}
+            //finally
+            //{
+            //    trans.Close();
+            //}
+            //var aaaaaa = GetAaa();
+            //Aaa(new List<TestTable1>());
+            //Aaa(trans, new List<TestTable1>());
+            //Aaa(aaaaaa);
+            #endregion
+            #region 测试表名非dbo用户名
+            //var list20160408 = Db.dbSql.From<CmsTitleTitlePartRecord>()
+            //   // .InnerJoin<CmsTitleTitlePartRecord>((a,b)=>a.Id == b.Id)
+            //  // .InnerJoin("", new WhereClip())
+            //    .Select(d => new { d.Id, d.Title }).Where(d => d.Id == 8).ToList();
+            //var list201604082 = Db.dbSql.Insert<CmsTitleTitlePartRecord>(new CmsTitleTitlePartRecord()
+            //{
+            //    Id = new Random().Next(1000,10000),
+            //    Title = "测试"
+            //});
+            //var list2016040823 = Db.dbSql.Update<CmsTitleTitlePartRecord>(new CmsTitleTitlePartRecord()
+            //{
+            //    Id = 8,
+            //    Title = "修改为测试"
+            //});
             #endregion
 
-            //var aaaaaa = GetAaa();
-            Aaa(new List<TestTable1>());
-            Aaa(trans, new List<TestTable1>());
-            //Aaa(aaaaaa);
 
             return new BaseResult(true, list, "", dateCount);
         }
@@ -134,7 +149,7 @@ namespace Business
                 CreateTime = DateTime.Now,
                 T2 = 0,
                 T3 = 0,
-                T4= true,
+                T4 = true,
                 T7 = 0,
                 T9 = 0
             };

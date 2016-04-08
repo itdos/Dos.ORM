@@ -61,8 +61,15 @@ namespace Dos.ORM
         {
             return getTEntity<TEntity>().GetTableName();
         }
-
-
+        /// <summary>
+        /// 返回用户名
+        /// </summary>
+        /// <returns></returns>
+        public static string GetUserName<TEntity>()
+            where TEntity : Entity
+        {
+            return getTEntity<TEntity>().GetUserName();
+        }
         /// <summary>
         /// 返回T
         /// </summary>

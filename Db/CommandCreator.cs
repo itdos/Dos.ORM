@@ -106,7 +106,7 @@ namespace Dos.ORM
 
             StringBuilder sql = new StringBuilder();
             sql.Append("UPDATE ");
-            sql.Append(db.DbProvider.BuildTableName(EntityCache.GetTableName<TEntity>()));
+            sql.Append(db.DbProvider.BuildTableName(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>()));
             sql.Append(" SET ");
 
             Field identityField = EntityCache.GetIdentityField<TEntity>();
@@ -164,9 +164,10 @@ namespace Dos.ORM
         /// 创建删除DbCommand
         /// </summary>
         /// <param name="tableName"></param>
+        /// <param name="userName"></param>
         /// <param name="where"></param>
         /// <returns></returns>
-        public DbCommand CreateDeleteCommand(string tableName, WhereClip where)
+        public DbCommand CreateDeleteCommand(string tableName,string userName, WhereClip where)
         {
             if (WhereClip.IsNullOrEmpty(where))
                 throw new Exception("请传入删除条件，删除整表数据请使用.DeleteAll<T>()方法。");
@@ -174,7 +175,7 @@ namespace Dos.ORM
 
             StringBuilder sql = new StringBuilder();
             sql.Append("DELETE FROM ");
-            sql.Append(db.DbProvider.BuildTableName(tableName));
+            sql.Append(db.DbProvider.BuildTableName(tableName, userName));
             sql.Append(where.WhereString);
             DbCommand cmd = db.GetSqlStringCommand(sql.ToString());
             db.AddCommandParameter(cmd, where.Parameters.ToArray());
@@ -190,7 +191,7 @@ namespace Dos.ORM
         public DbCommand CreateDeleteCommand<TEntity>(WhereClip where)
              where TEntity : Entity
         {
-            return CreateDeleteCommand(EntityCache.GetTableName<TEntity>(), where);
+            return CreateDeleteCommand(EntityCache.GetTableName<TEntity>(),EntityCache.GetUserName<TEntity>(), where);
         }
 
         #endregion
@@ -214,7 +215,7 @@ namespace Dos.ORM
 
             StringBuilder sql = new StringBuilder();
             sql.Append("INSERT INTO ");
-            sql.Append(db.DbProvider.BuildTableName(EntityCache.GetTableName<TEntity>()));
+            sql.Append(db.DbProvider.BuildTableName(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>()));
             sql.Append(" (");
 
             Field identityField = EntityCache.GetIdentityField<TEntity>();

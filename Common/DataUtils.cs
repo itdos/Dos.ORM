@@ -469,7 +469,7 @@ namespace Dos.ORM
             //return GetRandomNumber().ToString();
             //TODO 此处应该根据数据库类型来附加@、?、:
             //2015-08-10，去掉了第一个"@", 
-            return string.Concat("@", field.tableName, "_", field.Name, "_", GetNewParamCount());
+            return string.Concat("@", field.tableName, "_", field.Name, "_", GetNewParamCount()).Replace(".","_");
             //如遇Oracle超过30字符Bug，把field.tableName去掉即可
             //return string.Concat("@", field.Name, "_", GetNewParamCount());
             byte[] data = new byte[16];

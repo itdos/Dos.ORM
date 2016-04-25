@@ -498,7 +498,7 @@ namespace Dos.ORM
         public int Delete<TEntity>(IEnumerable<TEntity> entities)
             where TEntity : Entity
         {
-            return dbSession.Delete<TEntity>(entities);
+            return dbSession.Delete<TEntity>(trans, entities);
         }
         /// <summary>
         /// 
@@ -508,7 +508,7 @@ namespace Dos.ORM
         public int Delete<TEntity>(List<TEntity> entities)
             where TEntity : Entity
         {
-            return dbSession.Delete<TEntity>(entities);
+            return dbSession.Delete<TEntity>(trans, entities);
         }
         ///// <summary>
         /////  删除
@@ -594,7 +594,7 @@ namespace Dos.ORM
         public int Insert<TEntity>(params TEntity[] entities)
             where TEntity : Entity
         {
-            return dbSession.Insert<TEntity>(entities);
+            return dbSession.Insert<TEntity>(trans,entities);
         }
         /// <summary>
         /// 
@@ -604,7 +604,7 @@ namespace Dos.ORM
         public int Insert<TEntity>(IEnumerable<TEntity> entities)
             where TEntity : Entity
         {
-            return dbSession.Insert<TEntity>(entities);
+            return dbSession.Insert<TEntity>(trans, entities);
         }
         /// <summary>
         /// 
@@ -614,7 +614,7 @@ namespace Dos.ORM
         public int Insert<TEntity>(List<TEntity> entities)
             where TEntity : Entity
         {
-            return dbSession.Insert<TEntity>(entities);
+            return dbSession.Insert<TEntity>(trans, entities);
         }
         /// <summary>
         /// 添加

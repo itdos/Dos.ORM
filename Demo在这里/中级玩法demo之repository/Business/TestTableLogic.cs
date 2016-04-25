@@ -56,28 +56,28 @@ namespace Business
             //list[0].Id = Guid.NewGuid();
             //var aaaa = TestTableRepository.Insert(list[0]);
             #region 测试事务
-            //var trans = Db.Context.BeginTransaction();
-            //var mmmm = new TestTable1();
-            //try
-            //{
-            //    trans.Delete(new List<TestTable1>());
-            //    Db.Context.Delete(trans, new List<TestTable1>());
-            //    trans.Update(mmmm);
-            //    throw new Exception("xxxxxxxx"); 
-            //    trans.Commit();
-            //}
-            //catch (Exception)
-            //{
-            //    trans.Rollback();
-            //}
-            //finally
-            //{
-            //    trans.Close();
-            //}
-            //var aaaaaa = GetAaa();
-            //Aaa(new List<TestTable1>());
-            //Aaa(trans, new List<TestTable1>());
-            //Aaa(aaaaaa);
+            var trans = Db.Context.BeginTransaction();
+            var mmmm = new TestTable1();
+            try
+            {
+                trans.Delete(new List<TestTable1>());
+                Db.Context.Delete(trans, new List<TestTable1>());
+                trans.Update(mmmm);
+                throw new Exception("xxxxxxxx");
+                trans.Commit();
+            }
+            catch (Exception)
+            {
+                trans.Rollback();
+            }
+            finally
+            {
+                trans.Close();
+            }
+            var aaaaaa = GetAaa();
+            Aaa(new List<TestTable1>());
+            Aaa(trans, new List<TestTable1>());
+            Aaa(aaaaaa);
             #endregion
             #region 测试表名非dbo用户名
             //var list20160408 = Db.dbSql.From<CmsTitleTitlePartRecord>()

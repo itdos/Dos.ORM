@@ -5,43 +5,44 @@
 	
 /*-----------------------------------------------------------------------------------------------*/
 
-2016-04-25 Dos.ORM（原Hxj.Data）（v1.10.5.2）
-	*）解决Dos.ORM内部一些数组对象的.Count()方法调用了内部扩展Count()的Bug。
+2016-04-25 Dos.ORM（原Hxj.Data）（v1.10.5.3）
+	*）修复事务中有两个Insert、Delete重载没有加入事务对象的bug。（感谢群友【哈尔滨-陆仁贾】发现此bug）
+	*）修复Dos.ORM内部一些数组对象的.Count()方法调用了内部扩展Count()的Bug。
 	*）自增主键现在不会参与更新了。
 	*）现在支持SqlServer表名自定义用户，如dbo.TableName修改为other.TableName，只需要设置实体类[Table("TableName", "other")]。
 	*）现在支持表名中含有“.”符号了。
 	*）Lambda写法的.Count()等等扩增都移动至Dos.ORM的命名空间下。
 	*）Lambda增加支持Equals写法：.Where(d => d.Filed.Equals(value))
 	*）新增一些增加、删除、修改重载方法，更方便地传入批量实体进行增删改。
-	*）解决一个地方.First()无数据会抛出异常，现在会正确返回null。
-	*）FromSection类的WhereClip属性修改为GetWhereCip()方法，解决代码书写过程中.Where()总是智能联想成.WhereClip造成不方便。
+	*）修复一个地方.First()无数据会抛出异常，现在会正确返回null。
+	*）FromSection类的WhereClip属性修改为GetWhereCip()方法，修复代码书写过程中.Where()总是智能联想成.WhereClip造成不方便。
 	*）Lambda增加As别名、Sum/Count等聚合函数的写法。
-	*）优化底层Emit映射，解决一系列不常见Bug。
-	*）解决上个版本改动引起的.ToList<T>()大数据性能问题，现在提升了5倍实体映射效率，性能继续与dapper媲美。（非常感谢群友【落メ尘】发现此问题）
+	*）优化底层Emit映射，修复一系列不常见Bug。
+	*）修复上个版本改动引起的.ToList<T>()大数据性能问题，现在提升了5倍实体映射效率，性能继续与dapper媲美。（非常感谢群友【落メ尘】发现此问题）
 	*）增加懒加载返回.ToEnumerable<T>()类型。
 	*）现在可以返回.ToList<dynamic>()类型了。
-	*）█████重要更新█████ 实体类[Entity("TableName")]标记修改为[Table("TableName")]，以解决序列化时多了一个TypeId字段的Bug。
-	*）解决InnerJoin时第二张表取成了类名，而不是实际的表名。
-	*）解决lambda写法是取的实体类名不是实际的表名，当实体类名与表名不一致时会出现Bug。此功能需要与实体生成器v1.8.8.5及以上版本配合。（非常感谢群友【随风】提供解决思路）
+	*）█████重要更新█████ 实体类[Entity("TableName")]标记修改为[Table("TableName")]，以修复序列化时多了一个TypeId字段的Bug。
+	*）修复InnerJoin时第二张表取成了类名，而不是实际的表名。
+	*）修复lambda写法是取的实体类名不是实际的表名，当实体类名与表名不一致时会出现Bug。此功能需要与实体生成器v1.8.8.5及以上版本配合。（非常感谢群友【随风】提供修复思路）
 
 /*-----------------------------------------------------------------------------------------------*/
 
 2015-12-31 Dos.ORM（原Hxj.Data）（v1.10.2.7）
-	*）解决Oracle存储Guid类型的Bug。（感谢群友【随风】提供解决方案）
+	*）修复Oracle存储Guid类型的Bug。（感谢群友【随风】提供修复方案）
 	*）新增实体类.AttachAll()方法，将实体所有字段置为修改状态。
-	*）解决多表联查N张表时，.Select(Table._.All, Table2._.All)却只能查出第一张表数据的Bug。
+	*）修复多表联查N张表时，.Select(Table._.All, Table2._.All)却只能查出第一张表数据的Bug。
 	*）大量完善事务的lambda写法、Where条件重载。
 	*）现在支持byte[]类型Emit映射了，意味着orm再次支持image、varbinary、blob等等类型的存取。
-	*）解决float/Single类型底层Emit映射出错的Bug。（感谢同事【娟妹儿】发现此Bug。）
+	*）修复float/Single类型底层Emit映射出错的Bug。（感谢同事【娟妹儿】发现此Bug。）
 	*）现在Where的.In()条件，如果传入的数组为空，会生成一个“1=2”始终为false的条件，以防止误修改整张表、查询时应该返回无数据却返回整表数据等等。（感谢群友【闪电】发现此Bug。）
 	*）事务Insert、Update完善部分重载，且无返回void修改为返回int。
-	*）解决当字段名为数字时，无法取出数据的bug。（感谢群友【水洼里的鱼】发现此bug）
+	*）修复当字段名为数字时，无法取出数据的bug。（感谢群友【水洼里的鱼】发现此bug）
 	*）增加.Where<T2,T3>((a,b,c)=>...);写法
-	*）解决.ToList()、.ToFirst()返回的实体默认就标记了所有字段为修改状态。
-	*）解决自增主键在批量插入的时候，并不是返回的最后一次插入后返回的自增主键值的Bug，而是把每次插入后返回的自增值累加了。（感谢群友【郑邴镪】发现此Bug）
-	*）解决.Delete<T>(value,value,value)删除的Bug，此删除写法不是删除3条数据，而是当该表有3个主键时才这样写，仅删除一条数据。
+	*）修复.ToList()、.ToFirst()返回的实体默认就标记了所有字段为修改状态。
+	*）修复自增主键在批量插入的时候，并不是返回的最后一次插入后返回的自增主键值的Bug，而是把每次插入后返回的自增值累加了。（感谢群友【郑邴镪】发现此Bug）
+	*）修复.Delete<T>(value,value,value)删除的Bug，此删除写法不是删除3条数据，而是当该表有3个主键时才这样写，仅删除一条数据。
 	*）DB.Content.Exists<T>()增加Lambda写法。DB.Content.Count<T>()增加Lambda写法。
-	*）解决MySql子查询bug。原理见：http://www.itdos.com/DataBase/20150812/1150319.html 特别感谢Python同事【晓不得www.songyuchao.com】发现此Bug。
+	*）修复MySql子查询bug。原理见：http://www.itdos.com/DataBase/20150812/1150319.html 特别感谢Python同事【晓不得www.songyuchao.com】发现此Bug。
 
 /*-----------------------------------------------------------------------------------------------*/
 
@@ -49,16 +50,16 @@
 	*）█████重要更新█████笔者在使用含有事务参数方法的过程中，有的trans是最后一个参数，有的是第一个参数，感觉非常杂乱。v1.9.9.9版本对事务参数进行了统一整理，所有事务对象均修改为第一个参数，本次改动会让以前用到trans参数的方法出错，需要将trans参数移动到第一位，我们表示深深的歉意！此举是为了让Dos.ORM用起来更方便、更合理，希望朋友们能理解，谢谢。████████████████████
 	*）【重要更新】增加.Save<T>(List<T>)、.Save<T>(T)方法，给T指定动作（增、删、改），然后事务批量提交。也可以传入事务对象。 
 	*）【重要更新】所有Dos.ORM.Common命名空间下所有方法移入Dos.ORM命名空间下，Dos.ORM.Common命名空间可以不再需要using。
-	*）解决Oracle参数前缀取值错误，把“:”取成了“@”。
+	*）修复Oracle参数前缀取值错误，把“:”取成了“@”。
 	*）【重要更新】取消实体类的SetPropertyValues映射，考虑到单表查询也会用到别名然后扩展类属性，此时SetPropertyValues无法映射别名数据，因此取消，ORM底层映射全部采用Emit。同时实体生成器v1.8.7.0生成的实体类将不再生成SetPropertyValues方法，此实体类仅适用于Dos.ORM v1.9.9.2 以及上版本。
-	*）解决.Delete<T>("传入string类型主键")无法删除的Bug。
+	*）修复.Delete<T>("传入string类型主键")无法删除的Bug。
 	*）【重要更新】.Delete<T>()方法，如果没有任何条件，现在会抛出异常：“请传入删除条件，删除整表数据请使用.DeleteAll<T>()方法。”，以防止误删整张表。
 	*）增加.DeleteAll<T>()方法，删除整表数据。
 	*）【重要更新】缓存依赖web.config配置的“HxjCacheConfig”需要修改为“DosCacheConfig”
-	*）解决实体字段赋值为null的时候偶尔无法更新的Bug。
+	*）修复实体字段赋值为null的时候偶尔无法更新的Bug。
 	*）增加.First<T>()
-	*）解决.OrderBy()一个guid字段lambda写法的Bug。
-	*）解决仅.Select()一个字段然后.ToList<string>()的一个Bug。
+	*）修复.OrderBy()一个guid字段lambda写法的Bug。
+	*）修复仅.Select()一个字段然后.ToList<string>()的一个Bug。
 	*）【重要更新】现在实体会默认标记为Attach()，修改实体可以不再需要先将实体.Attach()。例：Model.Name='ITdos'，即代表Name将参与字段的修改。
 	*）优化实例化一个新实体对象，然后直接.Update()的操作。
 	*）优化底层Emit映射。
@@ -66,16 +67,16 @@
 	*）增加.Delete<T>(Where where)重载。
 	*）【重要更新】lambda的常量、变量计算增加缓存，性能提升10-20倍。举例：.Where(d => Convert.ToInt32(Model.Price.ToString())+2/3*5 > 0)，lambda计算默认是通过委托+反射取结果，现在计算公式将会缓存，性能大大提升。
 	*）现在.Where()的lambda支持常量、变量之间的比较，同时比较符号左右不分顺序。
-	*）解决tinyint(1)对应bool类型字段偶尔为0时，映射结果却为true。
+	*）修复tinyint(1)对应bool类型字段偶尔为0时，映射结果却为true。
 	*）【重要更新】增加多表关联查询的.Where<T,T2,T3>()Lambda表达式写法：.From<T1>().Where<T2, T3, T4>((a, b, c) => a.ID != null && b.Name == "ITdos")。
 	*）【重要更新】Where条件拼接类同上。例：var where = new Where<T1>(); where.And<T2, T3>((a, b, c) => a.ID != null && b.Name == "ITdos");。
 	*）增加.Delete<T>(IEnumerable<T> entities)重载。
 	*）【重要更新】新增Where、Where<T>（同WhereClipBuilder），同时.Where()增加可传入Where对象重载。
 	*）优化了lambda filed.In()、.NotIn()传入数组的类型。（之前是string字段只能传string数组，guid只能传guid数组。现在无限制，int字段同样可以传入string数组，strng字段同样可以传入int数组。）
-	*）解决.FromSql()在MySql、Oracle下参数名使用"@"与字段名一样时（如：WHERE ID=@ID）报错的Bug。
-	*）解决.OrderBy()Lambda表达式不支持DateTime等特殊类型字段的Bug。
-	*）解决.OrderBy()单个字段Lambda表达式无法Desc的Bug。
-	*）解决lambda表达式传值的一个Bug。
+	*）修复.FromSql()在MySql、Oracle下参数名使用"@"与字段名一样时（如：WHERE ID=@ID）报错的Bug。
+	*）修复.OrderBy()Lambda表达式不支持DateTime等特殊类型字段的Bug。
+	*）修复.OrderBy()单个字段Lambda表达式无法Desc的Bug。
+	*）修复lambda表达式传值的一个Bug。
 
 /*-----------------------------------------------------------------------------------------------*/
 
@@ -87,8 +88,8 @@
 	*）【重要更新】lambda表达式增加支持字段函数：As()、Sum()
 	*）【重要更新】新增.ToList<T>()写法，T若为类(class)，会把数据直接映射至class。T若为数据类型（如:Guid、string），则需要选择一个字段：.Select(d=>d.ColumnName).ToList<Guid>()
 	*）【重要更新】lambda表达式增加支持字段函数：Like()、Contains()（同Like）、StartsWith()、EndsWith()、In()、NotIn()、IsNull()、IsNotNull()
-	*）解决.SelectIn()、.SelectNotIn()传入length=0的数组时ORM报错。
-	*）解决使用.Select(d=>d.ColumnName).ToList()查询指定字段会报错。
+	*）修复.SelectIn()、.SelectNotIn()传入length=0的数组时ORM报错。
+	*）修复使用.Select(d=>d.ColumnName).ToList()查询指定字段会报错。
 
 /*-----------------------------------------------------------------------------------------------*/
 
@@ -122,13 +123,13 @@
 /*-----------------------------------------------------------------------------------------------*/
 
 2015-05-05 Dos.ORM（原Hxj.Data）（v1.8.1）
-	*）解决Dos.ORM在MySql下仍然调用Hxj.Data.MySql的Bug，现在会正确调用Dos.ORM.MySql。Sqlite同理。
+	*）修复Dos.ORM在MySql下仍然调用Hxj.Data.MySql的Bug，现在会正确调用Dos.ORM.MySql。Sqlite同理。
 
 /*-----------------------------------------------------------------------------------------------*/
 
 2015-05-03 Dos.ORM（原Hxj.Data）（v1.8.0）
 	*）Hxj.Data正式开源，实体生成器一并开源。
-	*）【重要更新】Hxj.Data正式更名为Dos.ORM，与Dos.WorkFlow、Dos.WeChat等形成产品线。老程序集迁移至新程序集：将【using Hxj.Data;】全部替换为【using Dos.ORM;】、将【using Hxj.Data.Common;】全部替换成【using Dos.ORM.Common;】即可！（勾选“区分大小写”、“全字匹配”，选中“整个解决方案”，点击“全部替换”。）
+	*）【重要更新】Hxj.Data正式更名为Dos.ORM，与Dos.WorkFlow、Dos.WeChat等形成产品线。老程序集迁移至新程序集：将【using Hxj.Data;】全部替换为【using Dos.ORM;】、将【using Hxj.Data.Common;】全部替换成【using Dos.ORM.Common;】即可！（勾选“区分大小写”、“全字匹配”，选中“整个修复方案”，点击“全部替换”。）
 	*）【重要更新】From<T>().Where()增加Lambda表达式“==”、“!=”写法。
 	*）【重要更新】Delete<T>().Where()增加Lambda表达式“==”、“!=”写法。
 	*）随机16位字母参数名修改为“表名+参数+全局序号(以继续保证唯一)”，使增、删、查、改性能提升50%。

@@ -246,7 +246,18 @@ namespace Dos.ORM
                 lock (_modifyFields)
                 {
                     _isFilterModifyFields = true;
-                    _modifyFields.Add(new ModifyField(field, oldValue, newValue));
+                    //自增主键不参与更新
+                    if (GetIdentityField() != null)
+                    {
+                        if (GetIdentityField().FieldName != field.FieldName)
+                        {
+                            _modifyFields.Add(new ModifyField(field, oldValue, newValue));
+                        }
+                    }
+                    else
+                    {
+                        _modifyFields.Add(new ModifyField(field, oldValue, newValue));
+                    }
                 }
             }
         }

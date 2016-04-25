@@ -620,7 +620,7 @@ namespace Dos.ORM
             {
                 throw new Exception(".ToList<" + typet.Name + ">()至少需要.Select()一个字段！");
             }
-            else if (@from.Fields.Count() > 1)
+            else if (@from.Fields.Count > 1)
             {
                 throw new Exception(".ToList<" + typet.Name + ">()最多.Select()一个字段！");
             }

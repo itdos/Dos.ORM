@@ -1564,7 +1564,7 @@ namespace Dos.ORM
         public int Delete<TEntity>(DbTransaction tran, params TEntity[] entities)
             where TEntity : Entity
         {
-            var eCount = entities.Count();
+            var eCount = entities.Length;
             switch (eCount)
             {
                 case 0:
@@ -1664,19 +1664,20 @@ namespace Dos.ORM
         public int Delete<TEntity>(IEnumerable<TEntity> entities)
             where TEntity : Entity
         {
-            var eCount = entities.Count();
+            var arr = entities as TEntity[] ?? entities.ToArray();
+            var eCount = arr.Length;
             switch (eCount)
             {
                 case 0:
                     return 0;
                 case 1:
-                    return Delete(entities.First());
+                    return Delete(arr.First());
                 default:
                     //TODO 修改成In条件，性能更高。 
                     var listKey = new List<object>();
                     var where = new Where();
-                    var f = entities.First().GetPrimaryKeyFields().First();
-                    foreach (var entity in entities)
+                    var f = arr.First().GetPrimaryKeyFields().First();
+                    foreach (var entity in arr)
                     {
                         listKey.Add(DataUtils.GetPropertyValue(entity, f.Name));
                     }

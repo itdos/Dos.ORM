@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using Dos.Common;
@@ -93,10 +94,52 @@ namespace Business
             //    Id = 8,
             //    Title = "修改为测试"
             //});
+            //var list20160414 = Db.dbSql.FromSql("select top 10 * from Cms_Settings_ContentPartFieldDefinitionRecord WHERE 1=2 AND Id=@id")
+            //    .AddInParameter("@id",DbType.String, 999999).ToList<CmsTitleTitlePartRecord>();
+
+
+            //StringBuilder sql = new StringBuilder();
+            //sql.Append("SELECT ");
+            //sql.Append("t1.lineId 线路ID, ");
+            //sql.Append("t1.`name` 线路名称, ");
+            //sql.Append("t4.`Name` 始发公司, ");
+            //sql.Append("t6.`name` 始发站, ");
+            //sql.Append("t5.`Name` 终点公司, ");
+            //sql.Append("t7.`name` 终点站, ");
+            //sql.Append("Group_concat(t3.`name`) 途经 ");
+            //sql.Append("FROM ");
+            //sql.Append("t_transport_line t1 ");
+            //sql.Append("LEFT JOIN t_transport_lineinfo t2 ON t1.lineId = t2.lineId ");
+            //sql.Append("LEFT JOIN org_station t3 ON t2.staId = t3.staId ");
+            //sql.Append("LEFT JOIN org_company t4 ON t1.comId_start = t4.comId ");
+            //sql.Append("LEFT JOIN org_company t5 ON t1.comId_end = t5.comId ");
+            //sql.Append("LEFT JOIN org_station t6 ON t1.staId_start = t6.staId ");
+            //sql.Append("LEFT JOIN org_station t7 ON t1.staId_end = t7.staId ");
+            //    sql.Append("where tt1.`name`=@linename");
+            //sql.Append("group by t1.lineId; ");
+            //try
+            //{
+            //    var list201604142 = Db.dbAbc.FromSql(sql.ToString()).AddInParameter("linename", DbType.String, "itdos").ToList<TransportationLineSelectModel>();
+            //}
+            //catch (Exception e)
+            //{
+            //    throw e;
+            //}
+           var list21321321 =  Db.Context.From<TestTable1>().Select(d => d.MobilePhone).ToList<string>();
             #endregion
 
 
             return new BaseResult(true, list, "", dateCount);
+        }
+        public class TransportationLineSelectModel
+        {
+            public int 线路ID { get; set; }
+            public string 线路名称 { get; set; }
+            public string 始发公司 { get; set; }
+            public string 始发站 { get; set; }
+            public string 终点公司 { get; set; }
+            public string 终点站 { get; set; }
+            public string 途经 { get; set; }
         }
 
         public void Aaa(IList<TestTable1> list)

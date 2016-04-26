@@ -19,7 +19,7 @@ namespace DataAccess.Entities
 {
 
     /// <summary>
-    /// 实体类TestTable 。(属性说明自动提取数据库字段的描述信息)
+    /// 实体类TestTable1 。(属性说明自动提取数据库字段的描述信息)
     /// </summary>
     [Table("TestTable")]
     [Serializable]
@@ -36,13 +36,13 @@ namespace DataAccess.Entities
         private DateTime _CreateTime;
         private decimal? _T1;
         private decimal _T2;
-        private int _T3;
+        private ulong _T3;
         private bool _T4;
         private DateTime? _T5;
         private decimal? _T6;
         private decimal _T7;
         private double? _T8;
-        private double _T9;
+        private ulong? _T9;
         private string _T10;
         private string _T11;
         private string _T12;
@@ -170,7 +170,7 @@ namespace DataAccess.Entities
         /// <summary>
         /// 
         /// </summary>
-        public int T3
+        public ulong T3
         {
             get { return _T3; }
             set
@@ -242,7 +242,7 @@ namespace DataAccess.Entities
         /// <summary>
         /// 
         /// </summary>
-        public double T9
+        public ulong? T9
         {
             get { return _T9; }
             set

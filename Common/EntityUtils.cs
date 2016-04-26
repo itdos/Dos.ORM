@@ -478,8 +478,11 @@ namespace Dos.ORM
         private static readonly MethodInfo Convert_IsDBNull = typeof(DataUtils.DBConvert).GetMethod("IsDBNull", new Type[] { typeof(object) });
 
         private static readonly MethodInfo Convert_ToInt16 = typeof(DataUtils.DBConvert).GetMethod("ToInt16", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToUInt16 = typeof(DataUtils.DBConvert).GetMethod("ToUInt16", new Type[] { typeof(object) });
         private static readonly MethodInfo Convert_ToInt32 = typeof(DataUtils.DBConvert).GetMethod("ToInt32", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToUInt32 = typeof(DataUtils.DBConvert).GetMethod("ToUInt32", new Type[] { typeof(object) });
         private static readonly MethodInfo Convert_ToInt64 = typeof(DataUtils.DBConvert).GetMethod("ToInt64", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToUInt64 = typeof(DataUtils.DBConvert).GetMethod("ToUInt64", new Type[] { typeof(object) });
         private static readonly MethodInfo Convert_ToBoolean = typeof(DataUtils.DBConvert).GetMethod("ToBoolean", new Type[] { typeof(object) });
         private static readonly MethodInfo Convert_ToDateTime = typeof(DataUtils.DBConvert).GetMethod("ToDateTime", new Type[] { typeof(object) });
         private static readonly MethodInfo Convert_ToDecimal = typeof(DataUtils.DBConvert).GetMethod("ToDecimal", new Type[] { typeof(object) });
@@ -489,8 +492,11 @@ namespace Dos.ORM
         private static readonly MethodInfo Convert_ToByteArr = typeof(DataUtils.DBConvert).GetMethod("ToByteArr", new Type[] { typeof(object) });
 
         private static readonly MethodInfo Convert_ToNullInt16 = typeof(DataUtils.DBConvert).GetMethod("ToNInt16", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToNullUInt16 = typeof(DataUtils.DBConvert).GetMethod("ToNUInt16", new Type[] { typeof(object) });
         private static readonly MethodInfo Convert_ToNullInt32 = typeof(DataUtils.DBConvert).GetMethod("ToNInt32", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToNullUInt32 = typeof(DataUtils.DBConvert).GetMethod("ToNUInt32", new Type[] { typeof(object) });
         private static readonly MethodInfo Convert_ToNullInt64 = typeof(DataUtils.DBConvert).GetMethod("ToNInt64", new Type[] { typeof(object) });
+        private static readonly MethodInfo Convert_ToNullUInt64 = typeof(DataUtils.DBConvert).GetMethod("ToNUInt64", new Type[] { typeof(object) });
         private static readonly MethodInfo Convert_ToNullBoolean = typeof(DataUtils.DBConvert).GetMethod("ToNBoolean", new Type[] { typeof(object) });
         private static readonly MethodInfo Convert_ToNullDateTime = typeof(DataUtils.DBConvert).GetMethod("ToNDateTime", new Type[] { typeof(object) });
         private static readonly MethodInfo Convert_ToNullDecimal = typeof(DataUtils.DBConvert).GetMethod("ToNDecimal", new Type[] { typeof(object) });
@@ -507,11 +513,20 @@ namespace Dos.ORM
                 case TypeCode.Int16:
                     ilg.Emit(OpCodes.Call, Convert_ToInt16);
                     return;
+                case TypeCode.UInt16:
+                    ilg.Emit(OpCodes.Call, Convert_ToUInt16);
+                    return;
                 case TypeCode.Int32:
                     ilg.Emit(OpCodes.Call, Convert_ToInt32);
                     return;
+                case TypeCode.UInt32:
+                    ilg.Emit(OpCodes.Call, Convert_ToUInt32);
+                    return;
                 case TypeCode.Int64:
                     ilg.Emit(OpCodes.Call, Convert_ToInt64);
+                    return;
+                case TypeCode.UInt64:
+                    ilg.Emit(OpCodes.Call, Convert_ToUInt64);
                     return;
                 case TypeCode.Boolean:
                     ilg.Emit(OpCodes.Call, Convert_ToBoolean);
@@ -541,11 +556,20 @@ namespace Dos.ORM
                     case TypeCode.Int16:
                         ilg.Emit(OpCodes.Call, Convert_ToNullInt16);
                         return;
+                    case TypeCode.UInt16:
+                        ilg.Emit(OpCodes.Call, Convert_ToNullUInt16);
+                        return;
                     case TypeCode.Int32:
                         ilg.Emit(OpCodes.Call, Convert_ToNullInt32);
                         return;
+                    case TypeCode.UInt32:
+                        ilg.Emit(OpCodes.Call, Convert_ToNullUInt32);
+                        return;
                     case TypeCode.Int64:
                         ilg.Emit(OpCodes.Call, Convert_ToNullInt64);
+                        return;
+                    case TypeCode.UInt64:
+                        ilg.Emit(OpCodes.Call, Convert_ToNullUInt64);
                         return;
                     case TypeCode.Boolean:
                         ilg.Emit(OpCodes.Call, Convert_ToNullBoolean);

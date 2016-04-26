@@ -46,6 +46,7 @@
     <Compile Include="Base\ParamExtentions.cs" />
     <Compile Include="Model\CmsTitleTitlePartRecord.cs" />
     <Compile Include="Model\TestTable.cs" />
+    <Compile Include="Model\TestTable1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\TestTable.cs" />
   </ItemGroup>

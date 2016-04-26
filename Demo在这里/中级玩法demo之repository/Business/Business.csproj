@@ -48,6 +48,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FastJson\Constants.cs" />
+    <Compile Include="FastJson\dynamic.cs" />
+    <Compile Include="FastJson\Formatter.cs" />
+    <Compile Include="FastJson\Getters.cs" />
+    <Compile Include="FastJson\JSON.cs" />
+    <Compile Include="FastJson\JsonParser.cs" />
+    <Compile Include="FastJson\JsonSerializer.cs" />
+    <Compile Include="FastJson\Reflection.cs" />
+    <Compile Include="FastJson\SafeDictionary.cs" />
+    <Compile Include="FastJson\StringUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestTableLogic.cs" />
   </ItemGroup>

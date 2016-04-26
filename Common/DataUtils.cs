@@ -689,6 +689,21 @@ namespace Dos.ORM
                     return 0;
                 }
             }
+            public static ushort ToUInt16(object value)
+            {
+                if (value is ushort)
+                {
+                    return (ushort)value;
+                }
+                try
+                {
+                    return Convert.ToUInt16(value);
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
             public static int ToInt32(object value)
             {
                 if (value is int)
@@ -704,6 +719,21 @@ namespace Dos.ORM
                     return 0;
                 }
             }
+            public static uint ToUInt32(object value)
+            {
+                if (value is uint)
+                {
+                    return (uint)value;
+                }
+                try
+                {
+                    return Convert.ToUInt32(value);
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
             public static long ToInt64(object value)
             {
                 if (value is long)
@@ -713,6 +743,21 @@ namespace Dos.ORM
                 try
                 {
                     return Convert.ToInt64(value);
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+            public static ulong ToUInt64(object value)
+            {
+                if (value is long)
+                {
+                    return (ulong)value;
+                }
+                try
+                {
+                    return Convert.ToUInt64(value);
                 }
                 catch
                 {
@@ -844,6 +889,21 @@ namespace Dos.ORM
                     return new Nullable<short>();
                 }
             }
+            public static Nullable<ushort> ToNUInt16(object value)
+            {
+                if (value is ushort)
+                {
+                    return new Nullable<ushort>((ushort)value);
+                }
+                try
+                {
+                    return new Nullable<ushort>(Convert.ToUInt16(value));
+                }
+                catch
+                {
+                    return new Nullable<ushort>();
+                }
+            }
             public static Nullable<int> ToNInt32(object value)
             {
                 if (value is int)
@@ -859,6 +919,21 @@ namespace Dos.ORM
                     return new Nullable<int>();
                 }
             }
+            public static Nullable<uint> ToNUInt32(object value)
+            {
+                if (value is uint)
+                {
+                    return new Nullable<uint>((uint)value);
+                }
+                try
+                {
+                    return new Nullable<uint>(Convert.ToUInt32(value));
+                }
+                catch
+                {
+                    return new Nullable<uint>();
+                }
+            }
             public static Nullable<long> ToNInt64(object value)
             {
                 if (value is long)
@@ -872,6 +947,21 @@ namespace Dos.ORM
                 catch
                 {
                     return new Nullable<long>();
+                }
+            }
+            public static Nullable<ulong> ToNUInt64(object value)
+            {
+                if (value is long)
+                {
+                    return new Nullable<ulong>((ulong)value);
+                }
+                try
+                {
+                    return new Nullable<ulong>(Convert.ToUInt64(value));
+                }
+                catch
+                {
+                    return new Nullable<ulong>();
                 }
             }
             public static Nullable<bool> ToNBoolean(object value)

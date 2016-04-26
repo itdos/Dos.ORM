@@ -13,6 +13,8 @@ using DataAccess.Base;
 using DataAccess.Entities;
 using DataAccess.Entities.Base;
 using DataCache;
+using FastJSON;
+using Newtonsoft.Json;
 using QzCRM.Common;
 
 namespace Business
@@ -49,6 +51,8 @@ namespace Business
             }
             #endregion
             var list = TestTableRepository.Query(where, d => d.CreateTime, "desc", null, param._PageSize, param._PageIndex);
+            var a20160426 = JsonConvert.SerializeObject(list);
+            var a201604262 = new FastJSON.JSONSerializer(new JSONParameters()).ConvertToJSON(list);
             //list[0].Id = Guid.NewGuid();
             //list[0].AttachAll();
             //var a = list[0].GetModifyFields();

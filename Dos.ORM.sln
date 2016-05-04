@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM.Sqlite", "Dos.ORM.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM.PostgreSql", "Dos.ORM.PostgreSql\Dos.ORM.PostgreSql.csproj", "{86F95784-A739-41EF-9724-909126C11800}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM.NoSql", "Dos.ORM.NoSql\Dos.ORM.NoSql.csproj", "{68ECE3A9-015E-4D52-B828-68A0668FB8F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM.Test", "Dos.ORM.Test\Dos.ORM.Test.csproj", "{D9ED145B-ACC8-4B11-A817-2DBABE3D6C02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +33,10 @@ Global
 		{86F95784-A739-41EF-9724-909126C11800}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86F95784-A739-41EF-9724-909126C11800}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86F95784-A739-41EF-9724-909126C11800}.Release|Any CPU.Build.0 = Release|Any CPU
-		{68ECE3A9-015E-4D52-B828-68A0668FB8F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{68ECE3A9-015E-4D52-B828-68A0668FB8F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{68ECE3A9-015E-4D52-B828-68A0668FB8F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{68ECE3A9-015E-4D52-B828-68A0668FB8F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9ED145B-ACC8-4B11-A817-2DBABE3D6C02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9ED145B-ACC8-4B11-A817-2DBABE3D6C02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9ED145B-ACC8-4B11-A817-2DBABE3D6C02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9ED145B-ACC8-4B11-A817-2DBABE3D6C02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

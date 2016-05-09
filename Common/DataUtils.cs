@@ -444,16 +444,16 @@ namespace Dos.ORM
             return appRandom.Value.Next();
         }
 
-        public static int paramCount = 0;
+        public static int paramCount = 1;
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         public static int GetNewParamCount()
         {
-            if (paramCount >= 9999)
+            if (paramCount >= 99)
             {
-                paramCount = 0;
+                paramCount = 1;
             }
             paramCount++;
             return paramCount;
@@ -465,21 +465,18 @@ namespace Dos.ORM
         /// <returns></returns>
         public static string MakeUniqueKey(Field field)//string prefix,
         {
-            //paramPrefixToken
-            //return GetRandomNumber().ToString();
             //TODO 此处应该根据数据库类型来附加@、?、:
-            //2015-08-10，去掉了第一个"@", 
-            return string.Concat("@", field.tableName, "_", field.Name, "_", GetNewParamCount()).Replace(".","_");
+            //return string.Concat("@", field.tableName, "_", field.Name, "_", GetNewParamCount()).Replace(".","_");
             //如遇Oracle超过30字符Bug，把field.tableName去掉即可
-            //return string.Concat("@", field.Name, "_", GetNewParamCount());
-            byte[] data = new byte[16];
-            new RNGCryptoServiceProvider().GetBytes(data);
-            string keystring = keyReg.Replace(Convert.ToBase64String(data).Trim(), string.Empty);
+            return string.Concat("@", field.Name, "_", GetNewParamCount());
+            //byte[] data = new byte[16];
+            //new RNGCryptoServiceProvider().GetBytes(data);
+            //string keystring = keyReg.Replace(Convert.ToBase64String(data).Trim(), string.Empty);
 
-            if (keystring.Length > 16)
-                return keystring.Substring(0, 16).ToLower();
+            //if (keystring.Length > 16)
+            //    return keystring.Substring(0, 16).ToLower();
 
-            return keystring.ToLower();
+            //return keystring.ToLower();
 
             //return string.Concat(prefix, Guid.NewGuid().ToString().Replace("-", ""));
         }

@@ -9,7 +9,7 @@
 * 创建日期：2010-2-10
 * 文件描述：
 ******************************************************
-* 修 改 人：
+* 修 改 人：ITdos
 * 修改日期：
 * 备注描述：
 *******************************************************/
@@ -179,10 +179,10 @@ namespace Dos.ORM
         public void Update<TEntity>(TEntity entity)
             where TEntity : Entity
         {
-            if (entity.GetModifyFields().Count == 0)
+            if (!entity.IsModify())
                 return;
 
-            WhereClip where = DataUtils.GetPrimaryKeyWhere(entity);
+            var where = DataUtils.GetPrimaryKeyWhere(entity);
 
             Check.Require(!WhereClip.IsNullOrEmpty(where), "entity must have the primarykey!");
 
@@ -200,7 +200,7 @@ namespace Dos.ORM
         public void Update<TEntity>(TEntity entity, WhereClip where)
             where TEntity : Entity
         {
-            if (entity.GetModifyFields().Count == 0)
+            if (!entity.IsModify())
                 return;
 
             batchcmd.Process(cmdCreator.CreateUpdateCommand<TEntity>(entity, where));

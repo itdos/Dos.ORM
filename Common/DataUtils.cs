@@ -9,7 +9,7 @@
 * 创建日期：2010-2-10
 * 文件描述：
 ******************************************************
-* 修 改 人：
+* 修 改 人：ITdos
 * 修改日期：
 * 备注描述：
 *******************************************************/
@@ -444,7 +444,7 @@ namespace Dos.ORM
             return appRandom.Value.Next();
         }
 
-        public static int paramCount = 1;
+        public static int paramCount = 0;
         /// <summary>
         /// 
         /// </summary>
@@ -453,7 +453,7 @@ namespace Dos.ORM
         {
             if (paramCount >= 99)
             {
-                paramCount = 1;
+                paramCount = 0;
             }
             paramCount++;
             return paramCount;
@@ -468,7 +468,7 @@ namespace Dos.ORM
             //TODO 此处应该根据数据库类型来附加@、?、:
             //return string.Concat("@", field.tableName, "_", field.Name, "_", GetNewParamCount()).Replace(".","_");
             //如遇Oracle超过30字符Bug，把field.tableName去掉即可
-            return string.Concat("@", field.Name, "_", GetNewParamCount());
+            return string.Concat("@", field.Name, GetNewParamCount());
             //byte[] data = new byte[16];
             //new RNGCryptoServiceProvider().GetBytes(data);
             //string keystring = keyReg.Replace(Convert.ToBase64String(data).Trim(), string.Empty);
@@ -491,17 +491,16 @@ namespace Dos.ORM
         {
             WhereClip where = new WhereClip();
 
-            Field[] keyfields = entity.GetPrimaryKeyFields();
-            Field[] allfields = entity.GetFields();
-            object[] allValues = entity.GetValues();
-            int fieldlength = allfields.Length;
+            var keyfields = entity.GetPrimaryKeyFields();
+            var allfields = entity.GetFields();
+            var allValues = entity.GetValues();
+            var fieldlength = allfields.Length;
             if (keyfields == null) return where;
-
-            foreach (Field pkField in keyfields)
+            foreach (var pkField in keyfields)
             {
                 for (int i = 0; i < fieldlength; i++)
                 {
-                    if (string.Compare(allfields[i].PropertyName, pkField.PropertyName, true) == 0)
+                    if (string.Compare(allfields[i].PropertyName, pkField.PropertyName, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         where = where.And(new WhereClip(pkField, allValues[i], QueryOperator.Equal));
                         break;
@@ -509,11 +508,8 @@ namespace Dos.ORM
                 }
 
             }
-
             return where;
         }
-
-
         /// <summary>
         /// 生成主键条件
         /// </summary>

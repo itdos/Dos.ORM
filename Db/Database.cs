@@ -9,7 +9,7 @@
 * 创建日期：2010-2-10
 * 文件描述：
 ******************************************************
-* 修 改 人：
+* 修 改 人：ITdos
 * 修改日期：
 * 备注描述：
 *******************************************************/
@@ -1084,16 +1084,17 @@ namespace Dos.ORM
         {
             if (null == parameters || parameters.Length == 0)
                 return command;
-
+            //var i = 0;
             foreach (Parameter p in parameters)
             {
-                DbParameter dbParameter = CreateParameter(p.ParameterName);
+                DbParameter dbParameter = CreateParameter(p.ParameterName);// + i
                 dbParameter.Value = p.ParameterValue;
                 if (p.ParameterDbType.HasValue)
                     dbParameter.DbType = p.ParameterDbType.Value;
                 if (p.ParameterSize.HasValue)
                     dbParameter.Size = p.ParameterSize.Value;
                 command.Parameters.Add(dbParameter);
+                //i++;
             }
 
             return command;

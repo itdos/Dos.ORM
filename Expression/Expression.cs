@@ -9,7 +9,7 @@
 * 创建日期：2010/4/8 19:55:23
 * 文件描述：
 ******************************************************
-* 修 改 人：
+* 修 改 人：ITdos
 * 修改日期：
 * 备注描述：
 *******************************************************/
@@ -297,7 +297,7 @@ namespace Dos.ORM
                 {
                     valuestring = DataUtils.MakeUniqueKey(field);
                     //valuestring = field.tableName + field.Name;
-                    Parameter p = new Parameter(valuestring, value, field.ParameterDbType, field.ParameterSize);
+                    var p = new Parameter(valuestring, value, field.ParameterDbType, field.ParameterSize);
                     parameters.Add(p);
                 }
 

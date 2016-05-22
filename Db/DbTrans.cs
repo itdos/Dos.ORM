@@ -9,7 +9,7 @@
 * 创建日期：2010-2-10
 * 文件描述：
 ******************************************************
-* 修 改 人：
+* 修 改 人：ITdos
 * 修改日期：
 * 备注描述：
 *******************************************************/
@@ -207,7 +207,16 @@ namespace Dos.ORM
         {
             return new FromSection<TEntity>(dbSession.Db, trans);
         }
-
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <returns></returns>
+        public FromSection<TEntity> From<TEntity>(string asName)
+            where TEntity : Entity
+        {
+            return new FromSection<TEntity>(dbSession.Db, trans, asName);
+        }
 
         /// <summary>
         /// 查询
@@ -216,7 +225,7 @@ namespace Dos.ORM
         /// <returns></returns>
         public FromSection From(string tableName)
         {
-            return new FromSection(dbSession.Db, tableName, trans);
+            return new FromSection(dbSession.Db, tableName,"", trans);
         }
         #endregion
 

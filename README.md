@@ -1,6 +1,6 @@
 # Dos.ORM
 <div>
-    <span style="font-size: 12px;"><strong><span style="color:blue;">Dos.ORM</span></strong><span style="color:blue;">（原Hxj.Data）</span>于<strong><span style="color:blue;">2009</span></strong>年发布，2015年正式开源。在开发过程参考了<span style="color:blue;">NBear</span>与<span style="color:blue;">MySoft</span>，吸取了他们的一些精华，加入新思想，同时参考<span style="color:blue;">EF</span>的<span style="color:blue;">Lambda</span>语法进行大量扩展。该组件已在上百个成熟企业项目中应用。</span>
+    <span style="font-size: 12px;"><strong><span style="color:blue;">Dos.ORM</span></strong><span style="color:blue;">（原Hxj.Data）</span>于<strong><span style="color:blue;">2009</span></strong>年发布，2015年正式开源。在初期开发过程参考了<span style="color:blue;">NBear</span>与<span style="color:blue;">MySoft</span>，吸取了他们的一些精华，加入新思想，同时参考<span style="color:blue;">EF</span>的<span style="color:blue;">Lambda</span>语法进行大量扩展。该组件已在上百个成熟企业项目中应用。</span>
 </div>
 <h4>
     为什么选择<span style="color:blue;">Dos.ORM（原Hxj.Data）</span>?

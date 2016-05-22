@@ -9,7 +9,7 @@
 * 创建日期：2010-2-10
 * 文件描述：
 ******************************************************
-* 修 改 人：
+* 修 改 人：ITdos
 * 修改日期：
 * 备注描述：
 *******************************************************/
@@ -745,11 +745,11 @@ namespace Dos.ORM
             Check.Require((null != values && values.Length > 0),
                 "values could not be null or empty");
 
-            StringBuilder whereString = new StringBuilder(field.TableFieldName);
+            var whereString = new StringBuilder(field.TableFieldName);
             whereString.Append(join);
             whereString.Append("(");
-            List<Parameter> ps = new List<Parameter>();
-            StringBuilder inWhere = new StringBuilder();
+            var ps = new List<Parameter>();
+            var inWhere = new StringBuilder();
             var i = 0;
             foreach (T value in values)
             {
@@ -768,20 +768,15 @@ namespace Dos.ORM
                     if (value == null)
                         continue;
 
-
                     paraName = value.ToString();
-
 
                     if (string.IsNullOrEmpty(paraName))
                         continue;
 
                 }
 
-
                 inWhere.Append(",");
                 inWhere.Append(paraName);
-
-
             }
             whereString.Append(inWhere.ToString().Substring(1));
             whereString.Append(")");
@@ -968,9 +963,9 @@ namespace Dos.ORM
                 return null;
             if (from.DbProvider.DatabaseType == DatabaseType.MySql)
             {
-                return new WhereClip(string.Concat(field.TableFieldName, join, "(SELECT * FROM (", from.getPagedFromSection().SqlString, ") AS TEMP" + DataUtils.GetNewParamCount() + ")"), from.Parameters.ToArray());
+                return new WhereClip(string.Concat(field.TableFieldName, join, "(SELECT * FROM (", from.GetPagedFromSection().SqlString, ") AS TEMP" + DataUtils.GetNewParamCount() + ")"), from.Parameters.ToArray());
             }
-            return new WhereClip(string.Concat(field.TableFieldName, join, "(", from.getPagedFromSection().SqlString, ")"), from.Parameters.ToArray());
+            return new WhereClip(string.Concat(field.TableFieldName, join, "(", from.GetPagedFromSection().SqlString, ")"), from.Parameters.ToArray());
         }
 
         /// <summary>
@@ -1069,92 +1064,189 @@ namespace Dos.ORM
         #region 操作符重载
 
         #region WhereClip
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="leftField"></param>
+        /// <param name="rightField"></param>
+        /// <returns></returns>
         public static WhereClip operator ==(Field leftField, Field rightField)
         {
             return createWhereClip(leftField, rightField, QueryOperator.Equal);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="leftField"></param>
+        /// <param name="rightField"></param>
+        /// <returns></returns>
         public static WhereClip operator !=(Field leftField, Field rightField)
         {
             return createWhereClip(leftField, rightField, QueryOperator.NotEqual);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="leftField"></param>
+        /// <param name="rightField"></param>
+        /// <returns></returns>
         public static WhereClip operator >(Field leftField, Field rightField)
         {
             return createWhereClip(leftField, rightField, QueryOperator.Greater);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="leftField"></param>
+        /// <param name="rightField"></param>
+        /// <returns></returns>
         public static WhereClip operator >=(Field leftField, Field rightField)
         {
             return createWhereClip(leftField, rightField, QueryOperator.GreaterOrEqual);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="leftField"></param>
+        /// <param name="rightField"></param>
+        /// <returns></returns>
         public static WhereClip operator <(Field leftField, Field rightField)
         {
             return createWhereClip(leftField, rightField, QueryOperator.Less);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="leftField"></param>
+        /// <param name="rightField"></param>
+        /// <returns></returns>
         public static WhereClip operator <=(Field leftField, Field rightField)
         {
             return createWhereClip(leftField, rightField, QueryOperator.LessOrEqual);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static WhereClip operator ==(Field field, object value)
         {
             return new WhereClip(field, value, QueryOperator.Equal);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="field"></param>
+        /// <returns></returns>
         public static WhereClip operator ==(object value, Field field)
         {
             return new WhereClip(field, value, QueryOperator.Equal);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static WhereClip operator !=(Field field, object value)
         {
             return new WhereClip(field, value, QueryOperator.NotEqual);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="field"></param>
+        /// <returns></returns>
         public static WhereClip operator !=(object value, Field field)
         {
             return new WhereClip(field, value, QueryOperator.NotEqual);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static WhereClip operator >(Field field, object value)
         {
             return new WhereClip(field, value, QueryOperator.Greater);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="field"></param>
+        /// <returns></returns>
         public static WhereClip operator >(object value, Field field)
         {
             return new WhereClip(field, value, QueryOperator.Less);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static WhereClip operator >=(Field field, object value)
         {
             return new WhereClip(field, value, QueryOperator.GreaterOrEqual);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="field"></param>
+        /// <returns></returns>
         public static WhereClip operator >=(object value, Field field)
         {
             return new WhereClip(field, value, QueryOperator.LessOrEqual);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static WhereClip operator <(Field field, object value)
         {
             return new WhereClip(field, value, QueryOperator.Less);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="field"></param>
+        /// <returns></returns>
         public static WhereClip operator <(object value, Field field)
         {
             return new WhereClip(field, value, QueryOperator.Greater);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static WhereClip operator <=(Field field, object value)
         {
             return new WhereClip(field, value, QueryOperator.LessOrEqual);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="field"></param>
+        /// <returns></returns>
         public static WhereClip operator <=(object value, Field field)
         {
             return new WhereClip(field, value, QueryOperator.GreaterOrEqual);
         }
-
 
         #endregion
 
@@ -1336,15 +1428,18 @@ namespace Dos.ORM
     /// </summary>
     public class FieldAttribute : Attribute
     {
-        private string m_Field;
-        public string Field
-        {
-            get { return m_Field; }
-            set { m_Field = value; }
-        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Field { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fieldName"></param>
         public FieldAttribute(string fieldName)
         {
-            this.m_Field = fieldName;
+            this.Field = fieldName;
         }
     }
 

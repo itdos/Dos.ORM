@@ -9,7 +9,7 @@
 * 创建日期：2010-2-10
 * 文件描述：
 ******************************************************
-* 修 改 人：
+* 修 改 人：ITdos
 * 修改日期：
 * 备注描述：
 *******************************************************/
@@ -85,7 +85,7 @@ namespace Dos.ORM
         /// </summary>
         /// <param name="tableName"></param>
         /// <param name="username"></param>
-        public Table(string tableName,string username)
+        public Table(string tableName, string username)
         {
             this._tableName = tableName;
             this._userName = username;
@@ -145,6 +145,27 @@ namespace Dos.ORM
         /// 修改的字段集合
         /// </summary>
         private List<ModifyField> _modifyFields = new List<ModifyField>();
+        /// <summary>
+        /// 修改的字段集合 v1.10.5.6及以上版本可使用。
+        /// </summary>
+        private List<string> _modifyFieldsStr = new List<string>();
+
+        //private bool isFastModel = false;
+        ///// <summary>
+        ///// 是否是v1.10.5.6及以上版本实体。
+        ///// </summary>
+        //public bool V1_10_5_6_Plus
+        //{
+        //    get { return isFastModel; }
+        //    set { isFastModel = value; }
+        //}
+        /// <summary>
+        /// 是否是v1.10.5.6及以上版本实体。
+        /// </summary>
+        public virtual bool V1_10_5_6_Plus()
+        {
+            return false;
+        }
         #region 构造函数
 
         /// <summary>
@@ -154,7 +175,7 @@ namespace Dos.ORM
         {
             var tbl = GetType().GetCustomAttribute<Table>(false) as Table;
             _tableName = tbl != null ? tbl.GetTableName() : GetType().Name;
-            _userName = tbl != null ? tbl.GetUserName() :"";
+            _userName = tbl != null ? tbl.GetUserName() : "";
             _isAttached = true;
         }
         /// <summary>
@@ -171,7 +192,7 @@ namespace Dos.ORM
         /// </summary>
         /// <param name="tableName">表名</param>
         /// <param name="userName"></param>
-        public Entity(string tableName,string userName)
+        public Entity(string tableName, string userName)
         {
             this._tableName = tableName;
             this._userName = userName;
@@ -234,6 +255,18 @@ namespace Dos.ORM
             _entityState = EntityState.Unchanged;
         }
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="f"></param>
+        public void OnPropertyValueChange(string f)
+        {
+            if (_isAttached)
+            {
+                _modifyFieldsStr.Add(f);
+            }
+        }
+
+        /// <summary>
         /// 记录字段修改
         /// </summary>
         /// <param name="field"></param>
@@ -267,6 +300,7 @@ namespace Dos.ORM
         public void ClearModifyFields()
         {
             _modifyFields.Clear();
+            _modifyFieldsStr.Clear();
         }
         //2015-08-10 将没有任何地方使用此方法
         /// <summary>
@@ -313,6 +347,20 @@ namespace Dos.ORM
             return null;
         }
         /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool IsModify()
+        {
+            //如果是fastModel，并且集成为空，返回所有字段
+            if (V1_10_5_6_Plus())
+            {
+                return _modifyFieldsStr.Count > 0;
+            }
+            return _modifyFields.Count > 0;
+        }
+
+        /// <summary>
         /// 返回修改记录
         /// </summary>
         public List<ModifyField> GetModifyFields()
@@ -330,6 +378,13 @@ namespace Dos.ORM
                 return newFileds;
             }
             return _modifyFields;
+        }
+        /// <summary>
+        /// 返回修改记录
+        /// </summary>
+        public List<string> GetModifyFieldsStr()
+        {
+            return _modifyFieldsStr.Distinct().ToList();
         }
         private class ModelComparer : IEqualityComparer<ModifyField>
         {

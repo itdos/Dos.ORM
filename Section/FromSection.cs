@@ -9,36 +9,23 @@
 * 创建日期：2010/2/10
 * 文件描述：
 ******************************************************
-* 修 改 人：
+* 修 改 人：ITdos
 * 修改日期：
 * 备注描述：
 *******************************************************/
 #endregion
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Data;
 using System.Data.Common;
-using System.Reflection;
-using System.Reflection.Emit;
-using System.Threading;
-using Dos.ORM.Common;
-using System.Web;
 using System.Web.Caching;
-
 
 namespace Dos.ORM
 {
-    public static class aa
-    {
-        
-    }
-
     /// <summary>
     /// 查询
     /// </summary>
@@ -63,28 +50,41 @@ namespace Dos.ORM
         /// <param name="database"></param>
         /// <param name="trans"></param>
         public FromSection(Database database, DbTransaction trans)
-            : base(database, database.DbProvider.BuildTableName(EntityCache.GetTableName<T>(), EntityCache.GetUserName<T>()), trans)
+            : base(database, database.DbProvider.BuildTableName(EntityCache.GetTableName<T>(), EntityCache.GetUserName<T>()), "", trans)
+        {
+
+        }
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="database"></param>
+        /// <param name="trans"></param>
+        /// <param name="asName"></param>
+        public FromSection(Database database, DbTransaction trans, string asName)
+            : base(database, database.DbProvider.BuildTableName(EntityCache.GetTableName<T>(), EntityCache.GetUserName<T>()), asName, trans)
         {
 
         }
 
-        #region 连接  join
+        #region 连接  Join
 
         /// <summary>
-        /// Inner Join。Lambda写法：.InnerJoin&lt;Model2>((d1,d2) => d1.ID == d2.ID)
+        /// Inner Join。Lambda写法：.InnerJoin&lt;Model2>((a, b) => a.ID == b.ID)
         /// </summary>
-        public FromSection<T> InnerJoin<TEntity>(WhereClip where)
+        public FromSection<T> InnerJoin<TEntity>(WhereClip where, string asName = "", string asName2 = "")
              where TEntity : Entity
         {
-            return join(EntityCache.GetTableName<TEntity>(),EntityCache.GetUserName<TEntity>(), where, JoinType.InnerJoin);
+            return Join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), where, JoinType.InnerJoin);
         }
         /// <summary>
-        /// Inner Join。Lambda写法：.InnerJoin&lt;Model2>((d1,d2) => d1.ID == d2.ID)
+        /// Inner Join。Lambda写法：.InnerJoin&lt;Model2>((a, b) => a.ID == b.ID)
         /// </summary>
-        public FromSection<T> InnerJoin<TEntity>(Expression<Func<T, TEntity, bool>> lambdaWhere)
+        public FromSection<T> InnerJoin<TEntity>(Expression<Func<T, TEntity, bool>> lambdaWhere, string asName = "")
              where TEntity : Entity
         {
-            return join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.InnerJoin);
+            //this.asNames.Add(EntityCache.GetTableName<TEntity>() + "|" +asName);
+            //this.asNames.Add(EntityCache.GetTableName<TEntity>() + "|" + asName2);
+            return Join(EntityCache.GetTableName<TEntity>() + "|" + asName, EntityCache.GetUserName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.InnerJoin);
         }
         /// <summary>
         /// Cross Join
@@ -95,7 +95,7 @@ namespace Dos.ORM
         public FromSection<T> CrossJoin<TEntity>(WhereClip where)
             where TEntity : Entity
         {
-            return join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), where, JoinType.CrossJoin);
+            return Join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), where, JoinType.CrossJoin);
         }
         /// <summary>
         /// Right Join
@@ -106,7 +106,7 @@ namespace Dos.ORM
         public FromSection<T> RightJoin<TEntity>(WhereClip where)
             where TEntity : Entity
         {
-            return join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), where, JoinType.RightJoin);
+            return Join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), where, JoinType.RightJoin);
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace Dos.ORM
         public FromSection<T> LeftJoin<TEntity>(WhereClip where)
              where TEntity : Entity
         {
-            return join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), where, JoinType.LeftJoin);
+            return Join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), where, JoinType.LeftJoin);
         }
         /// <summary>
         /// Left Join。Lambda写法：.LeftJoin&lt;Model2>((d1,d2) => d1.ID == d2.ID)
@@ -129,7 +129,7 @@ namespace Dos.ORM
         public FromSection<T> LeftJoin<TEntity>(Expression<Func<T, TEntity, bool>> lambdaWhere)
              where TEntity : Entity
         {
-            return join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.LeftJoin);
+            return Join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.LeftJoin);
         }
         /// <summary>
         /// Full Join
@@ -140,7 +140,7 @@ namespace Dos.ORM
         public FromSection<T> FullJoin<TEntity>(WhereClip where)
             where TEntity : Entity
         {
-            return join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), where, JoinType.FullJoin);
+            return Join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), where, JoinType.FullJoin);
         }
 
         /// <summary>
@@ -151,9 +151,9 @@ namespace Dos.ORM
         /// <param name="where"></param>
         /// <param name="joinType"></param>
         /// <returns></returns>
-        private new FromSection<T> join(string tableName,string userName, WhereClip where, JoinType joinType)
+        private FromSection<T> Join(string tableName, string userName, WhereClip where, JoinType joinType)
         {
-            return (FromSection<T>)base.join(tableName,userName, where, joinType);
+            return (FromSection<T>)base.join(tableName, userName, where, joinType);
 
             //if (string.IsNullOrEmpty(tableName) || WhereClip.IsNullOrEmpty(where))
             //    return this;
@@ -235,11 +235,11 @@ namespace Dos.ORM
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
-        public new FromSection<T> Having(Where where)
+        public FromSection<T> Having(Where where)
         {
             return (FromSection<T>)base.Having(where.ToWhereClip());
         }
-        public new FromSection<T> Having(Expression<Func<T, bool>> lambdaHaving)
+        public FromSection<T> Having(Expression<Func<T, bool>> lambdaHaving)
         {
             return (FromSection<T>)base.Having(ExpressionToClip<T>.ToWhereClip(lambdaHaving));
         }
@@ -251,79 +251,133 @@ namespace Dos.ORM
             return (FromSection<T>)base.Where(where);
         }
         /// <summary>
-        /// whereclip
+        /// 
         /// </summary>
-        public new FromSection<T> Where(Where<T> whereParam)
-        {
-            return (FromSection<T>)base.Where(whereParam.ToWhereClip());
-        }
-        /// <summary>
-        /// whereclip
-        /// </summary>
-        public new FromSection<T> Where(Where whereParam)
+        /// <param name="whereParam"></param>
+        /// <returns></returns>
+        public  FromSection<T> Where(Where<T> whereParam)
         {
             return (FromSection<T>)base.Where(whereParam.ToWhereClip());
         }
         /// <summary>
         /// 
         /// </summary>
-        public new FromSection<T> Where(Expression<Func<T, bool>> lambdaWhere)
+        /// <param name="whereParam"></param>
+        /// <returns></returns>
+        public FromSection<T> Where(Where whereParam)
+        {
+            return (FromSection<T>)base.Where(whereParam.ToWhereClip());
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public FromSection<T> Where(Expression<Func<T, bool>> lambdaWhere)
         {
             return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
         }
         /// <summary>
         /// 
         /// </summary>
-        public new FromSection<T> Where<T2>(Expression<Func<T, T2, bool>> lambdaWhere)
+        /// <typeparam name="T2"></typeparam>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public FromSection<T> Where<T2>(Expression<Func<T, T2, bool>> lambdaWhere)
         {
             return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
         }
         /// <summary>
         /// 
         /// </summary>
-        public new FromSection<T> Where<T2, T3>(Expression<Func<T, T2, T3, bool>> lambdaWhere)
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="T3"></typeparam>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public FromSection<T> Where<T2, T3>(Expression<Func<T, T2, T3, bool>> lambdaWhere)
         {
             return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
         }
         /// <summary>
         /// 
         /// </summary>
-        public new FromSection<T> Where<T2, T3, T4>(Expression<Func<T, T2, T3, T4, bool>> lambdaWhere)
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="T3"></typeparam>
+        /// <typeparam name="T4"></typeparam>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public FromSection<T> Where<T2, T3, T4>(Expression<Func<T, T2, T3, T4, bool>> lambdaWhere)
         {
             return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
         }
         /// <summary>
         /// 
         /// </summary>
-        public new FromSection<T> Where<T2, T3, T4, T5>(Expression<Func<T, T2, T3, T4, T5, bool>> lambdaWhere)
+        public FromSection<T> Where<T2, T3, T4, T5>(Expression<Func<T, T2, T3, T4, T5, bool>> lambdaWhere)
         {
             return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
         }
         /// <summary>
         /// 
         /// </summary>
-        public new FromSection<T> Where<T2, T3, T4, T5, T6>(Expression<Func<T, T2, T3, T4, T5, T6, bool>> lambdaWhere)
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="T3"></typeparam>
+        /// <typeparam name="T4"></typeparam>
+        /// <typeparam name="T5"></typeparam>
+        /// <typeparam name="T6"></typeparam>
+        /// <param name="lambdaWhere"></param>
+        /// <returns></returns>
+        public FromSection<T> Where<T2, T3, T4, T5, T6>(Expression<Func<T, T2, T3, T4, T5, T6, bool>> lambdaWhere)
         {
             return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
         }
 
-        public new FromSection<T> Select<T2>(Expression<Func<T, T2, bool>> lambdaWhere)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lambdaWhere"></param>
+        /// <typeparam name="T2"></typeparam>
+        /// <returns></returns>
+        public FromSection<T> Select<T2>(Expression<Func<T, T2, bool>> lambdaWhere)
         {
             return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
         }
-        public new FromSection<T> Select<T2, T3>(Expression<Func<T, T2, T3, bool>> lambdaWhere)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lambdaWhere"></param>
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="T3"></typeparam>
+        /// <returns></returns>
+        public FromSection<T> Select<T2, T3>(Expression<Func<T, T2, T3, bool>> lambdaWhere)
         {
             return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
         }
-        public new FromSection<T> Select<T2, T3, T4>(Expression<Func<T, T2, T3, T4, bool>> lambdaWhere)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lambdaWhere"></param>
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="T3"></typeparam>
+        /// <typeparam name="T4"></typeparam>
+        /// <returns></returns>
+        public FromSection<T> Select<T2, T3, T4>(Expression<Func<T, T2, T3, T4, bool>> lambdaWhere)
         {
             return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
         }
-        public new FromSection<T> Select<T2, T3, T4, T5>(Expression<Func<T, T2, T3, T4, T5, bool>> lambdaWhere)
+        public FromSection<T> Select<T2, T3, T4, T5>(Expression<Func<T, T2, T3, T4, T5, bool>> lambdaWhere)
         {
             return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
         }
-        public new FromSection<T> Select<T2, T3, T4, T5, T6>(Expression<Func<T, T2, T3, T4, T5, T6, bool>> lambdaWhere)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lambdaWhere"></param>
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="T3"></typeparam>
+        /// <typeparam name="T4"></typeparam>
+        /// <typeparam name="T5"></typeparam>
+        /// <typeparam name="T6"></typeparam>
+        /// <returns></returns>
+        public FromSection<T> Select<T2, T3, T4, T5, T6>(Expression<Func<T, T2, T3, T4, T5, T6, bool>> lambdaWhere)
         {
             return Where(ExpressionToClip<T>.ToWhereClip(lambdaWhere));
         }
@@ -349,25 +403,21 @@ namespace Dos.ORM
         /// <summary>
         /// 
         /// </summary>
-        public new FromSection<T> OrderBy(params Field[] f)
+        /// <param name="f"></param>
+        /// <returns></returns>
+        public FromSection<T> OrderBy(params Field[] f)
         {
-            var gb = OrderByClip.None;
-            foreach (var field in f)
-            {
-                gb = gb && field.Asc;
-            }
+            var gb = f.Aggregate(OrderByClip.None, (current, field) => current && field.Asc);
             return (FromSection<T>)base.OrderBy(gb);
         }
         /// <summary>
         /// 
         /// </summary>
-        public new FromSection<T> OrderByDescending(params Field[] f)
+        /// <param name="f"></param>
+        /// <returns></returns>
+        public FromSection<T> OrderByDescending(params Field[] f)
         {
-            var gb = OrderByClip.None;
-            foreach (var field in f)
-            {
-                gb = gb && field.Desc;
-            }
+            var gb = f.Aggregate(OrderByClip.None, (current, field) => current && field.Desc);
             return (FromSection<T>)base.OrderBy(gb);
         }
         #endregion
@@ -390,13 +440,17 @@ namespace Dos.ORM
         /// <summary>
         /// 
         /// </summary>
-        public new FromSection<T> OrderByDescending(Expression<Func<T, object>> lambdaOrderBy)
+        /// <param name="lambdaOrderBy"></param>
+        /// <returns></returns>
+        public FromSection<T> OrderByDescending(Expression<Func<T, object>> lambdaOrderBy)
         {
             return (FromSection<T>)base.OrderBy(ExpressionToClip<T>.ToOrderByDescendingClip(lambdaOrderBy));
         }
         /// <summary>
-        /// orderby
+        /// 
         /// </summary>
+        /// <param name="orderBys"></param>
+        /// <returns></returns>
         public new FromSection<T> OrderBy(params OrderByClip[] orderBys)
         {
             return (FromSection<T>)base.OrderBy(orderBys);
@@ -407,46 +461,82 @@ namespace Dos.ORM
         public new FromSection<T> Select(params Field[] fields)
         {
             return (FromSection<T>)base.Select(fields);
-        }/// <summary>
+        }
+        /// <summary>
         /// 
         /// </summary>
-        public new FromSection<T> Select(Expression<Func<T, object>> lambdaSelect)
+        /// <param name="lambdaSelect"></param>
+        /// <returns></returns>
+        public FromSection<T> Select(Expression<Func<T, object>> lambdaSelect)
         {
             return (FromSection<T>)base.Select(ExpressionToClip<T>.ToSelect(lambdaSelect));
-        }/// <summary>
+        }
+        /// <summary>
         /// 
         /// </summary>
-        public new FromSection<T> Select<T2>(Expression<Func<T, T2, object>> lambdaSelect)
+        /// <typeparam name="T2"></typeparam>
+        /// <param name="lambdaSelect"></param>
+        /// <returns></returns>
+        public FromSection<T> Select<T2>(Expression<Func<T, T2, object>> lambdaSelect)
         {
             return (FromSection<T>)base.Select(ExpressionToClip<T>.ToSelect(lambdaSelect));
-        }/// <summary>
+        }
+        /// <summary>
         /// 
         /// </summary>
-        public new FromSection<T> Select<T2, T3>(Expression<Func<T, T2, T3, object>> lambdaSelect)
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="T3"></typeparam>
+        /// <param name="lambdaSelect"></param>
+        /// <returns></returns>
+        public FromSection<T> Select<T2, T3>(Expression<Func<T, T2, T3, object>> lambdaSelect)
         {
             return (FromSection<T>)base.Select(ExpressionToClip<T>.ToSelect(lambdaSelect));
-        }/// <summary>
+        }
+        /// <summary>
         /// 
         /// </summary>
-        public new FromSection<T> Select<T2, T3, T4>(Expression<Func<T, T2, T3, T4, object>> lambdaSelect)
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="T3"></typeparam>
+        /// <typeparam name="T4"></typeparam>
+        /// <param name="lambdaSelect"></param>
+        /// <returns></returns>
+        public FromSection<T> Select<T2, T3, T4>(Expression<Func<T, T2, T3, T4, object>> lambdaSelect)
         {
             return (FromSection<T>)base.Select(ExpressionToClip<T>.ToSelect(lambdaSelect));
-        }/// <summary>
+        }
+        /// <summary>
         /// 
         /// </summary>
-        public new FromSection<T> Select<T2, T3, T4, T5>(Expression<Func<T, T2, T3, T4, T5, object>> lambdaSelect)
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="T3"></typeparam>
+        /// <typeparam name="T4"></typeparam>
+        /// <typeparam name="T5"></typeparam>
+        /// <param name="lambdaSelect"></param>
+        /// <returns></returns>
+        public FromSection<T> Select<T2, T3, T4, T5>(Expression<Func<T, T2, T3, T4, T5, object>> lambdaSelect)
         {
             return (FromSection<T>)base.Select(ExpressionToClip<T>.ToSelect(lambdaSelect));
-        }/// <summary>
+        }
+        /// <summary>
         /// 
         /// </summary>
-        public new FromSection<T> Select<T2, T3, T4, T5, T6>(Expression<Func<T, T2, T3, T4, T5, T6, object>> lambdaSelect)
+        /// <typeparam name="T2"></typeparam>
+        /// <typeparam name="T3"></typeparam>
+        /// <typeparam name="T4"></typeparam>
+        /// <typeparam name="T5"></typeparam>
+        /// <typeparam name="T6"></typeparam>
+        /// <param name="lambdaSelect"></param>
+        /// <returns></returns>
+        public FromSection<T> Select<T2, T3, T4, T5, T6>(Expression<Func<T, T2, T3, T4, T5, T6, object>> lambdaSelect)
         {
             return (FromSection<T>)base.Select(ExpressionToClip<T>.ToSelect(lambdaSelect));
-        }/// <summary>
+        }
+        /// <summary>
         /// 
         /// </summary>
-        public new FromSection<T> Select(Expression<Func<T, bool>> lambdaSelect)
+        /// <param name="lambdaSelect"></param>
+        /// <returns></returns>
+        public FromSection<T> Select(Expression<Func<T, bool>> lambdaSelect)
         {
             return (FromSection<T>)base.Select(ExpressionToClip<T>.ToSelect(lambdaSelect));
         }
@@ -485,26 +575,20 @@ namespace Dos.ORM
         /// <summary>
         /// 设置默认排序
         /// </summary>
-        private void setDefaultOrderby()
+        private void SetDefaultOrderby()
         {
-            if (OrderByClip.IsNullOrEmpty(this.OrderByClip))
+            if (!OrderByClip.IsNullOrEmpty(this.OrderByClip)) return;
+            if (fields.Count > 0)
             {
-                if (fields.Count > 0)
-                {
-                    foreach (Field f in fields)
-                    {
-                        if (f.PropertyName.Trim().Equals("*"))
-                        {
-                            setPrimarykeyOrderby();
-                            break;
-                        }
-                    }
-
-                }
-                else
+                if (fields.Any(f => f.PropertyName.Trim().Equals("*")))
                 {
                     setPrimarykeyOrderby();
                 }
+
+            }
+            else
+            {
+                setPrimarykeyOrderby();
             }
         }
 
@@ -518,9 +602,8 @@ namespace Dos.ORM
         {
             if (startIndex > 1)
             {
-                setDefaultOrderby();
+                SetDefaultOrderby();
             }
-
             return (FromSection<T>)base.From(startIndex, endIndex);
             //return (FromSection<T>)dbProvider.CreatePageFromSection(this, startIndex, endIndex);
         }
@@ -584,7 +667,7 @@ namespace Dos.ORM
         #endregion
 
         #region 查询
-        private readonly string[] notClass = new string[] { "String" };
+        private readonly string[] _notClass = new string[] { "String" };
         /// <summary>
         /// 
         /// </summary>
@@ -597,45 +680,45 @@ namespace Dos.ORM
             {
                 return ToList() as List<TResult>;
             }
-            FromSection from = getPagedFromSection();
-            if (typet.IsClass && !notClass.Contains(typet.Name))
+            var from = GetPagedFromSection();
+            if (typet.IsClass && !_notClass.Contains(typet.Name))
             {
-                string cacheKey = string.Format("{0}List|{1}", dbProvider.ConnectionStringsName, formatSql(from.SqlString, from));
-                object cacheValue = getCache(cacheKey);
+                string cacheKey = String.Format("{0}List|{1}", dbProvider.ConnectionStringsName,
+                    formatSql(@from.SqlString, @from));
+                var cacheValue = getCache(cacheKey);
 
                 if (null != cacheValue)
                 {
                     return (List<TResult>)cacheValue;
                 }
-                List<TResult> list = new List<TResult>();
-                using (IDataReader reader = ToDataReader(from))
+                List<TResult> list;
+                using (var reader = ToDataReader(from))
                 {
                     list = EntityUtils.ReaderToEnumerable<TResult>(reader).ToList();
                     reader.Close();
                 }
-                setCache<List<TResult>>(list, cacheKey);
+                setCache(list, cacheKey);
                 return list;
             }
             if (!@from.Fields.Any())
             {
                 throw new Exception(".ToList<" + typet.Name + ">()至少需要.Select()一个字段！");
             }
-            else if (@from.Fields.Count > 1)
+            if (@from.Fields.Count > 1)
             {
                 throw new Exception(".ToList<" + typet.Name + ">()最多.Select()一个字段！");
             }
-            else
             {
-                string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "List", "|",
+                var cacheKey = string.Concat(dbProvider.ConnectionStringsName, "List", "|",
                     formatSql(@from.SqlString, @from));
-                object cacheValue = getCache(cacheKey);
+                var cacheValue = getCache(cacheKey);
 
                 if (null != cacheValue)
                 {
                     return (List<TResult>)cacheValue;
                 }
-                List<TResult> list = new List<TResult>();
-                using (IDataReader reader = ToDataReader(@from))
+                var list = new List<TResult>();
+                using (var reader = ToDataReader(@from))
                 {
                     while (reader.Read())
                     {
@@ -643,7 +726,7 @@ namespace Dos.ORM
                     }
                     reader.Close();
                 }
-                setCache<List<TResult>>(list, cacheKey);
+                setCache(list, cacheKey);
                 return list;
             }
         }
@@ -653,19 +736,20 @@ namespace Dos.ORM
         /// <returns></returns>
         public List<T> ToList()
         {
-            FromSection from = getPagedFromSection();
-            string cacheKey = string.Format("{0}List|{1}",dbProvider.ConnectionStringsName, formatSql(from.SqlString, from));
-            object cacheValue = getCache(cacheKey);
+            var from = GetPagedFromSection();
+            string cacheKey = String.Format("{0}List|{1}", dbProvider.ConnectionStringsName,
+                formatSql(@from.SqlString, @from));
+            var cacheValue = getCache(cacheKey);
             if (null != cacheValue)
             {
                 return (List<T>)cacheValue;
             }
-            List<T> list = new List<T>();
-            using (IDataReader reader = ToDataReader(from))
+            List<T> list;
+            using (var reader = ToDataReader(from))
             {
                 list = EntityUtils.ReaderToEnumerable<T>(reader).ToList();
             }
-            setCache<List<T>>(list, cacheKey);
+            setCache(list, cacheKey);
             //2015-09-08
             foreach (var m in list)
             {
@@ -679,16 +763,16 @@ namespace Dos.ORM
         /// <returns></returns>
         public IEnumerable<T> ToEnumerable()
         {
-            FromSection from = getPagedFromSection();
-            using (IDataReader reader = ToDataReader(from))
+            var from = GetPagedFromSection();
+            using (var reader = ToDataReader(from))
             {
                 var info = new EntityUtils.CacheInfo
                 {
-                    Deserializer = EntityUtils.GetDeserializer(typeof (T), reader, 0, -1, false)
+                    Deserializer = EntityUtils.GetDeserializer(typeof(T), reader, 0, -1, false)
                 };
                 while (reader.Read())
                 {
-                    dynamic next= info.Deserializer(reader);
+                    dynamic next = info.Deserializer(reader);
                     yield return (T)next;
                 }
             }
@@ -732,7 +816,7 @@ namespace Dos.ORM
             {
                 return ToFirst() as TResult;
             }
-            FromSection from = this.Top(1).getPagedFromSection();
+            FromSection from = this.Top(1).GetPagedFromSection();
             //string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "FirstT", "|", formatSql(from.SqlString, from));
             string cacheKey = string.Format("{0}FirstT|{1}", dbProvider.ConnectionStringsName, formatSql(from.SqlString, from));
             object cacheValue = getCache(cacheKey);
@@ -762,7 +846,7 @@ namespace Dos.ORM
         /// <returns></returns>
         public T ToFirst()
         {
-            FromSection from = this.Top(1).getPagedFromSection();
+            FromSection from = this.Top(1).GetPagedFromSection();
             string cacheKey = string.Format("{0}FirstT|{1}", dbProvider.ConnectionStringsName, formatSql(from.SqlString, from));
             object cacheValue = getCache(cacheKey);
 
@@ -870,18 +954,61 @@ namespace Dos.ORM
     public class FromSection
     {
         #region 变量
-
+        /// <summary>
+        /// 
+        /// </summary>
         protected WhereClip where = WhereClip.All;
+        /// <summary>
+        /// 
+        /// </summary>
         protected WhereClip havingWhere = WhereClip.All;
+        /// <summary>
+        /// 
+        /// </summary>
         protected OrderByClip orderBy = OrderByClip.None;
+        /// <summary>
+        /// 
+        /// </summary>
         protected GroupByClip groupBy = GroupByClip.None;
+        /// <summary>
+        /// 
+        /// </summary>
         protected string tableName;
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        protected string asName;
+        /// <summary>
+        /// 
+        /// </summary>
+        //public List<string> asNames = new List<string>();//2016-05-10新增
+        /// <summary>
+        /// 
+        /// </summary>
         protected List<Parameter> parameters = new List<Parameter>();
+        /// <summary>
+        /// 
+        /// </summary>
         protected List<Field> fields = new List<Field>();
+        /// <summary>
+        /// 
+        /// </summary>
         protected DbProvider dbProvider;
+        /// <summary>
+        /// 
+        /// </summary>
         protected Dictionary<string, KeyValuePair<string, WhereClip>> joins = new Dictionary<string, KeyValuePair<string, WhereClip>>();
+        /// <summary>
+        /// 
+        /// </summary>
         protected Database database;
+        /// <summary>
+        /// 
+        /// </summary>
         protected string distinctString;
+        /// <summary>
+        /// 
+        /// </summary>
         protected string prefixString;
 
 
@@ -927,6 +1054,11 @@ namespace Dos.ORM
         /// 事务   -- 查询
         /// </summary>
         protected DbTransaction trans;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected int Identity { get; set; } = 0;
         #endregion
 
         #region 属性
@@ -1308,17 +1440,27 @@ namespace Dos.ORM
         /// <param name="database"></param>
         /// <param name="tableName"></param>
         public FromSection(Database database, string tableName)
-            : this(database, tableName, (DbTransaction)null)
+            : this(database, tableName, "", (DbTransaction)null)
         {
         }
-
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="database"></param>
         /// <param name="tableName"></param>
+        /// <param name="asName"></param>
+        public FromSection(Database database, string tableName, string asName)
+            : this(database, tableName, asName, (DbTransaction)null)
+        {
+        }
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="database"></param>
+        /// <param name="tableName"></param>
+        /// <param name="asName"></param>
         /// <param name="trans"></param>
-        public FromSection(Database database, string tableName, DbTransaction trans)
+        public FromSection(Database database, string tableName, string asName, DbTransaction trans)
         {
             Check.Require(database, "database", Check.NotNull);
             Check.Require(tableName, "tableName", Check.NotNullOrEmpty);
@@ -1327,6 +1469,8 @@ namespace Dos.ORM
             this.dbProvider = database.DbProvider;
             this.database = database;
             this.tableName = tableName;
+            this.asName = asName;
+            //asNames.Add(tableName + "|" +asName);
             this.typeTableName = tableName.Trim(dbProvider.LeftToken, dbProvider.RightToken);
         }
 
@@ -1440,17 +1584,11 @@ namespace Dos.ORM
         /// <returns></returns>
         public FromSection GroupBy(params Field[] fields)
         {
-            if (null != fields && fields.Length > 0)
-            {
-                GroupByClip tempgroupby = GroupByClip.None;
-                foreach (Field f in fields)
-                {
-                    tempgroupby = tempgroupby && f.GroupBy;
-                }
-                //2015-09-08修改
-                this.groupBy = tempgroupby;
-                //this.groupBy = this.groupBy && tempgroupby;
-            }
+            if (null == fields || fields.Length <= 0) return this;
+            var tempgroupby = fields.Aggregate(GroupByClip.None, (current, f) => current && f.GroupBy);
+            //2015-09-08修改
+            this.groupBy = tempgroupby;
+            //this.groupBy = this.groupBy && tempgroupby;
             return this;
         }
 
@@ -1475,17 +1613,11 @@ namespace Dos.ORM
         /// <returns></returns>
         public FromSection OrderBy(params OrderByClip[] orderBys)
         {
-            if (null != orderBys && orderBys.Length > 0)
-            {
-                OrderByClip temporderby = OrderByClip.None;
-                foreach (OrderByClip ob in orderBys)
-                {
-                    temporderby = temporderby && ob;
-                }
-                //2015-09-08修改
-                this.orderBy = temporderby;
-                //this.orderBy = this.orderBy && temporderby;
-            }
+            if (null == orderBys || orderBys.Length <= 0) return this;
+            var temporderby = orderBys.Aggregate(OrderByClip.None, (current, ob) => current && ob);
+            //2015-09-08修改
+            this.orderBy = temporderby;
+            //this.orderBy = this.orderBy && temporderby;
             return this;
         }
 
@@ -1635,11 +1767,11 @@ namespace Dos.ORM
             //FromSection from;
 
             //if (!isPageFromSection)
-            //    from = getPagedFromSection();
+            //    from = GetPagedFromSection();
             //else
             //    from = this;
 
-            return Count(getPagedFromSection());
+            return Count(GetPagedFromSection());
         }
 
         /// <summary>
@@ -1728,7 +1860,7 @@ namespace Dos.ORM
         /// <returns></returns>
         public DataSet ToDataSet()
         {
-            FromSection from = getPagedFromSection();
+            FromSection from = GetPagedFromSection();
             //string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "DataSet", "|", formatSql(from.SqlString, from));
             string cacheKey = string.Format("{0}DataSet|{1}", dbProvider.ConnectionStringsName, formatSql(from.SqlString, from));
             object cacheValue = getCache(cacheKey);
@@ -1739,9 +1871,9 @@ namespace Dos.ORM
 
             DataSet ds;
             if (trans == null)
-                ds = database.ExecuteDataSet(createDbCommand(from));
+                ds = database.ExecuteDataSet(CreateDbCommand(from));
             else
-                ds = database.ExecuteDataSet(createDbCommand(from), trans);
+                ds = database.ExecuteDataSet(CreateDbCommand(from), trans);
 
             setCache<DataSet>(ds, cacheKey);
 
@@ -1752,26 +1884,23 @@ namespace Dos.ORM
         /// 获取分页过的FromSection
         /// </summary>
         /// <returns></returns>
-        internal FromSection getPagedFromSection()
+        internal FromSection GetPagedFromSection()
         {
             if (startIndex > 0 && endIndex > 0 && !isPageFromSection)
             {
                 isPageFromSection = true;
                 return dbProvider.CreatePageFromSection(this, startIndex, endIndex);
             }
-            else
-            {
-                return this;
-            }
+            return this;
         }
 
         /// <summary>
         /// 创建  查询的DbCommand
         /// </summary>
         /// <returns></returns>
-        protected DbCommand createDbCommand(FromSection from)
+        protected DbCommand CreateDbCommand(FromSection from)
         {
-            DbCommand dbCommand = database.GetSqlStringCommand(from.SqlString);
+            var dbCommand = database.GetSqlStringCommand(from.SqlString);
             database.AddCommandParameter(dbCommand, from.Parameters.ToArray());
             return dbCommand;
         }
@@ -1782,7 +1911,7 @@ namespace Dos.ORM
         /// <returns></returns>
         public IDataReader ToDataReader()
         {
-            return ToDataReader(getPagedFromSection());
+            return ToDataReader(GetPagedFromSection());
         }
 
         /// <summary>
@@ -1792,10 +1921,9 @@ namespace Dos.ORM
         /// <returns></returns>
         protected IDataReader ToDataReader(FromSection from)
         {
-            if (trans == null)
-                return database.ExecuteReader(createDbCommand(from));
-            else
-                return database.ExecuteReader(createDbCommand(from), trans);
+            return trans == null
+                ? database.ExecuteReader(CreateDbCommand(@from))
+                : database.ExecuteReader(CreateDbCommand(@from), trans);
         }
 
         /// <summary>
@@ -1816,7 +1944,7 @@ namespace Dos.ORM
             Check.Require(this.fields.Count == 1, "fields must be one!");
             Check.Require(!this.fields[0].PropertyName.Trim().Equals("*"), "fields cound not be * !");
 
-            FromSection from = getPagedFromSection();
+            FromSection from = GetPagedFromSection();
             //string cacheKey = string.Concat(dbProvider.ConnectionStringsName, "Scalar", "|", formatSql(from.SqlString, from));
             string cacheKey = string.Format("{0}Scalar|{1}", dbProvider.ConnectionStringsName, formatSql(from.SqlString, from));
             object cacheValue = getCache(cacheKey);
@@ -1828,9 +1956,9 @@ namespace Dos.ORM
             object returnValue;
 
             if (trans == null)
-                returnValue = database.ExecuteScalar(createDbCommand(from));
+                returnValue = database.ExecuteScalar(CreateDbCommand(from));
             else
-                returnValue = database.ExecuteScalar(createDbCommand(from), trans);
+                returnValue = database.ExecuteScalar(CreateDbCommand(from), trans);
 
             setCache<object>(returnValue, cacheKey);
 
@@ -1862,7 +1990,7 @@ namespace Dos.ORM
         /// <param name="where"></param>
         /// <param name="joinType"></param>
         /// <returns></returns>
-        protected FromSection join(string tableName,string userName, WhereClip where, JoinType joinType)
+        protected FromSection join(string tableName, string userName, WhereClip where, JoinType joinType)
         {
             if (string.IsNullOrEmpty(tableName) || WhereClip.IsNullOrEmpty(where))
                 return this;
@@ -1911,9 +2039,9 @@ namespace Dos.ORM
         /// <param name="userName"></param>
         /// <param name="where"></param>
         /// <returns></returns>
-        public FromSection InnerJoin(string tableName, WhereClip where,string userName = null)
+        public FromSection InnerJoin(string tableName, WhereClip where, string userName = null)
         {
-            return join(tableName,userName, where, JoinType.InnerJoin);
+            return join(tableName, userName, where, JoinType.InnerJoin);
         }
 
 
@@ -1925,9 +2053,9 @@ namespace Dos.ORM
         /// <param name="userName"></param>
         /// <param name="where"></param>
         /// <returns></returns>
-        public FromSection LeftJoin(string tableName, WhereClip where,string userName= null)
+        public FromSection LeftJoin(string tableName, WhereClip where, string userName = null)
         {
-            return join(tableName,userName, where, JoinType.LeftJoin);
+            return join(tableName, userName, where, JoinType.LeftJoin);
         }
 
 
@@ -1939,9 +2067,9 @@ namespace Dos.ORM
         /// <param name="userName"></param>
         /// <param name="where"></param>
         /// <returns></returns>
-        public FromSection RightJoin(string tableName, WhereClip where,string userName= null)
+        public FromSection RightJoin(string tableName, WhereClip where, string userName = null)
         {
-            return join(tableName,userName, where, JoinType.RightJoin);
+            return join(tableName, userName, where, JoinType.RightJoin);
         }
 
 
@@ -1952,9 +2080,9 @@ namespace Dos.ORM
         /// <param name="userName"></param>
         /// <param name="where"></param>
         /// <returns></returns>
-        public FromSection CrossJoin(string tableName, WhereClip where,string userName = null)
+        public FromSection CrossJoin(string tableName, WhereClip where, string userName = null)
         {
-            return join(tableName,userName, where, JoinType.CrossJoin);
+            return join(tableName, userName, where, JoinType.CrossJoin);
         }
 
 
@@ -1968,7 +2096,7 @@ namespace Dos.ORM
         /// <returns></returns>
         public FromSection FullJoin(string tableName, WhereClip where, string userName = null)
         {
-            return join(tableName,userName, where, JoinType.FullJoin);
+            return join(tableName, userName, where, JoinType.FullJoin);
         }
 
         #endregion

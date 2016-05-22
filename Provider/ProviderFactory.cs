@@ -9,7 +9,7 @@
 * 创建日期：2010/2/10
 * 文件描述：
 ******************************************************
-* 修 改 人：
+* 修 改 人：ITdos
 * 修改日期：
 * 备注描述：
 *******************************************************/
@@ -43,6 +43,7 @@ namespace Dos.ORM
         /// <param name="assemblyName">Name of the assembly.</param>
         /// <param name="className">Name of the class.</param>
         /// <param name="connectionString">The conn STR.</param>
+        /// <param name="databaseType">The DatabaseType.</param>
         /// <returns>The db provider.</returns>
         public static DbProvider CreateDbProvider(string assemblyName, string className, string connectionString, DatabaseType? databaseType)
         {
@@ -198,23 +199,17 @@ namespace Dos.ORM
         {
             Check.Require(connStrName, "connStrName", Check.NotNullOrEmpty);
 
-            DbProvider dbProvider;
-            ConnectionStringSettings connStrSetting = ConfigurationManager.ConnectionStrings[connStrName];
+            var connStrSetting = ConfigurationManager.ConnectionStrings[connStrName];
             Check.Invariant(connStrSetting != null, null, new ConfigurationErrorsException(string.Concat("Cannot find specified connection string setting named as ", connStrName, " in application config file's ConnectionString section.")));
             //2015-08-13新增
-            if (connStrSetting == null)
+            if (string.IsNullOrWhiteSpace(connStrSetting?.ConnectionString))
             {
                 throw new Exception("数据库连接字符串【" + connStrName + "】没有配置！");
             }
-            string[] assAndClass = connStrSetting.ProviderName.Split(',');
-            if (assAndClass.Length > 1)
-            {
-                dbProvider = CreateDbProvider(assAndClass[0].Trim(), assAndClass[1].Trim(), connStrSetting.ConnectionString, null);
-            }
-            else
-            {
-                dbProvider = CreateDbProvider(null, assAndClass[0].Trim(), connStrSetting.ConnectionString, null);
-            }
+            var assAndClass = connStrSetting.ProviderName.Split(',');
+            var dbProvider = assAndClass.Length > 1 
+                ? CreateDbProvider(assAndClass[0].Trim(), assAndClass[1].Trim(), connStrSetting.ConnectionString, null) 
+                : CreateDbProvider(null, assAndClass[0].Trim(), connStrSetting.ConnectionString, null);
             dbProvider.ConnectionStringsName = connStrName;
             return dbProvider;
         }

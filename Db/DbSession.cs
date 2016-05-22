@@ -9,7 +9,7 @@
 * 创建日期：2010-2-10
 * 文件描述：
 ******************************************************
-* 修 改 人：
+* 修 改 人：ITdos
 * 修改日期：
 * 备注描述：
 *******************************************************/
@@ -69,13 +69,6 @@ namespace Dos.ORM
     /// </summary>
     public sealed class DbSession
     {
-
-        /// <summary>
-        /// 版本号
-        /// </summary>
-        //public const string Version = "1.9.8.6";
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -385,12 +378,11 @@ namespace Dos.ORM
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <returns></returns>
-        public FromSection<TEntity> From<TEntity>()
+        public FromSection<TEntity> From<TEntity>(string asName = "")
             where TEntity : Entity
         {
-            return new FromSection<TEntity>(db);
+            return new FromSection<TEntity>(db, null, asName);
         }
-
 
         /// <summary>
         /// 查询
@@ -1024,7 +1016,7 @@ namespace Dos.ORM
         public int Update<TEntity>(TEntity entity)
             where TEntity : Entity
         {
-            if (entity.GetModifyFields().Count == 0)
+            if (!entity.IsModify())
                 return 0;
 
             WhereClip where = DataUtils.GetPrimaryKeyWhere(entity);
@@ -1081,10 +1073,11 @@ namespace Dos.ORM
         public int Update<TEntity>(TEntity entity, WhereClip where)
             where TEntity : Entity
         {
-            if (entity.GetModifyFields().Count == 0)
-                return 0;
-            return ExecuteNonQuery(cmdCreator.CreateUpdateCommand<TEntity>(entity, where));
+            return !entity.IsModify()
+                ? 0 
+                : ExecuteNonQuery(cmdCreator.CreateUpdateCommand(entity, @where));
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -1110,7 +1103,7 @@ namespace Dos.ORM
         public int Update<TEntity>(DbTransaction tran, TEntity entity)
             where TEntity : Entity
         {
-            if (entity.GetModifyFields().Count == 0)
+            if (!entity.IsModify())
                 return 0;
 
             WhereClip where = DataUtils.GetPrimaryKeyWhere(entity);
@@ -1134,7 +1127,7 @@ namespace Dos.ORM
             int count = 0;
             foreach (TEntity entity in entities)
             {
-                if (entity.GetModifyFields().Count == 0)
+                if (!entity.IsModify())
                     continue;//2015-08-20 break修改为continue
                 count += Update<TEntity>(tran, entity, DataUtils.GetPrimaryKeyWhere(entity));
             }
@@ -1170,7 +1163,7 @@ namespace Dos.ORM
         public int Update<TEntity>(DbTransaction tran, TEntity entity, WhereClip where)
             where TEntity : Entity
         {
-            if (entity.GetModifyFields().Count == 0)
+            if (!entity.IsModify())
                 return 0;
             return ExecuteNonQuery(cmdCreator.CreateUpdateCommand<TEntity>(entity, where), tran);
         }
@@ -1341,101 +1334,6 @@ namespace Dos.ORM
         {
             return Update<TEntity>(tran, fieldValue, where.ToWhereClip());
         }
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <typeparam name="TEntity"></typeparam>
-        ///// <param name="entity"></param>
-        ///// <param name="where"></param>
-        ///// <returns></returns>
-        //private DbCommand createUpdateCommand<TEntity>(TEntity entity, WhereClip where)
-        //    where TEntity : Entity
-        //{
-
-        //    List<ModifyField> mfields = entity.GetModifyFields();
-
-        //    if (null == mfields || mfields.Count == 0)
-        //        return null;
-
-        //    Field[] fields = new Field[mfields.Count];
-        //    object[] values = new object[mfields.Count];
-
-        //    int i = 0;
-
-        //    foreach (ModifyField mf in mfields)
-        //    {
-        //        fields[i] = mf.Field;
-        //        values[i] = mf.NewValue;
-        //        i++;
-        //    }
-
-        //    return createUpdateCommand<TEntity>(fields, values, where);
-
-        //}
-
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <typeparam name="TEntity"></typeparam>
-        ///// <param name="fields"></param>
-        ///// <param name="values"></param>
-        ///// <param name="where"></param>
-        ///// <returns></returns>
-        //private DbCommand createUpdateCommand<TEntity>(Field[] fields, object[] values, WhereClip where)
-        //    where TEntity : Entity
-        //{
-        //    Check.Require(!EntityCache.IsReadOnly<TEntity>(), string.Concat("Entity(", EntityCache.GetTableName<TEntity>(), ") is readonly!"));
-
-        //    if (null == fields || fields.Length == 0 || null == values || values.Length == 0)
-        //        return null;
-
-        //    Check.Require(fields.Length == values.Length, "fields.Length must be equal values.Length");
-
-        //    int length = fields.Length;
-
-        //    if (WhereClip.IsNullOrEmpty(where))
-        //        where = WhereClip.All;
-
-        //    StringBuilder sql = new StringBuilder();
-        //    sql.Append("UPDATE ");
-        //    sql.Append(db.DbProvider.LeftToken.ToString());
-        //    sql.Append(EntityCache.GetTableName<TEntity>());
-        //    sql.Append(db.DbProvider.RightToken.ToString());
-        //    sql.Append(" SET ");
-
-        //    Field identityField = EntityCache.GetIdentityField<TEntity>();
-
-        //    List<Parameter> list = new List<Parameter>();
-        //    StringBuilder colums = new StringBuilder();
-        //    for (int i = 0; i < length; i++)
-        //    {
-        //        if (null != identityField)
-        //        {
-        //            //标识列  排除
-        //            if (fields[i].PropertyName.Equals(identityField.PropertyName))
-        //                continue;
-        //        }
-
-        //        string pname = DataUtils.MakeUniqueKey(string.Empty);
-
-        //        colums.Append(",");
-        //        colums.Append(fields[i].FieldName);
-        //        colums.Append("=");
-        //        colums.Append(pname);
-
-        //        Parameter p = new Parameter(pname, values[i], fields[i].ParameterDbType, fields[i].ParameterSize);
-        //        list.Add(p);
-        //    }
-        //    sql.Append(colums.ToString().Substring(1));
-        //    sql.Append(where.WhereString);
-        //    list.AddRange(where.Parameters);
-
-        //    DbCommand cmd = db.GetSqlStringCommand(sql.ToString());
-
-        //    db.AddCommandParameter(cmd, list.ToArray());
-        //    return cmd;
-        //}
-
         /// <summary>
         /// 更新
         /// </summary>
@@ -1891,10 +1789,10 @@ namespace Dos.ORM
         {
             if (null == entities || entities.Length == 0)
                 return 0;
-            int count = 0;
-            using (DbTrans trans = this.BeginTransaction())
+            int count;
+            using (var trans = this.BeginTransaction())
             {
-                count = Insert<TEntity>(trans, entities);
+                count = Insert(trans, entities);
                 trans.Commit();
             }
             return count;

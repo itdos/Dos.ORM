@@ -202,7 +202,7 @@ namespace Dos.ORM
             var connStrSetting = ConfigurationManager.ConnectionStrings[connStrName];
             Check.Invariant(connStrSetting != null, null, new ConfigurationErrorsException(string.Concat("Cannot find specified connection string setting named as ", connStrName, " in application config file's ConnectionString section.")));
             //2015-08-13新增
-            if (string.IsNullOrWhiteSpace(connStrSetting?.ConnectionString))
+            if (connStrSetting == null || string.IsNullOrWhiteSpace(connStrSetting.ConnectionString))
             {
                 throw new Exception("数据库连接字符串【" + connStrName + "】没有配置！");
             }

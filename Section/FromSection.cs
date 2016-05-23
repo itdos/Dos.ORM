@@ -1058,7 +1058,7 @@ namespace Dos.ORM
         /// <summary>
         /// 
         /// </summary>
-        protected int Identity { get; set; } = 0;
+        protected int Identity { get; set; }
         #endregion
 
         #region 属性

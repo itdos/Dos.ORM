@@ -84,7 +84,7 @@ namespace Dos.ORM
         {
             //this.asNames.Add(EntityCache.GetTableName<TEntity>() + "|" +asName);
             //this.asNames.Add(EntityCache.GetTableName<TEntity>() + "|" + asName2);
-            return Join(EntityCache.GetTableName<TEntity>() + "|" + asName, EntityCache.GetUserName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.InnerJoin);
+            return Join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.InnerJoin);//EntityCache.GetTableName<TEntity>() + "|" + asName
         }
         /// <summary>
         /// Cross Join

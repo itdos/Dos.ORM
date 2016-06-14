@@ -227,7 +227,14 @@ namespace Dos.ORM
                 {
                     continue;
                 }
-                _modifyFields.Add(new ModifyField(fs[i], values[i], values[i]));
+                if (V1_10_5_6_Plus())
+                {
+                    _modifyFieldsStr.Add(fs[i].Name);
+                }
+                else
+                {
+                    _modifyFields.Add(new ModifyField(fs[i], values[i], values[i]));
+                }
             }
         }
 
@@ -352,7 +359,6 @@ namespace Dos.ORM
         /// <returns></returns>
         public bool IsModify()
         {
-            //如果是fastModel，并且集成为空，返回所有字段
             if (V1_10_5_6_Plus())
             {
                 return _modifyFieldsStr.Count > 0;
@@ -361,7 +367,7 @@ namespace Dos.ORM
         }
 
         /// <summary>
-        /// 返回修改记录
+        /// 返回修改记录。v.10.5.5以上版本请不要使用此方法。
         /// </summary>
         public List<ModifyField> GetModifyFields()
         {
@@ -380,7 +386,7 @@ namespace Dos.ORM
             return _modifyFields;
         }
         /// <summary>
-        /// 返回修改记录
+        /// 返回修改记录。v.10.5.5及以下版本请不要使用此方法。
         /// </summary>
         public List<string> GetModifyFieldsStr()
         {

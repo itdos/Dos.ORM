@@ -451,7 +451,7 @@ namespace Dos.ORM
         /// <returns></returns>
         public static int GetNewParamCount()
         {
-            if (paramCount >= 99)
+            if (paramCount >= 9999)
             {
                 paramCount = 0;
             }

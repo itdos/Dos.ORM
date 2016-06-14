@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OAA.DataAccess.Entities;
 
 namespace Dos.ORM.Test
 {
@@ -22,11 +23,18 @@ namespace Dos.ORM.Test
 
             Console.WriteLine("请不要运行此Test项目，此Test仅仅是本人测试用。");
             Console.WriteLine("另外有完整的Demo项目：http://git.oschina.net/ITdos/Dos.ORM.Demo");
+            //return;
+            var db = new DbSession(DatabaseType.MySql, "Data Source=192.168.2.150;Database=OAA;User Id=root;Password=root;Convert Zero Datetime=True;Allow Zero Datetime=True;");
+
+            var model = db.From<BizHouse>().Where(d => d.Id == Guid.Parse("d4bdf13a-333c-40e2-b2bc-a6295215f672")).First();
+            db.RegisterSqlLogger(SqlOg);
+            model.AttachAll();
+            model.Id = Guid.NewGuid();
+            var count = db.Insert(model);
             return;
 
 
-            var db = new DbSession(DatabaseType.MySql, "Data Source=127.0.0.1;Database=ITdos;User Id=root;Password=root;Convert Zero Datetime=True;Allow Zero Datetime=True;");
-            db.RegisterSqlLogger(SqlOg);
+            
             var a = CmsNews._.Code != "111" && CmsNews._.Number != "222" && CmsNews._.AllCode != "333";
             var list20160429 = db.From<CmsNews>("A")
                  //.InnerJoin<CmsNews>((a, b) => a.Id == b.Id, "B")

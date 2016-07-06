@@ -79,6 +79,7 @@ namespace OAA.DataAccess.Entities
 		/// <summary>
 		/// 
 		/// </summary>
+        [Field("Name")]
 		public string Name
 		{
 			get{ return _Name; }

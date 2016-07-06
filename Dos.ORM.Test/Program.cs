@@ -25,19 +25,19 @@ namespace Dos.ORM.Test
             Console.WriteLine("另外有完整的Demo项目：http://git.oschina.net/ITdos/Dos.ORM.Demo");
             //return;
             var db = new DbSession(DatabaseType.MySql, "Data Source=192.168.2.150;Database=OAA;User Id=root;Password=root;Convert Zero Datetime=True;Allow Zero Datetime=True;");
-
-            var model = db.From<BizHouse>().Where(d => d.Id == Guid.Parse("d4bdf13a-333c-40e2-b2bc-a6295215f672")).First();
             db.RegisterSqlLogger(SqlOg);
+
+            var model = db.From<BizHouse>().Select(d => new { d.All, Name2 = d.Name }).First();
             model.AttachAll();
             model.Id = Guid.NewGuid();
             var count = db.Insert(model);
             return;
 
 
-            
+
             var a = CmsNews._.Code != "111" && CmsNews._.Number != "222" && CmsNews._.AllCode != "333";
             var list20160429 = db.From<CmsNews>("A")
-                 //.InnerJoin<CmsNews>((a, b) => a.Id == b.Id, "B")
+                //.InnerJoin<CmsNews>((a, b) => a.Id == b.Id, "B")
                  .Where(a)
                  .Top(10)
                  .ToList();

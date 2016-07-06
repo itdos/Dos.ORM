@@ -150,6 +150,11 @@ namespace Dos.ORM
         /// </summary>
         private List<string> _modifyFieldsStr = new List<string>();
 
+        /// <summary>
+        /// *
+        /// </summary>
+        public object All;
+
         //private bool isFastModel = false;
         ///// <summary>
         ///// 是否是v1.10.5.6及以上版本实体。

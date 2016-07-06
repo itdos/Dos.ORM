@@ -1453,12 +1453,12 @@ namespace Dos.ORM
         /// </summary>
         private const string Tips = "该方法({0})只能用于Dos.ORM lambda表达式！";
 
-        /// <summary>
-        /// 
-        /// </summary>
-        //public static object All(this object key)
+        ///// <summary>
+        ///// *
+        ///// </summary>
+        //public static object All(this Entity key)
         //{
-        //    throw new Exception(Tips);
+        //    throw new Exception(string.Format(Tips, "*"));
         //}
 
         /// <summary>

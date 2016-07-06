@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Dos.ORM.Test.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Dos.Common, Version=1.0.6.8, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dos.Common.1.0.6.8\lib\net40\Dos.Common.dll</HintPath>

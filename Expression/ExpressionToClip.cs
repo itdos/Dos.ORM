@@ -257,7 +257,7 @@ namespace Dos.ORM
             {
                 function = ColumnFunction.None;
                 obj = (MemberExpression)expr;
-                return obj.Member.Name;
+                return GetFieldName(obj.Member);
             }
             if (expr is MethodCallExpression)
             {
@@ -266,13 +266,13 @@ namespace Dos.ORM
                 {
                     function = ColumnFunction.ToLower;
                     obj = (MemberExpression)e.Object;
-                    return obj.Member.Name;
+                    return GetFieldName(obj.Member);
                 }
                 if (e.Method.Name == "ToUpper" && e.Object is MemberExpression)
                 {
                     function = ColumnFunction.ToUpper;
                     obj = (MemberExpression)e.Object;
-                    return obj.Member.Name;
+                    return GetFieldName(obj.Member);
                 }
                 throw new Exception("暂时不支持的Lambda表达式写法！请使用经典写法！");
             }
@@ -410,7 +410,7 @@ namespace Dos.ORM
             if (exprBody is MemberExpression)
             {
                 var e = (MemberExpression)exprBody;
-                return new GroupByClip(new Field(e.Member.Name, GetTableName(e.Expression.Type)));
+                return new GroupByClip(new Field(GetFieldName(e.Member), GetTableName(e.Expression.Type)));
             }
             if (exprBody is NewExpression)
             {
@@ -418,7 +418,7 @@ namespace Dos.ORM
                 var type = exNew.Constructor.DeclaringType;
                 var list = new List<string>(exNew.Arguments.Count);
                 return exNew.Arguments.Cast<MemberExpression>().Aggregate(GroupByClip.None, (current, member)
-                    => current && new Field(member.Member.Name, GetTableName(member.Expression.Type)).GroupBy);
+                    => current && new Field(GetFieldName(member.Member), GetTableName(member.Expression.Type)).GroupBy);
             }
             if (exprBody is UnaryExpression)
             {
@@ -445,11 +445,11 @@ namespace Dos.ORM
                 OrderByClip gb = OrderByClip.None;
                 if (orderBy == OrderByOperater.DESC)
                 {
-                    gb = gb && new Field(e.Member.Name, GetTableName(e.Expression.Type)).Desc;
+                    gb = gb && new Field(GetFieldName(e.Member), GetTableName(e.Expression.Type)).Desc;
                 }
                 else
                 {
-                    gb = gb && new Field(e.Member.Name, GetTableName(e.Expression.Type)).Asc;
+                    gb = gb && new Field(GetFieldName(e.Member), GetTableName(e.Expression.Type)).Asc;
                 }
                 return gb;
             }
@@ -463,11 +463,11 @@ namespace Dos.ORM
                 {
                     if (orderBy == OrderByOperater.DESC)
                     {
-                        gb = gb && new Field(member.Member.Name, GetTableName(member.Expression.Type)).Desc;
+                        gb = gb && new Field(GetFieldName(member.Member), GetTableName(member.Expression.Type)).Desc;
                     }
                     else
                     {
-                        gb = gb && new Field(member.Member.Name, GetTableName(member.Expression.Type)).Asc;
+                        gb = gb && new Field(GetFieldName(member.Member), GetTableName(member.Expression.Type)).Asc;
                     }
                 }
                 return gb;
@@ -513,7 +513,7 @@ namespace Dos.ORM
             if (exprBody is MemberExpression)
             {
                 var e = (MemberExpression)exprBody;
-                return new[] { new Field(e.Member.Name, GetTableName(e.Expression.Type)) };
+                return new[] { new Field(GetFieldName(e.Member), GetTableName(e.Expression.Type)) };
             }
             if (exprBody is MethodCallExpression)
             {
@@ -537,16 +537,21 @@ namespace Dos.ORM
                 foreach (var item in exNew.Arguments)
                 {
                     var aliasName = exNew.Members[i].Name;
+                    
                     if (item is MemberExpression)
                     {
                         var member = (MemberExpression)item;
-                        if (member.Member.Name != aliasName)
+                        if (aliasName == "All")
                         {
-                            f[i] = new Field(member.Member.Name, GetTableName(member.Expression.Type), null, null, "", aliasName);
+                            f[i] = new Field("*", GetTableName(member.Expression.Type));
+                        }
+                        else if (GetFieldName(member.Member) != aliasName)
+                        {
+                            f[i] = new Field(GetFieldName(member.Member), GetTableName(member.Expression.Type), null, null, "", aliasName);
                         }
                         else
                         {
-                            f[i] = new Field(member.Member.Name, GetTableName(member.Expression.Type));
+                            f[i] = new Field(GetFieldName(member.Member), GetTableName(member.Expression.Type));
                         }
                     }
                     else if (item is MethodCallExpression)
@@ -612,6 +617,11 @@ namespace Dos.ORM
         {
             var tbl = type.GetCustomAttribute<Table>(false);
             return tbl != null ? tbl.GetTableName() : type.Name;
+        }
+        private static string GetFieldName(MemberInfo type)
+        {
+            var tbl = type.GetCustomAttribute<FieldAttribute>(false);
+            return tbl != null ? tbl.Field : type.Name;
         }
     }
 }

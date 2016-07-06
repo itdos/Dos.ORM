@@ -37,6 +37,7 @@ namespace Dos.ORM
         /// All
         /// </summary>
         public readonly static WhereClip All = new WhereClip();
+
         #region 构造函数
         /// <summary>
         /// 

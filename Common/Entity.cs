@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
+using System.Xml.Serialization;
 
 namespace Dos.ORM
 {
@@ -136,7 +137,9 @@ namespace Dos.ORM
         /// 实体状态
         /// </summary>
         private EntityState _entityState = EntityState.Unchanged;
-
+        [XmlIgnore]
+        [NonSerialized]
+        public object All;
         ///// <summary>
         ///// 参数计数器  2015-07-30
         ///// </summary>
@@ -149,11 +152,6 @@ namespace Dos.ORM
         /// 修改的字段集合 v1.10.5.6及以上版本可使用。
         /// </summary>
         private List<string> _modifyFieldsStr = new List<string>();
-
-        /// <summary>
-        /// *
-        /// </summary>
-        public object All;
 
         //private bool isFastModel = false;
         ///// <summary>

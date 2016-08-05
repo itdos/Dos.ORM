@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using OAA.DataAccess.Entities;
 
 namespace Dos.ORM.Test
@@ -27,7 +28,18 @@ namespace Dos.ORM.Test
             var db = new DbSession(DatabaseType.MySql, "Data Source=192.168.2.150;Database=OAA;User Id=root;Password=root;Convert Zero Datetime=True;Allow Zero Datetime=True;");
             db.RegisterSqlLogger(SqlOg);
 
-            var model = db.From<BizHouse>().Select(d => new { d.All, Name2 = d.Name }).First();
+            var model = db.From<BizHouse>()
+                .Select(d => new { d.All, Name2 = d.Name })
+                //.AddSelect(
+                //    db.From<BizHouse>()
+                //        .LeftJoin<BizHouse>((c, d) => c.Id == d.Id)
+                //        .Select(d => d.Age)
+                //        .Top(1)
+                //)
+                .Top(2)
+                .ToFirst();
+            var bbbbbbbb = JsonConvert.SerializeObject(model);
+            var aaaaaaa = JSON.ToJSON(model);
             model.AttachAll();
             model.Id = Guid.NewGuid();
             var count = db.Insert(model);
@@ -37,7 +49,7 @@ namespace Dos.ORM.Test
 
             var a = CmsNews._.Code != "111" && CmsNews._.Number != "222" && CmsNews._.AllCode != "333";
             var list20160429 = db.From<CmsNews>("A")
-                //.InnerJoin<CmsNews>((a, b) => a.Id == b.Id, "B")
+                 //.InnerJoin<CmsNews>((a, b) => a.Id == b.Id, "B")
                  .Where(a)
                  .Top(10)
                  .ToList();

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("Dos.ORM.MySql")]
-[assembly: AssemblyDescription("Dos.ORM（原Hxj.Data）于2009年发布，并发布实体生成工具。在开发过程参考了多个ORM框架，特别是NBear，MySoft、EF、Dapper等。吸取了他们的一些精华，加入自己的新思想。该组件已在上百个成熟企业项目中应用。")]
+[assembly: AssemblyDescription("Dos.ORM使用MySql数据库需要额外引用此dll。Dos.ORM（原Hxj.Data）于2009年发布、2015年正式开源，该组件已在数百个成熟项目中应用，是目前国内.Net用户量最多、最活跃、最完善的国产ORM。初期开发过程中参考了NBear与MySoft，吸取了他们的一些精华，加入新思想，后期参考EF的Lambda语法进行大量扩展。")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ITdos.com")]
 [assembly: AssemblyProduct("Dos.ORM.MySql")]

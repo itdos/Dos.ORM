@@ -255,7 +255,7 @@ namespace Dos.ORM
         /// </summary>
         /// <param name="whereParam"></param>
         /// <returns></returns>
-        public  FromSection<T> Where(Where<T> whereParam)
+        public FromSection<T> Where(Where<T> whereParam)
         {
             return (FromSection<T>)base.Where(whereParam.ToWhereClip());
         }
@@ -604,8 +604,11 @@ namespace Dos.ORM
             {
                 SetDefaultOrderby();
             }
-            return (FromSection<T>)base.From(startIndex, endIndex);
-            //return (FromSection<T>)dbProvider.CreatePageFromSection(this, startIndex, endIndex);
+            //修复 .AddSelect()内部.Top()无效的bug。
+            //2016-07-08 注释这句
+            //return (FromSection<T>)base.From(startIndex, endIndex);
+            //2016-07-08 开放这句
+            return (FromSection<T>)dbProvider.CreatePageFromSection(this, startIndex, endIndex);
         }
 
 
@@ -1099,8 +1102,10 @@ namespace Dos.ORM
                 prefixString = value;
             }
         }
-
-        private string limitString;
+        /// <summary>
+        /// limit
+        /// </summary>
+        private string _limitString;
         /// <summary>
         /// limit 
         /// </summary>
@@ -1108,9 +1113,9 @@ namespace Dos.ORM
         {
             set
             {
-
-                limitString = value;
+                _limitString = value;
             }
+            get { return _limitString; }
         }
 
         /// <summary>
@@ -1277,7 +1282,7 @@ namespace Dos.ORM
 
                 sql.Append(OrderByString);
                 sql.Append(" ");
-                sql.Append(limitString);
+                sql.Append(LimitString);
                 return sql.ToString();
             }
         }

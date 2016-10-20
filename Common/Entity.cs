@@ -137,6 +137,9 @@ namespace Dos.ORM
         /// 实体状态
         /// </summary>
         private EntityState _entityState = EntityState.Unchanged;
+        /// <summary>
+        /// 用于Lambda写法方便地取某表所有字段。注：表中不得含有字段名为All。
+        /// </summary>
         [XmlIgnore]
         [NonSerialized]
         public object All;

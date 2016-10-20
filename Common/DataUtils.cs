@@ -34,7 +34,7 @@ namespace Dos.ORM.Common
     /// </summary>
     public class DosORMCommon
     {
-        
+
     }
 }
 
@@ -522,7 +522,7 @@ namespace Dos.ORM
             WhereClip where = new WhereClip();
             Field[] keyfields = EntityCache.GetPrimaryKeyFields<TEntity>();
 
-            if (keyfields == null) 
+            if (keyfields == null)
                 return where;
 
             Check.Require(keyfields.Length == pkValues.Length, "主键列与主键值无法对应!");
@@ -530,7 +530,7 @@ namespace Dos.ORM
             int index = keyfields.Length;
             for (int i = 0; i < index; i++)
             {
-                where = where.And(new WhereClip(keyfields[i], pkValues.GetValue(i), QueryOperator.Equal)); 
+                where = where.And(new WhereClip(keyfields[i], pkValues.GetValue(i), QueryOperator.Equal));
                 //2015-08-20注释
                 //where = where.And(new WhereClip(keyfields[i], pkValues[i], QueryOperator.Equal)); 
                 //where = where.And(keyfields[i].In(pkValues));//2015-06-09
@@ -1095,7 +1095,10 @@ namespace Dos.ORM
                     value = Convert.ToString(val) + " - " + Type.GetTypeCode(val.GetType());
                 }
             }
-            throw new DataException(string.Format("Error parsing column {0} ({1}={2})", index, name, value), ex);
+            if (!(index >= reader.FieldCount))
+            {
+                throw new DataException(string.Format("Error parsing column {0} ({1}={2})", index, name, value), ex);
+            }
         }
     }
 

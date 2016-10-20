@@ -66,15 +66,16 @@ namespace Model
 				this._Title=value;
 			}
 		}
-		/// <summary>
-		/// 
-		/// </summary>
-		public string Number
+        /// <summary>
+        /// 
+        /// </summary>
+        [Field("Number")]
+        public string No
 		{
 			get{ return _Number; }
 			set
 			{
-				this.OnPropertyValueChange(_.Number,_Number,value);
+				this.OnPropertyValueChange(_.No,_Number,value);
 				this._Number=value;
 			}
 		}
@@ -253,7 +254,7 @@ namespace Model
 			return new Field[] {
 				_.Id,
 				_.Title,
-				_.Number,
+				_.No,
 				_.Summary,
 				_.Code,
 				_.AllCode,
@@ -314,7 +315,7 @@ namespace Model
 			/// <summary>
 			/// 
 			/// </summary>
-			public readonly static Field Number = new Field("Number","Cms_News","Number");
+			public readonly static Field No = new Field("Number","Cms_News","Number");
 			/// <summary>
 			/// 摘要
 			/// </summary>

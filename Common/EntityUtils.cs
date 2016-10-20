@@ -648,6 +648,15 @@ namespace Dos.ORM
             TypeDescriptor.AddProvider(provider, typeof(FastExpando));
         }
         private const string LinqBinary = "System.Data.Linq.Binary";
+        /// <summary>
+        ///// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="reader"></param>
+        /// <param name="startBound"></param>
+        /// <param name="length"></param>
+        /// <param name="returnNullIfFirstMissing"></param>
+        /// <returns></returns>
         public static Func<IDataReader, object> GetDeserializer(Type type, IDataReader reader, int startBound, int length, bool returnNullIfFirstMissing)
         {
             if (type == typeof(object)
@@ -661,7 +670,12 @@ namespace Dos.ORM
                 return GetTypeDeserializer(type, reader, startBound, length, returnNullIfFirstMissing);
             }
             return GetStructDeserializer(type, startBound);
-        }
+        }/// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
         private static Func<IDataReader, object> GetStructDeserializer(Type type, int index)
         {
             if (type == typeof(char))
@@ -703,24 +717,37 @@ namespace Dos.ORM
             public string Name { get; set; }
             public MethodInfo Setter { get; set; }
             public Type Type { get; set; }
-        }
+        }/// <summary>
+        /// 
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
         static List<PropInfo> GetSettableProps(Type t)
         {
             return t
                   .GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
                   .Select(p => new PropInfo
                   {
-                      Name = p.Name,
+                      //2016-09-28
+                      Name = (p.GetCustomAttribute<FieldAttribute>(false) != null ? p.GetCustomAttribute<FieldAttribute>(false).Field : p.Name) ,
                       Setter = p.DeclaringType == t ? p.GetSetMethod(true) : p.DeclaringType.GetProperty(p.Name).GetSetMethod(true),
                       Type = p.PropertyType
                   })
                   .Where(info => info.Setter != null)
                   .ToList();
-        }
+        }/// <summary>
+        /// 
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
         static List<FieldInfo> GetSettableFields(Type t)
         {
             return t.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).ToList();
-        }
+        }/// <summary>
+        /// 
+        /// </summary>
+        /// <param name="il"></param>
+        /// <param name="value"></param>
         private static void EmitInt32(ILGenerator il, int value)
         {
             switch (value)
@@ -752,6 +779,15 @@ namespace Dos.ORM
                 getItem = typeof(IDataRecord).GetProperties(BindingFlags.Instance | BindingFlags.Public)
                     .Where(p => p.GetIndexParameters().Any() && p.GetIndexParameters()[0].ParameterType == typeof(int))
                     .Select(p => p.GetGetMethod()).First();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="reader"></param>
+        /// <param name="startBound"></param>
+        /// <param name="length"></param>
+        /// <param name="returnNullIfFirstMissing"></param>
+        /// <returns></returns>
         public static Func<IDataReader, object> GetTypeDeserializer(Type type, IDataReader reader, int startBound = 0, int length = -1, bool returnNullIfFirstMissing = false)
         {
             var dm = new DynamicMethod(string.Format("Deserialize{0}", Guid.NewGuid()), typeof(object), new[] { typeof(IDataReader) }, true);
@@ -776,11 +812,13 @@ namespace Dos.ORM
 
             var names = new List<string>();
 
+            #region 2016-09-27 暂时修改:将循环改写成从properties获取names
             for (int i = startBound; i < startBound + length; i++)
             {
                 names.Add(reader.GetName(i));
             }
-
+            //names = properties.Select(d => d.Name).ToList();
+            #endregion
             var setters = (
                             from n in names
                             let prop = properties.FirstOrDefault(p => string.Equals(p.Name, n, StringComparison.Ordinal))

@@ -64,10 +64,11 @@ namespace OAA.DataAccess.Entities
 				this._Id = value;
 			}
 		}
-		/// <summary>
-		/// 
-		/// </summary>
-		public string Number
+        /// <summary>
+        /// 
+        /// </summary>
+        [Field("Number")]
+        public string Number2
 		{
 			get{ return _Number; }
 			set
@@ -432,7 +433,7 @@ namespace OAA.DataAccess.Entities
         {
             return new Field[] {
 				_.Id,
-				_.Number,
+				_.Number2,
 				_.Name,
 				_.Price,
 				_.PriceType,
@@ -528,7 +529,7 @@ namespace OAA.DataAccess.Entities
             /// <summary>
 			/// 
 			/// </summary>
-			public readonly static Field Number = new Field("Number", "Biz_House", "");
+			public readonly static Field Number2 = new Field("Number", "Biz_House", "");
             /// <summary>
 			/// 
 			/// </summary>

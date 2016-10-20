@@ -53,7 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\BizHouse.cs" />
+    <Compile Include="Model\BizStandardList.cs" />
+    <Compile Include="Model\BizUser.cs" />
     <Compile Include="Model\CmsNews.cs" />
+    <Compile Include="Model\Table.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

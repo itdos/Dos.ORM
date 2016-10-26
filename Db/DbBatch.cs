@@ -40,7 +40,6 @@ namespace Dos.ORM
         /// </summary>
         private BatchCommander batchcmd;
 
-
         /// <summary>
         /// 是否已关闭
         /// </summary>

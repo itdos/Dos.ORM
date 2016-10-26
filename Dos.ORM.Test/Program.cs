@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using OAA.DataAccess.Entities;
+using Standard.DataModel;
 
 namespace Dos.ORM.Test
 {
@@ -24,10 +26,81 @@ namespace Dos.ORM.Test
             Console.WriteLine("请不要运行此Test项目，此Test仅仅是本人测试用。");
             Console.WriteLine("另外有完整的Demo项目：http://git.oschina.net/ITdos/Dos.ORM.Demo");
             //return;
+            var db20160927 = new DbSession(DatabaseType.MySql, "Data Source=127.0.0.1;Database=ITdos;User Id=root;Password=root;Convert Zero Datetime=True;Allow Zero Datetime=True;");
+            db20160927.RegisterSqlLogger(SqlOg);
+            using (var trans = db20160927.BeginTransaction())
+            {
+                var count2 = 0;
+                count2 += trans.Insert(new BizUser()
+                {
+                    Id = Guid.NewGuid(),
+                    Account = new Random().Next(1, 1000).ToString(),
+                    Pwd = "123456",
+                    State = 1,
+                    CreateTime = DateTime.Now
+                });
+
+                count2 += trans.FromSql("insert into Biz_User values (UUID(),'" + new Random().Next(1, 1000).ToString() + "','123456','','','',1,'','',1,null,NOW())").ExecuteNonQuery();
+
+                count2 +=  db20160927.Insert(trans, new BizUser()
+                {
+                    Id = Guid.NewGuid(),
+                    Account = new Random().Next(1, 1000).ToString(),
+                    Pwd = "123456",
+                    State = 1,
+                    CreateTime = DateTime.Now
+                });
+                trans.Commit();
+                Console.WriteLine("成功插入" + count2 + "条数据。");
+            }
+            return;
+
+            #region 测试字段名不一致
+            var list20160927 = db20160927.From<CmsNews>()
+                // .Select(d => new { d.Title, d.Id,d.Summary, d.No })//
+                .Top(10).ToList();
+
+            var list201609272 = db20160927.From<CmsNews>()
+                .Select(d => new { d.Title, d.Id, Sub = d.Summary, d.Summary, d.No })//
+                .Top(10).ToList();
+
+            var list201609273 = db20160927.From<CmsNews>()
+                .Select(d => new { d.Title, d.Id, Sub = d.Summary, d.Summary, Noo = d.No })//
+                .Top(10).ToList();
+
+            var list201609274 = db20160927.From<CmsNews>()
+                .Select(d => new { d.Title, d.Id, Sub = d.Summary, d.Summary, Noo = d.No, d.No })//
+                .Top(10).ToList();
+            return;
+            #endregion
+
+
+
+            var db2 = new DbSession(DatabaseType.MySql, "Data Source=192.168.2.15;Database=Standard;User Id=root;Password=root;Convert Zero Datetime=True;Allow Zero Datetime=True;");
+            db2.RegisterSqlLogger(SqlOg);
+            var count20160815 =
+                    db2.From<BizStandardList>()
+                        .Select(d => d.QATestItemCount.Sum())
+                        .Where(d => d.QAClassA825 == "X00/09".Replace("/", "_"))
+                        .SetCacheTimeOut(60 * 60 * 24)
+                        .ToScalar<int>();
+            Console.WriteLine(count20160815);
+
             var db = new DbSession(DatabaseType.MySql, "Data Source=192.168.2.150;Database=OAA;User Id=root;Password=root;Convert Zero Datetime=True;Allow Zero Datetime=True;");
             db.RegisterSqlLogger(SqlOg);
 
-            var model = db.From<BizHouse>().Select(d => new { d.All, Name2 = d.Name }).First();
+            var model = db.From<BizHouse>()
+                .Select(d => new { d.All, Name2 = d.Name })
+                //.AddSelect(
+                //    db.From<BizHouse>()
+                //        .LeftJoin<BizHouse>((c, d) => c.Id == d.Id)
+                //        .Select(d => d.Age)
+                //        .Top(1)
+                //)
+                .Top(2)
+                .ToFirst();
+            var bbbbbbbb = JsonConvert.SerializeObject(model);
+            var aaaaaaa = JSON.ToJSON(model);
             model.AttachAll();
             model.Id = Guid.NewGuid();
             var count = db.Insert(model);
@@ -35,9 +108,9 @@ namespace Dos.ORM.Test
 
 
 
-            var a = CmsNews._.Code != "111" && CmsNews._.Number != "222" && CmsNews._.AllCode != "333";
+            var a = CmsNews._.Code != "111" && CmsNews._.No != "222" && CmsNews._.AllCode != "333";
             var list20160429 = db.From<CmsNews>("A")
-                //.InnerJoin<CmsNews>((a, b) => a.Id == b.Id, "B")
+                 //.InnerJoin<CmsNews>((a, b) => a.Id == b.Id, "B")
                  .Where(a)
                  .Top(10)
                  .ToList();

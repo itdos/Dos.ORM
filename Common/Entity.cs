@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
+using System.Xml.Serialization;
 
 namespace Dos.ORM
 {
@@ -136,7 +137,12 @@ namespace Dos.ORM
         /// 实体状态
         /// </summary>
         private EntityState _entityState = EntityState.Unchanged;
-
+        /// <summary>
+        /// 用于Lambda写法方便地取某表所有字段。注：表中不得含有字段名为All。
+        /// </summary>
+        [XmlIgnore]
+        [NonSerialized]
+        public object All;
         ///// <summary>
         ///// 参数计数器  2015-07-30
         ///// </summary>
@@ -149,11 +155,6 @@ namespace Dos.ORM
         /// 修改的字段集合 v1.10.5.6及以上版本可使用。
         /// </summary>
         private List<string> _modifyFieldsStr = new List<string>();
-
-        /// <summary>
-        /// *
-        /// </summary>
-        public object All;
 
         //private bool isFastModel = false;
         ///// <summary>

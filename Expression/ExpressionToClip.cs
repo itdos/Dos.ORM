@@ -832,6 +832,10 @@ namespace Dos.ORM
         /// <returns></returns>
         private static Field CreateField(string[] filedProp, Type t)
         {
+            if (filedProp[0] == "All")
+            {
+                filedProp[0] = "*";
+            }
             return new Field(filedProp[0], GetTableName(t));
             //return new Field(filedProp[0], GetTableName(t), null, null, null, filedProp[1] == filedProp[0] ? null : filedProp[1]);
         }/// <summary>

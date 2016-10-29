@@ -604,10 +604,9 @@ namespace Dos.ORM
             {
                 SetDefaultOrderby();
             }
-            //修复 .AddSelect()内部.Top()无效的bug。
-            //2016-07-08 注释这句
+            //2016-07-08 注释这句.修复 .AddSelect()内部.Top()无效的bug。但带来的问题是.Page()必须放在.Where()之后。
             //return (FromSection<T>)base.From(startIndex, endIndex);
-            //2016-07-08 开放这句
+            //2016-07-08 开放这句.修复 .AddSelect()内部.Top()无效的bug。但带来的问题是.Page()必须放在.Where()之后。
             return (FromSection<T>)dbProvider.CreatePageFromSection(this, startIndex, endIndex);
         }
 

@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using Newtonsoft.Json;
 using OAA.DataAccess.Entities;
 using Standard.DataModel;
+using WD.Model;
 
 namespace Dos.ORM.Test
 {
@@ -26,6 +28,27 @@ namespace Dos.ORM.Test
             Console.WriteLine("请不要运行此Test项目，此Test仅仅是本人测试用。");
             Console.WriteLine("另外有完整的Demo项目：http://git.oschina.net/ITdos/Dos.ORM.Demo");
             //return;
+
+            var db20161029 = new DbSession(DatabaseType.SqlServer9, @"Server=.\sql2008r22;uid=sa;pwd=sa;database=OXunDB;");
+            db20161029.RegisterSqlLogger(SqlOg);
+            List<B_OXunGoods> lo = new List<B_OXunGoods>();
+            Where<B_OXunGoods> where = new Where<B_OXunGoods>();
+            where.And(d => d.DeleteState == 0);
+            where.And(d => d.IndustryCode.StartsWith("0318"));
+            lo = db20161029.From<B_OXunGoods>()
+                .Select(d => d.All)
+                .OrderByDescending(d => d.Sort)
+                .Where(where)
+                .Page(20, 2)
+                .ToList();
+            var a1 = JsonConvert.SerializeObject(lo.First());
+            var a2 = JSON.ToJSON(lo.First());
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            var a3 = js.Serialize(lo.First());
+            return;
+
+
+
             var db20160927 = new DbSession(DatabaseType.MySql, "Data Source=127.0.0.1;Database=ITdos;User Id=root;Password=root;Convert Zero Datetime=True;Allow Zero Datetime=True;");
             db20160927.RegisterSqlLogger(SqlOg);
             using (var trans = db20160927.BeginTransaction())
@@ -42,7 +65,7 @@ namespace Dos.ORM.Test
 
                 count2 += trans.FromSql("insert into Biz_User values (UUID(),'" + new Random().Next(1, 1000).ToString() + "','123456','','','',1,'','',1,null,NOW())").ExecuteNonQuery();
 
-                count2 +=  db20160927.Insert(trans, new BizUser()
+                count2 += db20160927.Insert(trans, new BizUser()
                 {
                     Id = Guid.NewGuid(),
                     Account = new Random().Next(1, 1000).ToString(),

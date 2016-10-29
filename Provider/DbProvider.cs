@@ -281,8 +281,6 @@ namespace Dos.ORM
             Check.Require(startIndex <= endIndex, "startIndex must be less than endIndex!");
             Check.Require(fromSection, "fromSection", Check.NotNullOrEmpty);
 
-
-
             int pageSize = endIndex - startIndex + 1;
             if (startIndex == 1)
             {
@@ -302,8 +300,6 @@ namespace Dos.ORM
                         }
                     }
                 }
-
-
 
                 Check.Require(!OrderByClip.IsNullOrEmpty(fromSection.OrderByClip), "query.OrderByClip could not be null or empty!");
 

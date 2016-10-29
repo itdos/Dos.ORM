@@ -1,9 +1,12 @@
 ﻿未来版本预告：
 	*）增加.Select(d => new NewClass(){})写法
 	*）表名增加别名，以支持同一张表可以被INNER JOIN多次
-	
+
+已知Bug：.Page()必须写在.Where()之后。
 /*-----------------------------------------------------------------------------------------------*/
-2016-09-28 Dos.ORM（原Hxj.Data）（v1.10.6.9）
+2016-10-29 Dos.ORM（原Hxj.Data）（v1.10.7.0）
+	*）修复.Select(d => new { d.All })写法正常，但直接.Select(d => d.All)会出错的bug。
+	*）修复mvc默认JavaScriptSerializer序列化实体后仍然会多一个All:null的bug。
 	*）修复实体序列化后多了一个 All:null 属性结果的bug。（感谢群友【嘉兴-我是HR】发现此bug。）
 	*）修复.AddSelect()等内部嵌套查询.Top()无效的bug。（感谢群友【宁波-Stan】发现此bug。）
 	*）修复字段名与实体类属性名不一致时，Lambda写法无法映射数据的bug。
@@ -38,7 +41,7 @@
 	*）FromSection类的WhereClip属性修改为GetWhereCip()方法，修复代码书写过程中.Where()总是智能联想成.WhereClip造成不方便。
 	*）Lambda增加As别名、Sum/Count等聚合函数的写法。
 	*）优化底层Emit映射，修复一系列不常见Bug。
-	*）修复上个版本改动引起的.ToList<T>()大数据性能问题，现在提升了5倍实体映射效率，性能继续与dapper媲美。（非常感谢群友【落メ尘】发现此问题）
+	*）修复上个版本改动引起的.ToList<T>()大数据性能问题，现在查询大数据情况下，提升了5倍实体映射效率，性能继续与dapper媲美。（非常感谢群友【落メ尘】发现此问题）
 	*）增加懒加载返回.ToEnumerable<T>()类型。
 	*）现在可以返回.ToList<dynamic>()类型了。
 	*）█████重要更新█████ 实体类[Entity("TableName")]标记修改为[Table("TableName")]，以修复序列化时多了一个TypeId字段的Bug。

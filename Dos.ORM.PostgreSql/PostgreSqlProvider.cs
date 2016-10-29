@@ -51,7 +51,7 @@ namespace Dos.ORM.PostgreSql
         /// </summary>
         public override bool SupportBatch
         {
-            get { return true; }
+            get { return false; }
         }
 
         /// <summary>

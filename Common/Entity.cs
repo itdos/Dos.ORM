@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
+using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 
 namespace Dos.ORM
@@ -138,10 +139,11 @@ namespace Dos.ORM
         /// </summary>
         private EntityState _entityState = EntityState.Unchanged;
         /// <summary>
-        /// 用于Lambda写法方便地取某表所有字段。注：表中不得含有字段名为All。
+        /// select *。用于Lambda写法实现 select * 。注：表中不得含有字段名为All。
         /// </summary>
         [XmlIgnore]
         [NonSerialized]
+        [ScriptIgnore]
         public object All;
         ///// <summary>
         ///// 参数计数器  2015-07-30

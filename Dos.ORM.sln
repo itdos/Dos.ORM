@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM", "Dos.ORM.csproj", "{4BEF1983-F275-4807-96EA-25B973BD6E94}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM.MySql", "Dos.ORM.MySql\Dos.ORM.MySql.csproj", "{54954798-4117-45FE-92F8-2B32A62E7FBC}"
@@ -10,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM.PostgreSql", "Dos.ORM.PostgreSql\Dos.ORM.PostgreSql.csproj", "{86F95784-A739-41EF-9724-909126C11800}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM.Test", "Dos.ORM.Test\Dos.ORM.Test.csproj", "{D9ED145B-ACC8-4B11-A817-2DBABE3D6C02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dos.ORM.WinForm.Test", "Dos.ORM.WinForm.Test\Dos.ORM.WinForm.Test.csproj", "{A4FC8121-DCC3-4DF7-90EB-45DC3E65B001}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +41,10 @@ Global
 		{D9ED145B-ACC8-4B11-A817-2DBABE3D6C02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9ED145B-ACC8-4B11-A817-2DBABE3D6C02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9ED145B-ACC8-4B11-A817-2DBABE3D6C02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4FC8121-DCC3-4DF7-90EB-45DC3E65B001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4FC8121-DCC3-4DF7-90EB-45DC3E65B001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4FC8121-DCC3-4DF7-90EB-45DC3E65B001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4FC8121-DCC3-4DF7-90EB-45DC3E65B001}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

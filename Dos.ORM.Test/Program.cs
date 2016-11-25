@@ -30,6 +30,7 @@ namespace Dos.ORM.Test
             //return;
 
             var db20161029 = new DbSession(DatabaseType.SqlServer9, @"Server=.\sql2008r22;uid=sa;pwd=sa;database=OXunDB;");
+           
             db20161029.RegisterSqlLogger(SqlOg);
             List<B_OXunGoods> lo = new List<B_OXunGoods>();
             Where<B_OXunGoods> where = new Where<B_OXunGoods>();
@@ -45,7 +46,6 @@ namespace Dos.ORM.Test
             var a2 = JSON.ToJSON(lo.First());
             JavaScriptSerializer js = new JavaScriptSerializer();
             var a3 = js.Serialize(lo.First());
-            return;
 
 
 

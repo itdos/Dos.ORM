@@ -35,9 +35,9 @@ namespace Dos.ORM.Test
             List<B_OXunGoods> lo = new List<B_OXunGoods>();
             Where<B_OXunGoods> where = new Where<B_OXunGoods>();
             lo = db20161029.From<B_OXunGoods>()
+                .OrderByDescending(d => d.Id)
                 .Where(where)
                 .Page(20, 2)
-                .OrderByDescending(d => d.Id)
                 .ToList();
             var a1 = JsonConvert.SerializeObject(lo.First());
             var a2 = JSON.ToJSON(lo.First());
@@ -112,13 +112,13 @@ namespace Dos.ORM.Test
 
             var model = db.From<BizHouse>()
                 .Select(d => new { d.All, Name2 = d.Name })
-                //.AddSelect(
-                //    db.From<BizHouse>()
-                //        .LeftJoin<BizHouse>((c, d) => c.Id == d.Id)
-                //        .Select(d => d.Age)
-                //        .Top(1)
-                //)
-                .Top(2)
+                .AddSelect(
+                    db.From<BizHouse>()
+                        .LeftJoin<BizHouse>((c, d) => c.Id == d.Id)
+                        .Select(d => d.Age)
+                        .Top(1)
+                )
+                .Top(2) 
                 .ToFirst();
             var bbbbbbbb = JsonConvert.SerializeObject(model);
             var aaaaaaa = JSON.ToJSON(model);

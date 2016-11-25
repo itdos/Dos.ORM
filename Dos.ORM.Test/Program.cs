@@ -34,19 +34,17 @@ namespace Dos.ORM.Test
             db20161029.RegisterSqlLogger(SqlOg);
             List<B_OXunGoods> lo = new List<B_OXunGoods>();
             Where<B_OXunGoods> where = new Where<B_OXunGoods>();
-            where.And(d => d.DeleteState == 0);
-            where.And(d => d.IndustryCode.StartsWith("0318"));
             lo = db20161029.From<B_OXunGoods>()
-                .Select(d => d.All)
-                .OrderByDescending(d => d.Sort)
                 .Where(where)
                 .Page(20, 2)
+                .OrderByDescending(d => d.Id)
                 .ToList();
             var a1 = JsonConvert.SerializeObject(lo.First());
             var a2 = JSON.ToJSON(lo.First());
             JavaScriptSerializer js = new JavaScriptSerializer();
             var a3 = js.Serialize(lo.First());
 
+            return;
 
 
             var db20160927 = new DbSession(DatabaseType.MySql, "Data Source=127.0.0.1;Database=ITdos;User Id=root;Password=root;Convert Zero Datetime=True;Allow Zero Datetime=True;");

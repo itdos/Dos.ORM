@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\BizHouse.cs" />
+    <Compile Include="Model\BizReview.cs" />
     <Compile Include="Model\BizStandardList.cs" />
     <Compile Include="Model\BizUser.cs" />
     <Compile Include="Model\B_OXunGoods.cs" />

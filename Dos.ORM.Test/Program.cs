@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json;
 using OAA.DataAccess.Entities;
+using Polymerch.DataModel;
 using Standard.DataModel;
 using WD.Model;
 
@@ -25,9 +26,36 @@ namespace Dos.ORM.Test
             //请不要运行此Test项目，此Test仅仅是本人测试用。
             //另外有完整的Demo项目：http://git.oschina.net/ITdos/Dos.ORM.Demo
 
+            Console.WriteLine("------------------------------------------------------------------");
             Console.WriteLine("请不要运行此Test项目，此Test仅仅是本人测试用。");
             Console.WriteLine("另外有完整的Demo项目：http://git.oschina.net/ITdos/Dos.ORM.Demo");
+            Console.WriteLine("------------------------------------------------------------------");
             //return;
+
+
+
+            var db20161226 = new DbSession(DatabaseType.MySql, @"Data Source=127.0.0.1;Database=Polymerch;User Id=root;Password=root;Convert Zero Datetime=True;Allow Zero Datetime=True;");
+            db20161226.RegisterSqlLogger(SqlOg);
+            var where20161226 = new Where<BizReview>();
+           // where20161226.And(d => d.FkId == Guid.Parse("2bcb3d89-2aca-4713-844f-a53192c4ae42"));
+           // where20161226.And(d => d.ParentId == Guid.Empty);
+           var ids20170208 = new List<Guid>();
+            var fs20170208 = db20161226.From<BizReview>()
+               // .Select(BizUser._.Phone, BizUser._.Pwd, BizReview._.Content)
+               // .LeftJoin<BizUser>((c, b) => c.UserId == b.Id)
+               // .Where(where20161226)
+               .Where(d=>d.Id.In(ids20170208))
+                .OrderByDescending(d => d.CreateTime)
+                .ToList();
+            var fs201702082 = db20161226.From<BizReview>()
+               // .Select(BizUser._.Phone, BizUser._.Pwd, BizReview._.Content)
+               // .LeftJoin<BizUser>((c, b) => c.UserId == b.Id)
+               // .Where(where20161226)
+               .Where(d => d.Id.NotIn(ids20170208))
+                .OrderByDescending(d => d.CreateTime)
+                .ToList();
+            return;
+
 
             var db20161029 = new DbSession(DatabaseType.SqlServer9, @"Server=.\sql2008r22;uid=sa;pwd=sa;database=OXunDB;");
            

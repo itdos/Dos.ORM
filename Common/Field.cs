@@ -736,6 +736,10 @@ namespace Dos.ORM
         {
             if (values.Length == 0)
             {
+                if (join == selectNotInString)//2017-02-28 新增
+                {
+                    return WhereClip.All;
+                }
                 return new WhereClip("1=2");
                 //2015-09-22注释
                 //return WhereClip.All;

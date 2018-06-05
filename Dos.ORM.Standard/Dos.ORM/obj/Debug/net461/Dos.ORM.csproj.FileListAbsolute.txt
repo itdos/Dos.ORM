@@ -1,0 +1,4 @@
+D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\obj\Debug\net461\Dos.ORM.csprojResolveAssemblyReference.cache
+D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\obj\Debug\net461\Dos.ORM.csproj.CoreCompileInputs.cache
+D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\obj\Debug\net461\Dos.ORM.AssemblyInfoInputs.cache
+D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\obj\Debug\net461\Dos.ORM.AssemblyInfo.cs

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <system.data>
+    <DbProviderFactories>
+      <remove invariant="lcpi.data.oledb" />
+      <add name="LCPI OleDb Data Provider" invariant="lcpi.data.oledb" description="LCPI .NET Data Provider for OLE DB" type="lcpi.data.oledb.OleDbFactory, lcpi.data.oledb.net4_6, Version=1.7.0.3395, Culture=neutral, PublicKeyToken=ff716095e8002e7e" />
+    </DbProviderFactories>
+  </system.data>
+</configuration>

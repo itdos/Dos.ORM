@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Dos.ORM</id>
+    <version>1.0.0</version>
+    <authors>Dos.ORM</authors>
+    <owners>Dos.ORM</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETFramework4.0">
+        <dependency id="lcpi.data.oledb" version="1.7.0.3395" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="FastExpressionCompiler" version="1.7.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.CSharp" version="4.4.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Caching.Memory" version="2.0.2" exclude="Build,Analyzers" />
+        <dependency id="System.Data.Common" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.Data.OracleClient" version="1.0.8" exclude="Build,Analyzers" />
+        <dependency id="System.Data.SqlClient" version="4.4.3" exclude="Build,Analyzers" />
+        <dependency id="System.Reflection" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.Reflection.Emit.ILGeneration" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.Reflection.Primitives" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="lcpi.data.oledb" version="1.7.0.3395" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Configuration" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Data.OracleClient" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Web" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Web.Extensions" targetFramework=".NETFramework4.0" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\bin\Release\net40\Dos.ORM.dll" target="lib\net40\Dos.ORM.dll" />
+    <file src="D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\bin\Release\netstandard2.0\Dos.ORM.dll" target="lib\netstandard2.0\Dos.ORM.dll" />
+  </files>
+</package>

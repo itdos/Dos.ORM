@@ -1,0 +1,64 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!--net20;-->
+    <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
+    <Version>1.12.1</Version>
+    <Authors>ITdos</Authors>
+    <Company>www.ITdos.com</Company>
+    <Description>Dos.ORM（原Hxj.Data）于2009年发布、2015年正式开源，支持core，该组件已在数百个成熟项目中应用，是目前国内.Net用户量最多、最活跃、最完善的国产ORM。初期开发过程中参考了NBear与MySoft，吸取了他们的一些精华，加入新思想，后期参考EF的Lambda语法进行大量扩展。官方网站：http://ITdos.com/Dos/ORM/Index.html 交流QQ群：60831381</Description>
+    <Copyright>Copyright 2009-2018 ITdos</Copyright>
+    <PackageReleaseNotes>Dos.ORM（原Hxj.Data）于2009年发布、2015年正式开源，该组件已在数百个成熟项目中应用，是目前国内.Net用户量最多、最活跃、最完善的国产ORM。初期开发过程中参考了NBear与MySoft，吸取了他们的一些精华，加入新思想，后期参考EF的Lambda语法进行大量扩展。官方网站：http://ITdos.com/Dos/ORM/Index.html 交流QQ群：60831381</PackageReleaseNotes>
+    <PackageIconUrl>http://www.itdos.com/Plugins/CMS/Content/Img/48.ico</PackageIconUrl>
+    <PackageProjectUrl>http://www.itdos.com/dos/orm/index.html</PackageProjectUrl>
+    <PackageLicenseUrl>http://www.itdos.com/dos/orm/index.html</PackageLicenseUrl>
+    <PackageTags>Dos,Dos.,Dos.ORM,Dos.WeChat,Dos.Common,Dos.ORM.NoSql,Dos.Captcha,Dos.Net</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="lcpi.data.oledb" Version="1.7.0.3395" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Reflection.Emit">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.netcore.app\2.0.0\ref\netcoreapp2.0\System.Reflection.Emit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="FastExpressionCompiler">
+      <Version>1.7.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CSharp">
+      <Version>4.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory">
+      <Version>2.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.Common">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.OracleClient">
+      <Version>1.0.8</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.SqlClient">
+      <Version>4.4.3</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Emit.ILGeneration">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Primitives">
+      <Version>4.3.0</Version>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

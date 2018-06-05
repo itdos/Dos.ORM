@@ -1,0 +1,10 @@
+D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\bin\Release\netstandard2.0\Dos.ORM.deps.json
+D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\bin\Release\netstandard2.0\Dos.ORM.dll
+D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\bin\Release\netstandard2.0\Dos.ORM.pdb
+D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\bin\Release\netstandard2.0\System.Reflection.Emit.dll
+D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\bin\Release\netstandard2.0\System.Reflection.Emit.xml
+D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\obj\Release\netstandard2.0\Dos.ORM.csproj.CoreCompileInputs.cache
+D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\obj\Release\netstandard2.0\Dos.ORM.AssemblyInfoInputs.cache
+D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\obj\Release\netstandard2.0\Dos.ORM.AssemblyInfo.cs
+D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\obj\Release\netstandard2.0\Dos.ORM.dll
+D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\obj\Release\netstandard2.0\Dos.ORM.pdb

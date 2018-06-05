@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Dos.ORM</id>
+    <version>1.12.1</version>
+    <authors>ITdos</authors>
+    <owners>ITdos</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://www.itdos.com/dos/orm/index.html</licenseUrl>
+    <projectUrl>http://www.itdos.com/dos/orm/index.html</projectUrl>
+    <iconUrl>http://www.itdos.com/Plugins/CMS/Content/Img/48.ico</iconUrl>
+    <description>Dos.ORM（原Hxj.Data）于2009年发布、2015年正式开源，该组件已在数百个成熟项目中应用，是目前国内.Net用户量最多、最活跃、最完善的国产ORM。初期开发过程中参考了NBear与MySoft，吸取了他们的一些精华，加入新思想，后期参考EF的Lambda语法进行大量扩展。官方网站：http://ITdos.com/Dos/ORM/Index.html 交流QQ群：60831381</description>
+    <releaseNotes>Dos.ORM（原Hxj.Data）于2009年发布、2015年正式开源，该组件已在数百个成熟项目中应用，是目前国内.Net用户量最多、最活跃、最完善的国产ORM。初期开发过程中参考了NBear与MySoft，吸取了他们的一些精华，加入新思想，后期参考EF的Lambda语法进行大量扩展。官方网站：http://ITdos.com/Dos/ORM/Index.html 交流QQ群：60831381</releaseNotes>
+    <copyright>Copyright 2009-2018 ITdos</copyright>
+    <tags>Dos,Dos.,Dos.ORM,Dos.WeChat,Dos.Common,Dos.ORM.NoSql,Dos.Captcha,Dos.Net</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.0">
+        <dependency id="lcpi.data.oledb" version="1.7.0.3395" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="FastExpressionCompiler" version="1.7.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.CSharp" version="4.4.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Caching.Memory" version="2.0.2" exclude="Build,Analyzers" />
+        <dependency id="System.Data.Common" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.Data.OracleClient" version="1.0.8" exclude="Build,Analyzers" />
+        <dependency id="System.Data.SqlClient" version="4.4.3" exclude="Build,Analyzers" />
+        <dependency id="System.Reflection" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.Reflection.Emit.ILGeneration" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.Reflection.Primitives" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="lcpi.data.oledb" version="1.7.0.3395" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Configuration" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Data.OracleClient" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Web" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Web.Extensions" targetFramework=".NETFramework4.0" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\bin\Release\net40\Dos.ORM.dll" target="lib\net40\Dos.ORM.dll" />
+    <file src="D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\bin\Release\netstandard2.0\Dos.ORM.dll" target="lib\netstandard2.0\Dos.ORM.dll" />
+  </files>
+</package>

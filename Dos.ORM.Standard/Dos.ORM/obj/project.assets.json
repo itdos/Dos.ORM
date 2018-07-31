@@ -2432,13 +2432,13 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "1.12.1",
+    "version": "1.15.0",
     "restore": {
-      "projectUniqueName": "D:\\工作\\GitHub\\Dos.ORM.Standard\\Dos.ORM\\Dos.ORM.csproj",
+      "projectUniqueName": "D:\\工作\\GitHub\\Dos.ORM\\Dos.ORM.Standard\\Dos.ORM\\Dos.ORM.csproj",
       "projectName": "Dos.ORM",
-      "projectPath": "D:\\工作\\GitHub\\Dos.ORM.Standard\\Dos.ORM\\Dos.ORM.csproj",
+      "projectPath": "D:\\工作\\GitHub\\Dos.ORM\\Dos.ORM.Standard\\Dos.ORM\\Dos.ORM.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "D:\\工作\\GitHub\\Dos.ORM.Standard\\Dos.ORM\\obj\\",
+      "outputPath": "D:\\工作\\GitHub\\Dos.ORM\\Dos.ORM.Standard\\Dos.ORM\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [

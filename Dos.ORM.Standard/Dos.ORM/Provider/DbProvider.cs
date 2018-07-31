@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using System.Data.Common;
+using System.Text.RegularExpressions;
 using Dos.ORM;
 using Dos.ORM.Common;
 
@@ -413,13 +414,19 @@ namespace Dos.ORM
 
                 if (!isStoredProcedure)
                 {
-                    //TODO 这里可以继续优化
-                    if (cmd.CommandText.IndexOf(p.ParameterName, StringComparison.Ordinal) == -1)
+                    //if (cmd.CommandText.IndexOf(p.ParameterName, StringComparison.Ordinal) == -1)
+                    //if (Regex.IsMatch(cmd.CommandText, p.ParameterName + @"(?=[^\d])")) //2018-06-21 修复bug
+                    if (Regex.IsMatch(cmd.CommandText, @"(@|\?|:)" + p.ParameterName.Substring(1) + @"(?=[^\d])")) //2018-07-31 修复bug
                     {
-                        //2015-08-11修改
-                        cmd.CommandText = cmd.CommandText.Replace("@" + p.ParameterName.Substring(1), p.ParameterName);
-                        cmd.CommandText = cmd.CommandText.Replace("?" + p.ParameterName.Substring(1), p.ParameterName);
-                        cmd.CommandText = cmd.CommandText.Replace(":" + p.ParameterName.Substring(1), p.ParameterName);
+                        //2018-06-21
+                        cmd.CommandText =  Regex.Replace(cmd.CommandText, @"(@|\?|:)" + p.ParameterName.Substring(1) + @"(?=[^\d])", p.ParameterName);
+
+                        ////2015-08-11修改
+                        //cmd.CommandText = cmd.CommandText.Replace("@" + p.ParameterName.Substring(1), p.ParameterName);
+                        //cmd.CommandText = cmd.CommandText.Replace("?" + p.ParameterName.Substring(1), p.ParameterName);
+                        //cmd.CommandText = cmd.CommandText.Replace(":" + p.ParameterName.Substring(1), p.ParameterName);
+
+
                         //if (p.ParameterName.Substring(0, 1) == "?" || p.ParameterName.Substring(0, 1) == ":"
                         //        || p.ParameterName.Substring(0, 1) == "@")
                         //    cmd.CommandText = cmd.CommandText.Replace(paramPrefixToken + p.ParameterName.Substring(1), p.ParameterName);

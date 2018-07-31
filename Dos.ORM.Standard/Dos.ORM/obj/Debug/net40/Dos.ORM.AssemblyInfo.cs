@@ -17,11 +17,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Dos.ORM（原Hxj.Data）于2009年发布、2015年正式开源，支持core，该组件已在数百个成熟项目中应用，是目前国内.Net用户量最多、最活跃、最完" +
     "善的国产ORM。初期开发过程中参考了NBear与MySoft，吸取了他们的一些精华，加入新思想，后期参考EF的Lambda语法进行大量扩展。官方网站：http:" +
     "//ITdos.com/Dos/ORM/Index.html 交流QQ群：60831381")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.12.1.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.12.1")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.15.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.15")]
 [assembly: System.Reflection.AssemblyProductAttribute("Dos.ORM")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Dos.ORM")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.12.1.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.15.0.0")]
 
 // 由 MSBuild WriteCodeFragment 类生成。
 

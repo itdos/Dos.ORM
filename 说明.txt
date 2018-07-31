@@ -1,0 +1,2 @@
+Dos.ORM.Old 为以前的.net framework库，不再维护，废弃。
+请使用Dos.ORM.Standard库。

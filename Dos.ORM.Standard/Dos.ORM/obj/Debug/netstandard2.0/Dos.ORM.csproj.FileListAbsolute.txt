@@ -9,3 +9,11 @@ D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\obj\Debug\netstandard2.0\Dos.ORM.pdb
 D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\bin\Debug\netstandard2.0\System.Reflection.Emit.dll
 D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\bin\Debug\netstandard2.0\System.Reflection.Emit.xml
 D:\工作\GitHub\Dos.ORM.Standard\Dos.ORM\obj\Debug\netstandard2.0\Dos.ORM.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Source\Repos\Dos.ORM\Dos.ORM.Standard\Dos.ORM\bin\Debug\netstandard2.0\Dos.ORM.deps.json
+C:\Users\Administrator\Source\Repos\Dos.ORM\Dos.ORM.Standard\Dos.ORM\bin\Debug\netstandard2.0\Dos.ORM.dll
+C:\Users\Administrator\Source\Repos\Dos.ORM\Dos.ORM.Standard\Dos.ORM\bin\Debug\netstandard2.0\Dos.ORM.pdb
+C:\Users\Administrator\Source\Repos\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\netstandard2.0\Dos.ORM.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Source\Repos\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\netstandard2.0\Dos.ORM.AssemblyInfoInputs.cache
+C:\Users\Administrator\Source\Repos\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\netstandard2.0\Dos.ORM.AssemblyInfo.cs
+C:\Users\Administrator\Source\Repos\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\netstandard2.0\Dos.ORM.dll
+C:\Users\Administrator\Source\Repos\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\netstandard2.0\Dos.ORM.pdb

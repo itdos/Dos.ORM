@@ -235,8 +235,64 @@ namespace Dos.ORM
                     return ConvertNull(mce, true);
                 case "IsNotNull":
                     return ConvertNull(mce);
-                    //case "Sum":
-                    //    return ConvertAs(e);
+
+                //case "Sum":
+                //    return ConvertAs(e);
+
+                case "GreaterThan":
+                    return GreaterThan(mce);
+
+                case "GreaterOrEqual":
+                    return GreaterOrEqual(mce);
+
+                case "LessThan":
+                    return LessThan(mce);
+
+                case "LessOrEqual":
+                    return LessOrEqual(mce);
+
+                case "NotEqual":
+                    return NotEqual(mce);
+
+
+                case "SubGreaterThan":
+                    return SubGreaterThan(mce);
+
+                case "SubGreaterOrEqual":
+                    return SubGreaterOrEqual(mce);
+
+                case "SubLessThan":
+                    return SubLessThan(mce);
+
+                case "SubLessOrEqual":
+                    return SubLessOrEqual(mce);
+
+                case "SubNotEqual":
+                    return SubNotEqual(mce);
+
+                case "SubEqual":
+                    return SubEquals(mce);
+
+                case "SubIn":
+                    return ConvertSubInCall(mce);
+                case "SubNotIn":
+                    return ConvertSubInCall(mce, true);
+
+
+                case "BitwiseAND":
+                    return BitwiseAND(mce);
+
+                case "BitwiseOR":
+                    return BitwiseOR(mce);
+
+
+                case "BitwiseIN":
+                    return BitwiseIN(mce);
+
+
+                case "LenEqual":
+                    return LenEquals(mce);
+
             }
             throw new Exception("暂时不支持的Lambda表达式方法: " + mce.Method.Name + "！请使用经典写法！");
         }
@@ -804,9 +860,16 @@ namespace Dos.ORM
         /// <returns></returns>
         private static string GetTableName(Type type)
         {
+            if (type.IsGenericType)
+            {
+                type = type.GetGenericArguments().First();
+            }
+
             var tbl = type.GetCustomAttribute<Table>(false);
             return tbl != null ? tbl.GetTableName() : type.Name;
-        }/// <summary>
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="type"></param>
@@ -851,5 +914,534 @@ namespace Dos.ORM
         {
             return new Field(filedProp[0], GetTableName(t), null, null, null, asName);
         }
+
+
+
+        private static object GetFieldOrValue(System.Linq.Expressions.Expression expr)
+        {
+            if (expr.NodeType == ExpressionType.Convert)
+            {
+                expr = ((UnaryExpression)expr).Operand;
+            }
+            if (expr is MemberExpression obj && typeof(Entity).IsAssignableFrom(obj.Expression.Type))
+            {
+                var key = GetFieldName(obj.Member);
+                var field = CreateField(key, obj.Expression.Type);
+                return field;
+            }
+
+            var value = GetValue(expr);
+            return value;
+
+
+
+
+            // throw new Exception("暂时不支持的Lambda表达式写法！请使用经典写法！");
+        }
+
+        private static WhereClip GreaterThan(MethodCallExpression mce)
+        {
+
+            if (mce.Arguments.Count == 2)
+            {
+                var field = GetFieldOrValue(mce.Arguments[0]) as Field;
+
+                if (Field.IsNullOrEmpty(field))
+                {
+                    throw new Exception("必须Dos.ORM实体属性才能使用此函数");
+                }
+                var value = GetFieldOrValue(mce.Arguments[1]);
+
+                if (value != null && (value is string || value is Field))
+                {
+                    return new WhereClip(field, value, QueryOperator.Greater);
+                }
+
+
+            }
+            throw new Exception("'GreaterThan'仅支持一个参数，参数应为字符串且不允许为空");
+        }
+
+
+        private static WhereClip GreaterOrEqual(MethodCallExpression mce)
+        {
+
+            if (mce.Arguments.Count == 2)
+            {
+                var field = GetFieldOrValue(mce.Arguments[0]) as Field;
+
+                if (Field.IsNullOrEmpty(field))
+                {
+                    throw new Exception("必须Dos.ORM实体属性才能使用此函数");
+                }
+                var value = GetFieldOrValue(mce.Arguments[1]);
+
+                if (value != null && (value is string || value is Field))
+                {
+                    return new WhereClip(field, value, QueryOperator.GreaterOrEqual);
+                }
+            }
+            throw new Exception("'GreaterThanOrEqual'仅支持一个参数，参数应为字符串且不允许为空");
+        }
+
+
+        private static WhereClip LessThan(MethodCallExpression mce)
+        {
+
+            if (mce.Arguments.Count == 2)
+            {
+                var field = GetFieldOrValue(mce.Arguments[0]) as Field;
+
+                if (Field.IsNullOrEmpty(field))
+                {
+                    throw new Exception("必须Dos.ORM实体属性才能使用此函数");
+                }
+                var value = GetFieldOrValue(mce.Arguments[1]);
+
+                if (value != null && (value is string || value is Field))
+                {
+                    return new WhereClip(field, value, QueryOperator.Less);
+                }
+            }
+            throw new Exception("'LessThan'仅支持一个参数，参数应为字符串且不允许为空");
+        }
+
+        private static WhereClip LessOrEqual(MethodCallExpression mce)
+        {
+
+            if (mce.Arguments.Count == 2)
+            {
+                var field = GetFieldOrValue(mce.Arguments[0]) as Field;
+
+                if (Field.IsNullOrEmpty(field))
+                {
+                    throw new Exception("必须Dos.ORM实体属性才能使用此函数");
+                }
+                var value = GetFieldOrValue(mce.Arguments[1]);
+
+                if (!Field.IsNullOrEmpty(field) && value != null && (value is string || value is Field))
+                {
+                    return new WhereClip(field, value, QueryOperator.LessOrEqual);
+                }
+            }
+            throw new Exception("'LessThanOrEqual'仅支持一个参数，参数应为字符串且不允许为空");
+        }
+
+        private static WhereClip NotEqual(MethodCallExpression mce)
+        {
+            if (mce.Arguments.Count == 2)
+            {
+                var field = GetFieldOrValue(mce.Arguments[0]) as Field;
+
+                if (Field.IsNullOrEmpty(field))
+                {
+                    throw new Exception("必须Dos.ORM实体属性才能使用此函数");
+                }
+                var value = GetFieldOrValue(mce.Arguments[1]);
+
+                if (value != null && (value is string || value is Field))
+                {
+                    return new WhereClip(field, value, QueryOperator.NotEqual);
+                }
+            }
+            throw new Exception("'NotEqual'仅支持一个参数，参数应为字符串且不允许为空");
+        }
+
+
+
+        private static WhereClip SubGreaterThan(MethodCallExpression mce)
+        {
+
+            if (mce.Arguments.Count == 4)
+            {
+                var field = GetFieldOrValue(mce.Arguments[0]) as Field;
+
+                if (Field.IsNullOrEmpty(field))
+                {
+                    throw new Exception("必须Dos.ORM实体属性才能使用此函数");
+                }
+                var startIndex = GetFieldOrValue(mce.Arguments[1]);
+                var leng = GetFieldOrValue(mce.Arguments[2]);
+                var value = GetFieldOrValue(mce.Arguments[3]);
+
+                if (value != null && (value is string || value is Field) && startIndex is int && leng is int)
+                {
+                    return new WhereClip(field.Substring((int)startIndex, (int)leng), value, QueryOperator.Greater);
+                }
+            }
+            throw new Exception("'GreaterThan'仅支持3个参数，第1和第2参数应为整数，第3 参数英文字符串且不允许为空");
+        }
+
+
+
+        private static WhereClip SubGreaterOrEqual(MethodCallExpression mce)
+        {
+            if (mce.Arguments.Count == 4)
+            {
+                var field = GetFieldOrValue(mce.Arguments[0]) as Field;
+
+                if (Field.IsNullOrEmpty(field))
+                {
+                    throw new Exception("必须Dos.ORM实体属性才能使用此函数");
+                }
+                var startIndex = GetFieldOrValue(mce.Arguments[1]);
+                var leng = GetFieldOrValue(mce.Arguments[2]);
+                var value = GetFieldOrValue(mce.Arguments[3]);
+
+                if (value != null && (value is string || value is Field) && startIndex is int && leng is int)
+                {
+                    return new WhereClip(field.Substring((int)startIndex, (int)leng), value, QueryOperator.GreaterOrEqual);
+                }
+            }
+            throw new Exception("'GreaterThan'仅支持3个参数，第1和第2参数应为整数，第3 参数英文字符串且不允许为空");
+        }
+
+
+
+        private static WhereClip SubLessThan(MethodCallExpression mce)
+        {
+            if (mce.Arguments.Count == 4)
+            {
+                var field = GetFieldOrValue(mce.Arguments[0]) as Field;
+
+                if (Field.IsNullOrEmpty(field))
+                {
+                    throw new Exception("必须Dos.ORM实体属性才能使用此函数");
+                }
+                var startIndex = GetFieldOrValue(mce.Arguments[1]);
+                var leng = GetFieldOrValue(mce.Arguments[2]);
+                var value = GetFieldOrValue(mce.Arguments[3]);
+
+                if (value != null && (value is string || value is Field) && startIndex is int && leng is int)
+                {
+                    return new WhereClip(field.Substring((int)startIndex, (int)leng), value, QueryOperator.Less);
+                }
+            }
+            throw new Exception("'GreaterThan'仅支持3个参数，第1和第2参数应为整数，第3 参数英文字符串且不允许为空");
+        }
+
+
+
+        private static WhereClip SubLessOrEqual(MethodCallExpression mce)
+        {
+            if (mce.Arguments.Count == 4)
+            {
+                var field = GetFieldOrValue(mce.Arguments[0]) as Field;
+
+                if (Field.IsNullOrEmpty(field))
+                {
+                    throw new Exception("必须Dos.ORM实体属性才能使用此函数");
+                }
+                var startIndex = GetFieldOrValue(mce.Arguments[1]);
+                var leng = GetFieldOrValue(mce.Arguments[2]);
+                var value = GetFieldOrValue(mce.Arguments[3]);
+
+                if (value != null && (value is string || value is Field) && startIndex is int && leng is int)
+                {
+                    return new WhereClip(field.Substring((int)startIndex, (int)leng), value, QueryOperator.LessOrEqual);
+                }
+            }
+            throw new Exception("'GreaterThan'仅支持3个参数，第1和第2参数应为整数，第3 参数英文字符串且不允许为空");
+        }
+
+
+
+        private static WhereClip SubNotEqual(MethodCallExpression mce)
+        {
+            if (mce.Arguments.Count == 4)
+            {
+                var field = GetFieldOrValue(mce.Arguments[0]) as Field;
+
+                if (Field.IsNullOrEmpty(field))
+                {
+                    throw new Exception("必须Dos.ORM实体属性才能使用此函数");
+                }
+                var startIndex = GetFieldOrValue(mce.Arguments[1]);
+                var leng = GetFieldOrValue(mce.Arguments[2]);
+                var value = GetFieldOrValue(mce.Arguments[3]);
+
+                if (value != null && (value is string || value is Field) && startIndex is int && leng is int)
+                {
+                    return new WhereClip(field.Substring((int)startIndex, (int)leng), value, QueryOperator.NotEqual);
+                }
+            }
+            throw new Exception("'GreaterThan'仅支持3个参数，第1和第2参数应为整数，第3 参数英文字符串且不允许为空");
+        }
+
+
+        private static WhereClip SubEquals(MethodCallExpression mce)
+        {
+            if (mce.Arguments.Count == 4)
+            {
+                var field = GetFieldOrValue(mce.Arguments[0]) as Field;
+
+                if (Field.IsNullOrEmpty(field))
+                {
+                    throw new Exception("必须Dos.ORM实体属性才能使用此函数");
+                }
+                var startIndex = GetFieldOrValue(mce.Arguments[1]);
+                var leng = GetFieldOrValue(mce.Arguments[2]);
+                var value = GetFieldOrValue(mce.Arguments[3]);
+
+                if (value != null && (value is string || value is Field) && startIndex is int && leng is int)
+                {
+                    return new WhereClip(field.Substring((int)startIndex, (int)leng), value, QueryOperator.Equal);
+                }
+            }
+            throw new Exception("'SubEquals'仅支持3个参数，第1和第2参数应为整数，第3 参数英文字符串且不允许为空");
+        }
+
+
+        private static WhereClip ConvertSubInCall(MethodCallExpression mce, bool notIn = false)
+        {
+            if (mce.Arguments.Count == 4)
+            {
+                var field = GetFieldOrValue(mce.Arguments[0]) as Field;
+
+                if (Field.IsNullOrEmpty(field))
+                {
+                    throw new Exception("必须Dos.ORM实体属性才能使用此函数");
+                }
+                var list = new List<object>();
+                var startIndex = GetFieldOrValue(mce.Arguments[1]);
+                var leng = GetFieldOrValue(mce.Arguments[2]);
+                var ie = GetFieldOrValue(mce.Arguments[3]);
+
+                if (startIndex is int index && leng is int len)
+                {
+
+                    if (ie is IEnumerable)
+                    {
+                        list.AddRange(((IEnumerable)GetValue(mce.Arguments[3])).Cast<object>());
+                    }
+                    else
+                    {
+                        list.Add(ie);
+                    }
+                    return notIn ? field.Substring(index, len).SelectNotIn(list.ToArray()) : field.Substring(index, len).SelectIn(list.ToArray());
+                }
+            }
+            throw new Exception("'GreaterThan'仅支持3个参数，第1和第2参数应为整数，第3 参数字符串数组");
+
+        }
+
+
+
+        private static WhereClip BitwiseAND(MethodCallExpression mce)
+        {
+
+            if (mce.Arguments.Count == 2)
+            {
+
+                var field = GetFieldOrValue(mce.Arguments[0]) as Field;
+
+                if (Field.IsNullOrEmpty(field))
+                {
+                    throw new Exception("必须Dos.ORM实体属性才能使用此函数");
+                }
+
+                var value = GetFieldOrValue(mce.Arguments[1]);
+
+                if (value is Field new_field)
+                {
+                    field = new Field(string.Concat(field.TableFieldName, DataUtils.ToString(QueryOperator.BitwiseAND), new_field.TableFieldName));
+                    return new WhereClip(field, new_field, QueryOperator.Equal);
+                }
+                else
+                {
+                    if (value != null && (value is int || value is Enum))
+                    {
+                        field = new Field(string.Concat(field.TableFieldName, DataUtils.ToString(QueryOperator.BitwiseAND), ((int)value).ToString()));
+                        return new WhereClip(field, (int)value, QueryOperator.Equal);
+
+                    }
+                }
+
+            }
+            throw new Exception("'LessThan'仅支持一个参数，参数应为int或Enum类型");
+        }
+
+
+        private static WhereClip BitwiseOR(MethodCallExpression mce)
+        {
+
+            if (mce.Arguments.Count == 2)
+            {
+
+                var field = GetFieldOrValue(mce.Arguments[0]) as Field;
+
+                if (Field.IsNullOrEmpty(field))
+                {
+                    throw new Exception("必须Dos.ORM实体属性才能使用此函数");
+                }
+
+                var value = GetFieldOrValue(mce.Arguments[1]);
+
+                if (value is Field new_field)
+                {
+                    field = new Field(string.Concat(field.TableFieldName, DataUtils.ToString(QueryOperator.BitwiseOR), new_field.TableFieldName));
+                    return new WhereClip(field, new_field, QueryOperator.Equal);
+                }
+                else
+                {
+                    if (value != null && (value is int || value is Enum))
+                    {
+                        field = new Field(string.Concat(field.TableFieldName, DataUtils.ToString(QueryOperator.BitwiseOR), ((int)value).ToString()));
+                        return new WhereClip(field, (int)value, QueryOperator.Equal);
+
+                    }
+                }
+
+            }
+            throw new Exception("'LessThan'仅支持一个参数，参数应为int或Enum类型");
+        }
+        private static WhereClip BitwiseIN(MethodCallExpression mce)
+        {
+            if (mce.Arguments.Count == 2)
+            {
+
+                var field = GetFieldOrValue(mce.Arguments[0]) as Field;
+
+                if (Field.IsNullOrEmpty(field))
+                {
+                    throw new Exception("必须Dos.ORM实体属性才能使用此函数");
+                }
+
+                var value = GetFieldOrValue(mce.Arguments[1]);
+
+                var field_value = default(Field);
+                if (value is Field new_field)
+                {
+                    field_value = new Field(string.Concat(field.TableFieldName, DataUtils.ToString(QueryOperator.BitwiseAND), new_field.TableFieldName));
+                }
+                else
+                {
+                    if (value != null && (value is int || value is Enum))
+                    {
+                        field_value = new Field(string.Concat(field.TableFieldName, DataUtils.ToString(QueryOperator.BitwiseAND), ((int)value).ToString()));
+                    }
+                }
+                return new WhereClip(field, field_value, QueryOperator.Equal);
+            }
+            throw new Exception("'LessThan'仅支持一个参数，参数应为int或Enum类型");
+        }
+
+
+        private static WhereClip LenEquals(MethodCallExpression mce)
+        {
+            ColumnFunction function;
+            MemberExpression member;
+
+            if (mce.Arguments.Count == 2)
+            {
+                var key = GetMemberName(mce.Arguments[0], out function, out member);
+                var value = GetValue(mce.Arguments[1]);
+                if (value != null && value is int)
+                {
+                    var field = CreateField(key, member.Expression.Type);
+                    return new WhereClip(field.Len(), (int)(value), QueryOperator.Equal);
+                }
+            }
+            throw new Exception("'GreaterThan'仅支持1个整形个参数，");
+        }
+
+        /// <summary>
+        /// 排序
+        /// </summary>
+        /// <typeparam name="TEntity2"></typeparam>
+        /// <param name="expr"></param>
+        /// <returns></returns>
+        public static OrderByClip ToOrderByClip<TEntity2>(Expression<Func<T, TEntity2, object>> expr)
+        {
+            return ToOrderByClipChild(expr.Body, OrderByOperater.ASC);
+        }
+
+        public static OrderByClip ToOrderByClip<TEntity2, TEntity3>(Expression<Func<T, TEntity2, TEntity3, object>> expr)
+        {
+            return ToOrderByClipChild(expr.Body, OrderByOperater.ASC);
+        }
+
+        public static OrderByClip ToOrderByClip<TEntity2, TEntity3, TEntity4>(Expression<Func<T, TEntity2, TEntity3, TEntity4, object>> expr)
+        {
+            return ToOrderByClipChild(expr.Body, OrderByOperater.ASC);
+        }
+
+        public static OrderByClip ToOrderByClip<TEntity2, TEntity3, TEntity4, TEntity5>(Expression<Func<T, TEntity2, TEntity3, TEntity4, TEntity5, object>> expr)
+        {
+            return ToOrderByClipChild(expr.Body, OrderByOperater.ASC);
+        }
+
+
+
+        public static OrderByClip ToOrderByDescendingClip<TEntity2>(Expression<Func<T, TEntity2, object>> expr)
+        {
+            return ToOrderByClipChild(expr.Body, OrderByOperater.DESC);
+        }
+
+        public static OrderByClip ToOrderByDescendingClip<TEntity2, TEntity3>(Expression<Func<T, TEntity2, TEntity3, object>> expr)
+        {
+            return ToOrderByClipChild(expr.Body, OrderByOperater.DESC);
+        }
+
+        public static OrderByClip ToOrderByDescendingClip<TEntity2, TEntity3, TEntity4>(Expression<Func<T, TEntity2, TEntity3, TEntity4, object>> expr)
+        {
+            return ToOrderByClipChild(expr.Body, OrderByOperater.DESC);
+        }
+
+        public static OrderByClip ToOrderByDescendingClip<TEntity2, TEntity3, TEntity4, TEntity5>(Expression<Func<T, TEntity2, TEntity3, TEntity4, TEntity5, object>> expr)
+        {
+            return ToOrderByClipChild(expr.Body, OrderByOperater.DESC);
+        }
+
+        ////// group by 
+
+        public static GroupByClip ToGroupByClip<TEntity2>(Expression<Func<T, TEntity2, object>> expr)
+        {
+            return ToGroupByClipChild(expr.Body);
+        }
+
+
+        public static GroupByClip ToGroupByClip<TEntity2, TEntity3>(Expression<Func<T, TEntity2, TEntity3, object>> expr)
+        {
+            return ToGroupByClipChild(expr.Body);
+        }
+
+        public static GroupByClip ToGroupByClip<TEntity2, TEntity3, TEntity4>(Expression<Func<T, TEntity2, TEntity3, TEntity4, object>> expr)
+        {
+            return ToGroupByClipChild(expr.Body);
+        }
+
+        public static GroupByClip ToGroupByClip<TEntity2, TEntity3, TEntity4, TEntity5>(Expression<Func<T, TEntity2, TEntity3, TEntity4, TEntity5, object>> expr)
+        {
+            return ToGroupByClipChild(expr.Body);
+        }
+
+
+
+
+        ////  join
+        public static WhereClip ToJoinWhere<TEntity, TEntity2>(Expression<Func<T, TEntity, TEntity2, bool>> e)
+        {
+            return ToWhereClipChild(e.Body, WhereType.JoinWhere);
+        }
+
+
+        public static WhereClip ToJoinWhere<TEntity, TEntity2, TEntity3>(Expression<Func<T, TEntity, TEntity2, TEntity3, bool>> e)
+        {
+            return ToWhereClipChild(e.Body, WhereType.JoinWhere);
+        }
+
+
+        public static WhereClip ToJoinWhere<TEntity, TEntity2, TEntity3, TEntity4>(Expression<Func<T, TEntity, TEntity2, TEntity3, TEntity4, bool>> e)
+        {
+            return ToWhereClipChild(e.Body, WhereType.JoinWhere);
+        }
+
+
+        public static WhereClip ToJoinWhere<TEntity, TEntity2, TEntity3, TEntity4, TEntity5>(Expression<Func<T, TEntity, TEntity2, TEntity3, TEntity4, TEntity5, bool>> e)
+        {
+            return ToWhereClipChild(e.Body, WhereType.JoinWhere);
+        }
+
     }
 }

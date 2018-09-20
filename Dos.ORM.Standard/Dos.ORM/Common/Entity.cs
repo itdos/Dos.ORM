@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Reflection;
@@ -140,6 +141,9 @@ namespace Dos.ORM
         /// 实体状态
         /// </summary>
         private EntityState _entityState = EntityState.Unchanged;
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
         /// select *。用于Lambda写法实现 select * 。注：表中不得含有字段名为All。
         /// </summary>
@@ -185,10 +189,19 @@ namespace Dos.ORM
         /// </summary>
         public Entity()
         {
-            var tbl = GetType().GetCustomAttribute<Table>(false) as Table;
-            _tableName = tbl != null ? tbl.GetTableName() : GetType().Name;
-            _userName = tbl != null ? tbl.GetUserName() : "";
+            var type = GetType();
+            if (type.IsGenericType)
+            {
+                type = type.GetGenericArguments().First();
+            }
+
+            var tbl = type.GetCustomAttribute<Table>(false);
+            _tableName = tbl?.GetTableName() ?? type.Name;
+            _userName = tbl?.GetUserName();
+
             _isAttached = true;
+
+            PropertyChanged = EntityPropertyChanged;
         }
         /// <summary>
         /// 构造函数
@@ -442,6 +455,28 @@ namespace Dos.ORM
         public string GetTableAsName()
         {
             return _tableAsName;
+        }
+
+        private void EntityPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (_isAttached && GetFields().Count(a => a.PropertyName == e.PropertyName) == 1 && !_modifyFieldsStr.Contains(e.PropertyName))
+            {
+
+                _modifyFieldsStr.Add(e.PropertyName);
+            }
+        }
+
+        public void AddModifyField(string fieldName)
+        {
+            if (GetFields().Count(a => a.PropertyName == fieldName) == 1)
+            {
+                _modifyFieldsStr.Add(fieldName);
+            }
+        }
+
+        public virtual Field[] GetJoinFields()
+        {
+            return null;
         }
     }
 }

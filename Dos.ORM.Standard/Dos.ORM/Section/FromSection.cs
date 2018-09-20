@@ -36,6 +36,21 @@ namespace Dos.ORM
     {
 
         /// <summary>
+        /// 符合条件的总记录数
+        /// </summary>
+        private int total;
+
+        /// <summary>
+        /// 每页大小
+        /// </summary>
+        private int pageSize;
+
+        /// <summary>
+        /// 当前页
+        /// </summary>
+        private int pageIndex;
+
+        /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="database"></param>
@@ -99,6 +114,29 @@ namespace Dos.ORM
             //this.asNames.Add(EntityCache.GetTableName<TEntity>() + "|" + asName2);
             return Join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.InnerJoin);//EntityCache.GetTableName<TEntity>() + "|" + asName
         }
+
+        public FromSection<T> InnerJoin<TEntity, TEntity2>(Expression<Func<T, TEntity, TEntity2, bool>> lambdaWhere, string asName = "") where TEntity : Entity where TEntity2 : Entity
+        {
+            //this.asNames.Add(EntityCache.GetTableName<TEntity>() + "|" +asName);
+            //this.asNames.Add(EntityCache.GetTableName<TEntity>() + "|" + asName2);
+            return Join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.InnerJoin);//EntityCache.GetTableName<TEntity>() + "|" + asName
+        }
+
+        public FromSection<T> InnerJoin<TEntity, TEntity2, TEntity3>(Expression<Func<T, TEntity, TEntity2, TEntity3, bool>> lambdaWhere, string asName = "") where TEntity : Entity where TEntity2 : Entity where TEntity3 : Entity
+        {
+            return Join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.InnerJoin);
+        }
+
+        public FromSection<T> InnerJoin<TEntity, TEntity2, TEntity3, TEntity4>(Expression<Func<T, TEntity, TEntity2, TEntity3, TEntity4, bool>> lambdaWhere, string asName = "") where TEntity : Entity where TEntity2 : Entity where TEntity3 : Entity where TEntity4 : Entity
+        {
+            return Join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.InnerJoin);
+        }
+
+        public FromSection<T> InnerJoin<TEntity, TEntity2, TEntity3, TEntity4, TEntity5>(Expression<Func<T, TEntity, TEntity2, TEntity3, TEntity4, TEntity5, bool>> lambdaWhere, string asName = "") where TEntity : Entity where TEntity2 : Entity where TEntity3 : Entity where TEntity4 : Entity where TEntity5 : Entity
+        {
+            return Join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.InnerJoin);
+        }
+
         /// <summary>
         /// Cross Join
         /// </summary>
@@ -144,6 +182,29 @@ namespace Dos.ORM
         {
             return Join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.LeftJoin);
         }
+
+
+        public FromSection<T> LeftJoin<TEntity, TEntity2>(Expression<Func<T, TEntity, TEntity2, bool>> lambdaWhere) where TEntity : Entity where TEntity2 : Entity
+        {
+            return Join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.LeftJoin);
+        }
+
+
+        public FromSection<T> LeftJoin<TEntity, TEntity2, TEntity3>(Expression<Func<T, TEntity, TEntity2, TEntity3, bool>> lambdaWhere, string asName = "") where TEntity : Entity where TEntity2 : Entity where TEntity3 : Entity
+        {
+            return Join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.LeftJoin);
+        }
+
+        public FromSection<T> LeftJoin<TEntity, TEntity2, TEntity3, TEntity4>(Expression<Func<T, TEntity, TEntity2, TEntity3, TEntity4, bool>> lambdaWhere, string asName = "") where TEntity : Entity where TEntity2 : Entity where TEntity3 : Entity where TEntity4 : Entity
+        {
+            return Join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.LeftJoin);
+        }
+
+        public FromSection<T> LeftJoin<TEntity, TEntity2, TEntity3, TEntity4, TEntity5>(Expression<Func<T, TEntity, TEntity2, TEntity3, TEntity4, TEntity5, bool>> lambdaWhere, string asName = "") where TEntity : Entity where TEntity2 : Entity where TEntity3 : Entity where TEntity4 : Entity where TEntity5 : Entity
+        {
+            return Join(EntityCache.GetTableName<TEntity>(), EntityCache.GetUserName<TEntity>(), ExpressionToClip<T>.ToJoinWhere(lambdaWhere), JoinType.LeftJoin);
+        }
+
         /// <summary>
         /// Full Join
         /// </summary>
@@ -255,6 +316,33 @@ namespace Dos.ORM
         public FromSection<T> Having(Expression<Func<T, bool>> lambdaHaving)
         {
             return (FromSection<T>)base.Having(ExpressionToClip<T>.ToWhereClip(lambdaHaving));
+        }
+
+        public FromSection<T> Having<TEntity2>(Expression<Func<T, TEntity2, bool>> lambdaHaving)
+        {
+            return (FromSection<T>)base.Having(ExpressionToClip<T>.ToWhereClip(lambdaHaving));
+        }
+
+        public FromSection<T> Having<TEntity2, TEntity3>(Expression<Func<T, TEntity2, TEntity3, bool>> lambdaHaving)
+        {
+            return (FromSection<T>)base.Having(ExpressionToClip<T>.ToWhereClip(lambdaHaving));
+        }
+
+        public FromSection<T> Having<TEntity2, TEntity3, TEntity4>(Expression<Func<T, TEntity2, TEntity3, TEntity4, bool>> lambdaHaving)
+        {
+            return (FromSection<T>)base.Having(ExpressionToClip<T>.ToWhereClip(lambdaHaving));
+        }
+
+
+        public FromSection<T> Having<TEntity2, TEntity3, TEntity4, TEntity5>(Expression<Func<T, TEntity2, TEntity3, TEntity4, TEntity5, bool>> lambdaHaving)
+        {
+            return (FromSection<T>)base.Having(ExpressionToClip<T>.ToWhereClip(lambdaHaving));
+        }
+
+
+        public FromSection<T> Where()
+        {
+            return (FromSection<T>)base.Where(WhereClip.All);
         }
         /// <summary>
         /// whereclip
@@ -412,6 +500,28 @@ namespace Dos.ORM
         {
             return (FromSection<T>)base.GroupBy(ExpressionToClip<T>.ToGroupByClip(lambdaGroupBy));
         }
+
+        public FromSection<T> GroupBy<TEntity2>(Expression<Func<T, TEntity2, object>> lambdaGroupBy)
+        {
+            return (FromSection<T>)base.GroupBy(ExpressionToClip<T>.ToGroupByClip(lambdaGroupBy));
+        }
+
+        public FromSection<T> GroupBy<TEntity2, TEntity3>(Expression<Func<T, TEntity2, TEntity3, object>> lambdaGroupBy)
+        {
+            return (FromSection<T>)base.GroupBy(ExpressionToClip<T>.ToGroupByClip(lambdaGroupBy));
+        }
+
+        public FromSection<T> GroupBy<TEntity2, TEntity3, TEntity4>(Expression<Func<T, TEntity2, TEntity3, TEntity4, object>> lambdaGroupBy)
+        {
+            return (FromSection<T>)base.GroupBy(ExpressionToClip<T>.ToGroupByClip(lambdaGroupBy));
+        }
+
+
+        public FromSection<T> GroupBy<TEntity2, TEntity3, TEntity4, TEntity5>(Expression<Func<T, TEntity2, TEntity3, TEntity4, TEntity5, object>> lambdaGroupBy)
+        {
+            return (FromSection<T>)base.GroupBy(ExpressionToClip<T>.ToGroupByClip(lambdaGroupBy));
+        }
+
         #region 2015-09-08新增
         /// <summary>
         /// 
@@ -468,6 +578,71 @@ namespace Dos.ORM
         {
             return (FromSection<T>)base.OrderBy(orderBys);
         }
+
+
+        public FromSection<T> OrderBy<TEntity2>(Expression<Func<T, TEntity2, object>> lambdaOrderBy) where TEntity2 : Entity
+        {
+            return (FromSection<T>)base.OrderBy(ExpressionToClip<T>.ToOrderByClip(lambdaOrderBy));
+        }
+
+        /// <summary>
+        /// orderby
+        /// </summary>
+        public FromSection<T> OrderBy<TEntity2, TEntity3>(Expression<Func<T, TEntity2, TEntity3, object>> lambdaOrderBy) where TEntity2 : Entity where TEntity3 : Entity
+        {
+            return (FromSection<T>)base.OrderBy(ExpressionToClip<T>.ToOrderByClip(lambdaOrderBy));
+        }
+
+        /// <summary>
+        /// orderby
+        /// </summary>
+        public FromSection<T> OrderBy<TEntity2, TEntity3, TEntity4>(Expression<Func<T, TEntity2, TEntity3, TEntity4, object>> lambdaOrderBy) where TEntity2 : Entity where TEntity3 : Entity where TEntity4 : Entity
+        {
+            return (FromSection<T>)base.OrderBy(ExpressionToClip<T>.ToOrderByClip(lambdaOrderBy));
+        }
+
+
+
+        /// <summary>
+        /// orderby
+        /// </summary>
+        public FromSection<T> OrderBy<TEntity2, TEntity3, TEntity4, TEntity5>(Expression<Func<T, TEntity2, TEntity3, TEntity4, TEntity5, object>> lambdaOrderBy) where TEntity2 : Entity where TEntity3 : Entity where TEntity4 : Entity where TEntity5 : Entity
+        {
+            return (FromSection<T>)base.OrderBy(ExpressionToClip<T>.ToOrderByClip(lambdaOrderBy));
+        }
+
+        public FromSection<T> OrderByDescending<TEntity2>(Expression<Func<T, TEntity2, object>> lambdaOrderBy) where TEntity2 : Entity
+        {
+            return (FromSection<T>)base.OrderBy(ExpressionToClip<T>.ToOrderByDescendingClip(lambdaOrderBy));
+        }
+
+        /// <summary>
+        /// orderby
+        /// </summary>
+        public FromSection<T> OrderByDescending<TEntity2, TEntity3>(Expression<Func<T, TEntity2, TEntity3, object>> lambdaOrderBy) where TEntity2 : Entity where TEntity3 : Entity
+        {
+            return (FromSection<T>)base.OrderBy(ExpressionToClip<T>.ToOrderByDescendingClip(lambdaOrderBy));
+        }
+
+        /// <summary>
+        /// orderby
+        /// </summary>
+        public FromSection<T> OrderByDescending<TEntity2, TEntity3, TEntity4>(Expression<Func<T, TEntity2, TEntity3, TEntity4, object>> lambdaOrderBy) where TEntity2 : Entity where TEntity3 : Entity where TEntity4 : Entity
+        {
+            return (FromSection<T>)base.OrderBy(ExpressionToClip<T>.ToOrderByDescendingClip(lambdaOrderBy));
+        }
+
+
+
+        /// <summary>
+        /// orderby
+        /// </summary>
+        public FromSection<T> OrderByDescending<TEntity2, TEntity3, TEntity4, TEntity5>(Expression<Func<T, TEntity2, TEntity3, TEntity4, TEntity5, object>> lambdaOrderBy) where TEntity2 : Entity where TEntity3 : Entity where TEntity4 : Entity where TEntity5 : Entity
+        {
+            return (FromSection<T>)base.OrderBy(ExpressionToClip<T>.ToOrderByDescendingClip(lambdaOrderBy));
+        }
+
+
         /// <summary>
         /// select field
         /// </summary>
@@ -581,9 +756,34 @@ namespace Dos.ORM
         /// <returns></returns>
         public new FromSection<T> Page(int pageSize, int pageIndex)
         {
+            this.pageIndex = pageIndex; //fromSection.Count(
+            this.pageSize = pageSize;
+            this.total = Count();
+
             return From(pageSize * (pageIndex - 1) + 1, pageIndex * pageSize);
         }
 
+
+        public DataPage<T> ToCurrentPage()
+        {
+            var page = new DataPage<T>();
+            page.list = ToList();
+            page.total = total;
+            page.pageSize = pageSize;
+            page.pageCurrent = page.pageCount < pageIndex ? page.pageCount : pageIndex;
+            return page;
+        }
+
+
+        public DataPage<TResult> ToCurrentPage<TResult>()
+        {
+            var page = new DataPage<TResult>();
+            page.list = ToList<TResult>();
+            page.total = total;
+            page.pageSize = pageSize;
+            page.pageCurrent = page.pageCount < pageIndex ? page.pageCount : pageIndex;
+            return page;
+        }
 
         /// <summary>
         /// 设置默认排序
@@ -1740,6 +1940,8 @@ namespace Dos.ORM
         {
             return From(pageSize * (pageIndex - 1) + 1, pageIndex * pageSize);
         }
+
+
 
 
         /// <summary>

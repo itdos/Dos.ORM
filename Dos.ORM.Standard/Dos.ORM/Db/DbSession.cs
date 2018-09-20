@@ -396,10 +396,19 @@ namespace Dos.ORM
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <returns></returns>
-        public FromSection<TEntity> From<TEntity>(string asName = "")
-            where TEntity : Entity
+        //public FromSection<TEntity> From<TEntity>(string asName = "")
+        //    where TEntity : Entity
+        //{
+        //    return new FromSection<TEntity>(db, null, asName);
+        //}
+
+        public FromSection<TEntity> From<TEntity>(DbTrans trans = null, string asName = "") where TEntity : Entity
         {
-            return new FromSection<TEntity>(db, null, asName);
+            if (trans == null)
+            {
+                return new FromSection<TEntity>(db, null, asName);
+            }
+            return new FromSection<TEntity>(db, trans, asName);
         }
 
         /// <summary>

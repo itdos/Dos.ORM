@@ -14,7 +14,10 @@
 * 备注描述：
 *******************************************************/
 #endregion
+using System;
 using System.Collections.Generic;
+using System.Linq;
+
 namespace Dos.ORM
 {
     /// <summary>
@@ -70,14 +73,15 @@ namespace Dos.ORM
         {
             return getTEntity<TEntity>().GetUserName();
         }
+
         /// <summary>
         /// 返回T
         /// </summary>
         /// <returns></returns>
-        private static TEntity getTEntity<TEntity>()
-            where TEntity : Entity
+        public static TEntity getTEntity<TEntity>() where TEntity : Entity
         {
-            var typestring = typeof(TEntity).ToString();
+            var type = typeof(TEntity);
+            var typestring = type.IsGenericType ? "Entity<" + type.GetGenericArguments().First().FullName + ">" : type.FullName;
 
             if (_entityList.ContainsKey(typestring))
                 return (TEntity)_entityList[typestring];
@@ -90,6 +94,35 @@ namespace Dos.ORM
                 var t = DataUtils.Create<TEntity>();
                 _entityList.Add(typestring, t);
                 return t;
+            }
+        }
+
+
+        public static Entity getTEntity(Type type)
+        {
+            if (!type.IsSubclassOf(typeof(Entity))) return default(Entity);
+
+            var typestring = type.IsGenericType ? "Entity<" + type.GetGenericArguments().First().FullName + ">" : type.FullName;
+
+            if (_entityList.ContainsKey(typestring))
+                return (Entity)_entityList[typestring];
+
+            lock (LockObj)
+            {
+                try
+                {
+                    if (_entityList.ContainsKey(typestring))
+                        return (Entity)_entityList[typestring];
+                    var t = (Entity)Activator.CreateInstance(type);
+                    _entityList.Add(typestring, t);
+                    return t;
+                }
+                catch (Exception ext)
+                {
+                    var sssss = ext.Message;
+                    return default(Entity);
+
+                }
             }
         }
 

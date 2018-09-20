@@ -23,6 +23,7 @@ using System.Text;
 using Dos.ORM.Common;
 using Dos;
 using Dos.ORM;
+using System.Reflection;
 
 namespace Dos.ORM
 {
@@ -1547,6 +1548,206 @@ namespace Dos.ORM
         public static int Len(this object key)
         {
             throw new Exception(string.Format(Tips, "Len"));
+        }
+
+        public static bool GreaterThan(this string field, string value)
+        {
+            throw new Exception(string.Format(Tips, "GreaterThan"));
+        }
+
+        public static bool GreaterOrEqual(this string field, string value)
+        {
+            throw new Exception(string.Format(Tips, "GreaterOrEqual"));
+        }
+
+        public static bool LessThan(this string field, string value)
+        {
+            throw new Exception(string.Format(Tips, "LessThan"));
+        }
+
+        public static bool LessOrEqual(this string field, string value)
+        {
+            throw new Exception(string.Format(Tips, "LessOrEqual"));
+        }
+
+        public static bool NotEqual(this string field, string value)
+        {
+            throw new Exception(string.Format(Tips, "NotEqual"));
+        }
+
+        /// <summary>
+        /// startIndex 以1开始
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="length"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool SubGreaterThan(this string field, int startIndex, int length, string value)
+        {
+            throw new Exception(string.Format(Tips, "SubGreaterThan"));
+        }
+
+        /// <summary>
+        ///  startIndex 以1开始
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="length"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool SubGreaterOrEqual(this string field, int startIndex, int length, string value)
+        {
+            throw new Exception(string.Format(Tips, "SubGreaterOrEqual"));
+        }
+
+        /// <summary>
+        ///  startIndex 以1开始
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="length"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool SubLessThan(this string field, int startIndex, int length, string value)
+        {
+            throw new Exception(string.Format(Tips, "SubLessThan"));
+        }
+
+        /// <summary>
+        ///  startIndex 以1开始
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="length"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool SubLessOrEqual(this string field, int startIndex, int length, string value)
+        {
+            throw new Exception(string.Format(Tips, "SubLessOrEqual"));
+        }
+
+        /// <summary>
+        ///  startIndex 以1开始
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="length"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool SubNotEqual(this string field, int startIndex, int length, string value)
+        {
+            throw new Exception(string.Format(Tips, "SubNotEqual"));
+        }
+
+
+        /// <summary>
+        /// startIndex 以1开始
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="length"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+
+        public static bool SubEqual(this string field, int startIndex, int length, string value)
+        {
+            throw new Exception(string.Format(Tips, "SubEqual"));
+        }
+
+        /// <summary>
+        /// startIndex 以1开始
+        /// where field not in (string,string,string)。传入Array或List&lt;string>。
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="length"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static bool SubIn(this string field, int startIndex, int length, params string[] values)
+        {
+            throw new Exception(string.Format(Tips, "SubIn"));
+        }
+
+        /// <summary>
+        /// startIndex 以1开始
+        /// where field not in (string,string,string)。传入Array或List&lt;string>。
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="length"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static bool SubNotIn(this string field, int startIndex, int length, List<string> values)
+        {
+            throw new Exception(string.Format(Tips, "SubNotIn"));
+        }
+
+
+        public static bool BitwiseAND(this int field, int value)
+        {
+            throw new Exception(string.Format(Tips, "BitwiseAND"));
+        }
+
+        public static bool BitwiseIN(this int field, int value)
+        {
+            throw new Exception(string.Format(Tips, "BitwiseIN"));
+        }
+
+        public static bool BitwiseOR(this int field, int value)
+        {
+            throw new Exception(string.Format(Tips, "BitwiseOR"));
+        }
+
+
+        public static bool BitwiseAND(this System.Enum field, int value)
+        {
+            throw new Exception(string.Format(Tips, "BitwiseAND"));
+        }
+
+
+        public static bool BitwiseOR(this System.Enum field, int value)
+        {
+            throw new Exception(string.Format(Tips, "BitwiseOR"));
+        }
+
+        public static bool BitwiseIN(this System.Enum field, int value)
+        {
+            throw new Exception(string.Format(Tips, "BitwiseIN"));
+        }
+
+        public static bool BitwiseAND(this System.Enum field, System.Enum value)
+        {
+            throw new Exception(string.Format(Tips, "BitwiseAND"));
+        }
+
+
+        public static bool BitwiseOR(this System.Enum field, System.Enum value)
+        {
+            throw new Exception(string.Format(Tips, "BitwiseOR"));
+        }
+
+
+        public static bool BitwiseIN(this System.Enum field, System.Enum value)
+        {
+            throw new Exception(string.Format(Tips, "BitwiseIN"));
+        }
+
+
+        public static bool LenEqual(this string field, int len)
+        {
+            throw new Exception(string.Format(Tips, "LenEqual"));
+        }
+
+        public static T GetAttribute<T>(this MemberInfo memberInfo) where T : Attribute
+        {
+            return memberInfo.GetCustomAttribute<T>(false);
+            //var customAttributes = memberInfo.GetCustomAttribute<T>(false);
+            //if (customAttributes == null || customAttributes.Length == 0)
+            //{
+            //    return null;
+            //}
+            //return customAttributes[0] as T;
         }
     }
 }

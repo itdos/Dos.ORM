@@ -48,6 +48,12 @@
           "lib/netstandard1.3/FastExpressionCompiler.dll": {}
         }
       },
+      "Fody/3.2.4": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      },
       "lcpi.data.oledb/1.7.0.3395": {
         "type": "package",
         "dependencies": {
@@ -198,6 +204,19 @@
         },
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
+        }
+      },
+      "PropertyChanged.Fody/2.5.11": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "3.2.4",
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.0/PropertyChanged.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/PropertyChanged.dll": {}
         }
       },
       "runtime.native.System.Data.SqlClient.sni/4.4.0": {
@@ -577,6 +596,49 @@
         "lib/net45/FastExpressionCompiler.xml",
         "lib/netstandard1.3/FastExpressionCompiler.dll",
         "lib/netstandard1.3/FastExpressionCompiler.xml"
+      ]
+    },
+    "Fody/3.2.4": {
+      "sha512": "Q+glGTSj/gh6VMIbFx/x0BFWkhd628Fl37nspkCNzrJ0CH22SVpHLodk08H0aXUkoa8+0vGEnupmsK51cvnaYQ==",
+      "type": "package",
+      "path": "fody/3.2.4",
+      "files": [
+        ".signature.p7s",
+        "build/Fody.targets",
+        "fody.3.2.4.nupkg.sha512",
+        "fody.nuspec",
+        "netclassictask/Fody.dll",
+        "netclassictask/Fody.pdb",
+        "netclassictask/FodyCommon.dll",
+        "netclassictask/FodyCommon.pdb",
+        "netclassictask/FodyHelpers.dll",
+        "netclassictask/FodyHelpers.pdb",
+        "netclassictask/FodyIsolated.dll",
+        "netclassictask/FodyIsolated.pdb",
+        "netclassictask/Mono.Cecil.Mdb.dll",
+        "netclassictask/Mono.Cecil.Mdb.pdb",
+        "netclassictask/Mono.Cecil.Pdb.dll",
+        "netclassictask/Mono.Cecil.Pdb.pdb",
+        "netclassictask/Mono.Cecil.Rocks.dll",
+        "netclassictask/Mono.Cecil.Rocks.pdb",
+        "netclassictask/Mono.Cecil.dll",
+        "netclassictask/Mono.Cecil.pdb",
+        "netstandardtask/Fody.dll",
+        "netstandardtask/Fody.pdb",
+        "netstandardtask/FodyCommon.dll",
+        "netstandardtask/FodyCommon.pdb",
+        "netstandardtask/FodyHelpers.dll",
+        "netstandardtask/FodyHelpers.pdb",
+        "netstandardtask/FodyIsolated.dll",
+        "netstandardtask/FodyIsolated.pdb",
+        "netstandardtask/Mono.Cecil.Mdb.dll",
+        "netstandardtask/Mono.Cecil.Mdb.pdb",
+        "netstandardtask/Mono.Cecil.Pdb.dll",
+        "netstandardtask/Mono.Cecil.Pdb.pdb",
+        "netstandardtask/Mono.Cecil.Rocks.dll",
+        "netstandardtask/Mono.Cecil.Rocks.pdb",
+        "netstandardtask/Mono.Cecil.dll",
+        "netstandardtask/Mono.Cecil.pdb"
       ]
     },
     "lcpi.data.oledb/1.7.0.3395": {
@@ -966,6 +1028,24 @@
         "lib/netstandard1.0/_._",
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
+      ]
+    },
+    "PropertyChanged.Fody/2.5.11": {
+      "sha512": "frZh2O5ZR4vTKSO3ZB/wp8CUt9o+Hi8oX5VcbTjnjjwzh9Z3aZx89lZZM1/kdQeFakICbyZbVEW6OZOWLzjgUg==",
+      "type": "package",
+      "path": "propertychanged.fody/2.5.11",
+      "files": [
+        ".signature.p7s",
+        "lib/net452/PropertyChanged.dll",
+        "lib/net452/PropertyChanged.xml",
+        "lib/netstandard1.0/PropertyChanged.dll",
+        "lib/netstandard1.0/PropertyChanged.xml",
+        "netclassicweaver/PropertyChanged.Fody.dll",
+        "netclassicweaver/PropertyChanged.Fody.pdb",
+        "netstandardweaver/PropertyChanged.Fody.dll",
+        "netstandardweaver/PropertyChanged.Fody.pdb",
+        "propertychanged.fody.2.5.11.nupkg.sha512",
+        "propertychanged.fody.nuspec"
       ]
     },
     "runtime.native.System.Data.SqlClient.sni/4.4.0": {
@@ -2418,6 +2498,7 @@
       "Microsoft.CSharp >= 4.4.1",
       "Microsoft.Extensions.Caching.Memory >= 2.0.2",
       "NETStandard.Library >= 2.0.3",
+      "PropertyChanged.Fody >= 2.5.11",
       "System.Data.Common >= 4.3.0",
       "System.Data.OracleClient >= 1.0.8",
       "System.Data.SqlClient >= 4.4.3",
@@ -2434,11 +2515,11 @@
   "project": {
     "version": "1.12.1",
     "restore": {
-      "projectUniqueName": "D:\\工作\\GitHub\\Dos.ORM.Standard\\Dos.ORM\\Dos.ORM.csproj",
+      "projectUniqueName": "C:\\Users\\Administrator\\Source\\Repos\\Dos.ORM\\Dos.ORM.Standard\\Dos.ORM\\Dos.ORM.csproj",
       "projectName": "Dos.ORM",
-      "projectPath": "D:\\工作\\GitHub\\Dos.ORM.Standard\\Dos.ORM\\Dos.ORM.csproj",
+      "projectPath": "C:\\Users\\Administrator\\Source\\Repos\\Dos.ORM\\Dos.ORM.Standard\\Dos.ORM\\Dos.ORM.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "D:\\工作\\GitHub\\Dos.ORM.Standard\\Dos.ORM\\obj\\",
+      "outputPath": "C:\\Users\\Administrator\\Source\\Repos\\Dos.ORM\\Dos.ORM.Standard\\Dos.ORM\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [
@@ -2454,6 +2535,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "F:\\NetCoreJwt\\Nugets": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2498,6 +2580,10 @@
             "target": "Package",
             "version": "[2.0.3, )",
             "autoReferenced": true
+          },
+          "PropertyChanged.Fody": {
+            "target": "Package",
+            "version": "[2.5.11, )"
           },
           "System.Data.Common": {
             "target": "Package",

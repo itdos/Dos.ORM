@@ -4,6 +4,12 @@
 
 已知Bug：.AddSelect()等内部嵌套查询.Top()无效。
 
+/*-----------------------------------------------------------------------------------------------*/
+2019-05-30 Dos.ORM（v1.17）
+	*）感谢群友【帅虎】发现一个正则匹配Bug。
+
+2018-08-03 Dos.ORM（v1.15）
+	*）解决mysql下正则bug。
 
 /*-----------------------------------------------------------------------------------------------*/
 2018-06-21 Dos.ORM（v1.13）
@@ -89,7 +95,7 @@
 	*）修复自增主键在批量插入的时候，并不是返回的最后一次插入后返回的自增主键值的Bug，而是把每次插入后返回的自增值累加了。（感谢群友【郑邴镪】发现此Bug）
 	*）修复.Delete<T>(value,value,value)删除的Bug，此删除写法不是删除3条数据，而是当该表有3个主键时才这样写，仅删除一条数据。
 	*）DB.Content.Exists<T>()增加Lambda写法。DB.Content.Count<T>()增加Lambda写法。
-	*）修复MySql子查询bug。原理见：http://www.itdos.com/DataBase/20150812/1150319.html 特别感谢Python同事【晓不得www.songyuchao.com】发现此Bug。
+	*）修复MySql子查询bug。原理见：http://www.iTdos.com/DataBase/20150812/1150319.html 特别感谢Python同事【晓不得www.songyuchao.com】发现此Bug。
 
 /*-----------------------------------------------------------------------------------------------*/
 
@@ -107,7 +113,7 @@
 	*）增加.First<T>()
 	*）修复.OrderBy()一个guid字段lambda写法的Bug。
 	*）修复仅.Select()一个字段然后.ToList<string>()的一个Bug。
-	*）【重要更新】现在实体会默认标记为Attach()，修改实体可以不再需要先将实体.Attach()。例：Model.Name='ITdos'，即代表Name将参与字段的修改。
+	*）【重要更新】现在实体会默认标记为Attach()，修改实体可以不再需要先将实体.Attach()。例：Model.Name='iTdos'，即代表Name将参与字段的修改。
 	*）优化实例化一个新实体对象，然后直接.Update()的操作。
 	*）优化底层Emit映射。
 	*）优化.Delete<T>(IEnumerable<T> entities)方法，性能大大提升。
@@ -115,8 +121,8 @@
 	*）【重要更新】lambda的常量、变量计算增加缓存，性能提升10-20倍。举例：.Where(d => Convert.ToInt32(Model.Price.ToString())+2/3*5 > 0)，lambda计算默认是通过委托+反射取结果，现在计算公式将会缓存，性能大大提升。
 	*）现在.Where()的lambda支持常量、变量之间的比较，同时比较符号左右不分顺序。
 	*）修复tinyint(1)对应bool类型字段偶尔为0时，映射结果却为true。
-	*）【重要更新】增加多表关联查询的.Where<T,T2,T3>()Lambda表达式写法：.From<T1>().Where<T2, T3, T4>((a, b, c) => a.ID != null && b.Name == "ITdos")。
-	*）【重要更新】Where条件拼接类同上。例：var where = new Where<T1>(); where.And<T2, T3>((a, b, c) => a.ID != null && b.Name == "ITdos");。
+	*）【重要更新】增加多表关联查询的.Where<T,T2,T3>()Lambda表达式写法：.From<T1>().Where<T2, T3, T4>((a, b, c) => a.ID != null && b.Name == "iTdos")。
+	*）【重要更新】Where条件拼接类同上。例：var where = new Where<T1>(); where.And<T2, T3>((a, b, c) => a.ID != null && b.Name == "iTdos");。
 	*）增加.Delete<T>(IEnumerable<T> entities)重载。
 	*）【重要更新】新增Where、Where<T>（同WhereClipBuilder），同时.Where()增加可传入Where对象重载。
 	*）优化了lambda filed.In()、.NotIn()传入数组的类型。（之前是string字段只能传string数组，guid只能传guid数组。现在无限制，int字段同样可以传入string数组，strng字段同样可以传入int数组。）

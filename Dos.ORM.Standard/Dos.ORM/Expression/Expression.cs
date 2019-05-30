@@ -1,15 +1,15 @@
 ﻿#region << 版 本 注 释 >>
 /****************************************************
 * 文 件 名：
-* Copyright(c) ITdos
+* Copyright(c) iTdos
 * CLR 版本: 4.0.30319.18408
 * 创 建 人：steven hu
 * 电子邮箱：
-* 官方网站：www.ITdos.com
+* 官方网站：www.iTdos.com
 * 创建日期：2010/4/8 19:55:23
 * 文件描述：
 ******************************************************
-* 修 改 人：ITdos
+* 修 改 人：iTdos
 * 修改日期：
 * 备注描述：
 *******************************************************/
@@ -217,7 +217,7 @@ namespace Dos.ORM
         /// <summary>
         /// 
         /// </summary>
-        public string expressionString = string.Empty;//2018-04-09   protected修改为public by itdos.com
+        public string expressionString = string.Empty;//2018-04-09   protected修改为public by iTdos.com
 
 
         /// <summary>

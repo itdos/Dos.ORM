@@ -1,15 +1,15 @@
 ﻿#region << 版 本 注 释 >>
 /****************************************************
 * 文 件 名：
-* Copyright(c) ITdos
+* Copyright(c) iTdos
 * CLR 版本: 4.0.30319.18408
 * 创 建 人：steven hu
 * 电子邮箱：
-* 官方网站：www.ITdos.com
+* 官方网站：www.iTdos.com
 * 创建日期：2010/2/10
 * 文件描述：
 ******************************************************
-* 修 改 人：ITdos
+* 修 改 人：iTdos
 * 修改日期：
 * 备注描述：
 *******************************************************/
@@ -416,10 +416,11 @@ namespace Dos.ORM
                 {
                     //if (cmd.CommandText.IndexOf(p.ParameterName, StringComparison.Ordinal) == -1)
                     //if (Regex.IsMatch(cmd.CommandText, p.ParameterName + @"(?=[^\d])")) //2018-06-21 修复bug
-                    if (Regex.IsMatch(cmd.CommandText, @"(@|\?|:)" + p.ParameterName.Substring(1) + @"(?=[^\d])")) //2018-07-31 修复bug
+                    //2019-05-30，感谢群友【帅虎】发现此Bug："update xxx set xxx=@ID1"，此时正则无法正确匹配。
+                    if (Regex.IsMatch(cmd.CommandText + " ", @"(@|\?|:)" + p.ParameterName.Substring(1) + @"(?=[^\d])")) //2018-07-31 修复bug
                     {
                         //2018-06-21
-                        cmd.CommandText =  Regex.Replace(cmd.CommandText, @"(@|\?|:)" + p.ParameterName.Substring(1) + @"(?=[^\d])", p.ParameterName);
+                        cmd.CommandText =  Regex.Replace(cmd.CommandText + " ", @"(@|\?|:)" + p.ParameterName.Substring(1) + @"(?=[^\d])", p.ParameterName);
 
                         ////2015-08-11修改
                         //cmd.CommandText = cmd.CommandText.Replace("@" + p.ParameterName.Substring(1), p.ParameterName);

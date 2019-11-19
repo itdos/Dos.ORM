@@ -19,7 +19,11 @@ Dos.ORM（原Hxj.Data）于2009年发布、2015年正式开源，该组件已在
 
   <ItemGroup>
     <PackageReference Include="Dos.ORM" Version="1.15.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="MySql.Data" Version="6.10.7" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
     <PackageReference Include="MySql.Data" Version="6.9.12" />
   </ItemGroup>
-
 </Project>

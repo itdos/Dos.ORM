@@ -26,3 +26,10 @@ D:\工作\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\net40\Dos.ORM.Assemb
 D:\工作\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\net40\Dos.ORM.dll
 D:\工作\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\net40\Dos.ORM.pdb
 D:\工作\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\net40\Dos.ORM.csprojAssemblyReference.cache
+D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\bin\Debug\net40\Dos.ORM.xml
+D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\bin\Debug\net40\Dos.ORM.dll
+D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\bin\Debug\net40\Dos.ORM.pdb
+D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\net40\Dos.ORM.AssemblyInfoInputs.cache
+D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\net40\Dos.ORM.AssemblyInfo.cs
+D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\net40\Dos.ORM.dll
+D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\net40\Dos.ORM.pdb

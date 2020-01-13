@@ -16,3 +16,11 @@ D:\工作\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Release\netstandard2.0\Dos
 D:\工作\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Release\netstandard2.0\Dos.ORM.dll
 D:\工作\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Release\netstandard2.0\Dos.ORM.pdb
 D:\工作\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Release\netstandard2.0\Dos.ORM.csprojAssemblyReference.cache
+D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\bin\Release\netstandard2.0\Dos.ORM.deps.json
+D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\bin\Release\netstandard2.0\Dos.ORM.dll
+D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\bin\Release\netstandard2.0\Dos.ORM.pdb
+D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Release\netstandard2.0\Dos.ORM.csprojAssemblyReference.cache
+D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Release\netstandard2.0\Dos.ORM.AssemblyInfoInputs.cache
+D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Release\netstandard2.0\Dos.ORM.AssemblyInfo.cs
+D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Release\netstandard2.0\Dos.ORM.dll
+D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Release\netstandard2.0\Dos.ORM.pdb

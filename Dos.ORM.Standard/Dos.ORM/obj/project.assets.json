@@ -716,7 +716,7 @@
       ]
     },
     "Microsoft.Extensions.DependencyInjection.Abstractions/2.0.0": {
-      "sha512": "VN6zV4xkMKIxIP48kQzXieZPWXUeGL3M1nQvgXCm44EAvi2eC0gYj/ldrfPde4JF3TOypAENZvuJX1qkTFAgew==",
+      "sha512": "eUdJ0Q/GfVyUJc0Jal5L1QZLceL78pvEM9wEKcHeI24KorqMDoVX+gWsMGLulQMfOwsUaPtkpQM2pFERTzSfSg==",
       "type": "package",
       "path": "microsoft.extensions.dependencyinjection.abstractions/2.0.0",
       "files": [
@@ -741,7 +741,7 @@
       ]
     },
     "Microsoft.Extensions.Primitives/2.0.0": {
-      "sha512": "RyhLFJoMszfbu1rz/gzoqvOrdgsnXxk0B/M4fKjsJdb6/I3t2MdVq4s1dWs8hOXKjcq26ovsLL1UPLowTsaTcQ==",
+      "sha512": "ukg53qNlqTrK38WA30b5qhw0GD7y3jdI9PHHASjdKyTcBHTevFM2o23tyk3pWCgAV27Bbkm+CPQ2zUe1ZOuYSA==",
       "type": "package",
       "path": "microsoft.extensions.primitives/2.0.0",
       "files": [
@@ -754,11 +754,12 @@
       ]
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
-      "sha512": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
+      "sha512": "bLpT1f/SFlO1CzqXG12KnJzpZs6lv24uX2Rzi4Fmm0noJpNlnWRVryuO3yK18Ca04t/YHcO1e1Z0WDfjseqNzw==",
       "type": "package",
       "path": "microsoft.netcore.platforms/1.1.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
@@ -783,7 +784,7 @@
       ]
     },
     "Microsoft.Win32.Registry/4.4.0": {
-      "sha512": "LJh1PSoqdugrCv7t+k2B919GGdq4PyrntPVlMCMrcz59nsjOstYmtGWSCiFZ3UNpxv2dlsZdcLzJ847uyOlaEA==",
+      "sha512": "dA36TlNVn/XfrZtmf0fiI/z1nd3Wfp2QVzTdj26pqgP9LFWq0i1hYEUAW50xUjGFYn1+/cP3KGuxT2Yn1OUNBQ==",
       "type": "package",
       "path": "microsoft.win32.registry/4.4.0",
       "files": [
@@ -1139,7 +1140,7 @@
       ]
     },
     "System.Data.SqlClient/4.4.3": {
-      "sha512": "NvG/0mC80diO0zXYt89gFC869Gn6aIn5Tx0HavxGa3IPbH2Ktflbw2HJvl24zmpAL0UF/bkGsI+jv0/aHX8dJw==",
+      "sha512": "D1hEOS1oPLJ6WcGCzpTWe8SauWVxnDoDTUWhv5XCNdRm/QeSUk4BQ3ZDe7BH+zNVHDBkPYjVzpVjnCl43eOSGg==",
       "type": "package",
       "path": "system.data.sqlclient/4.4.3",
       "files": [
@@ -1274,7 +1275,7 @@
       ]
     },
     "System.Diagnostics.DiagnosticSource/4.4.1": {
-      "sha512": "DfmSEfJLAfs+iVaQhxUJEh57N2ubV+nd00Xsob2tnC+XwasndKazMjhDYdYMW7UZ6tmyBTxuR5uEx0ov4AaVsQ==",
+      "sha512": "U/KcC19fyLsPN1GLmeU2zQq15MMVcPwMOYPADVo1+WIoJpvMHxrzvl+BLLZwTEZSneGwaPFZ0aWr0nJ7B7LSdA==",
       "type": "package",
       "path": "system.diagnostics.diagnosticsource/4.4.1",
       "files": [
@@ -1910,7 +1911,7 @@
       ]
     },
     "System.Runtime.CompilerServices.Unsafe/4.4.0": {
-      "sha512": "0D85ti9IcUxWql213d4WE+f2JjNzRzHmEaG34qiA3hD7G8O4i0Mgr+Rutkn4pmrbrW+ABY4vzpECgHmdw+vTjQ==",
+      "sha512": "9dLLuBxr5GNmOfl2jSMcsHuteEg32BEfUotmmUkmZjpR3RpVHE8YQwt0ow3p6prwA1ME8WqDVZqrr8z6H8G+Kw==",
       "type": "package",
       "path": "system.runtime.compilerservices.unsafe/4.4.0",
       "files": [
@@ -2013,7 +2014,7 @@
       ]
     },
     "System.Security.AccessControl/4.4.0": {
-      "sha512": "UPF+s4KctOCpk7dpBe3QtZ1AzFEHKdhOtiNDLxGnD/nxKsVbsow5OClTy8c7yOObw/Evbv95xRwZfYZ4wLV4fA==",
+      "sha512": "2NRFPX/V81ucKQmqNgGBZrKGH/5ejsvivSGMRum0SMgPnJxwhuNkzVS1+7gC3R2X0f57CtwrPrXPPSe6nOp82g==",
       "type": "package",
       "path": "system.security.accesscontrol/4.4.0",
       "files": [
@@ -2053,7 +2054,7 @@
       ]
     },
     "System.Security.Principal.Windows/4.4.0": {
-      "sha512": "ynC5BKYwhgON6WH/yPM5ZLKc19wqC13A5fl4hZa5Lf8pQwv1YmbCPKGualWSRhEoOVWH2FzZhOXauER6al4Upg==",
+      "sha512": "pP+AOzt1o3jESOuLmf52YQTF7H3Ng9hTnrOESQiqsnl2IbBh1HInsAMHYtoh75iUYV0OIkHmjvveraYB6zM97w==",
       "type": "package",
       "path": "system.security.principal.windows/4.4.0",
       "files": [
@@ -2160,7 +2161,7 @@
       ]
     },
     "System.Text.Encoding.CodePages/4.4.0": {
-      "sha512": "FpAgMC+BX6OOCiRebYqHP3r3aYU7o0lopPOo4zKyGc5LWXFEYRUaKtoXXvAJ3sP+IDOK/KBxZaiVAdi+QdZ0TA==",
+      "sha512": "6JX7ZdaceBiLKLkYt8zJcp4xTJd1uYyXXEkPw6mnlUIjh1gZPIVKPtRXPmY5kLf6DwZmf5YLwR3QUrRonl7l0A==",
       "type": "package",
       "path": "system.text.encoding.codepages/4.4.0",
       "files": [
@@ -2445,24 +2446,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Administrator\\.nuget\\packages\\": {},
+    "C:\\Users\\973702\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.17.0",
     "restore": {
-      "projectUniqueName": "D:\\Work\\GitHub\\Dos.ORM\\Dos.ORM.Standard\\Dos.ORM\\Dos.ORM.csproj",
+      "projectUniqueName": "D:\\Work\\开源组件\\Dos.ORM\\Dos.ORM.Standard\\Dos.ORM\\Dos.ORM.csproj",
       "projectName": "Dos.ORM",
-      "projectPath": "D:\\Work\\GitHub\\Dos.ORM\\Dos.ORM.Standard\\Dos.ORM\\Dos.ORM.csproj",
-      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "D:\\Work\\GitHub\\Dos.ORM\\Dos.ORM.Standard\\Dos.ORM\\obj\\",
+      "projectPath": "D:\\Work\\开源组件\\Dos.ORM\\Dos.ORM.Standard\\Dos.ORM\\Dos.ORM.csproj",
+      "packagesPath": "C:\\Users\\973702\\.nuget\\packages\\",
+      "outputPath": "D:\\Work\\开源组件\\Dos.ORM\\Dos.ORM.Standard\\Dos.ORM\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\973702\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2489,7 +2490,7 @@
     },
     "frameworks": {
       "net40": {
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
       },
       "netstandard2.0": {
         "dependencies": {
@@ -2550,7 +2551,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

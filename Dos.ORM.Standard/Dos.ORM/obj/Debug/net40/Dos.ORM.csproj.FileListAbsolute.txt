@@ -33,3 +33,11 @@ D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\net40\Dos.ORM.Assembly
 D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\net40\Dos.ORM.AssemblyInfo.cs
 D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\net40\Dos.ORM.dll
 D:\Work\GitHub\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\net40\Dos.ORM.pdb
+D:\Work\开源组件\Dos.ORM\Dos.ORM.Standard\Dos.ORM\bin\Debug\net40\Dos.ORM.xml
+D:\Work\开源组件\Dos.ORM\Dos.ORM.Standard\Dos.ORM\bin\Debug\net40\Dos.ORM.dll
+D:\Work\开源组件\Dos.ORM\Dos.ORM.Standard\Dos.ORM\bin\Debug\net40\Dos.ORM.pdb
+D:\Work\开源组件\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\net40\Dos.ORM.csprojAssemblyReference.cache
+D:\Work\开源组件\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\net40\Dos.ORM.AssemblyInfoInputs.cache
+D:\Work\开源组件\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\net40\Dos.ORM.AssemblyInfo.cs
+D:\Work\开源组件\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\net40\Dos.ORM.dll
+D:\Work\开源组件\Dos.ORM\Dos.ORM.Standard\Dos.ORM\obj\Debug\net40\Dos.ORM.pdb

@@ -19,3 +19,5 @@ Thumbs.db
 *.nuspec.txt
 *.nuspec
 NuGet.exe
+*.pdb
+/obj/

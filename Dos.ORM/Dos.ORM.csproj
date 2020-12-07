@@ -3,19 +3,20 @@
   <PropertyGroup>
     <!--net20;-->
     <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
-    <Version>1.17</Version>
+    <Version>1.19</Version>
     <Authors>ITdos</Authors>
     <Company>www.ITdos.com</Company>
-    <Description>Dos.ORM（原Hxj.Data）于2009年发布、2015年正式开源，支持Core，该组件已在大量成熟项目中应用。初期开发过程中参考了NBear与MySoft，吸取了他们的一些精华，加入新思想，后期参考EF的Lambda语法进行大量扩展。官方网站：https://www.ITdos.com/Dos/ORM/Index.html，交流QQ群：60831381。</Description>
-    <Copyright>Copyright 2009-2018 ITdos</Copyright>
-    <PackageReleaseNotes>Dos.ORM（原Hxj.Data）于2009年发布、2015年正式开源，支持Core，该组件已在大量成熟项目中应用。初期开发过程中参考了NBear与MySoft，吸取了他们的一些精华，加入新思想，后期参考EF的Lambda语法进行大量扩展。官方网站：https://www.ITdos.com/Dos/ORM/Index.html，交流QQ群：60831381。</PackageReleaseNotes>
-    <PackageIconUrl>https://www.itdos.com/static/img/icon/itdos-48.png</PackageIconUrl>
+    <Description>Dos.ORM于2009年发布、2015年正式开源，该组件已在大量成熟项目中应用。初期开发过程中参考了NBear与MySoft，吸取了他们的一些精华，加入新思想，后期参考EF的Lambda语法进行大量扩展。官方网站：https://www.itdos.com/dos/orm/index.html，交流Q群：60831381</Description>
+    <Copyright>Copyright 2009-2020 iTdos</Copyright>
+    <PackageReleaseNotes>Dos.ORM于2009年发布、2015年正式开源，该组件已在大量成熟项目中应用。初期开发过程中参考了NBear与MySoft，吸取了他们的一些精华，加入新思想，后期参考EF的Lambda语法进行大量扩展。官方网站：https://www.itdos.com/dos/orm/index.html，交流Q群：60831381</PackageReleaseNotes>
+    <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl>http://www.itdos.com/dos/orm/index.html</PackageProjectUrl>
     <PackageLicenseUrl>http://www.itdos.com/dos/orm/index.html</PackageLicenseUrl>
-    <PackageTags>Dos,Dos.,Dos.ORM,Dos.WeChat,Dos.Common,Dos.ORM.NoSql,Dos.Captcha,Dos.Net,iTDos</PackageTags>
+    <PackageTags>Dos,Dos.,Dos.ORM,Dos.Common,Dos.ORM.NoSql,Dos.Captcha,Dos.Net,iTdos,iTdos.com</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.17.0.0</AssemblyVersion>
-    <FileVersion>1.17.0.0</FileVersion>
+    <AssemblyVersion>1.18.0.0</AssemblyVersion>
+    <FileVersion>1.18.0.0</FileVersion>
+    <PackageIcon>itdos-256.png</PackageIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net40|AnyCPU'">
@@ -36,10 +37,14 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
-  <ItemGroup>
-    <!--<Reference Include="System.Reflection.Emit">
+  <ItemGroup><!--<Reference Include="System.Reflection.Emit">
       <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.netcore.app\2.0.0\ref\netcoreapp2.0\System.Reflection.Emit.dll</HintPath>
     </Reference>-->
+  
+    <None Include="..\..\..\..\Users\973702\Pictures\公司\Logo\202005版Logo\itdos-256.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">

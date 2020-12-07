@@ -2,19 +2,20 @@
 
   <PropertyGroup>
     <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
-    <PackageIconUrl>https://www.itdos.com/static/img/icon/itdos-48.png</PackageIconUrl>
-    <Version>2.1</Version>
-    <Authors>ITdos</Authors>
-    <Company>www.ITdos.com</Company>
+    <PackageIconUrl></PackageIconUrl>
+    <Version>2.3</Version>
+    <Authors>iTdos</Authors>
+    <Company>www.iTdos.com</Company>
     <Description>Dos.ORM使用MySql数据库需要额外引用此库。
-Dos.ORM（原Hxj.Data）于2009年发布、2015年正式开源，支持core，该组件已在数百个成熟项目中应用，是目前国内.Net用户量最多、最活跃、最完善的国产ORM。初期开发过程中参考了NBear与MySoft，吸取了他们的一些精华，加入新思想，后期参考EF的Lambda语法进行大量扩展。官方网站：http://ITdos.com/Dos/ORM/Index.html 交流QQ群：60831381</Description>
+Dos.ORM于2009年发布、2015年正式开源，该组件已在大量成熟项目中应用。初期开发过程中参考了NBear与MySoft，吸取了他们的一些精华，加入新思想，后期参考EF的Lambda语法进行大量扩展。官方网站：https://www.itdos.com/dos/orm/index.html，交流Q群：60831381</Description>
     <Copyright>Copyright 2009-2018 ITdos</Copyright>
     <PackageLicenseUrl>http://www.itdos.com/dos/orm/index.html</PackageLicenseUrl>
     <PackageProjectUrl>http://www.itdos.com/dos/orm/index.html</PackageProjectUrl>
     <PackageReleaseNotes>Dos.ORM使用MySql数据库需要额外引用此库。
-Dos.ORM（原Hxj.Data）于2009年发布、2015年正式开源，该组件已在数百个成熟项目中应用，是目前国内.Net用户量最多、最活跃、最完善的国产ORM。初期开发过程中参考了NBear与MySoft，吸取了他们的一些精华，加入新思想，后期参考EF的Lambda语法进行大量扩展。官方网站：http://ITdos.com/Dos/ORM/Index.html 交流QQ群：60831381</PackageReleaseNotes>
-    <PackageTags>Dos,Dos.,Dos.ORM,Dos.WeChat,Dos.Common,Dos.ORM.NoSql,Dos.Captcha,Dos.Net,iTDos</PackageTags>
+Dos.ORM于2009年发布、2015年正式开源，该组件已在大量成熟项目中应用。初期开发过程中参考了NBear与MySoft，吸取了他们的一些精华，加入新思想，后期参考EF的Lambda语法进行大量扩展。官方网站：https://www.itdos.com/dos/orm/index.html，交流Q群：60831381</PackageReleaseNotes>
+    <PackageTags>Dos,Dos.,Dos.ORM,Dos.Common,Dos.ORM.NoSql,Dos.Captcha,Dos.Net,iTdos,iTdos.com</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageIcon>itdos-256.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,5 +26,11 @@ Dos.ORM（原Hxj.Data）于2009年发布、2015年正式开源，该组件已在
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
     <PackageReference Include="MySql.Data" Version="6.9.12" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Users\973702\Pictures\公司\Logo\202005版Logo\itdos-256.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>

@@ -1232,7 +1232,17 @@ namespace Dos.ORM
                      for (var i = startBound; i < startBound + length; i++)
                      {
                          var tmp = r.GetValue(i);
-                         tmp = tmp == DBNull.Value ? null : tmp;
+                         //2020-08-05修改
+                         //tmp = tmp == DBNull.Value ? null : tmp;
+                         if (tmp == DBNull.Value)
+                         {
+                             tmp = null;
+                         }
+                         else if (tmp.GetType().Name.Contains("DateTime"))
+                         {
+                             tmp = r.GetDateTime(i).ToString("yyyy-MM-dd HH:mm:ss");
+                         }
+
                          row[r.GetName(i)] = tmp;
                          if (returnNullIfFirstMissing && i == startBound && tmp == null)
                          {
@@ -1263,6 +1273,7 @@ namespace Dos.ORM
             {
                 Deserializer = GetDeserializer(typeof(T), reader, 0, -1, false)
             };
+            //如果char36存的是空字符串，这里Read会报错：
             while (reader.Read())
             {
                 dynamic next = info.Deserializer(reader);
